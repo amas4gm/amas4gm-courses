@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="A guided AMAS4GM simulation: meet the Bambu Studio workspace and practice 3D navigation with Benchy.">
   <title>Meet Bambu Studio · AMAS4GM</title>
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 <a class="skip" href="#lesson-title">Skip to lesson</a>
@@ -20,7 +20,7 @@
   <div class="learning-layout">
     <aside class="lesson-panel" aria-label="Guided lesson">
       <div class="lesson-progress"><span id="step-count"></span><span id="percent"></span></div>
-      <progress id="progress" value="0" max="14" aria-label="Tutorial progress"></progress>
+      <progress id="progress" value="0" max="15" aria-label="Tutorial progress"></progress>
       <p class="eyebrow" id="chapter"></p>
       <h2 id="lesson-title" tabindex="-1"></h2>
       <p id="lesson-text"></p>
@@ -35,7 +35,7 @@
     <section class="sim-wrap" aria-label="Bambu Studio training simulation">
       <div class="sim-caption"><span>SIMULATED BAMBU STUDIO</span><span id="control-status">Only the highlighted area is active</span></div>
       <div class="studio" id="studio">
-        <div class="titlebar"><span>☰ File &nbsp;⌄</span><span><img class="" src="topbar_save.svg" alt=""><img class="" src="topbar_undo.svg" alt=""><img class="" src="topbar_redo.svg" alt=""></span><span class="filename">* Benchy</span><span>— &nbsp; □ &nbsp; ×</span></div>
+        <div class="titlebar"><span class="native-file-menu"><img class="native-icon" src="topbar_file.svg" alt="">File<img class="native-icon" src="topbar_dropdown.svg" alt=""></span><span><img class="" src="topbar_save.svg" alt=""><img class="" src="topbar_undo.svg" alt=""><img class="" src="topbar_redo.svg" alt=""></span><span class="filename">* Benchy</span><span class="native-window-actions"><img class="native-icon" src="topbar_min.svg" alt=""><img class="native-icon" src="topbar_max.svg" alt=""><img class="native-icon" src="topbar_close.svg" alt=""></span></div>
         <div class="tabbar">
           <button id="home-tab" class="home-icon selected" aria-label="Home" aria-current="page" disabled><img src="tab_home_active.svg" alt=""></button>
           <button id="prepare" class="studio-tab" disabled><img class="" src="tab_3d_active.svg" alt="">Prepare</button>
@@ -52,11 +52,11 @@
             <button class="home-menu" disabled><img src="left_recent.svg" alt="">Recently Opened</button>
             <button class="home-menu" disabled><img src="left_online.svg" alt="">Online Models</button>
             <button class="home-menu" disabled><img src="left_ml.svg" alt="">MakerLab <small>New</small></button>
-            <button class="home-menu divider" disabled><img src="left_ms.svg" alt="">Maker’s Supply ↗</button>
-            <div class="home-bottom"><button class="home-menu divider" disabled><img src="left_ph.svg" alt="">Print History</button><button class="home-menu divider" disabled><img src="left_manual.svg" alt="">User Manual ↗</button></div>
+            <button class="home-menu divider" disabled><img src="left_ms.svg" alt="">Maker’s Supply <img class="native-icon" src="left_link.svg" alt=""></button>
+            <div class="home-bottom"><button class="home-menu divider" disabled><img src="left_ph.svg" alt="">Print History</button><button class="home-menu divider" disabled><img src="left_manual.svg" alt="">User Manual <img class="native-icon" src="left_link.svg" alt=""></button></div>
           </nav>
           <div class="home-content">
-            <div class="home-actions"><input disabled aria-label="Search online models" placeholder="⌕   Search online models"><button disabled><img src="project_open.svg" alt="">Open Project</button><button class="home-create" disabled><img src="project_new.svg" alt="">Create new project</button></div>
+            <div class="home-actions"><label class="native-home-search"><img class="native-icon" src="search.svg" alt=""><input disabled aria-label="Search online models" placeholder="Search online models"></label><button disabled><img src="project_open.svg" alt="">Open Project</button><button class="home-create" disabled><img src="project_new.svg" alt="">Create new project</button></div>
             <div class="home-section-title"><h3><img src="left_recent.svg" alt="">Recently Opened</h3><button disabled>MORE ›</button></div>
             <div class="home-empty">No recently opened files</div>
             <div class="home-section-title"><h3><img src="left_online.svg" alt="">Online Models</h3><button disabled>MORE ›</button></div>
@@ -65,23 +65,30 @@
             <div class="home-offline">Select Prepare above to begin.</div>
           </div>
         </section>
+        <section id="device-screen" class="device-screen" aria-label="Simulated Device workspace" hidden>
+          <nav class="device-sidebar" aria-label="Device sections"><div class="device-selector"><img class="native-icon" src="printer.svg" alt=""> No printer selected</div><button class="current" disabled>Status</button><button disabled>Storage</button><button disabled>Update</button><button disabled>Assistant (HMS)</button></nav>
+          <div class="device-main">
+            <div class="device-monitor"><section class="device-card"><h3>Camera <img class="native-icon" src="monitor_camera.svg" alt=""></h3><div class="camera-placeholder"><img src="monitor_none_printer.svg" alt=""><p>No printer connected</p><small>Camera preview is unavailable in this simulation.</small></div></section><section class="device-card print-progress"><h3>Printing Progress</h3><div class="print-status"><img src="monitor_status_empty.svg" alt=""><div><p>N/A</p><strong>N/A</strong><p class="empty-progress"></p><p>Layer: N/A &nbsp; · &nbsp; Estimated finish time: N/A</p></div></div></section></div>
+            <section class="device-card device-control"><h3>Control <span>Printer Parts &nbsp; Print Options &nbsp; Calibration</span></h3><div class="machine-controls"><div class="temperatures"><p>Nozzle &nbsp; — / — °C</p><p>Heatbed &nbsp; — / — °C</p><p>Chamber &nbsp; — °C</p><p>Fan &nbsp; — %</p><button disabled>Lamp</button></div><div class="axis-pad"><span>Y</span><div><span>−X</span><img src="view_iso.svg" alt=""><span>X</span></div><span>−Y</span></div></div><div class="device-ams"><h4>AMS / Filament</h4><div class="ams-slots"><span>A1<br><b>Empty</b></span><span>A2<br><b>Empty</b></span><span>A3<br><b>Empty</b></span><span>A4<br><b>Empty</b></span></div><div class="ams-actions"><button disabled>Unload</button><button disabled>Load</button></div></div><p class="device-simulation-note">SIMULATION · No live printer, temperatures, or camera feed.</p></section>
+          </div>
+        </section>
         <div class="studio-body" hidden>
           <div class="settings">
             <button id="printer" class="settings-section" disabled>
-              <span class="section-heading">▣ &nbsp; Printer <span>⚙</span></span>
-<span class="printer-cards"><span class="printer-card"><img src="printer_thumbnail_N7_png.png" alt=""><span>⌄ Bambu Lab X2D</span></span><span class="plate-card"><span class="plate-swatch"></span><span>⌄ Texture...</span></span><span class="sync-card"><img src="printer_sync.svg" alt="">Sync info</span></span>
-<span class="nozzle-columns"><span class="nozzle"><span>Main Nozzle</span><span class="settings-row"><span>AMS</span><span>Not installed</span></span><span class="settings-row"><span>Diameter</span><span class="input-look">⌄ 0.4</span></span><span class="settings-row"><span>Flow</span><span class="input-look">⌄ Standard</span></span></span><span class="nozzle"><span>Auxiliary</span><span class="settings-row"><span>AMS</span><span>Not installed</span></span><span class="settings-row"><span>Diameter</span><span class="input-look">⌄ 0.4</span></span><span class="settings-row"><span>Flow</span><span class="input-look">⌄ Standard</span></span></span></span>            </button>
+              <span class="section-heading"><img class="native-icon" src="printer.svg" alt=""> Printer <span><img class="native-icon" src="cog.svg" alt=""></span></span>
+<span class="printer-cards"><span class="printer-card"><img src="printer_thumbnail_N7_png.png" alt=""><span><img class="native-icon native-chevron" src="drop_down.svg" alt=""> Bambu Lab X2D</span></span><span class="plate-card"><img class="native-bed-thumbnail" src="bed_texture.png" alt=""><span><img class="native-icon native-chevron" src="drop_down.svg" alt=""> Texture...</span></span><span class="sync-card"><img src="printer_sync.svg" alt="">Sync info</span></span>
+<span class="nozzle-columns"><span class="nozzle"><span>Main Nozzle</span><span class="settings-row"><span>AMS</span><span>Not installed</span></span><span class="settings-row"><span>Diameter</span><span class="input-look"><img class="native-icon native-chevron" src="drop_down.svg" alt=""> 0.4</span></span><span class="settings-row"><span>Flow</span><span class="input-look"><img class="native-icon native-chevron" src="drop_down.svg" alt=""> Standard</span></span></span><span class="nozzle"><span>Auxiliary</span><span class="settings-row"><span>AMS</span><span>Not installed</span></span><span class="settings-row"><span>Diameter</span><span class="input-look"><img class="native-icon native-chevron" src="drop_down.svg" alt=""> 0.4</span></span><span class="settings-row"><span>Flow</span><span class="input-look"><img class="native-icon native-chevron" src="drop_down.svg" alt=""> Standard</span></span></span></span>            </button>
             <button id="filament" class="settings-section" disabled>
-              <span class="section-heading">▥ &nbsp; Project Filaments <span>＋ &nbsp; ⚙</span></span>
-<span class="filament-subhead">Filament <span>＋　 ▤　 ⚙</span></span><span class="filament-grid"><span class="filament-line"><span class="swatch">1</span><span>⌄ ▣ PLA Basic</span><span>☷</span></span><span class="filament-line"><span class="swatch black">2</span><span>⌄ ▣ PLA Sparkle</span><span>☷</span></span><span class="filament-line"><span class="swatch green">3</span><span>⌄ ▣ PLA Basic</span><span>☷</span></span></span><span class="add-mixed">＋ Add Mixed Filament</span>            </button>
+              <span class="section-heading"><img class="native-icon" src="filament.svg" alt=""> Project Filaments <span class="purge-label">Purging volumes</span></span>
+<span class="filament-subhead">Filament <span class="filament-actions"><img class="native-icon" src="add_filament.svg" alt=""><img class="native-icon" src="flush_volumes.svg" alt=""><img class="native-icon" src="cog.svg" alt=""></span></span><span class="filament-grid"><span class="filament-line"><span class="swatch">1</span><span><img class="native-icon native-chevron" src="drop_down.svg" alt=""> <img class="native-icon" src="filament_transparent.svg" alt=""> PLA Basic</span><span><img class="native-icon" src="more.svg" alt=""></span></span><span class="filament-line"><span class="swatch black">2</span><span><img class="native-icon native-chevron" src="drop_down.svg" alt=""> <img class="native-icon" src="filament_transparent.svg" alt=""> PLA Sparkle</span><span><img class="native-icon" src="more.svg" alt=""></span></span><span class="filament-line"><span class="swatch green">3</span><span><img class="native-icon native-chevron" src="drop_down.svg" alt=""> <img class="native-icon" src="filament_transparent.svg" alt=""> PLA Basic</span><span><img class="native-icon" src="more.svg" alt=""></span></span></span><span class="add-mixed"><img class="native-icon" src="add_filament.svg" alt=""> Add Mixed Filament</span>            </button>
             <button id="process" class="settings-section process-section" disabled>
-              <span class="section-heading">▱ &nbsp; Process <span class="pill">Global</span><span>Objects</span><span class="advanced">Advanced <i></i> ☷ ⚒</span></span>
-              <span class="profile">⌄ &nbsp; 0.08mm High Quality @BBL X2D</span>
+              <span class="section-heading"><img class="native-icon" src="process.svg" alt=""> Process <span class="pill">Global</span><span>Objects</span><span class="advanced">Advanced <img class="native-icon native-toggle" src="toggle_on.svg" alt=""> <img class="native-icon" src="advanced.svg" alt=""> <img class="native-icon" src="edit.svg" alt=""></span></span>
+              <span class="profile"><img class="native-icon native-chevron" src="drop_down.svg" alt=""> &nbsp; 0.08mm High Quality @BBL X2D</span>
               <span class="process-tabs"><b>Quality</b><span>Strength</span><span>Speed</span><span>Support</span><span>Others</span></span>
-              <strong class="subsection">▤ Layer height</strong>
+              <strong class="subsection"><img class="native-icon" src="param_layer_height.svg" alt=""> Layer height</strong>
               <span class="settings-row"><span>Layer height</span><span class="input-look">0.08 <small>mm</small></span></span>
               <span class="settings-row"><span>Initial layer height</span><span class="input-look">0.2 <small>mm</small></span></span>
-              <span class="settings-row"><span>Mixed color sublayer</span><span class="input-look">□</span></span><strong class="subsection">▤ Line width</strong>
+              <span class="settings-row"><span>Mixed color sublayer</span><span class="input-look"><img class="native-icon" src="check_off.svg" alt=""></span></span><strong class="subsection"><img class="native-icon" src="param_line_width.svg" alt=""> Line width</strong>
               <span class="settings-row"><span>Default</span><span class="input-look">0.42 <small>mm</small></span></span>
               <span class="settings-row"><span>Outer wall</span><span class="input-look">0.42 <small>mm</small></span></span>
               <span class="settings-row"><span>Inner wall</span><span class="input-look">0.45 <small>mm</small></span></span>
@@ -89,13 +96,14 @@
           </div>
           <div class="viewport-wrap">
             <button id="import-model" aria-label="Add model" title="Add model" disabled hidden><img src="toolbar_open.svg" alt=""></button>
-<button id="toolbar" class="model-toolbar" disabled aria-label="Model tools toolbar"><span title="Add model"><img class="" src="toolbar_open.svg" alt=""></span><span title="Add plate"><img class="" src="toolbar_add_plate.svg" alt=""></span><span title="Auto orient"><img class="" src="toolbar_orient.svg" alt=""></span><span title="Arrange"><img class="" src="toolbar_arrange.svg" alt=""></span><span title="Assemble"><img class="" src="toolbar_assemble.svg" alt=""></span><span class="tool-separator"></span><span title="Move"><img class="" src="toolbar_move.svg" alt=""></span><span title="Rotate"><img class="" src="toolbar_rotate.svg" alt=""></span><span title="Scale"><img class="" src="toolbar_scale.svg" alt=""></span><span title="Lay on face"><img class="" src="toolbar_flatten.svg" alt=""></span><span title="Cut"><img class="" src="toolbar_cut.svg" alt=""></span><span title="Mesh boolean"><img class="" src="toolbar_meshboolean.svg" alt=""></span><span title="Text"><img class="" src="toolbar_text.svg" alt=""></span><span title="Modifier"><img class="" src="toolbar_modifier.svg" alt=""></span><span title="Split to objects"><img class="" src="split_objects.svg" alt=""></span><span title="Split to parts"><img class="" src="split_parts.svg" alt=""></span><span title="Support painting"><img class="" src="toolbar_support.svg" alt=""></span><span title="Seam painting"><img class="" src="toolbar_seam.svg" alt=""></span><span title="Fuzzy skin painting"><img class="" src="toolbar_fuzzyskin.svg" alt=""></span><span title="Measure"><img class="" src="toolbar_measure.svg" alt=""></span><span class="tool-separator"></span><span title="Assembly"><img class="" src="toolbar_assembly.svg" alt=""></span></button>            <div id="viewport" tabindex="-1" aria-label="3D build plate with Benchy. Camera controls are enabled during navigation steps.">
+<button id="toolbar" class="model-toolbar" disabled aria-label="Model tools toolbar"><span title="Add model"><img class="" src="toolbar_open.svg" alt=""></span><span title="Add plate"><img class="" src="toolbar_add_plate.svg" alt=""></span><span title="Auto orient"><img class="" src="toolbar_orient.svg" alt=""></span><span title="Arrange"><img class="" src="toolbar_arrange.svg" alt=""></span><span title="Variable layer height"><img class="" src="toolbar_variable_layer_height.svg" alt=""></span><span class="tool-separator"></span><span title="Move"><img class="" src="toolbar_move.svg" alt=""></span><span title="Rotate"><img class="" src="toolbar_rotate.svg" alt=""></span><span title="Scale"><img class="" src="toolbar_scale.svg" alt=""></span><span title="Lay on face"><img class="" src="toolbar_flatten.svg" alt=""></span><span title="Cut"><img class="" src="toolbar_cut.svg" alt=""></span><span title="Mesh boolean"><img class="" src="toolbar_meshboolean.svg" alt=""></span><span title="Text"><img class="" src="toolbar_text.svg" alt=""></span><span title="Modifier"><img class="" src="toolbar_modifier.svg" alt=""></span><span title="Split to objects"><img class="" src="split_objects.svg" alt=""></span><span title="Split to parts"><img class="" src="split_parts.svg" alt=""></span><span title="Support painting"><img class="" src="toolbar_support.svg" alt=""></span><span title="Seam painting"><img class="" src="toolbar_seam.svg" alt=""></span><span title="Fuzzy skin painting"><img class="" src="toolbar_fuzzyskin.svg" alt=""></span><span title="Measure"><img class="" src="toolbar_measure.svg" alt=""></span><span class="tool-separator"></span><span title="Overview"><img class="" src="toolbar_assemble.svg" alt=""></span></button>            <div id="viewport" tabindex="-1" aria-label="3D build plate with Benchy. Camera controls are enabled during navigation steps.">
               <canvas id="scene" aria-label="Empty 3D build plate"></canvas>
               <button id="plate-hotspot" disabled aria-label="Explore the build plate and 3D viewport"></button>
               <div id="loading" role="status">Preparing the simulation…</div>
+              <div id="preview-details" aria-label="Preview layer and slicing controls" hidden><section class="slicing-result"><h3>Slicing Result</h3><div class="slicing-summary"><p>Color Scheme <span>Line Type <img class="native-icon" src="drop_down.svg" alt=""></span></p><p>Total: — &nbsp; · &nbsp; Cost: —</p><p>Total time: —</p></div><div class="preview-empty"><strong>No sliced model</strong><p>Import a model in Prepare, then slice it to inspect its layers here.</p></div></section><div class="layer-slider"><span>—</span><input type="range" disabled aria-label="Layer slider (no sliced model)" value="0"><span>—</span></div><div class="toolpath-slider"><input type="range" disabled aria-label="Toolpath slider (no sliced model)" value="0"><span>—</span></div></div>
               
               <div id="gesture-hint"></div>
-              <div class="axis"><span>Top</span><div class="axes-lines">↑<br>│ Front<br>└────→</div><button id="view-home" disabled title="Isometric view">⌂</button></div>
+              <div class="axis"><span>Top</span><div class="axis-lines" aria-hidden="true"><i class="axis-z"></i><i class="axis-x"></i><span class="axis-front">Front</span><span class="axis-label-z">Z</span><span class="axis-label-x">X</span></div><button id="view-home" disabled title="Isometric view"><img class="native-icon" src="view_iso.svg" alt=""></button></div>
               
               <div class="object-info">Object name: Benchy.stl<br>Size: 60.001 × 48 × 31.004 mm<br>Volume: 15550.4 mm³<br>Triangles: 225154</div>
             </div>
@@ -109,6 +117,6 @@
 </main>
 <dialog id="import-dialog" aria-labelledby="import-title"><form method="dialog"><h2 id="import-title">Open file <small>SIMULATION</small></h2><p class="import-path">Course files</p><button type="button" id="benchy-file" aria-pressed="false">▧ &nbsp; Benchy.stl <span>STL model</span></button><label>File name: <input id="import-filename" readonly value=""></label><div class="import-actions"><button id="confirm-import" type="button" class="primary" disabled>Open</button><button class="secondary" value="cancel">Cancel</button></div><p class="small-note">Choose the supplied course model. This simulated picker does not access your computer’s files.</p></form></dialog>
 <noscript><p class="no-script">Please enable JavaScript to use this guided simulation.</p></noscript>
-<script type="module" src="app.js?v=3"></script>
+<script type="module" src="app.js?v=5"></script>
 </body>
 </html>

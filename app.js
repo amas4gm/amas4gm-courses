@@ -5,8 +5,9 @@ import { STLLoader } from './STLLoader.js';
 const $ = s => document.querySelector(s);
 const steps = [
   {id:'prepare', chapter:'01 / THE WORKSPACE', title:'Start in Prepare', text:'Bambu Studio opens on Home. Prepare is where you bring in a model and get it ready for printing.', task:'Follow the arrow and select Prepare to open the workspace.', done:'You opened Prepare. The build plate is empty; we will add Benchy after finding the main controls.'},
-  {id:'preview', chapter:'01 / THE WORKSPACE', title:'Preview comes after slicing', text:'Preview shows the paths and layers the printer will follow after slicing. We will learn the layer sliders in a later tutorial.', task:'Find and select Preview. For this tour, we stay in Prepare.', done:'You found Preview. Nothing has been sliced in this simulation.'},
+  {id:'preview', chapter:'01 / THE WORKSPACE', title:'Preview comes after slicing', text:'Preview shows the paths and layers the printer will follow after slicing. The layer slider is on the right and the toolpath slider is along the bottom.', task:'Select Preview to see its workspace.', done:'You opened Preview. The plate is empty and the sliders are inactive because we have not imported or sliced a model.'},
   {id:'device', chapter:'01 / THE WORKSPACE', title:'Meet the Device tab', text:'Device is where you connect to and monitor a printer. In the shop, check that the selected device is the one you intend to use.', task:'Find and select Device. No printer will be connected here.', done:'Device is for the actual printer. This simulation cannot send a print.'},
+  {id:'return-prepare', target:'prepare', chapter:'01 / THE WORKSPACE', title:'Return to Prepare', text:'You have seen where to prepare a model, review its sliced layers, and monitor a printer. Now return to the workspace where you will add Benchy.', task:'Select Prepare to return to the empty build plate.', done:'Back in Prepare. Next, find the printer, material, process, and model controls.'},
   {id:'printer', chapter:'01 / THE WORKSPACE', title:'Printer and build plate', text:'The Printer panel holds the printer profile, build plate, and nozzle settings. They need to match the equipment you will use.', task:'Select the highlighted Printer panel.', done:'You found the printer settings. These example values are not instructions for setting up a shop print.'},
   {id:'filament', chapter:'01 / THE WORKSPACE', title:'Choose your material here', text:'Project Filaments describes the material used by your model. Later, you will match the material and color to what is loaded in the printer.', task:'Select the Project Filaments panel.', done:'For this entry course, we will use one material. We will choose it in a later tutorial.'},
   {id:'process', chapter:'01 / THE WORKSPACE', title:'How the print is made', text:'Process contains settings such as layer height, strength, speed, and supports. You do not need to adjust these during navigation practice.', task:'Select the highlighted Process panel.', done:'These settings control how the model will be sliced. Leave them alone for this lesson.'},
@@ -20,7 +21,7 @@ const steps = [
   {id:'check', chapter:'03 / QUICK CHECK', title:'View or model?', text:'You orbit, pan, and zoom around Benchy. What changed?', task:'Choose the best answer.', done:'Exactly. Navigation changes your view. Model tools change the object.'},
   {id:'complete', chapter:'TUTORIAL COMPLETE', title:'You know your way around', text:'You found the main sections of Bambu Studio and practiced orbit, pan, zoom, and a camera reset.', task:'Try these same navigation actions in Bambu Studio. Start left-dragging on empty space beside the model.', done:'This completes Tutorial 01 only. It does not qualify you to print independently yet.', hint:'Free camera practice · model editing remains disabled', tools:[['reset','↺ Reset practice view'],['orbit-left','↶ Orbit'],['pan-right','Pan →'],['zoom-in','＋ Zoom'],['zoom-out','− Zoom']]}
 ];
-const storageKey='amas-bambu-tutorial-01-v3';
+const storageKey='amas-bambu-tutorial-01-v4';
 let completed=new Set(), index=0, loaded=false, ready=false, scene, camera, renderer, controls, mesh;
 const plateControlMeshes=[];
 let startPosition, startTarget, startAngle, zoomIn=false, zoomOut=false, stepReady=false, resetting=false;
@@ -66,7 +67,8 @@ function renderStep(){
   $('#feedback').classList.remove('error-feedback');
   document.querySelectorAll('.active-target').forEach(el=>el.classList.remove('active-target'));
   document.querySelectorAll('.studio button').forEach(el=>{el.disabled=true;el.removeAttribute('aria-current');});
-  setStudioView(s.id==='prepare'&&!completed.has(0));
+  const tabViews={prepare:['home','prepare'],preview:['prepare','preview'],device:['preview','device'],'return-prepare':['device','prepare']};
+  const views=tabViews[s.id];setStudioView(views?views[completed.has(index)?1:0]:'prepare');
   $('#import-model').hidden=s.id!=='import-model';
   syncModelVisibility();
   $('#chapter').textContent=s.chapter;$('#lesson-title').textContent=s.title;$('#lesson-text').textContent=s.text;$('#task').textContent=s.task;
@@ -77,7 +79,7 @@ function renderStep(){
   $('#viewport').classList.toggle('navigation',isNav());$('#viewport').tabIndex=isNav()?0:-1;
   $('#gesture-hint').textContent=s.hint||'';
   $('#control-status').textContent=isNav()?'Only camera navigation is enabled':'Only the highlighted area is active';
-  const target=document.getElementById(s.id);if(target&&!isNav()){target.classList.add('active-target');target.disabled=!loaded;target.setAttribute('aria-current','step');}
+  const target=document.getElementById(s.target||s.id);if(target&&!isNav()){target.classList.add('active-target');target.disabled=!loaded;target.setAttribute('aria-current','step');}
   $('#practice-tools').hidden=!s.tools;$('#practice-buttons').replaceChildren();
   for(const [action,label] of s.tools||[]){const b=document.createElement('button');b.textContent=label;b.dataset.action=action;b.disabled=!loaded;b.addEventListener('click',()=>practiceAction(action));$('#practice-buttons').append(b);}
   if(s.keyboard){const note=document.createElement('p');note.className='small-note';note.textContent=`Focus the 3D view: ${s.keyboard} Touch: use the practice buttons above.`;$('#practice-buttons').append(note);}
@@ -90,10 +92,10 @@ function renderStep(){
   if(ready){configureControls();if(['orbit','pan','zoom'].includes(s.id))resetView(true);if(s.id==='reset'){resetView(true);camera.position.multiplyScalar(1.45);controls.target.add(new THREE.Vector3(35,0,15));controls.update();}snapshot();}
   updateProgress();stepReady=true;requestAnimationFrame(updateClickGuide);
 }
-for(const s of steps.filter(s=>document.getElementById(s.id))){document.getElementById(s.id).addEventListener('click',()=>{
-  if(steps[index].id!==s.id||!loaded)return;
+for(const targetId of new Set(steps.map(s=>s.target||s.id).filter(id=>document.getElementById(id)))){document.getElementById(targetId).addEventListener('click',()=>{
+  const s=steps[index];if((s.target||s.id)!==targetId||!loaded)return;
   if(s.id==='import-model'){$('#benchy-file').setAttribute('aria-pressed','false');$('#import-filename').value='';$('#confirm-import').disabled=true;$('#import-dialog').showModal();$('#feedback').textContent='Select Benchy.stl in the simulated file picker, then choose Open.';updateClickGuide();return;}
-  if(s.id==='prepare')setStudioView(false);
+  if(['prepare','preview','device'].includes(targetId))setStudioView(targetId);
   finish();
 });}
 $('#benchy-file').addEventListener('click',()=>{$('#benchy-file').setAttribute('aria-pressed','true');$('#import-filename').value='Benchy.stl';$('#confirm-import').disabled=false;updateClickGuide();});
@@ -151,9 +153,9 @@ async function init(){
   const grid=new THREE.GridHelper(256,26,0x858d86,0x747c76);grid.position.y=-.15;scene.add(grid);
   const rim=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(256,2.5,256)),new THREE.LineBasicMaterial({color:0x222c26}));rim.position.y=-1.5;scene.add(rim);
   // Plate tools share the build plate's plane, so perspective and zoom stay aligned.
-  const iconNames=['plate_close','plate_orient','plate_arrange','plate_locked','plate_settings','plate_set_filament_map'];
+  const iconNames=['plate_close_ban','plate_orient','plate_arrange','plate_unlocked','plate_settings','plate_set_filament_map'];
   const iconTextures=await Promise.all(iconNames.map(name=>new THREE.TextureLoader().loadAsync(`${name}.svg`)));
-  iconTextures.forEach((map,i)=>{map.colorSpace=THREE.SRGBColorSpace;const icon=new THREE.Mesh(new THREE.PlaneGeometry(17,17),new THREE.MeshBasicMaterial({map,transparent:true,opacity:i===0?.45:1,side:THREE.DoubleSide,depthWrite:false}));icon.rotation.x=-Math.PI/2;icon.position.set(140,.1,-116+i*21);scene.add(icon);plateControlMeshes.push(icon);});
+  iconTextures.forEach((map,i)=>{map.colorSpace=THREE.SRGBColorSpace;const icon=new THREE.Mesh(new THREE.PlaneGeometry(17,17),new THREE.MeshBasicMaterial({map,transparent:true,side:THREE.DoubleSide,depthWrite:false}));icon.rotation.x=-Math.PI/2;icon.position.set(140,.1,-116+i*21);scene.add(icon);plateControlMeshes.push(icon);});
   const numberCanvas=document.createElement('canvas');numberCanvas.width=128;numberCanvas.height=80;const numberContext=numberCanvas.getContext('2d');numberContext.font='bold 64px Arial';numberContext.fillStyle='#00ae42';numberContext.fillText('01',4,64);const numberTexture=new THREE.CanvasTexture(numberCanvas);numberTexture.colorSpace=THREE.SRGBColorSpace;const numberMesh=new THREE.Mesh(new THREE.PlaneGeometry(24,15),new THREE.MeshBasicMaterial({map:numberTexture,transparent:true,side:THREE.DoubleSide,depthWrite:false}));numberMesh.rotation.x=-Math.PI/2;numberMesh.position.set(145,.1,120);scene.add(numberMesh);
   const plateLabel=document.createElement('canvas');plateLabel.width=1024;plateLabel.height=100;const ctx=plateLabel.getContext('2d');ctx.fillStyle='#cbd0cb';ctx.font='bold 44px Arial';ctx.textAlign='center';ctx.fillText('Bambu Textured PEI Plate',512,65);const texture=new THREE.CanvasTexture(plateLabel);texture.colorSpace=THREE.SRGBColorSpace;const label=new THREE.Mesh(new THREE.PlaneGeometry(190,18),new THREE.MeshBasicMaterial({map:texture,transparent:true,depthWrite:false}));label.rotation.x=-Math.PI/2;label.position.set(0,.02,-113);scene.add(label);
   const geometry=await new STLLoader().loadAsync('Benchy.stl');geometry.rotateX(-Math.PI/2);geometry.computeBoundingBox();const box=geometry.boundingBox,center=new THREE.Vector3();box.getCenter(center);geometry.translate(-center.x,-box.min.y,-center.z);geometry.computeVertexNormals();
@@ -167,11 +169,13 @@ renderStep();init().catch(error=>{console.error(error);$('#loading').replaceChil
 
 const scaleStudio=()=>{const wrap=document.querySelector('.sim-wrap');const scale=Math.min(1,wrap.clientWidth/1582);document.querySelector('.studio').style.zoom=String(scale);if(controls){controls.rotateSpeed=1/scale;controls.panSpeed=1/scale;}requestAnimationFrame(updateClickGuide);};new ResizeObserver(scaleStudio).observe(document.querySelector('.sim-wrap'));scaleStudio();
 
-function setStudioView(home){
-  $('#home-screen').hidden=!home;$('.studio-body').hidden=home;
-  $('#studio').classList.toggle('showing-home',home);
-  $('#home-tab').classList.toggle('selected',home);$('#prepare').classList.toggle('selected',!home);
-  $('#home-tab').setAttribute('aria-current',home?'page':'false');$('#prepare').setAttribute('aria-current',home?'false':'page');
+function setStudioView(view){
+  $('#home-screen').hidden=view!=='home';$('.studio-body').hidden=!['prepare','preview'].includes(view);
+  $('#device-screen').hidden=view!=='device';$('#preview-details').hidden=view!=='preview';
+  $('#studio').dataset.view=view;
+  $('#studio').classList.toggle('showing-home',view==='home');
+  for(const id of ['home-tab','prepare','preview','device']){const selected=(id==='home-tab'?'home':id)===view;$('#'+id).classList.toggle('selected',selected);$('#'+id).setAttribute('aria-selected',String(selected));}
+  if(renderer)requestAnimationFrame(renderScene);
 }
 function syncModelVisibility(){
   const visible=completed.has(steps.findIndex(s=>s.id==='import-model'));
@@ -188,7 +192,7 @@ function updateClickGuide(){
   const dialogOpen=$('#import-dialog').open;
   $('#benchy-file').classList.toggle('active-target',dialogOpen&&$('#confirm-import').disabled);
   $('#confirm-import').classList.toggle('active-target',dialogOpen&&!$('#confirm-import').disabled);
-  const target=dialogOpen?($('#confirm-import').disabled?$('#benchy-file'):$('#confirm-import')):document.getElementById(steps[index].id);
+  const target=dialogOpen?($('#confirm-import').disabled?$('#benchy-file'):$('#confirm-import')):document.getElementById(steps[index].target||steps[index].id);
   const parent=dialogOpen?$('#import-dialog'):$('#studio');
   if(guide.parentElement!==parent)parent.append(guide);
   guide.classList.toggle('dialog-guide',dialogOpen);
