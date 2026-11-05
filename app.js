@@ -17,16 +17,15 @@ const steps = [
   {id:'orbit', chapter:'02 / 3D NAVIGATION', title:'Look around Benchy', text:'Orbiting moves your viewpoint around the model. The model stays in exactly the same place and orientation.', task:'Hold the LEFT mouse button on empty space beside Benchy and drag sideways.', done:'You changed your view—not Benchy’s orientation.', hint:'LEFT drag on empty space · orbit', tools:[['orbit-left','↶ Orbit left'],['orbit-right','Orbit right ↷']], keyboard:'Left / Right arrows orbit; Up / Down arrows tilt.'},
   {id:'pan', chapter:'02 / 3D NAVIGATION', title:'Slide your view', text:'Panning moves your viewpoint sideways or up and down without turning it. Benchy stays fixed on the plate.', task:'Hold the RIGHT mouse button (or the mouse wheel button) and drag across the viewport.', done:'Your view shifted. Benchy did not move on the build plate.', hint:'RIGHT or MIDDLE drag · pan', tools:[['pan-left','← Pan left'],['pan-right','Pan right →']], keyboard:'Arrow keys pan the view.'},
   {id:'zoom', chapter:'02 / 3D NAVIGATION', title:'Get closer. Step back.', text:'Zooming changes how close the model looks. It does not change the model’s physical size.', task:'Scroll up to zoom in, then scroll down to zoom out. Complete both directions.', done:'Both directions done. Benchy stayed the same size.', hint:'Scroll UP to zoom in · DOWN to zoom out', tools:[['zoom-in','＋ Zoom in'],['zoom-out','− Zoom out']], keyboard:'+ and − keys zoom.'},
-  {id:'reset', chapter:'02 / 3D NAVIGATION', title:'Find your way back', text:'If you lose your bearings, you can reset this simulation’s camera. This practice aid is outside the recreated slicer interface.', task:'Select Reset practice view to bring the plate and Benchy back into view.', done:'Back to a useful view. This reset affects only the simulation camera.', tools:[['reset','↺ Reset practice view']], keyboard:'Press Home to reset this practice view.'},
   {id:'check', chapter:'03 / QUICK CHECK', title:'View or model?', text:'You orbit, pan, and zoom around Benchy. What changed?', task:'Choose the best answer.', done:'Exactly. Navigation changes your view. Model tools change the object.'},
-  {id:'complete', chapter:'TUTORIAL COMPLETE', title:'You know your way around', text:'You found the main sections of Bambu Studio and practiced orbit, pan, zoom, and a camera reset.', task:'Try these same navigation actions in Bambu Studio. Start left-dragging on empty space beside the model.', done:'This completes Tutorial 01 only. It does not qualify you to print independently yet.', hint:'Free camera practice · model editing remains disabled', tools:[['reset','↺ Reset practice view'],['orbit-left','↶ Orbit'],['pan-right','Pan →'],['zoom-in','＋ Zoom'],['zoom-out','− Zoom']]}
+  {id:'complete', chapter:'TUTORIAL COMPLETE', title:'You know your way around', text:'You found the main sections of Bambu Studio and practiced orbit, pan, and zoom.', task:'Try these same navigation actions in Bambu Studio. Start left-dragging on empty space beside the model.', done:'This completes Tutorial 01 only. It does not qualify you to print independently yet.', hint:'Free camera practice · model editing remains disabled', tools:[['reset','↺ Reset practice view'],['orbit-left','↶ Orbit'],['pan-right','Pan →'],['zoom-in','＋ Zoom'],['zoom-out','− Zoom']]}
 ];
-const storageKey='amas-bambu-tutorial-01-v4';
+const storageKey='amas-bambu-tutorial-01-v5';
 let completed=new Set(), index=0, loaded=false, ready=false, scene, camera, renderer, controls, mesh;
 const plateControlMeshes=[];
 let startPosition, startTarget, startAngle, zoomIn=false, zoomOut=false, stepReady=false, resetting=false;
 try { const saved=JSON.parse(localStorage.getItem(storageKey)); if(saved && Array.isArray(saved.completed)){completed=new Set(saved.completed.filter(n=>Number.isInteger(n)&&n>=0&&n<steps.length-1));index=Math.max(0,Math.min(steps.length-1,Number(saved.index)||0,completed.size));}} catch {}
-const navigationIds=['orbit','pan','zoom','reset','complete'];
+const navigationIds=['orbit','pan','zoom','complete'];
 const isNav=()=>navigationIds.includes(steps[index].id);
 let soundOn=true,audioContext,lastMistake=0;
 try{soundOn=localStorage.getItem('amas-course-sound')!=='off';}catch{}
@@ -53,13 +52,19 @@ function mistake(message,region=$('#studio')){
 }
 // Disabled controls stay inert; the surrounding simulation supplies retry feedback.
 $('#studio').addEventListener('pointerdown',e=>{
-  if(!loaded||e.target.closest('.active-target')||e.target.closest('#viewport')&&isNav())return;
+  if(!loaded||completed.has(index)||e.target.closest('.active-target')||e.target.closest('#viewport')&&isNav())return;
   if(e.target.closest('#viewport')&&steps[index].id==='plate-hotspot')return;
   mistake(`Try the current task: ${steps[index].task}`);
 },true);
 $('#import-dialog').addEventListener('pointerdown',e=>{const r=$('#confirm-import').getBoundingClientRect();if($('#confirm-import').disabled&&e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom)mistake('Select Benchy.stl first, then choose Open.',$('#import-dialog'));},true);
 function persist(){try{localStorage.setItem(storageKey,JSON.stringify({index,completed:[...completed]}));}catch{}}
-function finish(message){const first=!completed.has(index);completed.add(index);$('#feedback').classList.remove('error-feedback');$('#feedback').textContent=message||steps[index].done;$('#next').disabled=!loaded;updateProgress();persist();updateClickGuide();if(first)playCue(steps[index].id==='check'?'complete':'success');}
+function finish(message){const first=!completed.has(index);completed.add(index);$('#feedback').classList.remove('error-feedback');$('#feedback').textContent=message||steps[index].done;$('#next').disabled=!loaded;updateProgress();persist();updateTaskHighlights();updateClickGuide();if(first)playCue(steps[index].id==='check'?'complete':'success');}
+function updateTaskHighlights(){
+  const done=completed.has(index)||steps[index].id==='complete';
+  if(done)document.querySelectorAll('.active-target').forEach(el=>{el.classList.remove('active-target');el.removeAttribute('aria-current');});
+  $('#viewport').classList.toggle('navigation-guidance',isNav()&&!done);
+  if(completed.has(index))$('#control-status').textContent='Task complete · Select Continue';
+}
 function updateProgress(){const n=steps.length-1;$('#progress').max=n;$('#progress').value=completed.size;$('#percent').textContent=`${Math.round(completed.size/n*100)}%`;$('#step-count').textContent=index===n?'Practice complete':`STEP ${String(index+1).padStart(2,'0')} OF ${n}`;}
 function go(next,focus=true){index=Math.max(0,Math.min(steps.length-1,next));renderStep();persist();if(focus)$('#lesson-title').focus({preventScroll:true});}
 function renderStep(){
@@ -90,7 +95,7 @@ function renderStep(){
   $('#lesson-map').replaceChildren();steps.forEach((item,i)=>{const li=document.createElement('li'),b=document.createElement('button');b.textContent=(completed.has(i)?'✓ ':'')+item.title;b.classList.toggle('current',i===index);b.disabled=i>completed.size;b.addEventListener('click',()=>go(i));li.append(b);$('#lesson-map').append(li);});
   if(s.id==='complete')$('#feedback').textContent=s.done;
   if(ready){configureControls();if(['orbit','pan','zoom'].includes(s.id))resetView(true);if(s.id==='reset'){resetView(true);camera.position.multiplyScalar(1.45);controls.target.add(new THREE.Vector3(35,0,15));controls.update();}snapshot();}
-  updateProgress();stepReady=true;requestAnimationFrame(updateClickGuide);
+  updateProgress();updateTaskHighlights();stepReady=true;requestAnimationFrame(updateClickGuide);
 }
 for(const targetId of new Set(steps.map(s=>s.target||s.id).filter(id=>document.getElementById(id)))){document.getElementById(targetId).addEventListener('click',()=>{
   const s=steps[index];if((s.target||s.id)!==targetId||!loaded)return;
