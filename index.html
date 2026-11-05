@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="A guided AMAS4GM simulation: meet the Bambu Studio workspace and practice 3D navigation with Benchy.">
   <title>Meet Bambu Studio · AMAS4GM</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 <a class="skip" href="#lesson-title">Skip to lesson</a>
 <header class="course-header">
   <div class="brand"><span class="brand-mark">A</span><div><strong>AMAS4GM</strong><small>LEARN IN THE SHOP · PRACTICE ANYWHERE</small></div></div>
   <span class="simulation-badge"><span></span> SIMULATION</span>
+  <button id="sound-toggle" class="sound-toggle" aria-pressed="true" aria-label="Sound effects">♪ Sound on</button>
   <button id="restart" class="quiet">Restart tutorial</button>
 </header>
 <main>
@@ -36,15 +37,35 @@
       <div class="studio" id="studio">
         <div class="titlebar"><span>☰ File &nbsp;⌄</span><span><img class="" src="topbar_save.svg" alt=""><img class="" src="topbar_undo.svg" alt=""><img class="" src="topbar_redo.svg" alt=""></span><span class="filename">* Benchy</span><span>— &nbsp; □ &nbsp; ×</span></div>
         <div class="tabbar">
-          <span class="home-icon" aria-hidden="true"><img class="" src="tab_home_active.svg" alt=""></span>
-          <button id="prepare" class="studio-tab selected" disabled><img class="" src="tab_3d_active.svg" alt="">Prepare</button>
+          <button id="home-tab" class="home-icon selected" aria-label="Home" aria-current="page" disabled><img src="tab_home_active.svg" alt=""></button>
+          <button id="prepare" class="studio-tab" disabled><img class="" src="tab_3d_active.svg" alt="">Prepare</button>
           <button id="preview" class="studio-tab" disabled><img class="" src="tab_preview_active.svg" alt="">Preview</button>
           <button id="device" class="studio-tab" disabled><img class="" src="tab_monitor_active.svg" alt="">Device</button>
           <button class="studio-tab extra-tab" disabled><img class="" src="tab_presets_active.svg" alt="">Project</button>
           <button class="studio-tab extra-tab" disabled><img class="" src="tab_calibration_active.svg" alt="">Calibration</button>
           <button class="studio-tab extra-tab" disabled><img class="" src="tab_filament_active.svg" alt="">Filament Mana...</button><div class="print-actions"><button disabled>Slice plate</button><button disabled>Print plate</button></div>
         </div>
-        <div class="studio-body">
+        <section id="home-screen" class="home-screen" aria-label="Home workspace">
+          <nav class="home-sidebar" aria-label="Home navigation">
+            <button class="home-account" disabled><img src="left_home_account.svg" alt="">Log in / Register</button>
+            <button class="home-menu current" disabled><img src="left_library.svg" alt="">Library</button>
+            <button class="home-menu" disabled><img src="left_recent.svg" alt="">Recently Opened</button>
+            <button class="home-menu" disabled><img src="left_online.svg" alt="">Online Models</button>
+            <button class="home-menu" disabled><img src="left_ml.svg" alt="">MakerLab <small>New</small></button>
+            <button class="home-menu divider" disabled><img src="left_ms.svg" alt="">Maker’s Supply ↗</button>
+            <div class="home-bottom"><button class="home-menu divider" disabled><img src="left_ph.svg" alt="">Print History</button><button class="home-menu divider" disabled><img src="left_manual.svg" alt="">User Manual ↗</button></div>
+          </nav>
+          <div class="home-content">
+            <div class="home-actions"><input disabled aria-label="Search online models" placeholder="⌕   Search online models"><button disabled><img src="project_open.svg" alt="">Open Project</button><button class="home-create" disabled><img src="project_new.svg" alt="">Create new project</button></div>
+            <div class="home-section-title"><h3><img src="left_recent.svg" alt="">Recently Opened</h3><button disabled>MORE ›</button></div>
+            <div class="home-empty">No recently opened files</div>
+            <div class="home-section-title"><h3><img src="left_online.svg" alt="">Online Models</h3><button disabled>MORE ›</button></div>
+            <div class="home-offline">Online model browsing is disabled in this simulation.</div>
+            <div class="home-section-title"><h3><img src="left_ml.svg" alt="">MakerLab</h3><button disabled>MORE ›</button></div>
+            <div class="home-offline">Select Prepare above to begin.</div>
+          </div>
+        </section>
+        <div class="studio-body" hidden>
           <div class="settings">
             <button id="printer" class="settings-section" disabled>
               <span class="section-heading">▣ &nbsp; Printer <span>⚙</span></span>
@@ -67,25 +88,27 @@
             </button>
           </div>
           <div class="viewport-wrap">
+            <button id="import-model" aria-label="Add model" title="Add model" disabled hidden><img src="toolbar_open.svg" alt=""></button>
 <button id="toolbar" class="model-toolbar" disabled aria-label="Model tools toolbar"><span title="Add model"><img class="" src="toolbar_open.svg" alt=""></span><span title="Add plate"><img class="" src="toolbar_add_plate.svg" alt=""></span><span title="Auto orient"><img class="" src="toolbar_orient.svg" alt=""></span><span title="Arrange"><img class="" src="toolbar_arrange.svg" alt=""></span><span title="Assemble"><img class="" src="toolbar_assemble.svg" alt=""></span><span class="tool-separator"></span><span title="Move"><img class="" src="toolbar_move.svg" alt=""></span><span title="Rotate"><img class="" src="toolbar_rotate.svg" alt=""></span><span title="Scale"><img class="" src="toolbar_scale.svg" alt=""></span><span title="Lay on face"><img class="" src="toolbar_flatten.svg" alt=""></span><span title="Cut"><img class="" src="toolbar_cut.svg" alt=""></span><span title="Mesh boolean"><img class="" src="toolbar_meshboolean.svg" alt=""></span><span title="Text"><img class="" src="toolbar_text.svg" alt=""></span><span title="Modifier"><img class="" src="toolbar_modifier.svg" alt=""></span><span title="Split to objects"><img class="" src="split_objects.svg" alt=""></span><span title="Split to parts"><img class="" src="split_parts.svg" alt=""></span><span title="Support painting"><img class="" src="toolbar_support.svg" alt=""></span><span title="Seam painting"><img class="" src="toolbar_seam.svg" alt=""></span><span title="Fuzzy skin painting"><img class="" src="toolbar_fuzzyskin.svg" alt=""></span><span title="Measure"><img class="" src="toolbar_measure.svg" alt=""></span><span class="tool-separator"></span><span title="Assembly"><img class="" src="toolbar_assembly.svg" alt=""></span></button>            <div id="viewport" tabindex="-1" aria-label="3D build plate with Benchy. Camera controls are enabled during navigation steps.">
-              <canvas id="scene" aria-label="Interactive 3D Benchy model"></canvas>
+              <canvas id="scene" aria-label="Empty 3D build plate"></canvas>
               <button id="plate-hotspot" disabled aria-label="Explore the build plate and 3D viewport"></button>
-              <div id="loading" role="status">Loading your Benchy model…</div>
+              <div id="loading" role="status">Preparing the simulation…</div>
               
               <div id="gesture-hint"></div>
               <div class="axis"><span>Top</span><div class="axes-lines">↑<br>│ Front<br>└────→</div><button id="view-home" disabled title="Isometric view">⌂</button></div>
-              <span class="plate-number">01</span><div class="plate-controls"><img class="" src="plate_close.svg" alt=""><img class="" src="plate_orient.svg" alt=""><img class="" src="plate_arrange.svg" alt=""><img class="" src="plate_locked.svg" alt=""><img class="" src="plate_settings.svg" alt=""><img class="" src="plate_set_filament_map.svg" alt=""></div>
+              
               <div class="object-info">Object name: Benchy.stl<br>Size: 60.001 × 48 × 31.004 mm<br>Volume: 15550.4 mm³<br>Triangles: 225154</div>
             </div>
           </div>
         </div>
       </div>
-      <div class="under-sim"><span><i class="green-dot"></i> Highlighted control = your next action</span><span>Example settings · not a print setup recommendation</span></div>
+      <div class="under-sim"><span><i class="green-dot"></i> Arrow + highlighted control = your next action</span><span>Example settings · not a print setup recommendation</span></div>
     </section>
   </div>
   <footer><span>AMAS4GM / Intro to 3D Printing Slicing</span><a href="credits.html">References & model credits</a></footer>
 </main>
+<dialog id="import-dialog" aria-labelledby="import-title"><form method="dialog"><h2 id="import-title">Open file <small>SIMULATION</small></h2><p class="import-path">Course files</p><button type="button" id="benchy-file" aria-pressed="false">▧ &nbsp; Benchy.stl <span>STL model</span></button><label>File name: <input id="import-filename" readonly value=""></label><div class="import-actions"><button id="confirm-import" type="button" class="primary" disabled>Open</button><button class="secondary" value="cancel">Cancel</button></div><p class="small-note">Choose the supplied course model. This simulated picker does not access your computer’s files.</p></form></dialog>
 <noscript><p class="no-script">Please enable JavaScript to use this guided simulation.</p></noscript>
-<script type="module" src="app.js"></script>
+<script type="module" src="app.js?v=3"></script>
 </body>
 </html>
