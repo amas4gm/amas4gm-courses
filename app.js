@@ -13,7 +13,7 @@ const steps = [
   {id:'process', chapter:'01 / THE WORKSPACE', title:'How the print is made', text:'Process contains settings such as layer height, strength, speed, and supports. You do not need to adjust these during navigation practice.', task:'Select the highlighted Process panel.', done:'These settings control how the model will be sliced. Leave them alone for this lesson.'},
   {id:'toolbar', chapter:'01 / THE WORKSPACE', title:'Tools that change the model', text:'The toolbar includes Move, Rotate, Scale, and Lay on face. Those tools change the model itself.', task:'Select the highlighted model toolbar.', done:'Remember this difference: the Rotate tool changes the model. Orbiting changes only your view.'},
   {id:'import-model', chapter:'01 / THE WORKSPACE', title:'Add your first model', text:'The Add model icon opens a file picker. The course includes Benchy.stl for this practice.', task:'Click the Add model icon, select Benchy.stl, then choose Open.', done:'Benchy is now on the plate. Importing adds the model; it does not slice or print it.'},
-  {id:'plate-hotspot', chapter:'01 / THE WORKSPACE', title:'Your 3D workspace', text:'The large area is the 3D viewport. It shows Benchy on the build plate—the surface where a print starts.', task:'Select the highlighted 3D viewport.', done:'Benchy is tipped on its side on purpose. Leave it that way: correcting its orientation belongs in the next tutorial.'},
+  {id:'plate-hotspot', chapter:'01 / THE WORKSPACE', title:'Your 3D workspace', text:'The large area is the 3D viewport. It shows Benchy on the build plate—the surface where a print starts.', task:'Select the highlighted 3D viewport.', done:'Imported models may arrive in an orientation that is unsuitable for printing, like Benchy on its side here. In the next tutorial, you will learn how to orient models for printing.'},
   {id:'orbit', chapter:'02 / 3D NAVIGATION', title:'Look around Benchy', text:'Orbiting moves your viewpoint around the model. The model stays in exactly the same place and orientation.', task:'Hold the LEFT mouse button on empty space beside Benchy and drag sideways.', done:'You changed your view—not Benchy’s orientation.', hint:'LEFT drag on empty space · orbit', tools:[['orbit-left','↶ Orbit left'],['orbit-right','Orbit right ↷']], keyboard:'Left / Right arrows orbit; Up / Down arrows tilt.'},
   {id:'pan', chapter:'02 / 3D NAVIGATION', title:'Slide your view', text:'Panning moves your viewpoint sideways or up and down without turning it. Benchy stays fixed on the plate.', task:'Hold the RIGHT mouse button (or the mouse wheel button) and drag across the viewport.', done:'Your view shifted. Benchy did not move on the build plate.', hint:'RIGHT or MIDDLE drag · pan', tools:[['pan-left','← Pan left'],['pan-right','Pan right →']], keyboard:'Arrow keys pan the view.'},
   {id:'zoom', chapter:'02 / 3D NAVIGATION', title:'Get closer. Step back.', text:'Zooming changes how close the model looks. It does not change the model’s physical size.', task:'Scroll up to zoom in, then scroll down to zoom out. Complete both directions.', done:'Both directions done. Benchy stayed the same size.', hint:'Scroll UP to zoom in · DOWN to zoom out', tools:[['zoom-in','＋ Zoom in'],['zoom-out','− Zoom out']], keyboard:'+ and − keys zoom.'},
@@ -58,15 +58,31 @@ $('#studio').addEventListener('pointerdown',e=>{
 },true);
 $('#import-dialog').addEventListener('pointerdown',e=>{const r=$('#confirm-import').getBoundingClientRect();if($('#confirm-import').disabled&&e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom)mistake('Select Benchy.stl first, then choose Open.',$('#import-dialog'));},true);
 function persist(){try{localStorage.setItem(storageKey,JSON.stringify({index,completed:[...completed]}));}catch{}}
-function finish(message){const first=!completed.has(index);completed.add(index);$('#feedback').classList.remove('error-feedback');$('#feedback').textContent=message||steps[index].done;$('#next').disabled=!loaded;updateProgress();persist();updateTaskHighlights();updateClickGuide();if(first)playCue(steps[index].id==='check'?'complete':'success');}
+function finish(message){
+  if(completed.has(index))return;
+  completed.add(index);$('#feedback').classList.remove('error-feedback');$('#feedback').textContent='';
+  $('#next').disabled=!loaded;$('#review-step').hidden=false;
+  updateProgress();persist();updateTaskHighlights();updateClickGuide();
+  playCue(steps[index].id==='check'?'complete':'success');showCompletion(message);
+}
+function showCompletion(message){
+  if(!loaded||!completed.has(index)||steps[index].id==='complete')return;
+  $('#completion-count').textContent=`STEP ${index+1} OF ${steps.length-1} COMPLETE`;
+  $('#completion-title').textContent=steps[index].title;
+  $('#completion-explanation').textContent=message||steps[index].done;
+  $('#completion-next').textContent=steps[index+1].id==='complete'?'Next: Free navigation practice':`Next: ${steps[index+1].title}`;
+  if(controls)controls.enabled=false;
+  if(!$('#completion-dialog').open)$('#completion-dialog').showModal();
+  $('#next').focus({preventScroll:true});
+}
 function updateTaskHighlights(){
   const done=completed.has(index)||steps[index].id==='complete';
   if(done)document.querySelectorAll('.active-target').forEach(el=>{el.classList.remove('active-target');el.removeAttribute('aria-current');});
   $('#viewport').classList.toggle('navigation-guidance',isNav()&&!done);
-  if(completed.has(index))$('#control-status').textContent='Task complete · Select Continue';
+  if(completed.has(index))$('#control-status').textContent='Task complete · Open step summary to continue';
 }
 function updateProgress(){const n=steps.length-1;$('#progress').max=n;$('#progress').value=completed.size;$('#percent').textContent=`${Math.round(completed.size/n*100)}%`;$('#step-count').textContent=index===n?'Practice complete':`STEP ${String(index+1).padStart(2,'0')} OF ${n}`;}
-function go(next,focus=true){index=Math.max(0,Math.min(steps.length-1,next));renderStep();persist();if(focus)$('#lesson-title').focus({preventScroll:true});}
+function go(next,focus=true){$('#completion-dialog').close();index=Math.max(0,Math.min(steps.length-1,next));renderStep();persist();if(focus)$('#lesson-title').focus({preventScroll:true});}
 function renderStep(){
   stepReady=false;const s=steps[index];
   $('#feedback').classList.remove('error-feedback');
@@ -77,7 +93,8 @@ function renderStep(){
   $('#import-model').hidden=s.id!=='import-model';
   syncModelVisibility();
   $('#chapter').textContent=s.chapter;$('#lesson-title').textContent=s.title;$('#lesson-text').textContent=s.text;$('#task').textContent=s.task;
-  $('#feedback').textContent=completed.has(index)?s.done:'';$('#back').disabled=index===0;
+  $('#feedback').textContent='';$('#back').disabled=index===0;
+  $('#review-step').hidden=!completed.has(index)||s.id==='complete';
   $('#next').disabled=!loaded||!completed.has(index);$('#next').hidden=s.id==='complete';
   $('#next').textContent=s.id==='check'?'Finish tutorial →':'Continue →';
   $('.lesson-panel').classList.toggle('completed',s.id==='complete');
@@ -95,7 +112,7 @@ function renderStep(){
   $('#lesson-map').replaceChildren();steps.forEach((item,i)=>{const li=document.createElement('li'),b=document.createElement('button');b.textContent=(completed.has(i)?'✓ ':'')+item.title;b.classList.toggle('current',i===index);b.disabled=i>completed.size;b.addEventListener('click',()=>go(i));li.append(b);$('#lesson-map').append(li);});
   if(s.id==='complete')$('#feedback').textContent=s.done;
   if(ready){configureControls();if(['orbit','pan','zoom'].includes(s.id))resetView(true);if(s.id==='reset'){resetView(true);camera.position.multiplyScalar(1.45);controls.target.add(new THREE.Vector3(35,0,15));controls.update();}snapshot();}
-  updateProgress();updateTaskHighlights();stepReady=true;requestAnimationFrame(updateClickGuide);
+  updateProgress();updateTaskHighlights();stepReady=true;requestAnimationFrame(()=>{updateClickGuide();if(completed.has(index))showCompletion();});
 }
 for(const targetId of new Set(steps.map(s=>s.target||s.id).filter(id=>document.getElementById(id)))){document.getElementById(targetId).addEventListener('click',()=>{
   const s=steps[index];if((s.target||s.id)!==targetId||!loaded)return;
@@ -107,9 +124,12 @@ $('#benchy-file').addEventListener('click',()=>{$('#benchy-file').setAttribute('
 $('#confirm-import').addEventListener('click',()=>{if($('#import-filename').value!=='Benchy.stl')return;$('#import-dialog').close();finish();syncModelVisibility();renderScene();});
 $('#import-dialog').addEventListener('close',updateClickGuide);
 $('#next').addEventListener('click',()=>{if(completed.has(index)&&loaded)go(index+1);});
+$('#review-step').addEventListener('click',()=>showCompletion());
+$('#review-workspace').addEventListener('click',()=>$('#completion-dialog').close());
+$('#completion-dialog').addEventListener('close',()=>{if(ready)configureControls();});
 $('#back').addEventListener('click',()=>go(index-1));
 $('#restart').addEventListener('click',()=>{completed.clear();go(0);if(ready)resetView(false);});
-function configureControls(){const id=steps[index].id;controls.enabled=loaded&&isNav()&&id!=='reset';controls.enableRotate=['orbit','complete'].includes(id);controls.enablePan=['pan','complete'].includes(id);controls.enableZoom=['zoom','complete'].includes(id);controls.mouseButtons={LEFT:THREE.MOUSE.ROTATE,MIDDLE:THREE.MOUSE.PAN,RIGHT:THREE.MOUSE.PAN};}
+function configureControls(){const id=steps[index].id;controls.enabled=loaded&&isNav()&&!$('#completion-dialog').open;controls.enableRotate=['orbit','complete'].includes(id);controls.enablePan=['pan','complete'].includes(id);controls.enableZoom=['zoom','complete'].includes(id);controls.mouseButtons={LEFT:THREE.MOUSE.ROTATE,MIDDLE:THREE.MOUSE.PAN,RIGHT:THREE.MOUSE.PAN};}
 function resetView(close=false){resetting=true;controls.target.set(0,12,0);camera.position.set(0,close?450:900,close?550:1100);camera.zoom=1;camera.updateProjectionMatrix();controls.update();resetting=false;}
 function snapshot(){startPosition=camera.position.clone();startTarget=controls.target.clone();startAngle=controls.getAzimuthalAngle();zoomIn=false;zoomOut=false;}
 function trackCamera(){if(!stepReady||resetting||!loaded)return;const id=steps[index].id;
@@ -192,6 +212,8 @@ function syncModelVisibility(){
   if(renderer)renderScene();
 }
 function updateClickGuide(){
+  // The Add model control is a transparent hit area over the single native icon.
+  if(!$('#import-model').hidden){const slot=$('#toolbar > span:first-child').getBoundingClientRect(),base=$('.viewport-wrap').getBoundingClientRect(),scale=$('#studio').getBoundingClientRect().width/1582;Object.assign($('#import-model').style,{left:(slot.left-base.left)/scale+'px',top:(slot.top-base.top)/scale+'px',width:slot.width/scale+'px',height:slot.height/scale+'px'});}
   let guide=$('#click-guide');
   if(!guide){guide=document.createElement('div');guide.id='click-guide';guide.setAttribute('aria-hidden','true');guide.innerHTML='<svg viewBox="0 0 80 110"><path d="M40 5 8 40h20v61h24V40h20Z"/></svg>';$('#studio').append(guide);}
   const dialogOpen=$('#import-dialog').open;

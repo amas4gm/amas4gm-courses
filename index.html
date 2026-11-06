@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="A guided AMAS4GM simulation: meet the Bambu Studio workspace and practice 3D navigation with Benchy.">
   <title>Meet Bambu Studio · AMAS4GM</title>
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
 <a class="skip" href="#lesson-title">Skip to lesson</a>
@@ -28,7 +28,7 @@
       <div id="feedback" role="status" aria-live="polite"></div>
       <div id="quiz" class="quiz" hidden></div>
       <div id="practice-tools" hidden><p class="tool-label">Practice aids · keyboard & touch</p><div id="practice-buttons"></div></div>
-      <div class="lesson-actions"><button id="back" class="secondary">← Back</button><button id="next" class="primary" disabled>Continue →</button></div>
+      <div class="lesson-actions"><button id="back" class="secondary">← Back</button><button id="review-step" class="secondary" hidden>View step summary</button></div>
       <details class="outline"><summary>Lesson map</summary><ol id="lesson-map"></ol></details>
       <p class="small-note">Practice progress stays in this browser. This activity is not the course assessment.</p>
     </aside>
@@ -95,7 +95,7 @@
             </button>
           </div>
           <div class="viewport-wrap">
-            <button id="import-model" aria-label="Add model" title="Add model" disabled hidden><img src="toolbar_open.svg" alt=""></button>
+            <button id="import-model" aria-label="Add model" title="Add model" disabled hidden></button>
 <button id="toolbar" class="model-toolbar" disabled aria-label="Model tools toolbar"><span title="Add model"><img class="" src="toolbar_open.svg" alt=""></span><span title="Add plate"><img class="" src="toolbar_add_plate.svg" alt=""></span><span title="Auto orient"><img class="" src="toolbar_orient.svg" alt=""></span><span title="Arrange"><img class="" src="toolbar_arrange.svg" alt=""></span><span title="Variable layer height"><img class="" src="toolbar_variable_layer_height.svg" alt=""></span><span class="tool-separator"></span><span title="Move"><img class="" src="toolbar_move.svg" alt=""></span><span title="Rotate"><img class="" src="toolbar_rotate.svg" alt=""></span><span title="Scale"><img class="" src="toolbar_scale.svg" alt=""></span><span title="Lay on face"><img class="" src="toolbar_flatten.svg" alt=""></span><span title="Cut"><img class="" src="toolbar_cut.svg" alt=""></span><span title="Mesh boolean"><img class="" src="toolbar_meshboolean.svg" alt=""></span><span title="Text"><img class="" src="toolbar_text.svg" alt=""></span><span title="Modifier"><img class="" src="toolbar_modifier.svg" alt=""></span><span title="Split to objects"><img class="" src="split_objects.svg" alt=""></span><span title="Split to parts"><img class="" src="split_parts.svg" alt=""></span><span title="Support painting"><img class="" src="toolbar_support.svg" alt=""></span><span title="Seam painting"><img class="" src="toolbar_seam.svg" alt=""></span><span title="Fuzzy skin painting"><img class="" src="toolbar_fuzzyskin.svg" alt=""></span><span title="Measure"><img class="" src="toolbar_measure.svg" alt=""></span><span class="tool-separator"></span><span title="Overview"><img class="" src="toolbar_assemble.svg" alt=""></span></button>            <div id="viewport" tabindex="-1" aria-label="3D build plate with Benchy. Camera controls are enabled during navigation steps.">
               <canvas id="scene" aria-label="Empty 3D build plate"></canvas>
               <button id="plate-hotspot" disabled aria-label="Explore the build plate and 3D viewport"></button>
@@ -116,7 +116,15 @@
   <footer><span>AMAS4GM / Intro to 3D Printing Slicing</span><a href="credits.html">References & model credits</a></footer>
 </main>
 <dialog id="import-dialog" aria-labelledby="import-title"><form method="dialog"><h2 id="import-title">Open file <small>SIMULATION</small></h2><p class="import-path">Course files</p><button type="button" id="benchy-file" aria-pressed="false">▧ &nbsp; Benchy.stl <span>STL model</span></button><label>File name: <input id="import-filename" readonly value=""></label><div class="import-actions"><button id="confirm-import" type="button" class="primary" disabled>Open</button><button class="secondary" value="cancel">Cancel</button></div><p class="small-note">Choose the supplied course model. This simulated picker does not access your computer’s files.</p></form></dialog>
+<dialog id="completion-dialog" aria-labelledby="completion-title" aria-describedby="completion-explanation">
+  <p id="completion-count" class="eyebrow"></p>
+  <h2 id="completion-title"></h2>
+  <p id="completion-explanation"></p>
+  <p id="completion-next"></p>
+  <button id="next" class="primary" disabled>Continue →</button>
+  <button id="review-workspace" class="quiet">Review workspace</button>
+</dialog>
 <noscript><p class="no-script">Please enable JavaScript to use this guided simulation.</p></noscript>
-<script type="module" src="app.js?v=6"></script>
+<script type="module" src="app.js?v=7"></script>
 </body>
 </html>
