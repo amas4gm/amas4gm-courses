@@ -70,6 +70,7 @@ function showCompletion(message){
   $('#completion-count').textContent=`STEP ${index+1} OF ${steps.length-1} COMPLETE`;
   $('#completion-title').textContent=steps[index].title;
   $('#completion-explanation').textContent=message||steps[index].done;
+  $('#completion-reminder').textContent=steps[index].text;
   $('#completion-next').textContent=steps[index+1].id==='complete'?'Next: Free navigation practice':`Next: ${steps[index+1].title}`;
   if(controls)controls.enabled=false;
   if(!$('#completion-dialog').open)$('#completion-dialog').showModal();
