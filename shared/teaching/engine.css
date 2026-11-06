@@ -175,3 +175,5 @@ h1{font-size:25px}
 #simulator-mount{position:relative}
 
 #partial-notice{position:fixed;right:24px;bottom:24px;z-index:50;width:300px;max-width:calc(100vw - 32px);padding:20px;background:#fff;border:1px solid #b5d7c4;border-left:4px solid #279c60;border-radius:10px;box-shadow:0 8px 30px #143d2926;color:#234631;pointer-events:none}#partial-notice strong{font-size:17px}#partial-notice p{font-size:15px;line-height:1.5;margin:8px 0 0}@media(max-width:600px){.course-header{flex-wrap:wrap;height:auto;min-height:58px;padding:10px 12px}.brand{flex:1}.catalog-link{font-size:11px}.embed-mode .course-header{height:auto;min-height:48px}}
+
+#partial-notice.retry-notice{border-color:#e4aaaa;border-left-color:#d93636;color:#852b2b}

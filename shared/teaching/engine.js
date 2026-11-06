@@ -61,8 +61,8 @@ export async function startTutorial({lesson,createSimulator,root}){
      });$('#quiz').append(button);
    });
  }
- function partial(message,{title='Good! Keep going.'}={}){
-   $('#partial-title').textContent=title;$('#partial-message').textContent=message;$('#partial-notice').hidden=false;sound.play('partial');
+ function partial(message,{title='Good! Keep going.',tone='partial'}={}){
+   $('#partial-title').textContent=title;$('#partial-message').textContent=message;$('#partial-notice').classList.toggle('retry-notice',tone==='retry');$('#partial-notice').hidden=false;sound.play(tone);
  }
  function finish(){
    if(!ready||actionDone()||step().terminal)return;

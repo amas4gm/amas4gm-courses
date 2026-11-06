@@ -1,5 +1,5 @@
 import {drawRotationGizmo,snapRotation,rotationBasis} from './rotation-gizmo.js?v=2';
-import {createSelectionOutline} from './selection-outline.js';
+import {createSelectionOutline} from './selection-outline.js?v=rotation-retry-1';
 import * as THREE from '../../shared/vendor/three.module.js';
 import {axes,rotationQuaternion,rotationDegrees,groundObject,objectBounds,applyObjectState,layOnFace,scaleObject} from './object-transform.js';
 // Shared, optional object-editing capability. Lesson data supplies goals and checkpoints.
@@ -8,6 +8,7 @@ export function createManipulation({container,mesh,camera,controls,renderer,rend
  const listeners=new AbortController(),on=(el,type,fn,options={})=>el.addEventListener(type,fn,{...options,signal:listeners.signal});
  const names={move:'Move',scale:'Scale',rotate:'Rotate',flatten:'Lay on face'},colors={X:'#d62929',Y:'#16942a',Z:'#235ae1'};
  let step,context,tool=null,selected=false,paused=false,uniform=true,drag=null,hoverFace=null,selectedAtStart=false,lastRelative=[0,0,0],rotationHover=null,lastRotationGesture=null;
+ let retryAnimation=null,retryFrame=0;
  const panel=document.createElement('section');panel.id='transform-panel';panel.hidden=true;panel.setAttribute('aria-label','Object manipulation');viewport.append(panel);
  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.id='object-gizmo';svg.setAttribute('aria-label','Object manipulation handles');viewport.append(svg);
  const ray=new THREE.Raycaster(),pointer=new THREE.Vector2();
@@ -30,7 +31,7 @@ export function createManipulation({container,mesh,camera,controls,renderer,rend
  for(const face of faces){face.center.divideScalar(face.area);const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(convexSurface(face),3));const material=new THREE.MeshBasicMaterial({color:0xf5f5f5,transparent:true,opacity:.52,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-2,depthWrite:false});face.overlay=new THREE.Mesh(geometry,material);face.overlay.visible=false;mesh.add(face.overlay);}
  const baseFace=faces.find(f=>f.normal.z>.999); // Supplied STL's flat underside, derived from its faces.
  const active=()=>!!step?.simulation?.editing,free=()=>step?.simulation?.action==='manipulate-free';
- const allowed=()=>!paused&&active();
+ const allowed=()=>!paused&&!retryAnimation&&active();
  const cfg=()=>step.simulation;
  const project=v=>{const p=v.clone().project(camera);return {x:(p.x+1)*viewport.clientWidth/2,y:(1-p.y)*viewport.clientHeight/2};};
  const center=()=>objectBounds(mesh).getCenter(new THREE.Vector3());
@@ -53,9 +54,9 @@ export function createManipulation({container,mesh,camera,controls,renderer,rend
   if(tool==='flatten')body='<div class="face-mode">Mode: <label><input type="radio" checked disabled> Convex hull</label> <label><input type="radio" disabled> Triangular facet</label></div><p class="face-help">Click a pale flat face to put it on the plate.</p>';
   panel.innerHTML=body;
   for(const input of panel.querySelectorAll('input[data-row]')){
-   input.disabled=paused||(!free()&&cfg().action!=='transform');
+   input.disabled=!allowed()||(!free()&&cfg().action!=='transform');
    if(input.id==='position-Z')input.disabled=true;
-   if(!free()&&cfg().editable)input.disabled=paused||!cfg().editable.includes(input.id);
+   if(!free()&&cfg().editable)input.disabled=!allowed()||!cfg().editable.includes(input.id);
    on(input,'input',()=>delete input.dataset.committed);on(input,'change',()=>applyInput(input));on(input,'keydown',e=>{if(e.key==='Enter'){e.preventDefault();applyInput(input);input.blur();updateValues();}});
   }
   const check=$('#uniform-scale');if(check){check.checked=uniform;check.disabled=paused||(!free()&&!cfg().allowUniform);on(check,'change',()=>{uniform=check.checked;if(cfg().action==='uniform'&&uniform===cfg().uniform)api.complete();});}
@@ -81,10 +82,25 @@ export function createManipulation({container,mesh,camera,controls,renderer,rend
   }
   updateValues();render();checkGoal();
  }
- function checkGoal(){
+ function resetRotationAttempt(){
+  const checkpoint=cfg().objectState,position=mesh.position.clone(),started=performance.now(),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  retryAnimation={position};lastRotationGesture=null;rotationHover=null;controls.enabled=false;
+  api.partial(cfg().retryMessage||'For this step, rotate to exactly 45 deg using the snap ticks. Resetting orientation.',{title:'Try again.',tone:'retry'});
+  outline.setError(true);updateToolbar();buildPanel();
+  function animate(now){
+   const elapsed=now-started,progress=Math.min(1,elapsed/700);
+   mesh.position.copy(position);if(!reduced)mesh.position.x+=Math.sin(progress*Math.PI*8)*2*(1-progress);
+   outline.setError(reduced||Math.floor(elapsed/175)%2===0);render();
+   if(progress<1){retryFrame=requestAnimationFrame(animate);return;}
+   retryFrame=0;retryAnimation=null;outline.setError(false);applyObjectState(mesh,checkpoint);controls.enabled=allowed();updateToolbar();buildPanel();render();api.guideChanged();
+  }
+  render();retryFrame=requestAnimationFrame(animate);
+ }
+ function cancelRotationRetry(){cancelAnimationFrame(retryFrame);retryFrame=0;if(retryAnimation)mesh.position.copy(retryAnimation.position);retryAnimation=null;outline.setError(false);}
+ function checkGoal({released=false}={}){
   if(context.isCompleted()||!cfg().goal)return;const g=cfg().goal,mid=center(),degrees=rotationDegrees(mesh.quaternion),state={position:[mid.x+128,128-mid.z,mid.y],scale:[mesh.scale.x*100,mesh.scale.z*100,mesh.scale.y*100],size:[baseSize.x*mesh.scale.x,baseSize.z*mesh.scale.z,baseSize.y*mesh.scale.y],rotation:degrees,relative:lastRelative};
   const actual=state[g.property]?.['XYZ'.indexOf(g.axis)];
-  if(Math.abs(actual-g.value)<(g.tolerance??.15)&&(!g.requiresSnap||lastRotationGesture?.axis===g.axis&&lastRotationGesture?.snap===g.requiresSnap))api.complete();else if(!drag&&g.requiresSnap&&Math.abs(actual-g.value)<(g.tolerance??.15))api.partial(`Use the ${g.requiresSnap==='fine'?'outer tick band for 5°':'inner spokes for 45°'} snapping, then release at the requested angle.`,{title:'Try the snap marks.'});else if(!drag)api.partial(`Current ${g.axis}: ${actual.toFixed(1)}${g.property==='scale'?'%':g.property==='rotation'?'°':' mm'}. Aim for ${g.value}${g.property==='scale'?'%':g.property==='rotation'?'°':' mm'}.`,{title:'Keep adjusting.'});
+  if(Math.abs(actual-g.value)<(g.tolerance??.15)&&(!g.requiresSnap||lastRotationGesture?.axis===g.axis&&lastRotationGesture?.snap===g.requiresSnap))api.complete();else if(released&&g.requiresSnap)resetRotationAttempt();else if(!drag&&g.requiresSnap&&Math.abs(actual-g.value)<(g.tolerance??.15))api.partial(`Use the ${g.requiresSnap==='fine'?'outer tick band for 5°':'inner spokes for 45°'} snapping, then release at the requested angle.`,{title:'Try the snap marks.'});else if(!drag)api.partial(`Current ${g.axis}: ${actual.toFixed(1)}${g.property==='scale'?'%':g.property==='rotation'?'°':' mm'}. Aim for ${g.value}${g.property==='scale'?'%':g.property==='rotation'?'°':' mm'}.`,{title:'Keep adjusting.'});
  }
  function hitModel(event){const rect=canvas.getBoundingClientRect();pointer.set((event.clientX-rect.left)/rect.width*2-1,1-(event.clientY-rect.top)/rect.height*2);ray.setFromCamera(pointer,camera);return ray.intersectObject(mesh,false)[0];}
  function faceAt(hit){if(!hit)return null;const p=hit.point.clone();mesh.worldToLocal(p);return faces.find(f=>f.normal.dot(hit.face.normal)>.999&&Math.abs(f.normal.dot(p)-f.d)<.15);}
@@ -133,29 +149,33 @@ export function createManipulation({container,mesh,camera,controls,renderer,rend
   updateValues();if((tool==='flatten'||cfg().goal?.requiresSnap)&&!context.isCompleted())api.guideChanged();
  }
  function beginDrag(event,axis){
-  if(paused||!selected)return;event.preventDefault();const mid=tool==='rotate'?rotationCenter():center(),origin=project(mid),end=project(mid.clone().addScaledVector(tool==='scale'?(axis==='XYZ'?new THREE.Vector3(1,1,1).normalize():axes[axis].clone().applyQuaternion(mesh.quaternion)):(axes[axis]||axes.X),30));
+  if(!allowed()||!selected)return;event.preventDefault();const mid=tool==='rotate'?rotationCenter():center(),origin=project(mid),end=project(mid.clone().addScaledVector(tool==='scale'?(axis==='XYZ'?new THREE.Vector3(1,1,1).normalize():axes[axis].clone().applyQuaternion(mesh.quaternion)):(axes[axis]||axes.X),30));
   const plane=tool==='rotate'?new THREE.Plane().setFromNormalAndCoplanarPoint(axes[axis],mid):null;
-  drag={plane,radius:rotationRadius(),angle:0,snap:'free',notified:new Set(),axis,x:event.clientX,y:event.clientY,position:mesh.position.clone(),scale:mesh.scale.clone(),quaternion:mesh.quaternion.clone(),origin,end,center:mid,tool};controls.enabled=false;
+  drag={plane,radius:rotationRadius(),angle:0,snap:'free',axis,x:event.clientX,y:event.clientY,position:mesh.position.clone(),scale:mesh.scale.clone(),quaternion:mesh.quaternion.clone(),origin,end,center:mid,tool};controls.enabled=false;
   viewport.setPointerCapture(event.pointerId);if(tool==='rotate'){rotationHover=axis;render();}
  }
  on(viewport,'pointermove',event=>{
-  if(paused)return;if(!drag){if(tool==='rotate'){const next=event.target.closest('[data-rotation-axis]')?.dataset.rotationAxis||null;if(next!==rotationHover){rotationHover=next;render();}}return;}const rect=viewport.getBoundingClientRect(),factor=viewport.clientWidth/rect.width,dx=(event.clientX-drag.x)*factor,dy=(event.clientY-drag.y)*factor;
+  if(paused||retryAnimation)return;if(!drag){if(tool==='rotate'){const next=event.target.closest('[data-rotation-axis]')?.dataset.rotationAxis||null;if(next!==rotationHover){rotationHover=next;render();}}return;}const rect=viewport.getBoundingClientRect(),factor=viewport.clientWidth/rect.width,dx=(event.clientX-drag.x)*factor,dy=(event.clientY-drag.y)*factor;
   const vector={x:drag.end.x-drag.origin.x,y:drag.end.y-drag.origin.y},length=Math.hypot(vector.x,vector.y),delta=(dx*vector.x+dy*vector.y)/Math.max(length,1);
   if(tool==='move'){mesh.position.copy(drag.position);if(drag.axis==='XY'){mesh.position.x+=dx*.15;mesh.position.z+=dy*.15;}else mesh.position.addScaledVector(axes[drag.axis],Math.round(delta/Math.max(length,1)*30));if(drag.axis==='Z')groundObject(mesh);}
   if(tool==='scale'){mesh.scale.copy(drag.scale);const scale=Math.max(.1,Math.min(3,1+delta/160));if(uniform||drag.axis==='XYZ')mesh.scale.multiplyScalar(scale);else mesh.scale[{X:'x',Y:'z',Z:'y'}[drag.axis]]*=scale;groundObject(mesh);}
   if(tool==='rotate'){
    hitModel(event);const point=ray.ray.intersectPlane(drag.plane,new THREE.Vector3());if(!point)return;
    const vector=point.sub(drag.center),basis=rotationBasis(drag.axis),raw=Math.atan2(vector.dot(basis.v),vector.dot(basis.u)),snapped=snapRotation(raw,vector.length()/drag.radius);
-   drag.angle=snapped.angle;drag.snap=snapped.mode;mesh.position.copy(drag.position);mesh.quaternion.copy(drag.quaternion).premultiply(new THREE.Quaternion().setFromAxisAngle(axes[drag.axis],drag.angle));
-   if(cfg().goal?.requiresSnap&&snapped.mode!=='free'&&!drag.notified.has(snapped.mode)){drag.notified.add(snapped.mode);api.partial(`${snapped.mode==='fine'?'5° tick':'45° inner'} snapping is active. Watch the angle beside the handle, then release.`,{title:'Snap marks engaged.'});}
+   const previousSnap=drag.snap;drag.angle=snapped.angle;drag.snap=snapped.mode;mesh.position.copy(drag.position);mesh.quaternion.copy(drag.quaternion).premultiply(new THREE.Quaternion().setFromAxisAngle(axes[drag.axis],drag.angle));
+   if(cfg().goal?.requiresSnap&&snapped.mode!==previousSnap){
+    if(snapped.mode==='free')api.partial('The pointer is off the snap marks, so snapping is no longer engaged. Hover the tick-mark band while dragging to snap again.',{title:'Free rotation.'});
+    else api.partial(`${snapped.mode==='fine'?'5\u00b0 tick':'45\u00b0 inner-guide'} snapping is active only while your pointer hovers over these marks. Move off the marks to rotate freely.`,{title:'Snap marks engaged.'});
+   }
   }
   render();
  });
  on(viewport,'pointerleave',()=>{if(!drag&&rotationHover){rotationHover=null;render();}});
- on(viewport,'pointerup',event=>{if(!drag)return;if(drag.tool==='rotate'){lastRotationGesture={axis:drag.axis,snap:drag.snap,angle:drag.angle};groundObject(mesh);}drag=null;rotationHover=null;render();if(viewport.hasPointerCapture(event.pointerId))viewport.releasePointerCapture(event.pointerId);controls.enabled=allowed()&&cfg().action!=='object-select';checkGoal();});
+ on(viewport,'pointerup',event=>{if(!drag)return;const rotationRelease=drag.tool==='rotate';if(rotationRelease){lastRotationGesture={axis:drag.axis,snap:drag.snap,angle:drag.angle};groundObject(mesh);}drag=null;rotationHover=null;render();if(viewport.hasPointerCapture(event.pointerId))viewport.releasePointerCapture(event.pointerId);controls.enabled=allowed()&&cfg().action!=='object-select';checkGoal({released:rotationRelease});});
  on(viewport,'pointercancel',()=>{if(drag?.tool==='rotate'){mesh.position.copy(drag.position);mesh.quaternion.copy(drag.quaternion);}drag=null;rotationHover=null;render();controls.enabled=allowed()&&cfg().action!=='object-select';});
  function nudge(axis,direction){
   if(!allowed()||(!free()&&cfg().action!=='transform'))return;
+  if(tool==='rotate'&&cfg().goal?.requiresSnap&&!context.isCompleted()&&axis!==cfg().goal.axis){resetRotationAttempt();return;}
   if(tool==='move'){mesh.position.addScaledVector(axes[axis]||axes.X,direction);groundObject(mesh);}
   if(tool==='scale'){const a=axis==='XYZ'?'X':axis,current=mesh.scale[{X:'x',Y:'z',Z:'y'}[a]];scaleObject(mesh,a,current+direction*.05,uniform||axis==='XYZ');}
   if(tool==='rotate'){const snap=cfg().goal?.requiresSnap||'fine',degrees=direction*(snap==='coarse'?45:5);rotationHover=axis;mesh.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(axes[axis],THREE.MathUtils.degToRad(degrees)));lastRotationGesture={axis,snap,angle:THREE.MathUtils.degToRad(degrees)};groundObject(mesh);}
@@ -164,11 +184,11 @@ export function createManipulation({container,mesh,camera,controls,renderer,rend
  on(viewport,'keydown',e=>{if(e.target.closest('input'))return;if(allowed()&&cfg().action==='object-select'&&e.key==='Enter'){e.preventDefault();selected=true;updateToolbar();render();api.complete();return;}const t={m:'move',s:'scale',r:'rotate',f:'flatten'}[e.key.toLowerCase()];if(t){e.preventDefault();chooseTool(t);}});
  for(const name of Object.keys(names))on($('#tool-'+name),'click',()=>chooseTool(name));
  return {
-  setStep(next,ctx){step=next;context=ctx;lastRelative=[0,0,0];rotationHover=null;lastRotationGesture=null;drag=null;hoverFace=null;selectedAtStart=cfg().action!=='object-select'||ctx.isCompleted();selected=selectedAtStart;uniform=cfg().uniformBefore??true;tool=cfg().action==='tool'&&!ctx.isCompleted()?null:cfg().tool||null;applyObjectState(mesh,ctx.isCompleted()?cfg().completedState||cfg().objectState:cfg().objectState);updateToolbar();buildPanel();draw();},
+  setStep(next,ctx){cancelRotationRetry();step=next;context=ctx;lastRelative=[0,0,0];rotationHover=null;lastRotationGesture=null;drag=null;hoverFace=null;selectedAtStart=cfg().action!=='object-select'||ctx.isCompleted();selected=selectedAtStart;uniform=cfg().uniformBefore??true;tool=cfg().action==='tool'&&!ctx.isCompleted()?null:cfg().tool||null;applyObjectState(mesh,ctx.isCompleted()?cfg().completedState||cfg().objectState:cfg().objectState);updateToolbar();buildPanel();draw();},
   draw,renderSelection:()=>outline.render(),handles:target=>!!target.closest('#transform-panel,#object-gizmo,[id^="tool-"]'),
   setPaused(value){paused=value;updateToolbar();panel.querySelectorAll('input').forEach(el=>{if(value)el.disabled=true;});if(!value)buildPanel();},
   getTarget(){if(cfg().action==='object-select')return $('#scene');if(cfg().action==='lay-face')return $('#base-face-target');return $('#'+(cfg().target||'transform-panel'));},
-  dispose(){listeners.abort();outline.dispose();panel.remove();svg.remove();},
+  dispose(){cancelRotationRetry();listeners.abort();outline.dispose();panel.remove();svg.remove();},
   perform(action){const [prefix,axis,direction]=action.split(':');if(prefix==='adjust'||prefix==='snap')nudge(axis,Number(direction));},
   enabled:active
  };

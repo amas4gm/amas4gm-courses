@@ -11,20 +11,21 @@ export function createSelectionOutline({mesh,scene,camera,renderer}){
  const mask=new THREE.WebGLRenderTarget(1,1,{minFilter:THREE.LinearFilter,magFilter:THREE.LinearFilter,samples:4});
  const maskMaterial=new THREE.MeshBasicMaterial({color:0xffffff});
  const overlayMaterial=new THREE.ShaderMaterial({
-  uniforms:{maskTexture:{value:mask.texture},texel:{value:new THREE.Vector2()},radius:{value:2}},
+  uniforms:{maskTexture:{value:mask.texture},texel:{value:new THREE.Vector2()},radius:{value:2},outlineColor:{value:new THREE.Color(0xffffff)}},
   transparent:true,depthTest:false,depthWrite:false,
   vertexShader:'varying vec2 uvScreen; void main(){uvScreen=uv;gl_Position=vec4(position.xy,0.0,1.0);}',
-  fragmentShader:`uniform sampler2D maskTexture; uniform vec2 texel; uniform float radius; varying vec2 uvScreen;
+  fragmentShader:`uniform sampler2D maskTexture; uniform vec2 texel; uniform float radius; uniform vec3 outlineColor; varying vec2 uvScreen;
    void main(){float center=texture2D(maskTexture,uvScreen).r;float expanded=center;
     for(int x=-1;x<=1;x++){for(int y=-1;y<=1;y++){
      expanded=max(expanded,texture2D(maskTexture,uvScreen+vec2(float(x),float(y))*texel*radius).r);
     }}
-    float edge=max(0.0,expanded-center);if(edge<0.01)discard;gl_FragColor=vec4(1.0,1.0,1.0,edge);
+    float edge=max(0.0,expanded-center);if(edge<0.01)discard;gl_FragColor=vec4(outlineColor,edge);
    }`
  });
  const overlayScene=new THREE.Scene(),overlayCamera=new THREE.Camera(),quad=new THREE.Mesh(new THREE.PlaneGeometry(2,2),overlayMaterial);quad.frustumCulled=false;overlayScene.add(quad);
  const bufferSize=new THREE.Vector2();let enabled=false;
  return {
+  setError(value){const color=value?0xff3030:0xffffff;brackets.material.color.set(color);overlayMaterial.uniforms.outlineColor.value.set(color);},
   update(selected){
    enabled=selected;brackets.visible=selected;if(!selected)return;
    const bounds=objectBounds(mesh).expandByScalar(2),size=bounds.getSize(new THREE.Vector3());let offset=0;
