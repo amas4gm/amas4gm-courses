@@ -5,7 +5,7 @@ import {STLLoader} from '../../shared/vendor/STLLoader.js';
 
 // Adapter owns software state and rendering; the teaching engine owns progress and feedback.
 export async function createBambuSimulator({container,lesson,api}){
- const response=await fetch(new URL('./interface.html',import.meta.url));if(!response.ok)throw new Error('Simulator interface unavailable');
+ const response=await fetch(new URL('./interface.html?v=manipulation-1',import.meta.url));if(!response.ok)throw new Error('Simulator interface unavailable');
  container.innerHTML=await response.text();
  const $=selector=>container.querySelector(selector),asset=name=>new URL(`./assets/${name}`,import.meta.url).href;
  container.querySelectorAll('img[src]').forEach(img=>img.src=new URL(img.getAttribute('src'),import.meta.url).href);
@@ -132,7 +132,7 @@ function setStudioView(view){
 }
 
  function dispose(){manipulation?.dispose();cube?.dispose();resizeObserver?.disconnect();scaleObserver?.disconnect();controls?.dispose();scene?.traverse(object=>{object.geometry?.dispose();for(const material of [object.material].flat().filter(Boolean)){Object.values(material).forEach(value=>{if(value?.isTexture)value.dispose();});material.dispose();}});renderer?.dispose();container.replaceChildren();}
- try{await init();if(lesson.capabilities?.includes('manipulation')){const {createManipulation}=await import('./manipulation.js');manipulation=createManipulation({container,mesh,camera,controls,render:renderScene,api});}}catch(error){dispose();throw error;}
+ try{await init();if(lesson.capabilities?.includes('manipulation')){const {createManipulation}=await import('./manipulation.js?v=manipulation-1');manipulation=createManipulation({container,mesh,camera,controls,render:renderScene,api});}}catch(error){dispose();throw error;}
  const scaleStudio=()=>{const scale=Math.min(1,container.clientWidth/1582);$('#studio').style.zoom=String(scale);if(controls){controls.rotateSpeed=1/scale;controls.panSpeed=1/scale;}api.guideChanged();};
  scaleObserver=new ResizeObserver(scaleStudio);scaleObserver.observe(container);scaleStudio();
  return {setStep,refreshState,getGuide,perform:practiceAction,getRegion:()=>$('#studio'),setPaused(value){paused=value;manipulation?.setPaused(value);configureControls();cube?.update();},setGuidance(active){$('#viewport').classList.toggle('navigation-guidance',active&&isNav());},reset(){resetView(false);},dispose};
