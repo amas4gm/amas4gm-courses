@@ -2,13 +2,13 @@ import * as T from '../../shared/vendor/three.module.js';
 import {buildLab} from '../bambu-lab/models.js';
 
 // Reuse the lab and the course STL. No video or duplicate model payload.
-export function createPrintAnimation({host,geometry,supports,onComplete}){
+export function createPrintAnimation({host,geometry,supports,materialColor=0x8e8960,onComplete}){
  host.innerHTML='<canvas aria-label="Accelerated simulation of the selected printer printing Benchy"></canvas><div class="print-caption"><strong></strong><p>Accelerated printing simulation</p><progress max="599" value="0"></progress><span role="status"></span></div>';
  const canvas=host.querySelector('canvas'),status=host.querySelector('[role=status]'),progress=host.querySelector('progress');
  const renderer=new T.WebGLRenderer({canvas,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.localClippingEnabled=true;
  const scene=new T.Scene();scene.background=new T.Color('#e4e9e4');scene.add(new T.HemisphereLight(0xffffff,0x45524b,2));const light=new T.DirectionalLight(0xffffff,3);light.position.set(2,12,12);scene.add(light);
  const lab=buildLab(scene),camera=new T.PerspectiveCamera(38,1,.1,100);lab.spare.visible=false;
- const model=new T.Mesh(geometry.clone(),new T.MeshStandardMaterial({color:0x8e8960,roughness:.7,side:T.DoubleSide}));model.geometry.computeBoundingBox();const bounds=model.geometry.boundingBox,center=bounds.getCenter(new T.Vector3());model.geometry.translate(-center.x,-bounds.min.y,-center.z);model.scale.setScalar(.052);
+ const model=new T.Mesh(geometry.clone(),new T.MeshStandardMaterial({color:materialColor,roughness:.7,side:T.DoubleSide}));model.geometry.computeBoundingBox();const bounds=model.geometry.boundingBox,center=bounds.getCenter(new T.Vector3());model.geometry.translate(-center.x,-bounds.min.y,-center.z);model.scale.setScalar(.052);
  const height=(bounds.max.y-bounds.min.y)*.052,clip=new T.Plane(new T.Vector3(0,-1,0),4.4);model.material.clippingPlanes=[clip];
  for(const original of supports.children){const part=original.clone();part.geometry=original.geometry.clone();part.material=original.material.clone();part.material.clippingPlanes=[clip];model.add(part);}
  const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;

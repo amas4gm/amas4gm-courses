@@ -1,4 +1,4 @@
-import lesson from './lesson.js?v=print-2';
-import {startTutorial} from '../../shared/teaching/engine.js?v=print-2';
-import {createBambuSimulator} from '../../simulators/bambu-studio/simulator.js?v=print-2';
+import lesson from './lesson.js?v=material-1';
+import {startTutorial} from '../../shared/teaching/engine.js?v=material-1';
+import {createBambuSimulator} from '../../simulators/bambu-studio/simulator.js?v=material-1';
 startTutorial({lesson,createSimulator:createBambuSimulator,root:document.querySelector('#app')});

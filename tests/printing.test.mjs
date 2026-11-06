@@ -29,3 +29,14 @@ test('unanswered cost popup stays locked after reload; supports precede billing'
  const progress=normalizeProgress(lesson,{current:'print-plate',completed,practiced:['read-estimates']});assert.equal(progress.current,'read-estimates');assert.deepEqual(progress.practiced,['read-estimates']);
  assert.equal(lesson.steps[quizIndex].quiz.type,'external-cost');assert.ok(completed.indexOf('enable-support')<completed.indexOf('reslice'));assert.ok(completed.includes('compare-supports'));
 });
+
+
+test('adding installed-material selection preserves earlier progress and requires it before slicing',()=>{
+ const index=lesson.steps.findIndex(s=>s.id==='choose-material');
+ assert.equal(lesson.steps[index-1].id,'return-prepare');assert.equal(lesson.steps[index+1].id,'slice-plate');
+ const oldCompleted=lesson.steps.filter(s=>!s.terminal&&s.id!=='choose-material').map(s=>s.id);
+ const terminal=lesson.steps.at(-1).id;
+ const restored=normalizeProgress(lesson,{current:terminal,completed:oldCompleted});
+ assert.equal(restored.current,'choose-material');assert.deepEqual(new Set(restored.completed),new Set(oldCompleted));
+ assert.equal(normalizeProgress(lesson,{current:terminal,completed:[...restored.completed,'choose-material']}).current,terminal);
+});

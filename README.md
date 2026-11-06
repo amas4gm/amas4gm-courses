@@ -129,7 +129,7 @@ Moodle embed: `bambu-studio/material-installation/?embed=1`. The provided 120 MB
 
 ## Tutorial 04: slicing, supports, and print cost
 
-`bambu-studio/slicing-and-printing/` extends the shared Bambu Studio adapter with an optional printing workflow. Thirteen guided tasks cover the Device selector, a first unsupported slice, the vertical upper-layer slider, the roof overhang, Prepare → Support → Enable support, a second slice and comparison, calculator practice, and a simulated print. The physical printer animation reuses the lab scene and original STL; no duplicate model or video is shipped.
+`bambu-studio/slicing-and-printing/` extends the shared Bambu Studio adapter with an optional printing workflow. Fourteen guided tasks cover the Device selector, matching project filament 1 to green A1 Bambu PLA Basic through its material dropdown, a first unsupported slice, the vertical upper-layer slider, the roof overhang, Prepare → Support → Enable support, a second slice and comparison, calculator practice, and a simulated print. The physical printer animation reuses the lab scene and original STL; no duplicate model or video is shipped.
 
 Device and Support controls were checked against the open desktop Bambu Studio project on November 6, 2026. X2D / 0.4 mm / 0.08 mm High Quality: without supports, 3.89 m / 11.80 g, material cost $0.24, total time 1h40m; with Enable support, tree(auto), Default style, 15° threshold, 4.20 m / 12.72 g, $0.25, 1h50m. Both previews have 599 layers, 0.20 mm first layer, 48.04 mm top. Preview bands, support trees, and accelerated printing are teaching approximations rather than generated G-code.
 
