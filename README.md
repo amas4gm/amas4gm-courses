@@ -119,3 +119,9 @@ npm run check reports size, detects duplicate media, and flags growth above a de
 ## Credits
 
 See [credits](credits.html), [Three.js MIT license](shared/vendor/THREE-LICENSE.txt), and [Bambu AGPLv3 license](simulators/bambu-studio/BAMBU-LICENSE.txt). Bambu interface assets are unmodified originals. The cube follows camera-driven navigation described in [Bambu's GLCanvas3D source](https://github.com/bambulab/BambuStudio/blob/master/src/slic3r/GUI/GLCanvas3D.cpp). Benchy is credited to Creative Tools / 3DBenchy.com. Tutorial completion is not shop printing authorization.
+
+## Tutorial 03: physical devices and material loading
+
+`bambu-studio/material-installation/` uses the same teaching engine with a separate `simulators/bambu-lab/` adapter. Five tasks cover choosing Steve or Candus, releasing both AMS tabs, placing the roll, pressing the intake backward, and inserting filament. The final animated uptake must finish before completion. The selected device persists separately from step progress; checkpoints rebuild the physical state on resume/back. Keyboard and touch use projected buttons anchored to the 3D objects. Reduced-motion settings shorten transitions and omit spool spinning. No model/video download is needed: the scene is procedural and shares the existing Three.js library.
+
+Moodle embed: `bambu-studio/material-installation/?embed=1`. The provided 120 MB reference video remains outside the repository and published site.
