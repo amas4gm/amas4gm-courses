@@ -8,7 +8,7 @@ for(const app of items){
  const text=document.createElement('div'),eyebrow=document.createElement('p'),h2=document.createElement('h2'),description=document.createElement('p');
  eyebrow.className='eyebrow';eyebrow.textContent=app.category;h2.textContent=app.name;description.textContent=app.description;
  text.append(eyebrow,h2,description);heading.append(text);
- if(!selected){const a=document.createElement('a');a.className='software-link';a.href=new URL(`${app.id}/`,base);a.textContent=`${app.tutorials.length} tutorial →`;heading.append(a);}
+ if(!selected){const a=document.createElement('a');a.className='software-link';a.href=new URL(`${app.id}/`,base);a.textContent=`${app.tutorials.length} tutorial${app.tutorials.length===1?'':'s'} →`;heading.append(a);}
  section.append(heading);const cards=document.createElement('div');cards.className='tutorial-grid';
  for(const lesson of app.tutorials){
   const card=document.createElement('a');card.className='tutorial-card';card.href=new URL(`${app.id}/${lesson.id}/`,base);
