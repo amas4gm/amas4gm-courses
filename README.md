@@ -67,25 +67,25 @@ Call startTutorial({lesson, createSimulator, root}). The factory receives contai
 - feedback(message): quiet supporting text.
 - guideChanged(): request highlight/arrow repositioning.
 
-Return an adapter implementing setStep(step, context), refreshState(), setPaused(value), setGuidance(active), getGuide(), getRegion(), perform(action), reset(), and dispose(). Context provides isCompleted() and completedSteps(). getGuide() returns a DOM target, parent, scale, and optional anchorY/above placement. Enable only the current concept. Dispose observers and rendering resources in dispose().
+Return an adapter implementing setStep(step, context), refreshState(), setPaused(value), setGuidance(active), getGuide(), getRegion(), perform(action), reset(), and dispose(). Context provides isCompleted() and completedSteps() for simulator actions, including actions awaiting a popup quiz. The engine separately tracks fully completed steps to enforce quiz gates. getGuide() returns a DOM target, parent, scale, and optional anchorY/above placement. Enable only the current concept. Dispose observers and rendering resources in dispose().
 
 The Bambu adapter supports select, import, orbit, pan, zoom, view, and free actions. Completed-step effects reconstruct model visibility. viewBefore/viewAfter select tab demonstrations. Model and camera changes are independent.
 
 ## Current lesson
 
-15 guided tasks plus optional free practice. Home opens first, Prepare starts empty, and learners explicitly import Benchy. Preview and Device have distinct simulated panels. The exact supplied STL retains its sideways orientation to introduce why models sometimes need reorientation for printing.
+14 guided tasks plus optional free practice. Home opens first, Prepare starts empty, and learners explicitly import Benchy. Preview and Device have distinct simulated panels. The exact supplied STL retains its sideways orientation to introduce why models sometimes need reorientation for printing.
 
-Only current concepts are enabled. Arrows and pulsing highlights stop immediately on completion. Wrong actions give a red flash. Success audio is immediate, followed by five seconds of continued practice for navigation tasks. Hidden tabs pause the countdown. Completion popups include the explanation and a reminder of the pre-step text. One zoom direction triggers a notification and partial-success sound prompting the other direction. Sound can be muted; there are no points or badges.
+Only current concepts are enabled. Arrows and pulsing highlights stop immediately on completion. Wrong actions give a red flash. Success audio is immediate, followed by five seconds of continued practice for navigation tasks. Hidden tabs pause the countdown. Completion popups include the explanation and a reminder of the pre-step text. Quizzes belong to these popups, not separate steps. A correct answer is required before continuing; wrong answers provide red-flash and audio feedback inside the popup. Closing or reloading preserves an unanswered check without unlocking the next task. One zoom direction triggers a notification and partial-success sound prompting the other direction. Sound can be muted; there are no points or badges.
 
 The view cube follows the actual camera rotation continuously. Face clicks choose corresponding views without moving the model. Edge/corner choices and dragging work in free practice. Top view follows zoom as a new task. Reduced-motion settings remove pulsing and view-transition animation.
 
-The final popup says “You finished the tutorial” with “Back to course”. A quiet link closes the popup for continued simulation practice. Returning uses the original course/catalog link; a separately opened tab is closed when the browser permits it. Browsers can refuse tab closing or omit the referrer; in that case navigation falls back to the known course link or catalog. An iframe returns to its containing course. No cross-origin tab can be inspected or force-closed.
+After the final popup quiz is answered correctly, the popup says “You finished the tutorial” with “Back to course” and a grey “Restart tutorial” button below it. A quiet link closes the popup for continued simulation practice. Returning uses the original course/catalog link; a separately opened tab is closed when the browser permits it. Browsers can refuse tab closing or omit the referrer; in that case navigation falls back to the known course link or catalog. An iframe returns to its containing course. No cross-origin tab can be inspected or force-closed.
 
 ## Saved progress
 
 Storage keys are amas-tutorial:<software>:<lesson>:v<version>, with completed step IDs. Inserted tasks stay incomplete while later completed IDs are retained; navigation cannot skip the first incomplete task. Bump the version for incompatible revisions.
 
-Legacy amas-bambu-tutorial-01-v5 progress migrates using the original numeric ordering. Learners who finished the old tutorial keep that work and resume at the new Top view task. Restart clears only this lesson's new record and does not re-import old progress or reset other lessons. If storage is blocked, the current page session remains usable.
+Legacy amas-bambu-tutorial-01-v5 progress migrates using the original numeric ordering. Learners who finished the original tutorial keep that work and resume at the new Top view task. Version 2 also migrates version 1: a completed Top camera action with an unanswered standalone quiz becomes a pending popup quiz, while fully finished lessons stay finished. Action completion and quiz completion are stored separately so reloads cannot bypass the check. Restart clears only this lesson's new record and does not re-import old progress or reset other lessons. If storage is blocked, the current page session remains usable.
 
 ## Run and validate
 

@@ -7,19 +7,20 @@ import {captureReturnToCourse} from './return-to-course.js';
 export async function startTutorial({lesson,createSimulator,root}){
  const $=selector=>root.querySelector(selector);
  const returnToCourse=captureReturnToCourse(lesson);
- let adapter,sound,guidance,frame=0,lastMistake=-Infinity,index=0,completed=new Set(),ready=false;
+ let adapter,sound,guidance,frame=0,lastMistake=-Infinity,index=0,completed=new Set(),practiced=new Set(),ready=false;
  const listeners=new AbortController(),on=(el,event,fn)=>el.addEventListener(event,fn,{signal:listeners.signal});
  const step=()=>lesson.steps[index],isCompleted=()=>completed.has(step().id);
+ const actionDone=()=>isCompleted()||practiced.has(step().id);
  let storage;try{storage=localStorage;}catch{}
- const saved=loadProgress(lesson,storage);completed=new Set(saved.completed);index=lesson.steps.findIndex(s=>s.id===saved.current);
- function persist(){saveProgress(lesson,{current:step().id,completed:[...completed]},storage);}
+ const saved=loadProgress(lesson,storage);completed=new Set(saved.completed);practiced=new Set(saved.practiced);index=lesson.steps.findIndex(s=>s.id===saved.current);
+ function persist(){saveProgress(lesson,{current:step().id,completed:[...completed],practiced:[...practiced]},storage);}
  const unlocked=()=>{const i=lesson.steps.findIndex(s=>!s.terminal&&!completed.has(s.id));return i<0?lesson.steps.length-1:i;};
- const context={isCompleted,completedSteps:()=>lesson.steps.filter(s=>completed.has(s.id))};
- function updateGuidance(){adapter?.setGuidance(!isCompleted()&&!step().terminal);guidance?.update(isCompleted()||step().terminal?null:adapter?.getGuide());}
+ const context={isCompleted:actionDone,completedSteps:()=>lesson.steps.filter(s=>completed.has(s.id)||practiced.has(s.id))};
+ function updateGuidance(){adapter?.setGuidance(!actionDone()&&!step().terminal);guidance?.update(actionDone()||step().terminal?null:adapter?.getGuide());}
  function feedback(message){$('#feedback').classList.remove('error-feedback');$('#feedback').textContent=message;}
- function retry(message,region){
+ function retry(message,region,output=$('#feedback')){
    if(!ready||performance.now()-lastMistake<850)return;lastMistake=performance.now();
-   feedback(message);$('#feedback').classList.add('error-feedback');region??=adapter.getRegion();
+   output.textContent=message;output.classList.add('error-feedback');region??=adapter.getRegion();
    region.classList.add('error-flash');setTimeout(()=>region.classList.remove('error-flash'),650);sound.play('retry');
  }
  function updateProgress(){const total=lesson.steps.filter(s=>!s.terminal).length;
@@ -32,24 +33,41 @@ export async function startTutorial({lesson,createSimulator,root}){
  }
  function cancelPause(){cancelAnimationFrame(frame);frame=0;$('#completion-notice').hidden=true;}
  function showCompletion(){
-   if(!ready||!isCompleted()||step().terminal)return;cancelPause();updateGuidance();
-   $('#review-step').hidden=false;$('#control-status').textContent='Task complete · Open step summary to continue';
-   $('#completion-count').textContent=`STEP ${index+1} OF ${lesson.steps.filter(s=>!s.terminal).length} COMPLETE`;
+   if(!ready||!actionDone()||step().terminal)return;cancelPause();updateGuidance();
+   $('#review-step').hidden=false;$('#control-status').textContent=isCompleted()?'Task complete · Open step summary to continue':'Action complete · Open the quick check to continue';
+   $('#completion-count').textContent=`STEP ${index+1} OF ${lesson.steps.filter(s=>!s.terminal).length} ${isCompleted()?'COMPLETE':'· QUICK CHECK'}`;
    const finalTask=!!lesson.steps[index+1]?.terminal;
-   $('#completion-title').textContent=finalTask?'You finished the tutorial':step().title;$('#completion-explanation').textContent=step().done;
+   $('#completion-title').textContent=finalTask&&isCompleted()?'You finished the tutorial':step().title;$('#completion-explanation').textContent=step().done;
    $('#completion-reminder').textContent=step().text;
    $('#completion-next').hidden=finalTask;$('#completion-next').textContent=`Next: ${lesson.steps[index+1]?.title||'Tutorial complete'}`;
    $('#next').textContent=finalTask?'Back to course':'Continue →';
-   $('#review-workspace').textContent=finalTask?'Close popup to keep interacting with the simulation':'Review workspace';
-   adapter.setPaused(true);if(!$('#completion-dialog').open)$('#completion-dialog').showModal();$('#next').focus({preventScroll:true});
+   $('#next').disabled=!isCompleted();$('#restart-from-completion').hidden=!finalTask||!isCompleted();
+   $('#review-workspace').textContent=finalTask&&isCompleted()?'Close popup to keep interacting with the simulation':'Review workspace';
+   renderQuiz();adapter.setPaused(true);if(!$('#completion-dialog').open)$('#completion-dialog').showModal();
+   (isCompleted()?$('#next'):$('#quiz button'))?.focus({preventScroll:true});
+ }
+ function renderQuiz(){
+   const quiz=step().quiz;$('#completion-quiz').hidden=!quiz;$('#quiz').replaceChildren();
+   $('#quiz-feedback').classList.remove('error-feedback');$('#quiz-feedback').textContent='';
+   if(!quiz)return;$('#quiz-prompt').textContent=quiz.prompt;
+   if(isCompleted())$('#quiz-feedback').textContent=quiz.success||'Correct. You can continue.';
+   quiz.answers.forEach((answer,i)=>{
+     const button=document.createElement('button');button.textContent=answer;button.disabled=isCompleted();
+     if(isCompleted()&&i===quiz.correct)button.classList.add('correct');
+     button.addEventListener('click',()=>{
+       if(i!==quiz.correct){button.classList.add('wrong');retry(quiz.retry,$('#completion-dialog'),$('#quiz-feedback'));return;}
+       completed.add(step().id);practiced.delete(step().id);persist();updateProgress();
+       sound.play(lesson.steps[index+1]?.terminal?'complete':'success');showCompletion();
+     });$('#quiz').append(button);
+   });
  }
  function partial(message,{title='Good! Keep going.'}={}){
    $('#partial-title').textContent=title;$('#partial-message').textContent=message;$('#partial-notice').hidden=false;sound.play('partial');
  }
  function finish(){
-   if(!ready||isCompleted()||step().terminal)return;
-   $('#partial-notice').hidden=true;completed.add(step().id);feedback('');persist();updateProgress();adapter.refreshState();updateGuidance();
-   $('#next').disabled=false;$('#review-step').hidden=false;sound.play(step().quiz?'complete':'success');
+   if(!ready||actionDone()||step().terminal)return;
+   $('#partial-notice').hidden=true;(step().quiz?practiced:completed).add(step().id);feedback('');persist();updateProgress();adapter.refreshState();updateGuidance();
+   $('#next').disabled=!isCompleted();$('#review-step').hidden=false;sound.play('success');
    if(!step().completionDelayMs){showCompletion();return;}
    const active=step().id,timer=createCountdown(step().completionDelayMs,performance.now());
    $('#completion-notice').hidden=false;$('#completion-seconds').textContent=String(Math.ceil(step().completionDelayMs/1000));$('#completion-countdown').value=0;
@@ -61,19 +79,18 @@ export async function startTutorial({lesson,createSimulator,root}){
  }
  function render(){
    const s=step();$('#partial-notice').hidden=true;feedback('');$('#chapter').textContent=s.chapter;$('#lesson-title').textContent=s.title;$('#lesson-text').textContent=s.text;$('#task').textContent=s.task;
-   $('#back').disabled=index===0;$('#review-step').hidden=!isCompleted()||s.terminal;$('#next').disabled=!isCompleted();$('#back-to-course').hidden=!s.terminal;
+   $('#back').disabled=index===0;$('#review-step').hidden=!actionDone()||s.terminal;$('#next').disabled=!isCompleted();$('#back-to-course').hidden=!s.terminal;
    $('.lesson-panel').classList.toggle('completed',!!s.terminal);
    $('#control-status').textContent=s.controlStatus||'Only the highlighted area is active';
    $('#practice-tools').hidden=!s.tools;$('#practice-buttons').replaceChildren();
    for(const [action,label] of s.tools||[]){const b=document.createElement('button');b.textContent=label;b.addEventListener('click',()=>adapter.perform(action));$('#practice-buttons').append(b);}
    if(s.keyboard){const p=document.createElement('p');p.className='small-note';p.textContent=`${s.keyboard} Touch: use the practice buttons above.`;$('#practice-buttons').append(p);}
-   $('#quiz').hidden=!s.quiz;$('#quiz').replaceChildren();
-   s.quiz?.answers.forEach((answer,i)=>{const b=document.createElement('button');b.textContent=answer;b.disabled=isCompleted();b.addEventListener('click',()=>{b.classList.add(i===s.quiz.correct?'correct':'wrong');if(i===s.quiz.correct){finish();$('#quiz').querySelectorAll('button').forEach(button=>button.disabled=true);}else retry(s.quiz.retry,$('.lesson-panel'));});$('#quiz').append(b);});
    adapter.setStep(s,context);adapter.setPaused(false);updateProgress();updateGuidance();
    if(s.terminal)feedback(s.done);
-   requestAnimationFrame(()=>{updateGuidance();if(isCompleted())showCompletion();});
+   requestAnimationFrame(()=>{updateGuidance();if(actionDone())showCompletion();});
  }
  function go(next){cancelPause();$('#completion-dialog').close();index=Math.max(0,Math.min(lesson.steps.length-1,next,unlocked()));render();persist();$('#lesson-title').focus({preventScroll:true});}
+ function restart(){completed.clear();practiced.clear();adapter.reset();go(0);}
  try{
    const response=await fetch(new URL('./shell.html',import.meta.url));if(!response.ok)throw new Error('Lesson shell unavailable');root.innerHTML=await response.text();
    document.body.classList.toggle('embed-mode',new URLSearchParams(location.search).get('embed')==='1');
@@ -86,10 +103,10 @@ export async function startTutorial({lesson,createSimulator,root}){
    ready=true;$('#restart').disabled=false;
    on($('#next'),'click',()=>{if(isCompleted()){if(lesson.steps[index+1]?.terminal)returnToCourse();else go(index+1);}});on($('#back'),'click',()=>go(index-1));
    on($('#back-to-course'),'click',returnToCourse);
-   on($('#review-step'),'click',showCompletion);on($('#review-workspace'),'click',()=>{if(lesson.steps[index+1]?.terminal)go(index+1);else $('#completion-dialog').close();});
+   on($('#review-step'),'click',showCompletion);on($('#review-workspace'),'click',()=>{if(lesson.steps[index+1]?.terminal&&isCompleted())go(index+1);else $('#completion-dialog').close();});
    on($('#completion-dialog'),'close',()=>adapter.setPaused($('#completion-dialog').open));
-   on($('#completion-dialog'),'cancel',event=>{if(lesson.steps[index+1]?.terminal){event.preventDefault();go(index+1);}});
-   on($('#restart'),'click',()=>{completed.clear();adapter.reset();go(0);});
+   on($('#completion-dialog'),'cancel',event=>{if(lesson.steps[index+1]?.terminal&&isCompleted()){event.preventDefault();go(index+1);}});
+   on($('#restart'),'click',restart);on($('#restart-from-completion'),'click',restart);
    render();
  }catch(error){
    console.error(error);adapter?.dispose();

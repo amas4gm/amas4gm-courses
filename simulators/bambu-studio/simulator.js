@@ -1,4 +1,4 @@
-import {createViewCube} from './view-cube.js';
+import {createViewCube,viewDirections} from './view-cube.js';
 import * as THREE from '../../shared/vendor/three.module.js';
 import {OrbitControls} from '../../shared/vendor/OrbitControls.js';
 import {STLLoader} from '../../shared/vendor/STLLoader.js';
@@ -32,12 +32,14 @@ export async function createBambuSimulator({container,lesson,api}){
    $('#import-model').hidden=mode()!=='import';
    const target=$('#'+step.simulation.target);if(target&&!isNav())target.disabled=false;
    $('#viewport').classList.toggle('navigation',isNav());$('#viewport').tabIndex=isNav()?0:-1;$('#gesture-hint').textContent=step.simulation.hint;
-   refreshState();configureControls();cube.cancel();if(step.simulation.camera==='close')resetView(true);if(mode()==='free')$('#view-home').disabled=false;snapshot();stepReady=true;api.guideChanged();
+   refreshState();configureControls();cube.cancel();if(step.simulation.camera==='close')resetView(true);if(mode()==='free')$('#view-home').disabled=false;snapshot();stepReady=true;
+   if(mode()==='view'&&context.isCompleted()&&viewDirections[step.simulation.selectedView])cube.snap(viewDirections[step.simulation.selectedView],step.simulation.selectedView,true);
+   api.guideChanged();
  }
  function getGuide(){
    const scale=$('#studio').getBoundingClientRect().width/1582;
    if(!$('#import-model').hidden){const slot=$('#toolbar > span:first-child').getBoundingClientRect(),base=$('.viewport-wrap').getBoundingClientRect();Object.assign($('#import-model').style,{left:(slot.left-base.left)/scale+'px',top:(slot.top-base.top)/scale+'px',width:slot.width/scale+'px',height:slot.height/scale+'px'});}
-   if(!loaded||context.isCompleted()||isNav()||step.quiz)return null;
+   if(!loaded||context.isCompleted()||isNav())return null;
    const dialogOpen=$('#import-dialog').open,target=dialogOpen?($('#confirm-import').disabled?$('#benchy-file'):$('#confirm-import')):$('#'+step.simulation.target);
    if(!target)return null;const rect=target.getBoundingClientRect();
    return {target,parent:dialogOpen?$('#import-dialog'):$('#studio'),above:mode()==='view',scale:dialogOpen?1:scale,anchorY:dialogOpen?undefined:['printer','filament','process'].includes(step.simulation.target)?rect.top+33*scale:step.simulation.target==='plate-hotspot'?rect.top+rect.height*.42:undefined};

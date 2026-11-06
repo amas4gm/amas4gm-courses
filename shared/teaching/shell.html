@@ -16,7 +16,6 @@
       <p id="lesson-text"></p>
       <div class="task-box"><span class="task-label">YOUR TURN</span><p id="task"></p></div>
       <div id="feedback" role="status" aria-live="polite"></div>
-      <div id="quiz" class="quiz" hidden></div>
       <div id="practice-tools" hidden><p class="tool-label">Practice aids · keyboard & touch</p><div id="practice-buttons"></div></div>
       <div class="lesson-actions"><button id="back" class="secondary">← Back</button><button id="review-step" class="secondary" hidden>View step summary</button><button id="back-to-course" class="primary" hidden>Back to course</button></div>
       <details class="outline"><summary>Lesson map</summary><ol id="lesson-map"></ol></details>
@@ -36,8 +35,15 @@
   <h2 id="completion-title"></h2>
   <p id="completion-explanation"></p>
   <div class="completion-reminder"><span class="information-icon" aria-hidden="true">i</span><p id="completion-reminder"></p></div>
+  <section id="completion-quiz" hidden aria-labelledby="quiz-heading">
+    <h3 id="quiz-heading">Quick check</h3>
+    <p id="quiz-prompt"></p>
+    <div id="quiz" class="quiz"></div>
+    <p id="quiz-feedback" role="status" aria-live="polite"></p>
+  </section>
   <p id="completion-next"></p>
   <button id="next" class="primary" disabled>Continue →</button>
+  <button id="restart-from-completion" class="secondary" hidden>Restart tutorial</button>
   <button id="review-workspace" class="quiet">Review workspace</button>
 </dialog>
 

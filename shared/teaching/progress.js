@@ -7,12 +7,17 @@ export function normalizeProgress(lesson,saved={}){
   const firstIncomplete=lesson.steps.findIndex(s=>!s.terminal&&!supplied.has(s.id));
   const unlocked=firstIncomplete<0?lesson.steps.length-1:firstIncomplete;
   const requested=lesson.steps.findIndex(s=>s.id===saved?.current);
-  return {current:lesson.steps[Math.max(0,Math.min(requested<0?0:requested,unlocked))].id,completed};
+  const practiced=lesson.steps.filter(s=>s.quiz&&!completed.includes(s.id)&&Array.isArray(saved?.practiced)&&saved.practiced.includes(s.id)).map(s=>s.id);
+  return {current:lesson.steps[Math.max(0,Math.min(requested<0?0:requested,unlocked))].id,completed,practiced};
 }
 export function loadProgress(lesson,storage){
   try{
     const current=storage.getItem(progressKey(lesson));
     if(current!==null)return normalizeProgress(lesson,JSON.parse(current));
+    for(const migration of lesson.progressMigrations||[]){
+      const previous=storage.getItem(migration.key);
+      if(previous!==null){const migrated=normalizeProgress(lesson,migration.migrate(JSON.parse(previous)));saveProgress(lesson,migrated,storage);return migrated;}
+    }
     if(lesson.legacyProgress){
       const old=JSON.parse(storage.getItem(lesson.legacyProgress.key));
       if(old&&Array.isArray(old.completed)){

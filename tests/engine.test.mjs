@@ -8,7 +8,7 @@ const memory=()=>{const values=new Map();return {getItem:key=>values.get(key)??n
 test('legacy progress migrates by the old ordering and requires the new Top task',()=>{
  const storage=memory();storage.setItem(lesson.legacyProgress.key,JSON.stringify({index:14,completed:Array.from({length:14},(_,i)=>i)}));
  const state=loadProgress(lesson,storage);
- assert.equal(state.current,'top-view');assert.equal(state.completed.length,14);assert.ok(state.completed.includes('check'));assert.ok(!state.completed.includes('top-view'));
+ assert.equal(state.current,'top-view');assert.equal(state.completed.length,13);assert.ok(!state.completed.includes('check'));assert.ok(!state.completed.includes('top-view'));
  assert.deepEqual(JSON.parse(storage.getItem(progressKey(lesson))),state);
 });
 test('resume before the inserted step retains the current lesson',()=>{
@@ -41,9 +41,22 @@ test('countdown pauses when hidden and needs five seconds of visible practice',(
 });
 test('lesson supplies one Top-view task directly after zoom and includes an import effect',()=>{
  const zoom=lesson.steps.findIndex(s=>s.id==='zoom');assert.equal(lesson.steps[zoom+1].id,'top-view');
- assert.equal(lesson.steps.filter(s=>!s.terminal).length,15);
+ assert.equal(lesson.steps.filter(s=>!s.terminal).length,14);
+ assert.ok(!lesson.steps.some(s=>s.id==='check'));assert.ok(lesson.steps[zoom+1].quiz);
  assert.deepEqual(lesson.steps.find(s=>s.id==='import-model').simulation.effects,{modelVisible:true});
  assert.equal(lesson.initialState.modelVisible,false);assert.equal(lesson.initialState.view,'home');
+});
+test('a pending popup quiz survives reload and cannot unlock the next step',()=>{
+ const completed=lesson.steps.slice(0,-2).map(s=>s.id),storage=memory();
+ saveProgress(lesson,{current:'complete',completed,practiced:['top-view']},storage);
+ const state=loadProgress(lesson,storage);assert.equal(state.current,'top-view');assert.deepEqual(state.practiced,['top-view']);assert.ok(!state.completed.includes('top-view'));
+});
+test('version one migration distinguishes camera completion from passing its old quiz',()=>{
+ const storage=memory(),completed=lesson.steps.filter(s=>!s.terminal).map(s=>s.id),key=lesson.progressMigrations[0].key;
+ storage.setItem(key,JSON.stringify({current:'check',completed}));
+ const pending=loadProgress(lesson,storage);assert.equal(pending.current,'top-view');assert.deepEqual(pending.practiced,['top-view']);assert.ok(!pending.completed.includes('top-view'));
+ const finished=memory();finished.setItem(key,JSON.stringify({current:'complete',completed:[...completed,'check']}));
+ const state=loadProgress(lesson,finished);assert.equal(state.current,'complete');assert.equal(state.completed.length,14);assert.deepEqual(state.practiced,[]);
 });
 test('return destination preserves course and catalog links with a safe fallback',()=>{
  const root='https://example.org/course/',current=root+'software/intro/';

@@ -40,14 +40,14 @@ export function createViewCube({element,camera,controls,canInteract,onSelect,onR
    for(const {point,hit} of corners){const p=project(point);const visible=faces.some(f=>f.n.dot(point)===1&&f.n.clone().applyQuaternion(inv).z>.001);hit.style.display=visible?'':'none';hit.setAttribute('cx',p.x);hit.setAttribute('cy',p.y);hit.style.pointerEvents=canInteract('diagonal')?'auto':'none';}
    for(const {direction,line,label} of axes){const p=direction.clone().applyQuaternion(inv);line.setAttribute('x1','64');line.setAttribute('y1','62');line.setAttribute('x2',64+p.x*54);line.setAttribute('y2',62-p.y*54);label.setAttribute('x',61+p.x*61);label.setAttribute('y',66-p.y*61);}
  }
- function snap(direction,name){
+ function snap(direction,name,instant=false){
    cancelAnimationFrame(animation);const target=controls.target.clone(),distance=camera.position.distanceTo(target);
    const destination=target.clone().add(new THREE.Vector3(...direction).normalize().multiplyScalar(distance));
    // A tiny offset avoids the lookAt singularity at the poles while retaining a true top/bottom view.
    if(direction[0]===0&&direction[2]===0)destination.z+=distance*1e-6;
    const dummy=camera.clone();dummy.position.copy(destination);dummy.lookAt(target);
    const from=camera.quaternion.clone(),to=dummy.quaternion.clone(),start=performance.now();
-   const duration=matchMedia('(prefers-reduced-motion: reduce)').matches?0:220;
+   const duration=instant||matchMedia('(prefers-reduced-motion: reduce)').matches?0:220;
    function tick(now){const t=duration?Math.min(1,(now-start)/duration):1,q=from.clone().slerp(to,t*t*(3-2*t));camera.quaternion.copy(q);camera.position.copy(target).add(new THREE.Vector3(0,0,distance).applyQuaternion(q));controls.update();onChange();if(t<1)animation=requestAnimationFrame(tick);else{animation=0;onSelect(name);}}
    animation=requestAnimationFrame(tick);
  }

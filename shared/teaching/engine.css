@@ -141,6 +141,17 @@ h1{font-size:25px}
 #completion-next{border-top:1px solid #e0e8e2;padding-top:18px;margin:0 0 18px;font-size:13px;color:#64776c}
 #completion-dialog #next{display:block;width:100%;background:#176442;color:#fff;padding:14px;font-size:16px}
 #completion-dialog #next:hover{background:#0f4b31}
+#completion-dialog #restart-from-completion{display:block;width:100%;margin-top:12px;padding:12px;background:#e7ebe8;border:1px solid #cdd6d0;color:#46574d;font-size:14px}
+#completion-dialog #restart-from-completion:hover{background:#dce2dd}
+#completion-quiz{border-top:1px solid #dfe7e1;padding-top:18px;margin-bottom:20px}
+#completion-quiz h3{font-size:16px;margin:0 0 8px;color:#234a35}
+#quiz-prompt{font-size:15px;line-height:1.5;margin:0 0 12px}
+#completion-quiz .quiz{margin:0}
+#completion-quiz .quiz button{font-size:14px;padding:11px 12px;line-height:1.4}
+#quiz-feedback{font-size:14px;line-height:1.5;color:#176442;margin:12px 0 0}
+#quiz-feedback:empty{display:none}
+#quiz-feedback.error-feedback{color:#b72336}
+#completion-dialog #next:disabled{background:#e7ebe8;color:#718077;cursor:default}
 #completion-dialog #review-workspace{display:block;margin:16px auto 0;max-width:none;font-size:12px}
 @media(max-width:560px){#completion-dialog{padding:24px}
 #completion-dialog h2{font-size:23px}

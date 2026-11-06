@@ -12,12 +12,12 @@ const steps = [
   {id:'orbit', chapter:'02 / 3D NAVIGATION', title:'Look around Benchy', text:'Orbiting moves your viewpoint around the model. The model stays in exactly the same place and orientation.', task:'Hold the LEFT mouse button on empty space beside Benchy and drag sideways.', done:'You changed your view—not Benchy’s orientation.', hint:'LEFT drag on empty space · orbit', tools:[['orbit-left','↶ Orbit left'],['orbit-right','Orbit right ↷']], keyboard:'Left / Right arrows orbit; Up / Down arrows tilt.'},
   {id:'pan', chapter:'02 / 3D NAVIGATION', title:'Slide your view', text:'Panning moves your viewpoint sideways or up and down without turning it. Benchy stays fixed on the plate.', task:'Hold the RIGHT mouse button (or the mouse wheel button) and drag across the viewport.', done:'Your view shifted. Benchy did not move on the build plate.', hint:'RIGHT or MIDDLE drag · pan', tools:[['pan-left','← Pan left'],['pan-right','Pan right →']], keyboard:'Arrow keys pan the view.'},
   {id:'zoom', chapter:'02 / 3D NAVIGATION', title:'Get closer. Step back.', text:'Zooming changes how close the model looks. It does not change the model’s physical size.', task:'Scroll up to zoom in, then scroll down to zoom out. Complete both directions.', done:'Both directions done. Benchy stayed the same size.', hint:'Scroll UP to zoom in · DOWN to zoom out', tools:[['zoom-in','＋ Zoom in'],['zoom-out','− Zoom out']], keyboard:'+ and − keys zoom.'},
-  {id:'check', chapter:'03 / QUICK CHECK', title:'View or model?', text:'You orbit, pan, and zoom around Benchy. What changed?', task:'Choose the best answer.', done:'Exactly. Navigation changes your view. Model tools change the object.'},
   {id:'complete', chapter:'TUTORIAL COMPLETE', title:'You finished the tutorial', text:'You found the main sections of Bambu Studio and practiced orbit, pan, and zoom.', task:'Try these same navigation actions in Bambu Studio. Start left-dragging on empty space beside the model.', done:'This completes Tutorial 01 only. It does not qualify you to print independently yet.', hint:'Free camera practice · model editing remains disabled', tools:[['reset','↺ Reset practice view'],['orbit-left','↶ Orbit'],['pan-right','Pan →'],['zoom-in','＋ Zoom'],['zoom-out','− Zoom']]}
 ];
 
 const legacyStepIds=steps.map(s=>s.id);
-steps.splice(steps.findIndex(s=>s.id==='check'),0,{id:'top-view',chapter:'02 / 3D NAVIGATION',title:'Look straight down',text:'The view cube follows your camera as you orbit. Click a face to look directly at that side of the model. This changes your viewpoint, not the model’s orientation.',task:'Click the Top face of the view cube in the lower-left corner of the viewport.',done:'You are looking straight down at the build plate. Benchy has not moved or rotated. The cube gives you a repeatable view without dragging.',completionDelayMs:5000});
+legacyStepIds.splice(legacyStepIds.indexOf('complete'),0,'check');
+steps.splice(steps.findIndex(s=>s.id==='complete'),0,{id:'top-view',chapter:'02 / 3D NAVIGATION',title:'Look straight down',text:'The view cube follows your camera as you orbit. Click a face to look directly at that side of the model. This changes your viewpoint, not the model’s orientation.',task:'Click the Top face of the view cube in the lower-left corner of the viewport.',done:'You are looking straight down at the build plate. Benchy has not moved or rotated. The cube gives you a repeatable view without dragging.',completionDelayMs:5000});
 
 const tabViews={prepare:['home','prepare'],preview:['prepare','preview'],device:['preview','device'],'return-prepare':['device','prepare']};
 for(const step of steps){
@@ -28,20 +28,26 @@ for(const step of steps){
   if(['orbit','pan','zoom'].includes(action))step.completionDelayMs=5000;
   if(['orbit','pan','zoom','free'].includes(action))step.controlStatus='Only camera navigation is enabled';
   if(step.keyboard)step.keyboard='Focus the 3D view: '+step.keyboard;
-  if(step.id==='top-view')Object.assign(step.simulation,{action:'view',target:'cube-top',camera:'close',hint:'Click Top on the view cube'});
+  if(step.id==='top-view')Object.assign(step.simulation,{action:'view',target:'cube-top',camera:'close',selectedView:'Top',hint:'Click Top on the view cube'});
   if(step.id==='complete')step.terminal=true;
 }
-steps.find(s=>s.id==='check').quiz={
+steps.find(s=>s.id==='top-view').quiz={
+  prompt:'You orbit, pan, and zoom around Benchy. What changed?',
   answers:['The camera view changed. Benchy stayed fixed.','Benchy rotated on the plate.','Benchy became physically larger.'],
-  correct:0,retry:'Try again. Orbit, pan, and zoom move the camera. They do not edit the model.'
+  correct:0,retry:'Try again. Orbit, pan, and zoom move the camera. They do not edit the model.',
+  success:'Exactly. Navigation changes your view. Model tools change the object.'
 };
 export default {
-  id:'getting-started',software:'bambu-studio',version:1,title:'Meet Bambu Studio',
+  id:'getting-started',software:'bambu-studio',version:2,title:'Meet Bambu Studio',
   subtitle:'Find your way around. Then take Benchy for a spin.',
   eyebrow:'INTRO TO 3D PRINTING SLICING / TUTORIAL 01',simulatorLabel:'SIMULATED BAMBU STUDIO',
   simulationNote:'Example settings · not a print setup recommendation',
   initialState:{view:'home',modelVisible:false},
   model:{url:new URL('../../shared/assets/models/Benchy.stl',import.meta.url).href,name:'Benchy.stl'},
   legacyProgress:{key:'amas-bambu-tutorial-01-v5',stepIds:legacyStepIds},
+  progressMigrations:[{key:'amas-tutorial:bambu-studio:getting-started:v1',migrate(saved){
+    const completed=Array.isArray(saved?.completed)?saved.completed:[],pending=completed.includes('top-view')&&!completed.includes('check');
+    return {current:saved?.current==='check'?'top-view':saved?.current,completed:completed.filter(id=>id!=='check'&&!(pending&&id==='top-view')),practiced:pending?['top-view']:[]};
+  }}],
   steps
 };
