@@ -5,7 +5,7 @@ import {STLLoader} from '../../shared/vendor/STLLoader.js';
 
 // Adapter owns software state and rendering; the teaching engine owns progress and feedback.
 export async function createBambuSimulator({container,lesson,api}){
- const response=await fetch(new URL('./interface.html?v=manipulation-1',import.meta.url));if(!response.ok)throw new Error('Simulator interface unavailable');
+ const response=await fetch(new URL('./interface.html?v=manipulation-3',import.meta.url));if(!response.ok)throw new Error('Simulator interface unavailable');
  container.innerHTML=await response.text();
  const $=selector=>container.querySelector(selector),asset=name=>new URL(`./assets/${name}`,import.meta.url).href;
  container.querySelectorAll('img[src]').forEach(img=>img.src=new URL(img.getAttribute('src'),import.meta.url).href);
@@ -15,7 +15,7 @@ export async function createBambuSimulator({container,lesson,api}){
  let startPosition,startTarget,startAngle,zoomIn=false,zoomOut=false,stepReady=false,resetting=false;
  const mode=()=>step.simulation.action,isEditing=()=>!!step.simulation.editing,isNav=()=>['orbit','pan','zoom','free'].includes(mode());
  const finish=()=>api.complete(),mistake=(message,region)=>api.retry(message,region);
- const renderScene=()=>{if(renderer&&camera){camera.updateMatrixWorld();manipulation?.draw();renderer.render(scene,camera);}cube?.update();};
+ const renderScene=()=>{if(renderer&&camera){camera.updateMatrixWorld();manipulation?.draw();renderer.render(scene,camera);manipulation?.renderSelection();}cube?.update();};
  function configureControls(){if(!controls)return;const id=mode();controls.enabled=loaded&&(isNav()||isEditing()&&mode()!=='object-select')&&!paused;controls.enableRotate=isEditing()||['orbit','free'].includes(id);controls.enablePan=isEditing()||['pan','free'].includes(id);controls.enableZoom=isEditing()||['zoom','free'].includes(id);controls.mouseButtons={LEFT:THREE.MOUSE.ROTATE,MIDDLE:THREE.MOUSE.PAN,RIGHT:THREE.MOUSE.PAN};}
  function refreshState(){
    const state=Object.assign({},lesson.initialState,...context.completedSteps().map(s=>s.simulation?.effects||{}));
@@ -33,7 +33,7 @@ export async function createBambuSimulator({container,lesson,api}){
    $('#import-model').hidden=mode()!=='import';
    const target=$('#'+step.simulation.target);if(target&&!isNav())target.disabled=false;
    $('#viewport').classList.toggle('navigation',isNav());$('#viewport').classList.toggle('object-editing',isEditing());$('#viewport').tabIndex=isNav()||isEditing()?0:-1;$('#gesture-hint').textContent=step.simulation.hint;
-   refreshState();manipulation?.setStep(step,context);configureControls();cube.cancel();if(step.simulation.camera==='close')resetView(true);if(mode()==='free')$('#view-home').disabled=false;if(step.simulation.camera==='object'){resetView(true);camera.position.set(0,300,480);controls.target.set(8,22,5);controls.update();}snapshot();stepReady=true;renderScene();
+   refreshState();manipulation?.setStep(step,context);configureControls();cube.cancel();if(step.simulation.camera==='close')resetView(true);if(mode()==='free')$('#view-home').disabled=false;if(step.simulation.camera==='object'){resetView(true);camera.position.set(260,300,420);controls.target.set(8,22,5);controls.update();}snapshot();stepReady=true;renderScene();
    if(mode()==='view'&&context.isCompleted()&&viewDirections[step.simulation.selectedView])cube.snap(viewDirections[step.simulation.selectedView],step.simulation.selectedView,true);
    api.guideChanged();
  }
@@ -132,7 +132,7 @@ function setStudioView(view){
 }
 
  function dispose(){manipulation?.dispose();cube?.dispose();resizeObserver?.disconnect();scaleObserver?.disconnect();controls?.dispose();scene?.traverse(object=>{object.geometry?.dispose();for(const material of [object.material].flat().filter(Boolean)){Object.values(material).forEach(value=>{if(value?.isTexture)value.dispose();});material.dispose();}});renderer?.dispose();container.replaceChildren();}
- try{await init();if(lesson.capabilities?.includes('manipulation')){const {createManipulation}=await import('./manipulation.js?v=manipulation-1');manipulation=createManipulation({container,mesh,camera,controls,render:renderScene,api});}}catch(error){dispose();throw error;}
+ try{await init();if(lesson.capabilities?.includes('manipulation')){const {createManipulation}=await import('./manipulation.js?v=manipulation-3');manipulation=createManipulation({container,mesh,camera,controls,renderer,render:renderScene,api});}}catch(error){dispose();throw error;}
  const scaleStudio=()=>{const scale=Math.min(1,container.clientWidth/1582);$('#studio').style.zoom=String(scale);if(controls){controls.rotateSpeed=1/scale;controls.panSpeed=1/scale;}api.guideChanged();};
  scaleObserver=new ResizeObserver(scaleStudio);scaleObserver.observe(container);scaleStudio();
  return {setStep,refreshState,getGuide,perform:practiceAction,getRegion:()=>$('#studio'),setPaused(value){paused=value;manipulation?.setPaused(value);configureControls();cube?.update();},setGuidance(active){$('#viewport').classList.toggle('navigation-guidance',active&&isNav());},reset(){resetView(false);},dispose};

@@ -1,4 +1,4 @@
-import {software} from './catalog-data.js?v=manipulation-1';
+import {software} from './catalog-data.js?v=manipulation-3';
 const base=new URL('../',import.meta.url),selected=document.body.dataset.software;
 const items=selected?software.filter(s=>s.id===selected):software;
 const list=document.querySelector('#catalog');

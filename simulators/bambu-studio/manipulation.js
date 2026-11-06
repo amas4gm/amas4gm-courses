@@ -1,19 +1,20 @@
+import {drawRotationGizmo,snapRotation,rotationBasis} from './rotation-gizmo.js?v=2';
+import {createSelectionOutline} from './selection-outline.js';
 import * as THREE from '../../shared/vendor/three.module.js';
 import {axes,rotationQuaternion,rotationDegrees,groundObject,objectBounds,applyObjectState,layOnFace,scaleObject} from './object-transform.js';
-
 // Shared, optional object-editing capability. Lesson data supplies goals and checkpoints.
-export function createManipulation({container,mesh,camera,controls,render,api}){
+export function createManipulation({container,mesh,camera,controls,renderer,render,api}){
  const $=s=>container.querySelector(s),viewport=$('#viewport'),canvas=$('#scene');
  const listeners=new AbortController(),on=(el,type,fn,options={})=>el.addEventListener(type,fn,{...options,signal:listeners.signal});
  const names={move:'Move',scale:'Scale',rotate:'Rotate',flatten:'Lay on face'},colors={X:'#d62929',Y:'#16942a',Z:'#235ae1'};
- let step,context,tool=null,selected=false,paused=false,uniform=true,drag=null,hoverFace=null,selectedAtStart=false,lastRelative=[0,0,0];
+ let step,context,tool=null,selected=false,paused=false,uniform=true,drag=null,hoverFace=null,selectedAtStart=false,lastRelative=[0,0,0],rotationHover=null,lastRotationGesture=null;
  const panel=document.createElement('section');panel.id='transform-panel';panel.hidden=true;panel.setAttribute('aria-label','Object manipulation');viewport.append(panel);
  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.id='object-gizmo';svg.setAttribute('aria-label','Object manipulation handles');viewport.append(svg);
  const ray=new THREE.Raycaster(),pointer=new THREE.Vector2();
  // Center the pivot. The mesh still starts at the exact imported orientation and dimensions.
- mesh.geometry.computeBoundingBox();mesh.geometry.translate(0,-mesh.geometry.boundingBox.getCenter(new THREE.Vector3()).y,0);mesh.geometry.computeBoundingBox();groundObject(mesh);
+ mesh.geometry.computeBoundingBox();mesh.geometry.translate(0,-mesh.geometry.boundingBox.getCenter(new THREE.Vector3()).y,0);mesh.geometry.computeBoundingBox();mesh.geometry.computeBoundingSphere();groundObject(mesh);
  const baseSize=mesh.geometry.boundingBox.getSize(new THREE.Vector3());
- const outline=new THREE.BoxHelper(mesh,0xffffff);mesh.parent.add(outline);outline.visible=false;
+ const outline=createSelectionOutline({mesh,scene:mesh.parent,camera,renderer});
  // Select actual planar exterior surfaces. This compact extraction avoids another mesh asset.
  const groups=new Map(),positions=mesh.geometry.attributes.position,a=new THREE.Vector3(),b=new THREE.Vector3(),c=new THREE.Vector3();
  for(let i=0;i<positions.count;i+=3){a.fromBufferAttribute(positions,i);b.fromBufferAttribute(positions,i+1);c.fromBufferAttribute(positions,i+2);const cross=b.clone().sub(a).cross(c.clone().sub(a)),area=cross.length()/2;if(area<1e-7)continue;const n=cross.normalize(),d=n.dot(a),key=[n.x,n.y,n.z,d].map(v=>v.toFixed(3)).join(',');let g=groups.get(key);if(!g){g={normal:n.clone(),d,area:0,vertices:[],center:new THREE.Vector3()};groups.set(key,g);}g.area+=area;g.center.add(a.clone().add(b).add(c).multiplyScalar(area/3));g.vertices.push(...a.toArray(),...b.toArray(),...c.toArray());}
@@ -33,10 +34,12 @@ export function createManipulation({container,mesh,camera,controls,render,api}){
  const cfg=()=>step.simulation;
  const project=v=>{const p=v.clone().project(camera);return {x:(p.x+1)*viewport.clientWidth/2,y:(1-p.y)*viewport.clientHeight/2};};
  const center=()=>objectBounds(mesh).getCenter(new THREE.Vector3());
+ const rotationCenter=()=>mesh.localToWorld(mesh.geometry.boundingSphere.center.clone());
+ const rotationRadius=()=>mesh.geometry.boundingSphere.radius*Math.max(mesh.scale.x,mesh.scale.y,mesh.scale.z)+5;
  const size=()=>objectBounds(mesh).getSize(new THREE.Vector3());
  const permittedTool=t=>allowed()&&selected&&(free()||cfg().tool===t);
  function updateToolbar(){for(const [id,name] of Object.entries(names)){const button=$('#tool-'+id);button.disabled=!permittedTool(id);button.classList.toggle('tool-selected',tool===id);button.setAttribute('aria-pressed',String(tool===id));button.title=`${name} [${{move:'M',scale:'S',rotate:'R',flatten:'F'}[id]}]`;}}
- function chooseTool(next){if(!permittedTool(next))return;tool=next;updateToolbar();buildPanel();draw();if(cfg().action==='tool'&&cfg().tool===next)api.complete();api.guideChanged();}
+ function chooseTool(next){if(!permittedTool(next))return;tool=next;rotationHover=null;lastRotationGesture=null;updateToolbar();buildPanel();draw();if(cfg().action==='tool'&&cfg().tool===next)api.complete();api.guideChanged();}
  function fields(row,label,unit){return `<span>${label}</span>${['X','Y','Z'].map(axis=>`<label><span class="sr-only">${label} ${axis}</span><input id="${row}-${axis}" data-row="${row}" data-axis="${axis}" aria-label="${label} ${axis}" type="number" step="${row==='scale'?'1':'.1'}"></label>`).join('')}<span>${unit}</span>`;}
  function buildPanel(){
   panel.hidden=!tool||!selected;viewport.classList.toggle('has-transform-panel',!panel.hidden);panel.innerHTML='';if(panel.hidden)return;
@@ -81,7 +84,7 @@ export function createManipulation({container,mesh,camera,controls,render,api}){
  function checkGoal(){
   if(context.isCompleted()||!cfg().goal)return;const g=cfg().goal,mid=center(),degrees=rotationDegrees(mesh.quaternion),state={position:[mid.x+128,128-mid.z,mid.y],scale:[mesh.scale.x*100,mesh.scale.z*100,mesh.scale.y*100],size:[baseSize.x*mesh.scale.x,baseSize.z*mesh.scale.z,baseSize.y*mesh.scale.y],rotation:degrees,relative:lastRelative};
   const actual=state[g.property]?.['XYZ'.indexOf(g.axis)];
-  if(Math.abs(actual-g.value)<(g.tolerance??.15))api.complete();else if(!drag)api.partial(`Current ${g.axis}: ${actual.toFixed(1)}${g.property==='scale'?'%':g.property==='rotation'?'°':' mm'}. Aim for ${g.value}${g.property==='scale'?'%':g.property==='rotation'?'°':' mm'}.`,{title:'Keep adjusting.'});
+  if(Math.abs(actual-g.value)<(g.tolerance??.15)&&(!g.requiresSnap||lastRotationGesture?.axis===g.axis&&lastRotationGesture?.snap===g.requiresSnap))api.complete();else if(!drag&&g.requiresSnap&&Math.abs(actual-g.value)<(g.tolerance??.15))api.partial(`Use the ${g.requiresSnap==='fine'?'outer tick band for 5°':'inner spokes for 45°'} snapping, then release at the requested angle.`,{title:'Try the snap marks.'});else if(!drag)api.partial(`Current ${g.axis}: ${actual.toFixed(1)}${g.property==='scale'?'%':g.property==='rotation'?'°':' mm'}. Aim for ${g.value}${g.property==='scale'?'%':g.property==='rotation'?'°':' mm'}.`,{title:'Keep adjusting.'});
  }
  function hitModel(event){const rect=canvas.getBoundingClientRect();pointer.set((event.clientX-rect.left)/rect.width*2-1,1-(event.clientY-rect.top)/rect.height*2);ray.setFromCamera(pointer,camera);return ray.intersectObject(mesh,false)[0];}
  function faceAt(hit){if(!hit)return null;const p=hit.point.clone();mesh.worldToLocal(p);return faces.find(f=>f.normal.dot(hit.face.normal)>.999&&Math.abs(f.normal.dot(p)-f.d)<.15);}
@@ -104,10 +107,10 @@ export function createManipulation({container,mesh,camera,controls,render,api}){
  function handle(attrs,axis,tag='circle'){
   const el=svgNode(tag,{...attrs,class:'gizmo-handle',role:'button',tabindex:paused?-1:0,'aria-label':`${names[tool]} ${axis} handle`});
   el.addEventListener('pointerdown',event=>{event.stopPropagation();if(allowed()&&(free()||cfg().action==='transform'))beginDrag(event,axis);});
-  el.addEventListener('keydown',e=>{if(!allowed()||!['ArrowRight','ArrowUp','ArrowLeft','ArrowDown'].includes(e.key))return;e.preventDefault();nudge(axis,['ArrowRight','ArrowUp'].includes(e.key)?1:-1);});
+  el.addEventListener('keydown',e=>{if(!allowed()||!['ArrowRight','ArrowUp','ArrowLeft','ArrowDown'].includes(e.key))return;e.preventDefault();nudge(axis,['ArrowRight','ArrowUp'].includes(e.key)?1:-1);});return el;
  }
  function draw(){
-  svg.hidden=!active()||!selected;outline.visible=active()&&selected;outline.update();
+  svg.hidden=!active()||!selected;outline.update(active()&&selected);
   for(const f of faces){f.overlay.visible=active()&&tool==='flatten';f.overlay.material.color.set(f===hoverFace?0x65cd91:0xf5f5f5);}
   svg.replaceChildren();if(svg.hidden)return;const width=viewport.clientWidth,height=viewport.clientHeight;svg.setAttribute('viewBox',`0 0 ${width} ${height}`);
   const mid=center(),p=project(mid),dimensions=size(),radius=Math.max(dimensions.x,dimensions.y,dimensions.z)*.7+15;
@@ -119,11 +122,7 @@ export function createManipulation({container,mesh,camera,controls,render,api}){
    }
    if(tool==='scale'){const q=project(mid.clone().add(new THREE.Vector3(radius,radius,radius)));svgNode('line',{x1:p.x,y1:p.y,x2:q.x,y2:q.y,stroke:'#21bfbf','stroke-dasharray':'4 4'});handle({x:q.x-7,y:q.y-7,width:14,height:14,fill:'#20caca'},'XYZ','rect');}
   }
-  if(tool==='rotate')for(const axis of ['X','Y','Z']){
-   const u=axes[axis==='X'?'Y':'X'].clone(),v=new THREE.Vector3().crossVectors(axes[axis],u);const points=[];
-   for(let i=0;i<=80;i++){const angle=i/80*Math.PI*2;points.push(project(mid.clone().addScaledVector(u,Math.cos(angle)*radius).addScaledVector(v,Math.sin(angle)*radius)));}
-   handle({d:points.map((q,i)=>`${i?'L':'M'}${q.x},${q.y}`).join(' '),fill:'none',stroke:colors[axis],'stroke-width':2},axis,'path');
-  }
+  if(tool==='rotate')drawRotationGizmo({node:svgNode,handle,project,center:drag?.tool==='rotate'?drag.center:rotationCenter(),radius:drag?.tool==='rotate'?drag.radius:rotationRadius(),hover:rotationHover,drag:drag?.tool==='rotate'?drag:null,colors});
   if(tool==='flatten')for(const [index,face] of faces.entries()){
    const worldCenter=mesh.localToWorld(face.center.clone()),normal=face.normal.clone().applyMatrix3(new THREE.Matrix3().getNormalMatrix(mesh.matrixWorld)).normalize();
    if(normal.dot(camera.position.clone().sub(worldCenter))<=0)continue;
@@ -131,40 +130,46 @@ export function createManipulation({container,mesh,camera,controls,render,api}){
    surface.addEventListener('click',()=>{if(allowed())lay(face);});surface.addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)&&allowed()){e.preventDefault();lay(face);}});
   }
   if(tool==='flatten'&&baseFace&&baseFace.normal.clone().applyMatrix3(new THREE.Matrix3().getNormalMatrix(mesh.matrixWorld)).dot(camera.position.clone().sub(mesh.localToWorld(baseFace.center.clone())))>0){const q=project(mesh.localToWorld(baseFace.center.clone()));const el=svgNode('circle',{id:'base-face-target',cx:q.x,cy:q.y,r:13,fill:'transparent',role:'button',tabindex:paused?-1:0,'aria-label':'Lay Benchy on its flat underside',class:'face-target'});el.addEventListener('click',()=>{if(allowed())lay(baseFace);});el.addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)&&allowed()){e.preventDefault();lay(baseFace);}});}
-  updateValues();if(tool==='flatten'&&!context.isCompleted())api.guideChanged();
+  updateValues();if((tool==='flatten'||cfg().goal?.requiresSnap)&&!context.isCompleted())api.guideChanged();
  }
  function beginDrag(event,axis){
-  if(paused||!selected)return;event.preventDefault();const mid=center(),origin=project(mid),end=project(mid.clone().addScaledVector(tool==='scale'?(axis==='XYZ'?new THREE.Vector3(1,1,1).normalize():axes[axis].clone().applyQuaternion(mesh.quaternion)):(axes[axis]||axes.X),30));
-  const plane=tool==='rotate'?new THREE.Plane().setFromNormalAndCoplanarPoint(axes[axis],mid):null;hitModel(event);const rotationStart=plane?ray.ray.intersectPlane(plane,new THREE.Vector3())?.sub(mid).normalize():null;
-  drag={plane,rotationStart,axis,x:event.clientX,y:event.clientY,position:mesh.position.clone(),scale:mesh.scale.clone(),quaternion:mesh.quaternion.clone(),origin,end,center:mid,tool};controls.enabled=false;
-  viewport.setPointerCapture(event.pointerId);
+  if(paused||!selected)return;event.preventDefault();const mid=tool==='rotate'?rotationCenter():center(),origin=project(mid),end=project(mid.clone().addScaledVector(tool==='scale'?(axis==='XYZ'?new THREE.Vector3(1,1,1).normalize():axes[axis].clone().applyQuaternion(mesh.quaternion)):(axes[axis]||axes.X),30));
+  const plane=tool==='rotate'?new THREE.Plane().setFromNormalAndCoplanarPoint(axes[axis],mid):null;
+  drag={plane,radius:rotationRadius(),angle:0,snap:'free',notified:new Set(),axis,x:event.clientX,y:event.clientY,position:mesh.position.clone(),scale:mesh.scale.clone(),quaternion:mesh.quaternion.clone(),origin,end,center:mid,tool};controls.enabled=false;
+  viewport.setPointerCapture(event.pointerId);if(tool==='rotate'){rotationHover=axis;render();}
  }
  on(viewport,'pointermove',event=>{
-  if(!drag||paused)return;const rect=viewport.getBoundingClientRect(),factor=viewport.clientWidth/rect.width,dx=(event.clientX-drag.x)*factor,dy=(event.clientY-drag.y)*factor;
+  if(paused)return;if(!drag){if(tool==='rotate'){const next=event.target.closest('[data-rotation-axis]')?.dataset.rotationAxis||null;if(next!==rotationHover){rotationHover=next;render();}}return;}const rect=viewport.getBoundingClientRect(),factor=viewport.clientWidth/rect.width,dx=(event.clientX-drag.x)*factor,dy=(event.clientY-drag.y)*factor;
   const vector={x:drag.end.x-drag.origin.x,y:drag.end.y-drag.origin.y},length=Math.hypot(vector.x,vector.y),delta=(dx*vector.x+dy*vector.y)/Math.max(length,1);
   if(tool==='move'){mesh.position.copy(drag.position);if(drag.axis==='XY'){mesh.position.x+=dx*.15;mesh.position.z+=dy*.15;}else mesh.position.addScaledVector(axes[drag.axis],Math.round(delta/Math.max(length,1)*30));if(drag.axis==='Z')groundObject(mesh);}
   if(tool==='scale'){mesh.scale.copy(drag.scale);const scale=Math.max(.1,Math.min(3,1+delta/160));if(uniform||drag.axis==='XYZ')mesh.scale.multiplyScalar(scale);else mesh.scale[{X:'x',Y:'z',Z:'y'}[drag.axis]]*=scale;groundObject(mesh);}
-  if(tool==='rotate'){hitModel(event);const end=ray.ray.intersectPlane(drag.plane,new THREE.Vector3())?.sub(drag.center).normalize();let angle=drag.rotationStart&&end?Math.atan2(axes[drag.axis].dot(new THREE.Vector3().crossVectors(drag.rotationStart,end)),drag.rotationStart.dot(end)):THREE.MathUtils.degToRad((dx-dy)/2);if(event.shiftKey)angle=Math.round(angle/(Math.PI/12))*Math.PI/12;mesh.quaternion.copy(drag.quaternion);mesh.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(axes[drag.axis],angle));groundObject(mesh);}
+  if(tool==='rotate'){
+   hitModel(event);const point=ray.ray.intersectPlane(drag.plane,new THREE.Vector3());if(!point)return;
+   const vector=point.sub(drag.center),basis=rotationBasis(drag.axis),raw=Math.atan2(vector.dot(basis.v),vector.dot(basis.u)),snapped=snapRotation(raw,vector.length()/drag.radius);
+   drag.angle=snapped.angle;drag.snap=snapped.mode;mesh.position.copy(drag.position);mesh.quaternion.copy(drag.quaternion).premultiply(new THREE.Quaternion().setFromAxisAngle(axes[drag.axis],drag.angle));
+   if(cfg().goal?.requiresSnap&&snapped.mode!=='free'&&!drag.notified.has(snapped.mode)){drag.notified.add(snapped.mode);api.partial(`${snapped.mode==='fine'?'5° tick':'45° inner'} snapping is active. Watch the angle beside the handle, then release.`,{title:'Snap marks engaged.'});}
+  }
   render();
  });
- on(viewport,'pointerup',event=>{if(!drag)return;drag=null;if(viewport.hasPointerCapture(event.pointerId))viewport.releasePointerCapture(event.pointerId);controls.enabled=allowed()&&cfg().action!=='object-select';checkGoal();});
- on(viewport,'pointercancel',()=>{drag=null;controls.enabled=allowed()&&cfg().action!=='object-select';});
+ on(viewport,'pointerleave',()=>{if(!drag&&rotationHover){rotationHover=null;render();}});
+ on(viewport,'pointerup',event=>{if(!drag)return;if(drag.tool==='rotate'){lastRotationGesture={axis:drag.axis,snap:drag.snap,angle:drag.angle};groundObject(mesh);}drag=null;rotationHover=null;render();if(viewport.hasPointerCapture(event.pointerId))viewport.releasePointerCapture(event.pointerId);controls.enabled=allowed()&&cfg().action!=='object-select';checkGoal();});
+ on(viewport,'pointercancel',()=>{if(drag?.tool==='rotate'){mesh.position.copy(drag.position);mesh.quaternion.copy(drag.quaternion);}drag=null;rotationHover=null;render();controls.enabled=allowed()&&cfg().action!=='object-select';});
  function nudge(axis,direction){
   if(!allowed()||(!free()&&cfg().action!=='transform'))return;
   if(tool==='move'){mesh.position.addScaledVector(axes[axis]||axes.X,direction);groundObject(mesh);}
   if(tool==='scale'){const a=axis==='XYZ'?'X':axis,current=mesh.scale[{X:'x',Y:'z',Z:'y'}[a]];scaleObject(mesh,a,current+direction*.05,uniform||axis==='XYZ');}
-  if(tool==='rotate'){mesh.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(axes[axis],THREE.MathUtils.degToRad(direction*5)));groundObject(mesh);}
+  if(tool==='rotate'){const snap=cfg().goal?.requiresSnap||'fine',degrees=direction*(snap==='coarse'?45:5);rotationHover=axis;mesh.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(axes[axis],THREE.MathUtils.degToRad(degrees)));lastRotationGesture={axis,snap,angle:THREE.MathUtils.degToRad(degrees)};groundObject(mesh);}
   render();checkGoal();
  }
  on(viewport,'keydown',e=>{if(e.target.closest('input'))return;if(allowed()&&cfg().action==='object-select'&&e.key==='Enter'){e.preventDefault();selected=true;updateToolbar();render();api.complete();return;}const t={m:'move',s:'scale',r:'rotate',f:'flatten'}[e.key.toLowerCase()];if(t){e.preventDefault();chooseTool(t);}});
  for(const name of Object.keys(names))on($('#tool-'+name),'click',()=>chooseTool(name));
  return {
-  setStep(next,ctx){step=next;context=ctx;lastRelative=[0,0,0];drag=null;hoverFace=null;selectedAtStart=cfg().action!=='object-select'||ctx.isCompleted();selected=selectedAtStart;uniform=cfg().uniformBefore??true;tool=cfg().action==='tool'&&!ctx.isCompleted()?null:cfg().tool||null;applyObjectState(mesh,ctx.isCompleted()?cfg().completedState||cfg().objectState:cfg().objectState);updateToolbar();buildPanel();draw();},
-  draw,handles:target=>!!target.closest('#transform-panel,#object-gizmo,[id^="tool-"]'),
+  setStep(next,ctx){step=next;context=ctx;lastRelative=[0,0,0];rotationHover=null;lastRotationGesture=null;drag=null;hoverFace=null;selectedAtStart=cfg().action!=='object-select'||ctx.isCompleted();selected=selectedAtStart;uniform=cfg().uniformBefore??true;tool=cfg().action==='tool'&&!ctx.isCompleted()?null:cfg().tool||null;applyObjectState(mesh,ctx.isCompleted()?cfg().completedState||cfg().objectState:cfg().objectState);updateToolbar();buildPanel();draw();},
+  draw,renderSelection:()=>outline.render(),handles:target=>!!target.closest('#transform-panel,#object-gizmo,[id^="tool-"]'),
   setPaused(value){paused=value;updateToolbar();panel.querySelectorAll('input').forEach(el=>{if(value)el.disabled=true;});if(!value)buildPanel();},
   getTarget(){if(cfg().action==='object-select')return $('#scene');if(cfg().action==='lay-face')return $('#base-face-target');return $('#'+(cfg().target||'transform-panel'));},
-  dispose(){listeners.abort();outline.geometry.dispose();outline.material.dispose();outline.removeFromParent();panel.remove();svg.remove();},
-  perform(action){const [prefix,axis,direction]=action.split(':');if(prefix==='adjust')nudge(axis,Number(direction));},
+  dispose(){listeners.abort();outline.dispose();panel.remove();svg.remove();},
+  perform(action){const [prefix,axis,direction]=action.split(':');if(prefix==='adjust'||prefix==='snap')nudge(axis,Number(direction));},
   enabled:active
  };
 }
