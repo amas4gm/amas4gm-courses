@@ -6,8 +6,10 @@ A static software catalog, shared teaching engine, and reusable software simulat
 
 - Catalog: https://amas4gm.github.io/bambu-studio-course/
 - Bambu Studio: https://amas4gm.github.io/bambu-studio-course/bambu-studio/
-- Tutorial: https://amas4gm.github.io/bambu-studio-course/bambu-studio/getting-started/
-- Moodle embed: https://amas4gm.github.io/bambu-studio-course/bambu-studio/getting-started/?embed=1
+- Tutorial 01: https://amas4gm.github.io/bambu-studio-course/bambu-studio/getting-started/
+- Tutorial 02: https://amas4gm.github.io/bambu-studio-course/bambu-studio/object-manipulation/
+- Tutorial 02 Moodle embed: https://amas4gm.github.io/bambu-studio-course/bambu-studio/object-manipulation/?embed=1
+- Tutorial 01 Moodle embed: https://amas4gm.github.io/bambu-studio-course/bambu-studio/getting-started/?embed=1
 
 The root URL used to open Tutorial 01. Update existing Moodle embeds to the lesson URL. Each page has a real directory and index.html, so direct links and reloads work on GitHub Pages without routing rules. Embed mode hides catalog navigation while retaining the simulation label and controls.
 
@@ -53,7 +55,7 @@ The catalog loads only its metadata, renderer, and CSS. A lesson loads the teach
 4. List the finished lesson in shared/catalog-data.js. Do not list unfinished lessons as available.
 5. Run checks and test direct entry, embedding, and the complete lesson before publishing.
 
-The lesson definition owns teaching content. A new lesson normally adds only small text/code files. Orientation is the next planned lesson; it is not available yet.
+The lesson definition owns teaching content. A new lesson normally adds only small text/code files. Tutorial 02 adds manipulation as a lazy-loaded simulator capability, sharing the same model, UI, icons, and renderer.
 
 ## Add different software
 
@@ -71,7 +73,7 @@ Return an adapter implementing setStep(step, context), refreshState(), setPaused
 
 The Bambu adapter supports select, import, orbit, pan, zoom, view, and free actions. Completed-step effects reconstruct model visibility. viewBefore/viewAfter select tab demonstrations. Model and camera changes are independent.
 
-## Current lesson
+## Tutorial 01
 
 14 guided tasks plus optional free practice. Home opens first, Prepare starts empty, and learners explicitly import Benchy. Preview and Device have distinct simulated panels. The exact supplied STL retains its sideways orientation to introduce why models sometimes need reorientation for printing.
 
@@ -80,6 +82,14 @@ Only current concepts are enabled. Arrows and pulsing highlights stop immediatel
 The view cube follows the actual camera rotation continuously. Face clicks choose corresponding views without moving the model. Edge/corner choices and dragging work in free practice. Top view follows zoom as a new task. Reduced-motion settings remove pulsing and view-transition animation.
 
 After the final popup quiz is answered correctly, the popup says “You finished the tutorial” with “Back to course” and a grey “Restart tutorial” button below it. A quiet link closes the popup for continued simulation practice. Returning uses the original course/catalog link; a separately opened tab is closed when the browser permits it. Browsers can refuse tab closing or omit the referrer; in that case navigation falls back to the known course link or catalog. An iframe returns to its containing course. No cross-origin tab can be inspected or force-closed.
+
+## Tutorial 02
+
+15 guided tasks cover object selection, Move X/Y and position coordinates, uniform percentage scaling, exact dimensions, independent scaling and restoring proportions, absolute and relative rotation, and selecting the hull base with Lay on face. Three completion-popup checks require correct answers. Numeric fields, axis handles, rotation rings, camera navigation, and real planar face picking change the rendered model. Free practice enables all four tools. Shift snaps rotation dragging to 15-degree increments; focused handles also accept arrow keys.
+
+The manipulation module is loaded only by lessons declaring capabilities: ["manipulation"]. Steps select tool/object-select/transform/uniform/lay-face/manipulate-free actions, editable fields, goals, and objectState/completedState checkpoints. Checkpoints reconstruct guided exercise states on reload and when revisiting steps; free-practice edits are session-only. The object-transform module maps Bambu Z-up coordinates into the renderer and keeps model transforms separate from the camera. Tutorial 01 keeps its original camera-only behavior.
+
+The practice intentionally supports one seated object, scale 10–300%, and the supplied model’s planar exterior faces. It does not implement multi-selection, parts, cutting, supports, slicing, or arbitrary mesh importing. Z center height is read-only; it is not a height-above-bed setting. The panels are based on the installed Bambu Studio screenshots inspected November 6, 2026. Scale uses object coordinates so dimensions remain meaningful after rotation.
 
 ## Saved progress
 

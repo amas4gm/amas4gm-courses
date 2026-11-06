@@ -10,13 +10,13 @@ export async function createBambuSimulator({container,lesson,api}){
  const $=selector=>container.querySelector(selector),asset=name=>new URL(`./assets/${name}`,import.meta.url).href;
  container.querySelectorAll('img[src]').forEach(img=>img.src=new URL(img.getAttribute('src'),import.meta.url).href);
  let step={simulation:{action:'select'},task:''},context={isCompleted:()=>false,completedSteps:()=>[]},paused=false;
- let loaded=false,ready=false,scene,camera,renderer,controls,mesh,resizeObserver,scaleObserver,cube;
+ let loaded=false,ready=false,scene,camera,renderer,controls,mesh,resizeObserver,scaleObserver,cube,manipulation;
  const plateControlMeshes=[];
  let startPosition,startTarget,startAngle,zoomIn=false,zoomOut=false,stepReady=false,resetting=false;
- const mode=()=>step.simulation.action,isNav=()=>['orbit','pan','zoom','free'].includes(mode());
+ const mode=()=>step.simulation.action,isEditing=()=>!!step.simulation.editing,isNav=()=>['orbit','pan','zoom','free'].includes(mode());
  const finish=()=>api.complete(),mistake=(message,region)=>api.retry(message,region);
- const renderScene=()=>{if(renderer&&camera)renderer.render(scene,camera);cube?.update();};
- function configureControls(){if(!controls)return;const id=mode();controls.enabled=loaded&&isNav()&&!paused;controls.enableRotate=['orbit','free'].includes(id);controls.enablePan=['pan','free'].includes(id);controls.enableZoom=['zoom','free'].includes(id);controls.mouseButtons={LEFT:THREE.MOUSE.ROTATE,MIDDLE:THREE.MOUSE.PAN,RIGHT:THREE.MOUSE.PAN};}
+ const renderScene=()=>{if(renderer&&camera){camera.updateMatrixWorld();manipulation?.draw();renderer.render(scene,camera);}cube?.update();};
+ function configureControls(){if(!controls)return;const id=mode();controls.enabled=loaded&&(isNav()||isEditing()&&mode()!=='object-select')&&!paused;controls.enableRotate=isEditing()||['orbit','free'].includes(id);controls.enablePan=isEditing()||['pan','free'].includes(id);controls.enableZoom=isEditing()||['zoom','free'].includes(id);controls.mouseButtons={LEFT:THREE.MOUSE.ROTATE,MIDDLE:THREE.MOUSE.PAN,RIGHT:THREE.MOUSE.PAN};}
  function refreshState(){
    const state=Object.assign({},lesson.initialState,...context.completedSteps().map(s=>s.simulation?.effects||{}));
    const visible=!!state.modelVisible;mesh.visible=visible;
@@ -29,10 +29,11 @@ export async function createBambuSimulator({container,lesson,api}){
    stepReady=false;cube?.cancel();step=nextStep;context=nextContext;paused=false;
    if($('#import-dialog').open)$('#import-dialog').close();
    container.querySelectorAll('.studio button').forEach(el=>el.disabled=true);
+   $('#toolbar').setAttribute('aria-disabled',String(step.simulation.target!=='toolbar'&&!isEditing()));$('#toolbar').tabIndex=step.simulation.target==='toolbar'?0:-1;
    $('#import-model').hidden=mode()!=='import';
    const target=$('#'+step.simulation.target);if(target&&!isNav())target.disabled=false;
-   $('#viewport').classList.toggle('navigation',isNav());$('#viewport').tabIndex=isNav()?0:-1;$('#gesture-hint').textContent=step.simulation.hint;
-   refreshState();configureControls();cube.cancel();if(step.simulation.camera==='close')resetView(true);if(mode()==='free')$('#view-home').disabled=false;snapshot();stepReady=true;
+   $('#viewport').classList.toggle('navigation',isNav());$('#viewport').classList.toggle('object-editing',isEditing());$('#viewport').tabIndex=isNav()||isEditing()?0:-1;$('#gesture-hint').textContent=step.simulation.hint;
+   refreshState();manipulation?.setStep(step,context);configureControls();cube.cancel();if(step.simulation.camera==='close')resetView(true);if(mode()==='free')$('#view-home').disabled=false;if(step.simulation.camera==='object'){resetView(true);camera.position.set(0,300,480);controls.target.set(8,22,5);controls.update();}snapshot();stepReady=true;renderScene();
    if(mode()==='view'&&context.isCompleted()&&viewDirections[step.simulation.selectedView])cube.snap(viewDirections[step.simulation.selectedView],step.simulation.selectedView,true);
    api.guideChanged();
  }
@@ -40,16 +41,18 @@ export async function createBambuSimulator({container,lesson,api}){
    const scale=$('#studio').getBoundingClientRect().width/1582;
    if(!$('#import-model').hidden){const slot=$('#toolbar > span:first-child').getBoundingClientRect(),base=$('.viewport-wrap').getBoundingClientRect();Object.assign($('#import-model').style,{left:(slot.left-base.left)/scale+'px',top:(slot.top-base.top)/scale+'px',width:slot.width/scale+'px',height:slot.height/scale+'px'});}
    if(!loaded||context.isCompleted()||isNav())return null;
+   if(isEditing()){const target=manipulation?.getTarget();return target?{target,parent:$('#studio'),scale,anchorY:mode()==='object-select'?target.getBoundingClientRect().top+target.getBoundingClientRect().height*.5:undefined}:null;}
    const dialogOpen=$('#import-dialog').open,target=dialogOpen?($('#confirm-import').disabled?$('#benchy-file'):$('#confirm-import')):$('#'+step.simulation.target);
    if(!target)return null;const rect=target.getBoundingClientRect();
    return {target,parent:dialogOpen?$('#import-dialog'):$('#studio'),above:mode()==='view',scale:dialogOpen?1:scale,anchorY:dialogOpen?undefined:['printer','filament','process'].includes(step.simulation.target)?rect.top+33*scale:step.simulation.target==='plate-hotspot'?rect.top+rect.height*.42:undefined};
  }
+ $('#toolbar').addEventListener('keydown',e=>{if(step.simulation.target==='toolbar'&&['Enter',' '].includes(e.key)){e.preventDefault();finish();}});
  const targetIds=new Set(lesson.steps.map(s=>s.simulation?.target).filter(Boolean));
  for(const targetId of targetIds){const target=$('#'+targetId);target?.addEventListener('click',()=>{
-   if(mode()==='view'||step.simulation.target!==targetId||!loaded||context.isCompleted())return;
+   if(isEditing()||mode()==='view'||step.simulation.target!==targetId||!loaded||context.isCompleted())return;
    if(mode()==='import'){$('#benchy-file').setAttribute('aria-pressed','false');$('#import-filename').value='';$('#confirm-import').disabled=true;$('#import-dialog').showModal();api.feedback(`Select ${lesson.model.name} in the simulated file picker, then choose Open.`);api.guideChanged();return;}finish();
  });}
- $('#studio').addEventListener('pointerdown',e=>{if(!loaded||context.isCompleted()||e.target.closest('.active-target')||e.target.closest('#viewport')&&(isNav()||mode()==='view'))return;mistake(`Try the current task: ${step.task}`);},true);
+ $('#studio').addEventListener('pointerdown',e=>{if(!loaded||context.isCompleted()||e.target.closest('.active-target')||e.target.closest('#viewport')&&(isNav()||isEditing()||mode()==='view')||isEditing()&&manipulation?.handles(e.target))return;mistake(`Try the current task: ${step.task}`);},true);
  $('#benchy-file').addEventListener('click',()=>{$('#benchy-file').setAttribute('aria-pressed','true');$('#import-filename').value=lesson.model.name;$('#confirm-import').disabled=false;api.guideChanged();});
  $('#confirm-import').addEventListener('click',()=>{if($('#import-filename').value!==lesson.model.name)return;$('#import-dialog').close();finish();});
  $('#import-dialog').addEventListener('close',()=>api.guideChanged());
@@ -66,7 +69,7 @@ function trackZoom(before,after){
  if(after<before*.995)zoomIn=true;if(after>before*1.005)zoomOut=true;
  if(zoomIn&&zoomOut)finish();else if(zoomIn!==wasIn||zoomOut!==wasOut)api.partial(zoomIn?'You zoomed in. Now scroll down to zoom out.':'You zoomed out. Now scroll up to zoom in.',{title:'Good! One direction done.'});
 }
-function practiceAction(action){if(!loaded||!ready||!isNav()||paused)return;const id=mode();
+function practiceAction(action){if(isEditing()){manipulation?.perform(action);return;}if(!loaded||!ready||!isNav()||paused)return;const id=mode();
   if(action==='reset'&&['reset','free'].includes(id)){resetView(false);if(id==='reset')finish();return;}
   if(action.startsWith('orbit')&&['orbit','free'].includes(id)){
     const offset=camera.position.clone().sub(controls.target),sphere=new THREE.Spherical().setFromVector3(offset);sphere.theta+=action==='orbit-left'?.42:-.42;camera.position.copy(controls.target).add(new THREE.Vector3().setFromSpherical(sphere));controls.update();
@@ -75,7 +78,7 @@ function practiceAction(action){if(!loaded||!ready||!isNav()||paused)return;cons
   if(action.startsWith('zoom')&&['zoom','free'].includes(id)){const before=camera.position.distanceTo(controls.target);const distance=THREE.MathUtils.clamp(before*(action==='zoom-in'?.8:1.25),220,3000);camera.position.sub(controls.target).setLength(distance).add(controls.target);controls.update();trackZoom(before,distance);}
   trackCamera();
 }
-$('#viewport').addEventListener('keydown',e=>{const id=mode();let a=null;if(['orbit','free'].includes(id)&&e.key==='ArrowLeft')a='orbit-left';if(['orbit','free'].includes(id)&&e.key==='ArrowRight')a='orbit-right';if(id==='pan'&&e.key==='ArrowLeft')a='pan-left';if(id==='pan'&&e.key==='ArrowRight')a='pan-right';if(['zoom','free'].includes(id)&&['+','='].includes(e.key))a='zoom-in';if(['zoom','free'].includes(id)&&e.key==='-')a='zoom-out';if(['reset','free'].includes(id)&&e.key==='Home')a='reset';if(a){e.preventDefault();practiceAction(a);return;}
+$('#viewport').addEventListener('keydown',e=>{if(isEditing())return;const id=mode();let a=null;if(['orbit','free'].includes(id)&&e.key==='ArrowLeft')a='orbit-left';if(['orbit','free'].includes(id)&&e.key==='ArrowRight')a='orbit-right';if(id==='pan'&&e.key==='ArrowLeft')a='pan-left';if(id==='pan'&&e.key==='ArrowRight')a='pan-right';if(['zoom','free'].includes(id)&&['+','='].includes(e.key))a='zoom-in';if(['zoom','free'].includes(id)&&e.key==='-')a='zoom-out';if(['reset','free'].includes(id)&&e.key==='Home')a='reset';if(a){e.preventDefault();practiceAction(a);return;}
   if(!loaded)return;
   if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','=','-','Home'].includes(e.key)&&!(['ArrowUp','ArrowDown'].includes(e.key)&&['orbit','pan','free'].includes(id))){e.preventDefault();mistake(`For this step: ${step.task}`);return;}
   if(!['ArrowUp','ArrowDown'].includes(e.key))return;
@@ -115,7 +118,7 @@ async function init(){
   const geometry=await new STLLoader().loadAsync(lesson.model.url);geometry.rotateX(-Math.PI/2);geometry.computeBoundingBox();const box=geometry.boundingBox,center=new THREE.Vector3();box.getCenter(center);geometry.translate(-center.x,-box.min.y,-center.z);geometry.computeVertexNormals();
   mesh=new THREE.Mesh(geometry,new THREE.MeshStandardMaterial({color:0x8e8960,roughness:.65,metalness:0}));mesh.visible=false;scene.add(mesh);
   const resize=()=>{const rect=$('#viewport').getBoundingClientRect();if(rect.width<1||rect.height<1)return;renderer.setSize(rect.width,rect.height,false);camera.aspect=rect.width/rect.height;camera.updateProjectionMatrix();renderScene();};resizeObserver=new ResizeObserver(resize);resizeObserver.observe($('#viewport'));
-  cube=createViewCube({element:$('#view-cube'),camera,controls,canInteract:name=>!paused&&(mode()==='free'||mode()==='view'&&name==='Top'),onSelect:name=>{if(mode()==='view'&&name==='Top')finish();},onRetry:()=>mistake(`For this step: ${step.task}`),onChange:renderScene});
+  cube=createViewCube({element:$('#view-cube'),camera,controls,canInteract:name=>!paused&&(mode()==='free'||isEditing()||mode()==='view'&&name==='Top'),onSelect:name=>{if(mode()==='view'&&name==='Top')finish();},onRetry:()=>mistake(`For this step: ${step.task}`),onChange:renderScene});
   $('#view-home').addEventListener('click',()=>{if(mode()==='free')resetView(false);});
   loaded=true;ready=true;resetView(false);resize();$('#loading').hidden=true;
 }
@@ -128,9 +131,9 @@ function setStudioView(view){
   if(renderer)requestAnimationFrame(renderScene);
 }
 
- function dispose(){cube?.dispose();resizeObserver?.disconnect();scaleObserver?.disconnect();controls?.dispose();scene?.traverse(object=>{object.geometry?.dispose();for(const material of [object.material].flat().filter(Boolean)){Object.values(material).forEach(value=>{if(value?.isTexture)value.dispose();});material.dispose();}});renderer?.dispose();container.replaceChildren();}
- try{await init();}catch(error){dispose();throw error;}
+ function dispose(){manipulation?.dispose();cube?.dispose();resizeObserver?.disconnect();scaleObserver?.disconnect();controls?.dispose();scene?.traverse(object=>{object.geometry?.dispose();for(const material of [object.material].flat().filter(Boolean)){Object.values(material).forEach(value=>{if(value?.isTexture)value.dispose();});material.dispose();}});renderer?.dispose();container.replaceChildren();}
+ try{await init();if(lesson.capabilities?.includes('manipulation')){const {createManipulation}=await import('./manipulation.js');manipulation=createManipulation({container,mesh,camera,controls,render:renderScene,api});}}catch(error){dispose();throw error;}
  const scaleStudio=()=>{const scale=Math.min(1,container.clientWidth/1582);$('#studio').style.zoom=String(scale);if(controls){controls.rotateSpeed=1/scale;controls.panSpeed=1/scale;}api.guideChanged();};
  scaleObserver=new ResizeObserver(scaleStudio);scaleObserver.observe(container);scaleStudio();
- return {setStep,refreshState,getGuide,perform:practiceAction,getRegion:()=>$('#studio'),setPaused(value){paused=value;configureControls();cube?.update();},setGuidance(active){$('#viewport').classList.toggle('navigation-guidance',active&&isNav());},reset(){resetView(false);},dispose};
+ return {setStep,refreshState,getGuide,perform:practiceAction,getRegion:()=>$('#studio'),setPaused(value){paused=value;manipulation?.setPaused(value);configureControls();cube?.update();},setGuidance(active){$('#viewport').classList.toggle('navigation-guidance',active&&isNav());},reset(){resetView(false);},dispose};
 }
