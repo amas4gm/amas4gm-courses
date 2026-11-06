@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="A guided AMAS4GM simulation: meet the Bambu Studio workspace and practice 3D navigation with Benchy.">
   <title>Meet Bambu Studio · AMAS4GM</title>
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body>
 <a class="skip" href="#lesson-title">Skip to lesson</a>
@@ -116,6 +116,7 @@
   <footer><span>AMAS4GM / Intro to 3D Printing Slicing</span><a href="credits.html">References & model credits</a></footer>
 </main>
 <dialog id="import-dialog" aria-labelledby="import-title"><form method="dialog"><h2 id="import-title">Open file <small>SIMULATION</small></h2><p class="import-path">Course files</p><button type="button" id="benchy-file" aria-pressed="false">▧ &nbsp; Benchy.stl <span>STL model</span></button><label>File name: <input id="import-filename" readonly value=""></label><div class="import-actions"><button id="confirm-import" type="button" class="primary" disabled>Open</button><button class="secondary" value="cancel">Cancel</button></div><p class="small-note">Choose the supplied course model. This simulated picker does not access your computer’s files.</p></form></dialog>
+<aside id="completion-notice" hidden aria-label="Navigation task complete"><p role="status">Good! Keep practicing.</p><div aria-hidden="true">Continuing in <strong id="completion-seconds">5</strong> seconds</div><progress id="completion-countdown" max="1" value="0" aria-label="Time until step summary"></progress></aside>
 <dialog id="completion-dialog" aria-labelledby="completion-title" aria-describedby="completion-explanation">
   <p id="completion-count" class="eyebrow"></p>
   <h2 id="completion-title"></h2>
@@ -126,6 +127,6 @@
   <button id="review-workspace" class="quiet">Review workspace</button>
 </dialog>
 <noscript><p class="no-script">Please enable JavaScript to use this guided simulation.</p></noscript>
-<script type="module" src="app.js?v=8"></script>
+<script type="module" src="app.js?v=9"></script>
 </body>
 </html>

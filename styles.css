@@ -38,3 +38,9 @@ main{max-width:none;padding:18px 20px}.course-header{height:58px}.intro-row{marg
 .completion-reminder{display:flex;align-items:flex-start;gap:12px;padding:16px;margin:0 0 22px;background:#f1f6f3;border:1px solid #dbe7df;border-radius:8px;color:#465f51}
 .completion-reminder p{font-size:14px;line-height:1.6;margin:0}
 .information-icon{display:grid;place-items:center;flex:none;width:20px;height:20px;margin-top:2px;border:1.5px solid #648372;border-radius:50%;font-family:Georgia,serif;font-size:15px;font-weight:bold;line-height:1;color:#52735f}
+#completion-notice{position:fixed;right:24px;bottom:24px;z-index:50;width:280px;max-width:calc(100vw - 32px);padding:18px 20px;background:#fff;border:1px solid #bbd9c7;border-left:4px solid #179454;border-radius:10px;box-shadow:0 8px 30px #143d2926;color:#234631;pointer-events:none}
+#completion-notice[hidden]{display:none}
+#completion-notice p{font-size:17px;font-weight:650;margin:0 0 9px}
+#completion-notice div{font-size:13px;color:#526c5b}
+#completion-countdown{display:block;width:100%;height:6px;margin:13px 0 0}
+@media(max-width:560px){#completion-notice{right:16px;bottom:16px;width:250px;padding:14px 16px}}

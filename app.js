@@ -27,6 +27,8 @@ let startPosition, startTarget, startAngle, zoomIn=false, zoomOut=false, stepRea
 try { const saved=JSON.parse(localStorage.getItem(storageKey)); if(saved && Array.isArray(saved.completed)){completed=new Set(saved.completed.filter(n=>Number.isInteger(n)&&n>=0&&n<steps.length-1));index=Math.max(0,Math.min(steps.length-1,Number(saved.index)||0,completed.size));}} catch {}
 const navigationIds=['orbit','pan','zoom','complete'];
 const isNav=()=>navigationIds.includes(steps[index].id);
+let completionFrame=0;
+const interactionPauseMs=5000;
 let soundOn=true,audioContext,lastMistake=0;
 try{soundOn=localStorage.getItem('amas-course-sound')!=='off';}catch{}
 function updateSoundButton(){$('#sound-toggle').textContent=soundOn?'♪ Sound on':'♪ Sound off';$('#sound-toggle').setAttribute('aria-pressed',String(soundOn));}
@@ -63,10 +65,30 @@ function finish(message){
   completed.add(index);$('#feedback').classList.remove('error-feedback');$('#feedback').textContent='';
   $('#next').disabled=!loaded;$('#review-step').hidden=false;
   updateProgress();persist();updateTaskHighlights();updateClickGuide();
-  playCue(steps[index].id==='check'?'complete':'success');showCompletion(message);
+  playCue(steps[index].id==='check'?'complete':'success');
+  if(['orbit','pan','zoom'].includes(steps[index].id))pauseBeforeCompletion(message);else showCompletion(message);
+}
+function cancelCompletionPause(){cancelAnimationFrame(completionFrame);completionFrame=0;$('#completion-notice').hidden=true;}
+function pauseBeforeCompletion(message){
+  cancelCompletionPause();
+  const completedIndex=index;let elapsed=0,last=performance.now();
+  $('#completion-notice').hidden=false;$('#completion-seconds').textContent='5';$('#completion-countdown').value=0;
+  $('#review-step').hidden=true;$('#control-status').textContent='Good! Keep practicing while the countdown finishes';
+  function tick(now){
+    if(index!==completedIndex){cancelCompletionPause();return;}
+    if(!document.hidden)elapsed+=Math.min(now-last,100);
+    last=now;
+    $('#completion-seconds').textContent=String(Math.max(0,Math.ceil((interactionPauseMs-elapsed)/1000)));
+    $('#completion-countdown').value=Math.min(1,elapsed/interactionPauseMs);
+    if(elapsed>=interactionPauseMs){cancelCompletionPause();$('#review-step').hidden=false;showCompletion(message);return;}
+    completionFrame=requestAnimationFrame(tick);
+  }
+  completionFrame=requestAnimationFrame(tick);
 }
 function showCompletion(message){
   if(!loaded||!completed.has(index)||steps[index].id==='complete')return;
+  cancelCompletionPause();
+  updateTaskHighlights();
   $('#completion-count').textContent=`STEP ${index+1} OF ${steps.length-1} COMPLETE`;
   $('#completion-title').textContent=steps[index].title;
   $('#completion-explanation').textContent=message||steps[index].done;
@@ -83,7 +105,7 @@ function updateTaskHighlights(){
   if(completed.has(index))$('#control-status').textContent='Task complete · Open step summary to continue';
 }
 function updateProgress(){const n=steps.length-1;$('#progress').max=n;$('#progress').value=completed.size;$('#percent').textContent=`${Math.round(completed.size/n*100)}%`;$('#step-count').textContent=index===n?'Practice complete':`STEP ${String(index+1).padStart(2,'0')} OF ${n}`;}
-function go(next,focus=true){$('#completion-dialog').close();index=Math.max(0,Math.min(steps.length-1,next));renderStep();persist();if(focus)$('#lesson-title').focus({preventScroll:true});}
+function go(next,focus=true){cancelCompletionPause();$('#completion-dialog').close();index=Math.max(0,Math.min(steps.length-1,next));renderStep();persist();if(focus)$('#lesson-title').focus({preventScroll:true});}
 function renderStep(){
   stepReady=false;const s=steps[index];
   $('#feedback').classList.remove('error-feedback');
@@ -137,7 +159,7 @@ function trackCamera(){if(!stepReady||resetting||!loaded)return;const id=steps[i
   if(id==='orbit'&&(Math.abs(controls.getAzimuthalAngle()-startAngle)>.32||camera.position.distanceTo(startPosition)>45))finish();
   if(id==='pan'&&controls.target.distanceTo(startTarget)>12)finish();
 }
-function trackZoom(before,after){if(steps[index].id!=='zoom')return;if(after<before*.995)zoomIn=true;if(after>before*1.005)zoomOut=true;if(zoomIn&&zoomOut)finish();else $('#feedback').textContent=zoomIn?'Zoom in ✓ · Now zoom out.':'Zoom out ✓ · Now zoom in.';}
+function trackZoom(before,after){if(steps[index].id!=='zoom'||completed.has(index))return;if(after<before*.995)zoomIn=true;if(after>before*1.005)zoomOut=true;if(zoomIn&&zoomOut)finish();else $('#feedback').textContent=zoomIn?'Zoom in ✓ · Now zoom out.':'Zoom out ✓ · Now zoom in.';}
 function practiceAction(action){if(!loaded||!ready||!isNav())return;const id=steps[index].id;
   if(action==='reset'&&['reset','complete'].includes(id)){resetView(false);if(id==='reset')finish();return;}
   if(action.startsWith('orbit')&&['orbit','complete'].includes(id)){
