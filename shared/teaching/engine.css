@@ -177,3 +177,9 @@ h1{font-size:25px}
 #partial-notice{position:fixed;right:24px;bottom:24px;z-index:50;width:300px;max-width:calc(100vw - 32px);padding:20px;background:#fff;border:1px solid #b5d7c4;border-left:4px solid #279c60;border-radius:10px;box-shadow:0 8px 30px #143d2926;color:#234631;pointer-events:none}#partial-notice strong{font-size:17px}#partial-notice p{font-size:15px;line-height:1.5;margin:8px 0 0}@media(max-width:600px){.course-header{flex-wrap:wrap;height:auto;min-height:58px;padding:10px 12px}.brand{flex:1}.catalog-link{font-size:11px}.embed-mode .course-header{height:auto;min-height:48px}}
 
 #partial-notice.retry-notice{border-color:#e4aaaa;border-left-color:#d93636;color:#852b2b}
+
+.calculator-exercise{display:grid;gap:14px;text-align:left;width:100%}.calculator-exercise ol{margin:0;padding-left:24px;font-size:14px;line-height:1.6}.calculator-launch{display:block;background:#087e47;color:white!important;padding:12px 18px;border-radius:6px;text-align:center;font-weight:700}.bill-check{display:flex;gap:10px;font-size:14px;align-items:flex-start}.bill-check input{margin-top:4px;accent-color:#008b49}.cost-answer{display:grid;gap:6px;font-weight:650}.cost-answer input{padding:10px;border:1px solid #91a69b;border-radius:4px;background:white;color:#19352d;font:inherit}.calculator-exercise button{background:#e7eee9;color:#154b32!important;width:100%}
+
+.calculator-practice-note{background:#edf7f0;border-left:3px solid #159653;padding:12px 14px;margin:0;font-size:14px;line-height:1.55}
+
+#completion-dialog.external-cost{width:min(680px,calc(100vw - 32px))}#completion-dialog.external-cost #completion-title:focus{outline:none}

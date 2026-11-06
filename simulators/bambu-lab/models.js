@@ -13,11 +13,11 @@ export function buildLab(scene){
  }
  function printer(name,x){const g=new T.Group();g.position.x=x;scene.add(g);
   box(g,5.7,.09,5.1,0,-.08,0,new T.MeshStandardMaterial({color:0x345fba}));box(g,.24,6.4,4.7,-2.48,3.2,0,materials.metal);box(g,.24,6.4,4.7,2.48,3.2,0,materials.metal);box(g,5.2,.3,4.7,0,.15,0,materials.metal);box(g,5.2,.3,4.7,0,6.25,0,materials.metal);box(g,5.2,6.4,.2,0,3.2,-2.25,materials.metal);
-  box(g,.18,4.9,.08,-2.25,3.05,2.39,materials.dark);box(g,.18,4.9,.08,2.25,3.05,2.39,materials.dark);box(g,4.65,.2,.08,0,.6,2.39,materials.dark);box(g,4.65,.2,.08,0,5.5,2.39,materials.dark);box(g,4.15,.12,3.8,0,1.65,.05,new T.MeshStandardMaterial({color:0x767f78,roughness:1}));
+  box(g,.18,4.9,.08,-2.25,3.05,2.39,materials.dark);box(g,.18,4.9,.08,2.25,3.05,2.39,materials.dark);box(g,4.65,.2,.08,0,.6,2.39,materials.dark);box(g,4.65,.2,.08,0,5.5,2.39,materials.dark);const bed=box(g,4.15,.12,3.8,0,1.65,.05,new T.MeshStandardMaterial({color:0x767f78,roughness:1}));
   for(const sx of [-2,2])cylinder(g,.045,4.6,sx,3.1,2.16,materials.white);
   box(g,4.35,4.65,.04,0,3.05,2.49,materials.glass);box(g,.18,1,.13,2.12,2.7,2.62,materials.white);
   box(g,5.1,.7,.2,0,5.8,2.5,materials.metal);label(g,'Bambu Lab   X2D',1.9,.3,1.23,5.82,2.62,{background:'#414747',color:'#d2d8d3',font:'bold 70px Arial'});
-  box(g,1.65,1.05,.18,-1.25,5.9,2.75);label(g,'Ready',1.35,.64,-1.25,5.94,2.85,{background:'#203c4b',color:'#72e6ad',font:'bold 100px Arial'});
+  box(g,1.65,1.05,.18,-1.25,5.9,2.75);const statusDisplay=label(g,'Ready',1.35,.64,-1.25,5.94,2.85,{background:'#203c4b',color:'#72e6ad',font:'bold 100px Arial'});
   box(g,.1,.65,.1,-1.7,6.5,2.8,materials.white);const tag=label(g,name,2.4,.64,-1.58,6.83,2.86);tag.userData.action=name;
   const ams=new T.Group();ams.position.y=6.45;g.add(ams);
   box(ams,5.35,.32,4.6,0,.2,0);box(ams,5.35,.6,.15,0,.63,2.22,materials.glass);box(ams,5.35,.1,.14,0,.97,2.22,materials.metal);
@@ -39,7 +39,7 @@ export function buildLab(scene){
   const roll=spool();roll.position.set(-1.86,1.6,0);roll.visible=false;ams.add(roll);
   const intake=intakes[0],end=new T.Object3D();end.position.set(-1.86,1.37,1.9);ams.add(end);
   const tagTarget=new T.Object3D();tagTarget.position.set(0,3.8,2.5);g.add(tagTarget);
-  return {name,group:g,ams,tabs,lid,roll,intake,end,tagTarget,slots};
+  return {name,group:g,bed,statusDisplay,ams,tabs,lid,roll,intake,end,tagTarget,slots};
  }
  // Neutral lab context: bench, wall, computer, and the two named printers.
  box(scene,28,.45,7,0,-.36,0,materials.wood);for(const x of [-12,12])for(const z of [-2.5,2.5])box(scene,.24,4.2,.24,x,-2.65,z,materials.dark);

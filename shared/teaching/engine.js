@@ -44,13 +44,14 @@ export async function startTutorial({lesson,createSimulator,root}){
    $('#next').disabled=!isCompleted();$('#restart-from-completion').hidden=!finalTask||!isCompleted();
    $('#review-workspace').textContent=finalTask&&isCompleted()?'Close popup to keep interacting with the simulation':'Review workspace';
    renderQuiz();adapter.setPaused(true);if(!$('#completion-dialog').open)$('#completion-dialog').showModal();
-   (isCompleted()?$('#next'):$('#quiz button'))?.focus({preventScroll:true});
+   if(step().quiz?.type==='external-cost'&&!isCompleted()){$('#completion-title').tabIndex=-1;$('#completion-title').focus({preventScroll:true});$('#completion-dialog').scrollTop=0;}else (isCompleted()?$('#next'):$('#quiz button'))?.focus({preventScroll:true});
  }
  function renderQuiz(){
-   const quiz=step().quiz;$('#completion-quiz').hidden=!quiz;$('#quiz').replaceChildren();
+   const quiz=step().quiz;$('#completion-dialog').classList.toggle('external-cost',quiz?.type==='external-cost');$('#completion-quiz').hidden=!quiz;$('#quiz').replaceChildren();
    $('#quiz-feedback').classList.remove('error-feedback');$('#quiz-feedback').textContent='';
    if(!quiz)return;$('#quiz-prompt').textContent=quiz.prompt;
    if(isCompleted())$('#quiz-feedback').textContent=quiz.success||'Correct. You can continue.';
+   if(quiz.type==='external-cost'){renderCostExercise(quiz);return;}
    quiz.answers.forEach((answer,i)=>{
      const button=document.createElement('button');button.textContent=answer;button.disabled=isCompleted();
      if(isCompleted()&&i===quiz.correct)button.classList.add('correct');
@@ -61,7 +62,25 @@ export async function startTutorial({lesson,createSimulator,root}){
      });$('#quiz').append(button);
    });
  }
+ function renderCostExercise(quiz){
+   const active=step().id,host=$('#quiz'),form=document.createElement('form');form.className='calculator-exercise';
+   form.innerHTML=`<p class="calculator-practice-note"><strong>This is practice.</strong> Filling out the calculator or choosing Add to bill does not charge you or take a payment. You do not need to print or save a bill for this tutorial.</p><ol><li>Open the calculator in a new tab. Name the job <strong>Benchy practice</strong> and choose <strong>X2D</strong>.</li><li>Enter material cost <strong>$${quiz.job.materialCost.toFixed(2)}</strong>, print time <strong>${quiz.job.printHours} hour ${quiz.job.printMinutes} minutes</strong>, and leave staff labor at <strong>0</strong>.</li><li>Choose <strong>Add to bill</strong> and read the final cost for Benchy in the Bill section.</li><li>Return to this tab and enter this Benchy job’s final cost below.</li></ol><a class="calculator-launch" target="_blank" rel="noopener">Open AMAS calculator ↗</a><label class="bill-check"><input type="checkbox" required> I added Benchy to the practice bill and checked its final cost.</label><label class="cost-answer">Final Benchy cost ($)<input inputmode="decimal" autocomplete="off" required placeholder="0.00" aria-label="Final Benchy cost in dollars"></label><button type="submit">Check final cost</button>`;
+   const link=form.querySelector('a'),input=form.querySelector('.cost-answer input'),check=form.querySelector('input[type=checkbox]'),button=form.querySelector('button');link.href=quiz.url;
+   let opened=false;link.addEventListener('click',()=>{opened=true;});
+   if(isCompleted()){input.disabled=true;check.disabled=true;check.checked=true;button.disabled=true;button.textContent='Cost checked ✓';}
+   form.addEventListener('submit',async event=>{event.preventDefault();
+     if(isCompleted()||button.disabled)return;
+     if(!opened){retry('Open the calculator using the link above and practice preparing your bill first.',$('#completion-dialog'),$('#quiz-feedback'));return;}
+     button.disabled=true;button.textContent='Checking current pricing…';$('#quiz-feedback').textContent='';
+     let result;try{result=await quiz.validate(input.value);}catch{result={ok:false,message:'Pricing could not be checked. Please try again.'};}
+     if(step().id!==active||!form.isConnected)return;
+     button.disabled=false;button.textContent='Check final cost';
+     if(!result.ok){retry(result.message,$('#completion-dialog'),$('#quiz-feedback'));return;}
+     completed.add(active);practiced.delete(active);persist();updateProgress();sound.play('success');showCompletion();
+   });host.append(form);
+ }
  function partial(message,{title='Good! Keep going.',tone='partial'}={}){
+   if(tone!=='retry')feedback('');
    $('#partial-title').textContent=title;$('#partial-message').textContent=message;$('#partial-notice').classList.toggle('retry-notice',tone==='retry');$('#partial-notice').hidden=false;sound.play(tone);
  }
  function finish(){

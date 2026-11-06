@@ -125,3 +125,14 @@ See [credits](credits.html), [Three.js MIT license](shared/vendor/THREE-LICENSE.
 `bambu-studio/material-installation/` uses the same teaching engine with a separate `simulators/bambu-lab/` adapter. Five tasks cover choosing Steve or Candus, releasing both AMS tabs, placing the roll, pressing the intake backward, and inserting filament. The final animated uptake must finish before completion. The selected device persists separately from step progress; checkpoints rebuild the physical state on resume/back. Keyboard and touch use projected buttons anchored to the 3D objects. Reduced-motion settings shorten transitions and omit spool spinning. No model/video download is needed: the scene is procedural and shares the existing Three.js library.
 
 Moodle embed: `bambu-studio/material-installation/?embed=1`. The provided 120 MB reference video remains outside the repository and published site.
+
+
+## Tutorial 04: slicing, supports, and print cost
+
+`bambu-studio/slicing-and-printing/` extends the shared Bambu Studio adapter with an optional printing workflow. Thirteen guided tasks cover the Device selector, a first unsupported slice, the vertical upper-layer slider, the roof overhang, Prepare → Support → Enable support, a second slice and comparison, calculator practice, and a simulated print. The physical printer animation reuses the lab scene and original STL; no duplicate model or video is shipped.
+
+Device and Support controls were checked against the open desktop Bambu Studio project on November 6, 2026. X2D / 0.4 mm / 0.08 mm High Quality: without supports, 3.89 m / 11.80 g, material cost $0.24, total time 1h40m; with Enable support, tree(auto), Default style, 15° threshold, 4.20 m / 12.72 g, $0.25, 1h50m. Both previews have 599 layers, 0.20 mm first layer, 48.04 mm top. Preview bands, support trees, and accelerated printing are teaching approximations rather than generated G-code.
+
+The selected physical device from Tutorial 03 is a reminder, not a requirement. Either Steve or Candus is accepted. The final price check opens the real AMAS calculator in a new tab and fetches its current `pricing.xml`, using a copy of its parser and calculation module (source: https://github.com/amas4gm/print-cost-calculator). The supported job currently rounds to $1.10. Current rates must load before an answer can pass; failure shows a retry message. The learner acknowledges checking the practice bill; the lesson does not inspect the calculator tab. Filling out the calculator does not charge them. Printing or saving a bill is not required. Zero staff labor applies only to the stated practice inputs.
+
+Moodle embed: `bambu-studio/slicing-and-printing/?embed=1`. Allow new-tab links in the embed configuration so learners can open the calculator while retaining the lesson.
