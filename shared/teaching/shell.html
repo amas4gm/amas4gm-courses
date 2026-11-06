@@ -1,0 +1,44 @@
+<a class="skip" href="#lesson-title">Skip to lesson</a>
+<header class="course-header">
+  <div class="brand"><span class="brand-mark">A</span><div><strong>AMAS4GM</strong><small>LEARN IN THE SHOP · PRACTICE ANYWHERE</small></div></div>
+  <span class="simulation-badge"><span></span> SIMULATION</span>
+  <a class="catalog-link" id="catalog-link">All tutorials</a><button id="sound-toggle" class="sound-toggle" aria-pressed="true" aria-label="Sound effects">♪ Sound on</button>
+  <button id="restart" class="quiet">Restart tutorial</button>
+</header>
+<main>
+  <div class="intro-row"><div><p class="eyebrow"><span id="course-eyebrow"></span></p><h1 id="course-title"></h1></div><p id="course-subtitle"></p></div>
+  <div class="learning-layout">
+    <aside class="lesson-panel" aria-label="Guided lesson">
+      <div class="lesson-progress"><span id="step-count"></span><span id="percent"></span></div>
+      <progress id="progress" value="0" max="14" aria-label="Tutorial progress"></progress>
+      <p class="eyebrow" id="chapter"></p>
+      <h2 id="lesson-title" tabindex="-1"></h2>
+      <p id="lesson-text"></p>
+      <div class="task-box"><span class="task-label">YOUR TURN</span><p id="task"></p></div>
+      <div id="feedback" role="status" aria-live="polite"></div>
+      <div id="quiz" class="quiz" hidden></div>
+      <div id="practice-tools" hidden><p class="tool-label">Practice aids · keyboard & touch</p><div id="practice-buttons"></div></div>
+      <div class="lesson-actions"><button id="back" class="secondary">← Back</button><button id="review-step" class="secondary" hidden>View step summary</button><button id="back-to-course" class="primary" hidden>Back to course</button></div>
+      <details class="outline"><summary>Lesson map</summary><ol id="lesson-map"></ol></details>
+      <p class="small-note">Practice progress stays in this browser. This activity is not the course assessment.</p>
+    </aside>
+    <section class="sim-wrap" aria-label="Software training simulation">
+      <div class="sim-caption"><span id="simulator-label"></span><span id="control-status">Only the highlighted area is active</span></div>
+<div id="simulator-mount"></div>
+      <div class="under-sim"><span><i class="green-dot"></i> Arrow + highlighted control = your next action</span><span id="simulation-note"></span></div>
+    </section>
+  </div>
+  <footer><span>AMAS4GM / Software tutorials</span><a id="credits-link">References & model credits</a></footer>
+</main>
+<aside id="completion-notice" hidden aria-label="Navigation task complete"><p role="status">Good! Keep practicing.</p><div aria-hidden="true">Continuing in <strong id="completion-seconds">5</strong> seconds</div><progress id="completion-countdown" max="1" value="0" aria-label="Time until step summary"></progress></aside>
+<dialog id="completion-dialog" aria-labelledby="completion-title" aria-describedby="completion-explanation">
+  <p id="completion-count" class="eyebrow"></p>
+  <h2 id="completion-title"></h2>
+  <p id="completion-explanation"></p>
+  <div class="completion-reminder"><span class="information-icon" aria-hidden="true">i</span><p id="completion-reminder"></p></div>
+  <p id="completion-next"></p>
+  <button id="next" class="primary" disabled>Continue →</button>
+  <button id="review-workspace" class="quiet">Review workspace</button>
+</dialog>
+
+<aside id="partial-notice" hidden role="status" aria-live="polite"><strong id="partial-title"></strong><p id="partial-message"></p></aside>

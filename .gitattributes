@@ -1,0 +1,5 @@
+# Preserve upstream files byte-for-byte, including their original line endings.
+shared/vendor/** -text
+shared/assets/** -text
+simulators/bambu-studio/assets/** -text
+simulators/bambu-studio/BAMBU-LICENSE.txt -text

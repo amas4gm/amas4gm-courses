@@ -1,19 +1,111 @@
-# AMAS4GM Bambu Studio course
+# AMAS4GM software tutorials
 
-Tutorial 01: workspace orientation and 3D navigation. Clearly labeled simulation; no printer connection, slicing, or printing.
+A static software catalog, shared teaching engine, and reusable software simulations. No build step, backend, external scripts, analytics, or printer connection.
 
-The interface is reconstructed from the installed Bambu Studio Home, Prepare, Preview, and Device workspaces. New learners start on Home and select Prepare to reveal an empty plate. Preview displays its slicing summary and inactive layer/toolpath sliders; Device displays simulated monitoring and control panels with no live connection. Learners explicitly return to Prepare. After the interface tour, a simulated file picker teaches Add model → Benchy.stl → Open. The exact supplied STL keeps its original sideways orientation to illustrate how imported models can need reorientation for printing; the next tutorial teaches model orientation. Only the current learning concept is interactive. Camera navigation uses left drag on empty space, right/middle drag to pan, and wheel zoom. Keyboard and touch practice buttons are supplied outside the slicer UI.
+## Published pages
 
-Translucent arrows and pulsing green highlights guide clicks and stop as soon as a task is complete, including when revisiting completed steps. Each completed step opens a focused summary overlay with its explanation, a reminder of the introductory description, and Continue button. Orbit, pan, and zoom play success audio immediately, then leave camera interaction enabled for a five-second countdown before showing the summary. The countdown pauses while the browser tab is hidden and cancels when leaving the step. Learners can dismiss it to review the workspace and reopen the summary without losing progress. Add model uses a transparent hit area over one native toolbar icon. Reset view is an optional free-practice control, not a lesson step. Incorrect controls, navigation gestures, and quiz answers give a brief local red flash with text guidance. Reduced-motion preferences keep highlights steady. Short synthesized success, retry, and completion sounds have an on/off toggle. There are no points or badges. Plate controls are rendered in the plate's 3D plane so their perspective and scale follow navigation.
+- Catalog: https://amas4gm.github.io/bambu-studio-course/
+- Bambu Studio: https://amas4gm.github.io/bambu-studio-course/bambu-studio/
+- Tutorial: https://amas4gm.github.io/bambu-studio-course/bambu-studio/getting-started/
+- Moodle embed: https://amas4gm.github.io/bambu-studio-course/bambu-studio/getting-started/?embed=1
 
-## Run
-Serve this directory with any static HTTP server. Open index.html. Local file URLs cannot fetch the STL. No build step or external scripts required.
+The root URL used to open Tutorial 01. Update existing Moodle embeds to the lesson URL. Each page has a real directory and index.html, so direct links and reloads work on GitHub Pages without routing rules. Embed mode hides catalog navigation while retaining the simulation label and controls.
 
-## Scope
-14 guided steps plus free navigation practice. Other course lessons and assessment policies are not implemented here. Completion is browser-local practice progress, not a Moodle grade or shop printing authorization. Model editing and print controls remain disabled. The expanded import sequence uses a new progress version; old tutorial progress does not skip the new exercises.
+```html
+<iframe
+  src="https://amas4gm.github.io/bambu-studio-course/bambu-studio/getting-started/?embed=1"
+  title="Meet Bambu Studio — interactive simulation"
+  width="100%" height="950" style="border:0;" loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+```
 
-## Hosting
-Publish main from repository root in GitHub Pages. Embed its HTTPS URL in OpenLearn Create where iframes are permitted. A desktop or laptop and mouse are recommended for the native-size interface.
+Moodle must permit iframes. A desktop or laptop and mouse give the closest match; keyboard and touch practice aids are included. Embedded progress can be separate from a directly opened page under browser storage partitioning. There is no Moodle grade or completion synchronization.
+
+The referrer policy above permits an HTTPS course page to supply its full return link. If Moodle removes that attribute or uses a restrictive policy, append `&returnTo=` followed by the URL-encoded course page URL to the iframe's src. This optional parameter also works for ordinary links. Without a full referring URL or an explicit returnTo, the browser may provide only the course's origin; the site cannot recover a hidden cross-origin page path.
+
+## Source layout
+
+```text
+index.html                       Catalog grouped by software
+shared/catalog-data.js           Available software and published tutorial metadata
+shared/catalog.js, catalog.css   Lightweight catalog renderer
+shared/teaching/                  Engine, shell, styles, progress, guidance,
+                                 sound, countdown, and return navigation
+shared/vendor/                    One copy of Three.js, OrbitControls, STLLoader
+shared/assets/models/Benchy.stl   Original supplied practice model
+simulators/bambu-studio/          Shared Bambu interface, camera, view cube, assets
+bambu-studio/index.html           Software landing page
+bambu-studio/getting-started/     Lesson definition and standalone entry point
+tests/                           Progress and timing regression tests
+scripts/check-site.mjs           Asset, link, import, syntax, and size checks
+```
+
+The github-repo checkout is the maintained source. Earlier course folders outside this repository are not published.
+
+The catalog loads only its metadata, renderer, and CSS. A lesson loads the teaching engine and its simulator; only Bambu imports Three.js and the STL. Assets are resolved relative to their module using import.meta.url, so they work below GitHub's project URL prefix. Assets are shared once rather than copied into each tutorial.
+
+## Add a lesson
+
+1. Create a directory such as bambu-studio/orienting-models with an entry HTML page, main.js, and lesson.js. Reference shared modules and styles; do not copy assets or the simulator.
+2. Give it stable software, id, and version values. Steps use stable IDs plus chapter, title, text, task, and done. Optional tools, keyboard, quiz, completionDelayMs, and terminal configure teaching behavior.
+3. Put software behavior under each step's simulation property. Extend the shared simulator for a new capability, then select that capability from lesson data.
+4. List the finished lesson in shared/catalog-data.js. Do not list unfinished lessons as available.
+5. Run checks and test direct entry, embedding, and the complete lesson before publishing.
+
+The lesson definition owns teaching content. A new lesson normally adds only small text/code files. Orientation is the next planned lesson; it is not available yet.
+
+## Add different software
+
+Add a software landing page, catalog entry, and simulator adapter. An adapter can use HTML/CSS, canvas, or another library: the teaching engine has no Three.js dependency. One simulator mounts on a lesson page at a time.
+
+Call startTutorial({lesson, createSimulator, root}). The factory receives container, lesson, and an api with:
+
+- complete(): finish the current task once.
+- partial(message): prominent intermediate feedback and a distinct sound.
+- retry(message, region?): red flash, guidance, and retry sound.
+- feedback(message): quiet supporting text.
+- guideChanged(): request highlight/arrow repositioning.
+
+Return an adapter implementing setStep(step, context), refreshState(), setPaused(value), setGuidance(active), getGuide(), getRegion(), perform(action), reset(), and dispose(). Context provides isCompleted() and completedSteps(). getGuide() returns a DOM target, parent, scale, and optional anchorY/above placement. Enable only the current concept. Dispose observers and rendering resources in dispose().
+
+The Bambu adapter supports select, import, orbit, pan, zoom, view, and free actions. Completed-step effects reconstruct model visibility. viewBefore/viewAfter select tab demonstrations. Model and camera changes are independent.
+
+## Current lesson
+
+15 guided tasks plus optional free practice. Home opens first, Prepare starts empty, and learners explicitly import Benchy. Preview and Device have distinct simulated panels. The exact supplied STL retains its sideways orientation to introduce why models sometimes need reorientation for printing.
+
+Only current concepts are enabled. Arrows and pulsing highlights stop immediately on completion. Wrong actions give a red flash. Success audio is immediate, followed by five seconds of continued practice for navigation tasks. Hidden tabs pause the countdown. Completion popups include the explanation and a reminder of the pre-step text. One zoom direction triggers a notification and partial-success sound prompting the other direction. Sound can be muted; there are no points or badges.
+
+The view cube follows the actual camera rotation continuously. Face clicks choose corresponding views without moving the model. Edge/corner choices and dragging work in free practice. Top view follows zoom as a new task. Reduced-motion settings remove pulsing and view-transition animation.
+
+The final popup says “You finished the tutorial” with “Back to course”. A quiet link closes the popup for continued simulation practice. Returning uses the original course/catalog link; a separately opened tab is closed when the browser permits it. Browsers can refuse tab closing or omit the referrer; in that case navigation falls back to the known course link or catalog. An iframe returns to its containing course. No cross-origin tab can be inspected or force-closed.
+
+## Saved progress
+
+Storage keys are amas-tutorial:<software>:<lesson>:v<version>, with completed step IDs. Inserted tasks stay incomplete while later completed IDs are retained; navigation cannot skip the first incomplete task. Bump the version for incompatible revisions.
+
+Legacy amas-bambu-tutorial-01-v5 progress migrates using the original numeric ordering. Learners who finished the old tutorial keep that work and resume at the new Top view task. Restart clears only this lesson's new record and does not re-import old progress or reset other lessons. If storage is blocked, the current page session remains usable.
+
+## Run and validate
+
+Serve this directory with any static server, for example python -m http.server 8932. Open http://localhost:8932/. File URLs cannot fetch shared templates or models. With Node installed, no packages need installing:
+
+```sh
+npm test
+npm run check
+```
+
+Browser checks include Home/empty plate, tab panels, importing, modal focus/reopening, navigation gestures and practice aids, partial zoom notifications, countdowns, rotating cube and Top view, quiz retries, final return behavior, restart, and embed/narrow layouts.
+
+## Hosting and size
+
+GitHub Pages publishes main from the repository root. Commit and push through Git/SSH.
+
+The site is approximately 13 MB excluding .git, including one 11.26 MB STL and about 1.37 MB of Three.js code. Git history is not part of the published site. New text-based lessons add little space; unique models, screenshots, videos, and duplicated bundles drive growth. Load only the chosen software and share media by URL.
+
+npm run check reports size, detects duplicate media, and flags growth above a deliberate 100 MB review budget, well before the 1 GB Pages published-site limit. That review threshold is a project choice, not GitHub's limit. Host large video separately if needed. See [GitHub Pages limits](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits).
 
 ## Credits
-See credits.html, THREE-LICENSE.txt, and BAMBU-LICENSE.txt. UI assets are from Bambu Lab/BambuStudio (AGPLv3). Three.js r170 is MIT licensed. Benchy is credited to Creative Tools / 3DBenchy.com.
+
+See [credits](credits.html), [Three.js MIT license](shared/vendor/THREE-LICENSE.txt), and [Bambu AGPLv3 license](simulators/bambu-studio/BAMBU-LICENSE.txt). Bambu interface assets are unmodified originals. The cube follows camera-driven navigation described in [Bambu's GLCanvas3D source](https://github.com/bambulab/BambuStudio/blob/master/src/slic3r/GUI/GLCanvas3D.cpp). Benchy is credited to Creative Tools / 3DBenchy.com. Tutorial completion is not shop printing authorization.
