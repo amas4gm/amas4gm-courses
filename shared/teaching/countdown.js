@@ -9,5 +9,5 @@ export function completionPause(step){
  const practice=step.completionMode==='practice';
  const configured=step.completionDelayMs;
  const durationMs=Number.isFinite(configured)&&configured>0?configured:(practice?5000:3000);
- return {practice,durationMs,message:practice?'Good! Keep practicing.':'Good! Take a moment to see what changed.'};
+ return {practice,durationMs,message:practice?'Good! Keep practicing.':'Good'};
 }
