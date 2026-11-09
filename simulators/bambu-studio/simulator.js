@@ -1,3 +1,4 @@
+import {createZoomPractice} from './navigation-state.js';
 import {createViewCube,viewDirections} from './view-cube.js';
 import * as THREE from '../../shared/vendor/three.module.js';
 import {OrbitControls} from '../../shared/vendor/OrbitControls.js';
@@ -12,11 +13,11 @@ export async function createBambuSimulator({container,lesson,api}){
  let step={simulation:{action:'select'},task:''},context={isCompleted:()=>false,completedSteps:()=>[]},paused=false;
  let loaded=false,ready=false,scene,camera,renderer,controls,mesh,resizeObserver,scaleObserver,cube,manipulation,workflow;
  const plateControlMeshes=[];
- let startPosition,startTarget,startAngle,zoomIn=false,zoomOut=false,stepReady=false,resetting=false;
+ let startPosition,startTarget,startAngle,zoomPractice,stepReady=false,resetting=false;
  const mode=()=>step.simulation.action,isEditing=()=>!!step.simulation.editing,isNav=()=>['orbit','pan','zoom','free'].includes(mode());
  const finish=()=>api.complete(),mistake=(message,region)=>api.retry(message,region);
  const renderScene=()=>{if(renderer&&camera){camera.updateMatrixWorld();manipulation?.draw();renderer.render(scene,camera);manipulation?.renderSelection();}cube?.update();};
- function configureControls(){if(!controls)return;const id=mode();controls.enabled=loaded&&(isNav()||isEditing()&&mode()!=='object-select')&&!paused;controls.enableRotate=isEditing()||['orbit','free'].includes(id);controls.enablePan=isEditing()||['pan','free'].includes(id);controls.enableZoom=isEditing()||['zoom','free'].includes(id);controls.mouseButtons={LEFT:THREE.MOUSE.ROTATE,MIDDLE:THREE.MOUSE.PAN,RIGHT:THREE.MOUSE.PAN};}
+ function configureControls(){if(!controls)return;const id=mode();controls.enabled=loaded&&(isNav()||isEditing()&&mode()!=='object-select')&&!paused;controls.enableRotate=isEditing()||['orbit','free'].includes(id);controls.enablePan=isEditing()||['pan','free'].includes(id);controls.enableZoom=isEditing()||['zoom','free'].includes(id);controls.touches={ONE:THREE.TOUCH.ROTATE,TWO:THREE.TOUCH.DOLLY_PAN};controls.mouseButtons={LEFT:THREE.MOUSE.ROTATE,MIDDLE:THREE.MOUSE.PAN,RIGHT:THREE.MOUSE.PAN};}
  function refreshState(){
    const state=Object.assign({},lesson.initialState,...context.completedSteps().map(s=>s.simulation?.effects||{}));
    const visible=!!state.modelVisible;mesh.visible=visible;
@@ -59,16 +60,16 @@ export async function createBambuSimulator({container,lesson,api}){
  $('#import-dialog').addEventListener('close',()=>api.guideChanged());
  $('#import-dialog').addEventListener('pointerdown',e=>{const r=$('#confirm-import').getBoundingClientRect();if($('#confirm-import').disabled&&e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom)mistake(`Select ${lesson.model.name} first, then choose Open.`,$('#import-dialog'));},true);
 function resetView(close=false){resetting=true;controls.target.set(0,12,0);camera.position.set(0,close?450:900,close?550:1100);camera.zoom=1;camera.updateProjectionMatrix();controls.update();resetting=false;}
-function snapshot(){startPosition=camera.position.clone();startTarget=controls.target.clone();startAngle=controls.getAzimuthalAngle();zoomIn=false;zoomOut=false;}
+function snapshot(){startPosition=camera.position.clone();startTarget=controls.target.clone();startAngle=controls.getAzimuthalAngle();zoomPractice=createZoomPractice(camera.position.distanceTo(controls.target));}
 function trackCamera(){if(!stepReady||resetting||!loaded)return;const id=mode();
+  if(id==='zoom')trackZoom(camera.position.distanceTo(controls.target));
   if(id==='orbit'&&(Math.abs(controls.getAzimuthalAngle()-startAngle)>.32||camera.position.distanceTo(startPosition)>45))finish();
   if(id==='pan'&&controls.target.distanceTo(startTarget)>12)finish();
 }
-function trackZoom(before,after){
- if(mode()!=='zoom'||context.isCompleted())return;
- const wasIn=zoomIn,wasOut=zoomOut;
- if(after<before*.995)zoomIn=true;if(after>before*1.005)zoomOut=true;
- if(zoomIn&&zoomOut)finish();else if(zoomIn!==wasIn||zoomOut!==wasOut)api.partial(zoomIn?'You zoomed in. Now scroll down to zoom out.':'You zoomed out. Now scroll up to zoom in.',{title:'Good! One direction done.'});
+function trackZoom(distance){
+ if(mode()!=='zoom'||context.isCompleted()||!zoomPractice)return;
+ const result=zoomPractice.update(distance);
+ if(result.complete)finish();else if(result.changed)api.partial(result.zoomIn?'You zoomed in. Now reverse your scroll or pinch your fingers together to zoom out.':'You zoomed out. Now reverse your scroll or spread your fingers apart to zoom in.',{title:'Good! One direction done.'});
 }
 function practiceAction(action){if(workflow?.perform(action))return;if(isEditing()){manipulation?.perform(action);return;}if(!loaded||!ready||!isNav()||paused)return;const id=mode();
   if(action==='reset'&&['reset','free'].includes(id)){resetView(false);if(id==='reset')finish();return;}
@@ -76,12 +77,12 @@ function practiceAction(action){if(workflow?.perform(action))return;if(isEditing
     const offset=camera.position.clone().sub(controls.target),sphere=new THREE.Spherical().setFromVector3(offset);sphere.theta+=action==='orbit-left'?.42:-.42;camera.position.copy(controls.target).add(new THREE.Vector3().setFromSpherical(sphere));controls.update();
   }
   if(action.startsWith('pan')&&['pan','free'].includes(id)){const right=new THREE.Vector3().setFromMatrixColumn(camera.matrix,0).multiplyScalar(action==='pan-left'?-18:18);controls.target.add(right);camera.position.add(right);controls.update();}
-  if(action.startsWith('zoom')&&['zoom','free'].includes(id)){const before=camera.position.distanceTo(controls.target);const distance=THREE.MathUtils.clamp(before*(action==='zoom-in'?.8:1.25),220,3000);camera.position.sub(controls.target).setLength(distance).add(controls.target);controls.update();trackZoom(before,distance);}
+  if(action.startsWith('zoom')&&['zoom','free'].includes(id)){const before=camera.position.distanceTo(controls.target);const distance=THREE.MathUtils.clamp(before*(action==='zoom-in'?.8:1.25),220,3000);camera.position.sub(controls.target).setLength(distance).add(controls.target);controls.update();}
   trackCamera();
 }
-$('#viewport').addEventListener('keydown',e=>{if(isEditing()||workflow?.handles(e.target))return;const id=mode();let a=null;if(['orbit','free'].includes(id)&&e.key==='ArrowLeft')a='orbit-left';if(['orbit','free'].includes(id)&&e.key==='ArrowRight')a='orbit-right';if(id==='pan'&&e.key==='ArrowLeft')a='pan-left';if(id==='pan'&&e.key==='ArrowRight')a='pan-right';if(['zoom','free'].includes(id)&&['+','='].includes(e.key))a='zoom-in';if(['zoom','free'].includes(id)&&e.key==='-')a='zoom-out';if(['reset','free'].includes(id)&&e.key==='Home')a='reset';if(a){e.preventDefault();practiceAction(a);return;}
+$('#viewport').addEventListener('keydown',e=>{if(isEditing()||workflow?.handles(e.target))return;const id=mode();let a=null;if(['orbit','free'].includes(id)&&e.key==='ArrowLeft')a='orbit-left';if(['orbit','free'].includes(id)&&e.key==='ArrowRight')a='orbit-right';if(id==='pan'&&e.key==='ArrowLeft')a='pan-left';if(id==='pan'&&e.key==='ArrowRight')a='pan-right';if(['reset','free'].includes(id)&&e.key==='Home')a='reset';if(a){e.preventDefault();practiceAction(a);return;}
   if(!loaded)return;
-  if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','=','-','Home'].includes(e.key)&&!(['ArrowUp','ArrowDown'].includes(e.key)&&['orbit','pan','free'].includes(id))){e.preventDefault();mistake(`For this step: ${step.task}`);return;}
+  if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home'].includes(e.key)&&!(['ArrowUp','ArrowDown'].includes(e.key)&&['orbit','pan','free'].includes(id))){e.preventDefault();mistake(`For this step: ${step.task}`);return;}
   if(!['ArrowUp','ArrowDown'].includes(e.key))return;
   if(['orbit','free'].includes(id)){e.preventDefault();const sp=new THREE.Spherical().setFromVector3(camera.position.clone().sub(controls.target));sp.phi=THREE.MathUtils.clamp(sp.phi+(e.key==='ArrowUp'?-.3:.3),.1,1.48);camera.position.copy(controls.target).add(new THREE.Vector3().setFromSpherical(sp));controls.update();trackCamera();}
   if(id==='pan'){e.preventDefault();const v=new THREE.Vector3().setFromMatrixColumn(camera.matrix,1).multiplyScalar(e.key==='ArrowUp'?18:-18);controls.target.add(v);camera.position.add(v);controls.update();trackCamera();}
@@ -95,16 +96,16 @@ async function init(){
   let gesture=null;
   canvas.addEventListener('pointerdown',e=>{
     if(!loaded||!isNav())return;$('#viewport').focus({preventScroll:true});
-    gesture={x:e.clientX,y:e.clientY,button:e.button,warned:false};
+    gesture={x:e.clientX,y:e.clientY,button:e.button,pointerType:e.pointerType,warned:false};
     const rect=canvas.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,camera);
     if(raycaster.intersectObjects(plateControlMeshes).length){e.stopImmediatePropagation();gesture=null;mistake('Plate tools are disabled. Practice moving your view in the empty area beside the model.');return;}
-    if(e.button===0&&['orbit','free'].includes(mode())&&raycaster.intersectObject(mesh).length){e.stopImmediatePropagation();gesture=null;mistake('Start your left-drag on empty space beside Benchy. Model editing is disabled.');}
+    if(e.pointerType!=='touch'&&e.button===0&&['orbit','free'].includes(mode())&&raycaster.intersectObject(mesh).length){e.stopImmediatePropagation();gesture=null;mistake('Start your left-drag on empty space beside Benchy. Model editing is disabled.');}
   },true);
-  canvas.addEventListener('pointermove',e=>{if(!gesture||gesture.warned||Math.hypot(e.clientX-gesture.x,e.clientY-gesture.y)<7)return;const id=mode(),valid=id==='free'||id==='orbit'&&gesture.button===0||id==='pan'&&[1,2].includes(gesture.button);if(!valid){gesture.warned=true;mistake(`For this step: ${step.task}`);}},true);
+  canvas.addEventListener('pointermove',e=>{if(!gesture||gesture.pointerType==='touch'||gesture.warned||Math.hypot(e.clientX-gesture.x,e.clientY-gesture.y)<7)return;const id=mode(),valid=id==='free'||id==='orbit'&&gesture.button===0||id==='pan'&&[1,2].includes(gesture.button);if(!valid){gesture.warned=true;mistake(`For this step: ${step.task}`);}},true);
   canvas.addEventListener('pointerup',()=>gesture=null);canvas.addEventListener('pointercancel',()=>gesture=null);
   controls=new OrbitControls(camera,canvas);controls.enableDamping=false;controls.minDistance=220;controls.maxDistance=3000;controls.minPolarAngle=0;controls.maxPolarAngle=Math.PI;controls.zoomSpeed=1;controls.rotateSpeed=1;controls.screenSpacePanning=true;
   controls.addEventListener('change',()=>{renderScene();trackCamera();});
-  canvas.addEventListener('wheel',e=>{if(!loaded)return;if(isNav()&&!controls.enableZoom){e.preventDefault();mistake(`For this step: ${step.task}`);return;}if(!controls.enableZoom)return;const before=camera.position.distanceTo(controls.target);requestAnimationFrame(()=>trackZoom(before,camera.position.distanceTo(controls.target)));},{capture:true,passive:false});
+  canvas.addEventListener('wheel',e=>{if(!loaded)return;if(isNav()&&!controls.enableZoom){e.preventDefault();mistake(`For this step: ${step.task}`);return;}if(!controls.enableZoom)return;},{capture:true,passive:false});
   canvas.addEventListener('contextmenu',e=>{if(isNav())e.preventDefault();});
   scene.add(new THREE.HemisphereLight(0xffffff,0x646c68,1.3));const key=new THREE.DirectionalLight(0xffffff,1.8);key.position.set(-100,250,180);scene.add(key);const fill=new THREE.DirectionalLight(0xffffff,.7);fill.position.set(100,80,-150);scene.add(fill);
   const bed=new THREE.Mesh(new THREE.BoxGeometry(256,2.5,256),new THREE.MeshStandardMaterial({color:0x464c49,roughness:.94}));bed.position.y=-1.5;scene.add(bed);

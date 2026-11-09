@@ -1,4 +1,4 @@
-import {loadProgress,saveProgress} from './progress.js';
+import {loadProgress,saveProgress,retryStepProgress,completedThroughStep} from './progress.js?v=usability-2';
 import {createSound} from './sound.js';
 import {createGuidance} from './guidance.js';
 import {createCountdown} from './countdown.js';
@@ -15,7 +15,7 @@ export async function startTutorial({lesson,createSimulator,root}){
  const saved=loadProgress(lesson,storage);completed=new Set(saved.completed);practiced=new Set(saved.practiced);index=lesson.steps.findIndex(s=>s.id===saved.current);
  function persist(){saveProgress(lesson,{current:step().id,completed:[...completed],practiced:[...practiced]},storage);}
  const unlocked=()=>{const i=lesson.steps.findIndex(s=>!s.terminal&&!completed.has(s.id));return i<0?lesson.steps.length-1:i;};
- const context={isCompleted:actionDone,completedSteps:()=>lesson.steps.filter(s=>completed.has(s.id)||practiced.has(s.id))};
+ const context={isCompleted:actionDone,completedSteps:()=>completedThroughStep(lesson,completed,practiced,index)};
  function updateGuidance(){adapter?.setGuidance(!actionDone()&&!step().terminal);guidance?.update(actionDone()||step().terminal?null:adapter?.getGuide());}
  function feedback(message){$('#feedback').classList.remove('error-feedback');$('#feedback').textContent=message;}
  function retry(message,region,output=$('#feedback')){
@@ -42,7 +42,7 @@ export async function startTutorial({lesson,createSimulator,root}){
    $('#completion-next').hidden=finalTask;$('#completion-next').textContent=`Next: ${lesson.steps[index+1]?.title||'Tutorial complete'}`;
    $('#next').textContent=finalTask?'Back to course':'Continue →';
    $('#next').disabled=!isCompleted();$('#restart-from-completion').hidden=!finalTask||!isCompleted();
-   $('#review-workspace').textContent=finalTask&&isCompleted()?'Close popup to keep interacting with the simulation':'Review workspace';
+   $('#previous-step').disabled=index===0;$('#keep-interacting').hidden=!finalTask||!isCompleted();
    renderQuiz();adapter.setPaused(true);if(!$('#completion-dialog').open)$('#completion-dialog').showModal();
    if(step().quiz?.type==='external-cost'&&!isCompleted()){$('#completion-title').tabIndex=-1;$('#completion-title').focus({preventScroll:true});$('#completion-dialog').scrollTop=0;}else (isCompleted()?$('#next'):$('#quiz button'))?.focus({preventScroll:true});
  }
@@ -103,15 +103,17 @@ export async function startTutorial({lesson,createSimulator,root}){
    $('#control-status').textContent=s.controlStatus||'Only the highlighted area is active';
    $('#practice-tools').hidden=!s.tools;$('#practice-buttons').replaceChildren();
    for(const [action,label] of s.tools||[]){const b=document.createElement('button');b.textContent=label;b.addEventListener('click',()=>adapter.perform(action));$('#practice-buttons').append(b);}
-   if(s.keyboard){const p=document.createElement('p');p.className='small-note';p.textContent=`${s.keyboard} Touch: use the practice buttons above.`;$('#practice-buttons').append(p);}
+   if(s.keyboard){const p=document.createElement('p');p.className='small-note';p.textContent=s.keyboard;$('#practice-buttons').append(p);}
+   $('#input-controls').hidden=!s.controls;$('#input-controls').replaceChildren();for(const [device,instruction] of s.controls||[]){const label=document.createElement('dt'),description=document.createElement('dd');label.textContent=device;description.textContent=instruction;$('#input-controls').append(label,description);}
    adapter.setStep(s,context);adapter.setPaused(false);updateProgress();updateGuidance();
    if(s.terminal)feedback(s.done);
    requestAnimationFrame(()=>{updateGuidance();if(actionDone())showCompletion();});
  }
  function go(next){cancelPause();$('#completion-dialog').close();index=Math.max(0,Math.min(lesson.steps.length-1,next,unlocked()));render();persist();$('#lesson-title').focus({preventScroll:true});}
+ function retryStep(){const next=retryStepProgress(lesson,{completed:[...completed],practiced:[...practiced]},step().id);completed=new Set(next.completed);practiced=new Set(next.practiced);lastMistake=-Infinity;go(index);}
  function restart(){completed.clear();practiced.clear();adapter.reset();go(0);}
  try{
-   const response=await fetch(new URL('./shell.html',import.meta.url));if(!response.ok)throw new Error('Lesson shell unavailable');root.innerHTML=await response.text();
+   const response=await fetch(new URL('./shell.html?v=usability-2',import.meta.url));if(!response.ok)throw new Error('Lesson shell unavailable');root.innerHTML=await response.text();
    document.body.classList.toggle('embed-mode',new URLSearchParams(location.search).get('embed')==='1');
    $('#catalog-link').href=new URL('../../',import.meta.url);$('#credits-link').href=new URL('../../credits.html',import.meta.url);
    for(const [id,value] of [['course-title',lesson.title],['course-subtitle',lesson.subtitle],['course-eyebrow',lesson.eyebrow],['simulator-label',lesson.simulatorLabel],['simulation-note',lesson.simulationNote||'Practice simulation']])$('#'+id).textContent=value;
@@ -122,7 +124,7 @@ export async function startTutorial({lesson,createSimulator,root}){
    ready=true;$('#restart').disabled=false;
    on($('#next'),'click',()=>{if(isCompleted()){if(lesson.steps[index+1]?.terminal)returnToCourse();else go(index+1);}});on($('#back'),'click',()=>go(index-1));
    on($('#back-to-course'),'click',returnToCourse);
-   on($('#review-step'),'click',showCompletion);on($('#review-workspace'),'click',()=>{if(lesson.steps[index+1]?.terminal&&isCompleted())go(index+1);else $('#completion-dialog').close();});
+   on($('#review-step'),'click',showCompletion);on($('#previous-step'),'click',()=>go(index-1));on($('#retry-step'),'click',retryStep);on($('#keep-interacting'),'click',()=>{if(lesson.steps[index+1]?.terminal&&isCompleted())go(index+1);});
    on($('#completion-dialog'),'close',()=>adapter.setPaused($('#completion-dialog').open));
    on($('#completion-dialog'),'cancel',event=>{if(lesson.steps[index+1]?.terminal&&isCompleted()){event.preventDefault();go(index+1);}});
    on($('#restart'),'click',restart);on($('#restart-from-completion'),'click',restart);

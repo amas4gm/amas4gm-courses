@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import lesson from '../bambu-studio/getting-started/lesson.js';
-import {loadProgress,saveProgress,normalizeProgress,progressKey} from '../shared/teaching/progress.js';
+import {loadProgress,saveProgress,normalizeProgress,progressKey,retryStepProgress,completedThroughStep} from '../shared/teaching/progress.js';
 import {createCountdown} from '../shared/teaching/countdown.js';
 import {safeReturnUrl,resolveCourseReturn} from '../shared/teaching/return-to-course.js';
 const memory=()=>{const values=new Map();return {getItem:key=>values.get(key)??null,setItem:(key,value)=>values.set(key,value)};};
@@ -71,4 +71,21 @@ test('a fresh catalog launch replaces a previously remembered external course',(
  assert.equal(resolveCourseReturn({root,current,previous,referrer:root}),root);
  assert.equal(resolveCourseReturn({root,current,previous,referrer:''}),previous);
  assert.equal(resolveCourseReturn({root,current,previous,referrer:previous,explicit:root}),root);
+});
+
+
+test('retry clears only the requested checkpoint and its quiz, preserving other progress',()=>{
+ const ids=lesson.steps.filter(s=>!s.terminal).map(s=>s.id);
+ const saved={current:'complete',completed:ids,practiced:['top-view']};
+ const retried=retryStepProgress(lesson,saved,'top-view');
+ assert.equal(retried.current,'top-view');assert.ok(!retried.completed.includes('top-view'));assert.deepEqual(retried.practiced,[]);
+ assert.deepEqual(retried.completed,ids.filter(id=>id!=='top-view'));assert.deepEqual(saved.completed,ids);
+ const storage=memory();saveProgress(lesson,retried,storage);assert.deepEqual(loadProgress(lesson,storage),retried);
+});
+test('replaying an earlier workspace hides effects of later completed tasks',()=>{
+ const completed=new Set(lesson.steps.map(s=>s.id));
+ const visible=completedThroughStep(lesson,completed,new Set(),0);
+ assert.deepEqual(visible.map(s=>s.id),['prepare']);assert.ok(!visible.some(s=>s.simulation.effects?.modelVisible));
+ const retried=retryStepProgress(lesson,{completed:[...completed]},'import-model');
+ assert.ok(!completedThroughStep(lesson,new Set(retried.completed),new Set(),lesson.steps.findIndex(s=>s.id==='import-model')).some(s=>s.simulation.effects?.modelVisible));
 });

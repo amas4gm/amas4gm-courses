@@ -152,7 +152,7 @@ h1{font-size:25px}
 #quiz-feedback:empty{display:none}
 #quiz-feedback.error-feedback{color:#b72336}
 #completion-dialog #next:disabled{background:#e7ebe8;color:#718077;cursor:default}
-#completion-dialog #review-workspace{display:block;margin:16px auto 0;max-width:none;font-size:12px}
+#completion-dialog #keep-interacting{display:block;margin:16px auto 0;max-width:none;font-size:12px}
 @media(max-width:560px){#completion-dialog{padding:24px}
 #completion-dialog h2{font-size:23px}
 #completion-explanation{font-size:16px}}
@@ -183,3 +183,6 @@ h1{font-size:25px}
 .calculator-practice-note{background:#edf7f0;border-left:3px solid #159653;padding:12px 14px;margin:0;font-size:14px;line-height:1.55}
 
 #completion-dialog.external-cost{width:min(680px,calc(100vw - 32px))}#completion-dialog.external-cost #completion-title:focus{outline:none}
+
+.completion-step-actions{display:flex;gap:10px;margin-top:12px}.completion-step-actions button{flex:1;padding:11px 8px;font-size:13px}
+#input-controls{margin:18px 0;padding:14px;background:#f3f7f4;border:1px solid #dce7df;border-radius:6px;font-size:13px;line-height:1.55}#input-controls dt{font-weight:700;color:#23543c}#input-controls dd{margin:3px 0 12px}#input-controls dd:last-child{margin-bottom:0}

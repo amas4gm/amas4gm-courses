@@ -14,9 +14,10 @@
       <p class="eyebrow" id="chapter"></p>
       <h2 id="lesson-title" tabindex="-1"></h2>
       <p id="lesson-text"></p>
+      <dl id="input-controls" hidden aria-label="Mouse, touchpad, and touchscreen controls"></dl>
       <div class="task-box"><span class="task-label">YOUR TURN</span><p id="task"></p></div>
       <div id="feedback" role="status" aria-live="polite"></div>
-      <div id="practice-tools" hidden><p class="tool-label">Practice aids · keyboard & touch</p><div id="practice-buttons"></div></div>
+      <div id="practice-tools" hidden><p class="tool-label">Optional simulation aids</p><div id="practice-buttons"></div></div>
       <div class="lesson-actions"><button id="back" class="secondary">← Back</button><button id="review-step" class="secondary" hidden>View step summary</button><button id="back-to-course" class="primary" hidden>Back to course</button></div>
       <details class="outline"><summary>Lesson map</summary><ol id="lesson-map"></ol></details>
       <p class="small-note">Practice progress stays in this browser. This activity is not the course assessment.</p>
@@ -44,7 +45,8 @@
   <p id="completion-next"></p>
   <button id="next" class="primary" disabled>Continue →</button>
   <button id="restart-from-completion" class="secondary" hidden>Restart tutorial</button>
-  <button id="review-workspace" class="quiet">Review workspace</button>
+  <div class="completion-step-actions"><button id="previous-step" class="secondary">← Previous step</button><button id="retry-step" class="secondary">↻ Retry step</button></div>
+  <button id="keep-interacting" class="quiet" hidden>Close popup to keep interacting with the simulation</button>
 </dialog>
 
 <aside id="partial-notice" hidden role="status" aria-live="polite"><strong id="partial-title"></strong><p id="partial-message"></p></aside>

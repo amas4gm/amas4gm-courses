@@ -30,3 +30,13 @@ export function loadProgress(lesson,storage){
   return normalizeProgress(lesson);
 }
 export function saveProgress(lesson,state,storage){try{storage.setItem(progressKey(lesson),JSON.stringify(state));}catch{}}
+
+// Retry clears only this checkpoint, including a pending popup quiz.
+export function retryStepProgress(lesson,saved,id){
+ const target=lesson.steps.find(s=>s.id===id&&!s.terminal);
+ if(!target)return normalizeProgress(lesson,saved);
+ return normalizeProgress(lesson,{current:id,completed:(saved.completed||[]).filter(value=>value!==id),practiced:(saved.practiced||[]).filter(value=>value!==id)});
+}
+export function completedThroughStep(lesson,completed,practiced,index){
+ return lesson.steps.slice(0,index+1).filter(s=>completed.has(s.id)||practiced.has(s.id));
+}
