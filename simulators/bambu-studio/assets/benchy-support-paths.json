@@ -1,0 +1,17 @@
+{
+  "source": "Benchy.3mf sliced with its saved settings in Bambu Studio 02.08.02.61",
+  "gcodeSha256": "6b0cad9a6e6a8b5d10c27790602877ceb3db88b82b1ecc26ea118af71ee9e0cc",
+  "format": "Little-endian Float32 records: start XYZ, end XYZ, width, height (8 floats). Simulator Y-up, millimeters, plate center 128/128.",
+  "arcChordErrorMm": 0.015,
+  "segments": 75107,
+  "counts": {
+    "Support": 74933,
+    "Support interface": 174
+  },
+  "bytes": 2403424,
+  "printer": "Bambu Lab X2D",
+  "layerHeight": 0.08,
+  "layers": 599,
+  "grams": 12.72,
+  "estimatedTime": "1h 50m 24s"
+}
