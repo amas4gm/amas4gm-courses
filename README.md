@@ -4,18 +4,18 @@ A static software catalog, shared teaching engine, and reusable software simulat
 
 ## Published pages
 
-- Catalog: https://amas4gm.github.io/bambu-studio-course/
-- Bambu Studio: https://amas4gm.github.io/bambu-studio-course/bambu-studio/
-- Tutorial 01: https://amas4gm.github.io/bambu-studio-course/bambu-studio/getting-started/
-- Tutorial 02: https://amas4gm.github.io/bambu-studio-course/bambu-studio/object-manipulation/
-- Tutorial 02 Moodle embed: https://amas4gm.github.io/bambu-studio-course/bambu-studio/object-manipulation/?embed=1
-- Tutorial 01 Moodle embed: https://amas4gm.github.io/bambu-studio-course/bambu-studio/getting-started/?embed=1
+- Catalog: https://amas4gm.github.io/amas4gm-courses/
+- Bambu Studio: https://amas4gm.github.io/amas4gm-courses/bambu-studio/
+- Tutorial 01: https://amas4gm.github.io/amas4gm-courses/bambu-studio/getting-started/
+- Tutorial 02: https://amas4gm.github.io/amas4gm-courses/bambu-studio/object-manipulation/
+- Tutorial 02 Moodle embed: https://amas4gm.github.io/amas4gm-courses/bambu-studio/object-manipulation/?embed=1
+- Tutorial 01 Moodle embed: https://amas4gm.github.io/amas4gm-courses/bambu-studio/getting-started/?embed=1
 
 The root URL used to open Tutorial 01. Update existing Moodle embeds to the lesson URL. Each page has a real directory and index.html, so direct links and reloads work on GitHub Pages without routing rules. Embed mode hides catalog navigation while retaining the simulation label and controls.
 
 ```html
 <iframe
-  src="https://amas4gm.github.io/bambu-studio-course/bambu-studio/getting-started/?embed=1"
+  src="https://amas4gm.github.io/amas4gm-courses/bambu-studio/getting-started/?embed=1"
   title="Meet Bambu Studio — interactive simulation"
   width="100%" height="950" style="border:0;" loading="lazy"
   referrerpolicy="no-referrer-when-downgrade">
@@ -163,3 +163,21 @@ node scripts/extract-body-paths.mjs path/to/unsupported.gcode simulators/bambu-s
 ```
 
 The two compressed assets total 5.01 MB, decoded with the browser's native DecompressionStream. Each contains about 251,000 deposited segments, rendered with instancing and sorted by height so lowering the slider also reduces drawing work. Only one body variant is visible at a time. The printing animation shares the supported path data, and uses a height limit as the build plate lowers. Browser support for WebGL and DecompressionStream is required. The estimated full site is 20.7 MB, comfortably within the 100 MB review budget and 1 GB Pages limit.
+
+## Blender first review release
+
+Course: https://amas4gm.github.io/amas4gm-courses/blender/
+
+Three tutorials, 36 actions: getting-started (12), object-manipulation (11), edit-mode (13). The shared engine handles progress, quizzes, retry, sound, observation pauses, and embeds. The Blender adapter uses shared Three.js and real Blender geometry.
+
+Blender 5.2.2 LTS generated cube, blank, inset, cavity, and finished JSON/.blend checkpoints. Run Blender with `--background --factory-startup --python scripts/generate-blender-course.py`. The manifest records build hash, asset hashes, and mesh checks. The preview PNG is rendered in Blender. Coordinates are millimeters: Metric, unit scale 0.001. Export STL at scale 1 with Scene Unit off. STL reimport confirms 100 x 70 x 18 mm. Floor/walls are 3 mm; the outer top rim bevel is 0.6 mm with three segments. Physical printing and printer-specific slicing are not yet validated.
+
+This release implements numeric transforms, target-value mesh previews, reconstructed interface controls, prepared bevel selection, simulated save/export dialogs, and separate real downloads. It does not reproduce all native modal gestures or arbitrary topology. Loop cut/slide, fill, dissolve, repair exercises, and a less-guided assessment remain future work.
+
+Validation: 55 passing tests and site checks. Browser walkthroughs covered all 36 actions using navigation aids, rejected values, cancelled inset, and pending extrusion quiz after reload. An ignored local `.qa` harness shortens observation pauses for UI testing; production uses the normal shared timing. Broader mouse/touch and accessibility acceptance testing remains.
+
+## Repository rename and embed migration
+
+Renamed from bambu-studio-course to amas4gm-courses on November 9, 2026. Bambu lesson paths are unchanged below the new prefix. Update OpenLearn iframe URLs to `https://amas4gm.github.io/amas4gm-courses/bambu-studio/<lesson>/?embed=1`. Do not depend on old Pages URLs redirecting. Browser progress keys remain unchanged on the same origin. External OpenLearn course pages have not been edited.
+
+Blender embeds: `https://amas4gm.github.io/amas4gm-courses/blender/getting-started/?embed=1`, and corresponding object-manipulation/edit-mode paths. An iframe height of 1100 px includes the follow-along downloads.

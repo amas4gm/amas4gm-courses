@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "blenderVersion": "5.2.2 LTS",
+  "buildHash": "d13f752e3b9c",
+  "generator": "scripts/generate-blender-course.py",
+  "coordinateConvention": "millimeters; Z up; ground Z=0; scene scale_length=0.001",
+  "export": {
+    "file": "desk-tray.stl",
+    "globalScale": 1,
+    "useSceneUnit": false,
+    "roundTripDimensionsMm": [
+      100,
+      70,
+      18
+    ]
+  },
+  "checkpoints": {
+    "cube": {
+      "description": "New cube, before dimensioning. Scene uses millimeter coordinates.",
+      "dimensionsMm": [
+        2.0,
+        2.0,
+        2.0
+      ],
+      "nonManifoldEdges": 0,
+      "boundaryEdges": 0,
+      "volumeMm3": 8.0
+    },
+    "blank": {
+      "description": "100 x 70 x 18 mm blank; scale applied; bottom at Z=0.",
+      "dimensionsMm": [
+        100.0,
+        70.0,
+        18.0
+      ],
+      "nonManifoldEdges": 0,
+      "boundaryEdges": 0,
+      "volumeMm3": 126000.0
+    },
+    "inset": {
+      "description": "Top face inset 3 mm, defining a 94 x 64 mm opening.",
+      "dimensionsMm": [
+        100.0,
+        70.0,
+        18.0
+      ],
+      "nonManifoldEdges": 0,
+      "boundaryEdges": 0,
+      "volumeMm3": 126000.0
+    },
+    "cavity": {
+      "description": "Inner face extruded down 15 mm; floor and walls are 3 mm.",
+      "dimensionsMm": [
+        100.0,
+        70.0,
+        18.0
+      ],
+      "nonManifoldEdges": 0,
+      "boundaryEdges": 0,
+      "volumeMm3": 35760.0
+    },
+    "finished": {
+      "description": "Finished tray: outer top rim beveled 0.6 mm with three segments.",
+      "dimensionsMm": [
+        100.0,
+        70.0,
+        18.0
+      ],
+      "nonManifoldEdges": 0,
+      "boundaryEdges": 0,
+      "volumeMm3": 35648.836707
+    }
+  },
+  "physicalPrintValidated": false,
+  "files": {
+    "blank.blend": {
+      "sha256": "2585117883d5ebd6ef4cd0317269e09790f5eb0c5d09e17ccd206c58564ae239",
+      "bytes": 86514
+    },
+    "blank.json": {
+      "sha256": "fca70d85a31b68f756b0aaf99aa17be98829f9f5d275fd879e60df0dc335c378",
+      "bytes": 612
+    },
+    "cavity.blend": {
+      "sha256": "078f34c33acb7cc7f372be451158ab03b29baac5459b70881846931bded1c5b7",
+      "bytes": 86802
+    },
+    "cavity.json": {
+      "sha256": "4023a394512656224009d0c1b1c80998522961db5978b0d540234e6feece9b3d",
+      "bytes": 961
+    },
+    "cube.blend": {
+      "sha256": "42f63fbbe05a6b9fcae13c47a8f2e5ec7c4519b738443780795a898af0cee131",
+      "bytes": 86483
+    },
+    "cube.json": {
+      "sha256": "355ea61f90d5b8102d5f4e25a16547f291f7949e1e64caf69318c51a83ab6ad9",
+      "bytes": 598
+    },
+    "desk-tray.stl": {
+      "sha256": "d8c37666c2b56a852e50fd11c0b3867e9fb2398661dcaa3a1cd1651987a97bee",
+      "bytes": 2684
+    },
+    "finished.blend": {
+      "sha256": "c11967198e8920a4c27248307021d485f61330066c6d90e45825696f0c638412",
+      "bytes": 87268
+    },
+    "finished.json": {
+      "sha256": "0dbb4e589b06325677bc5e96efc809253c93cd2ce8193362c45e852fabb4a6bb",
+      "bytes": 1800
+    },
+    "inset.blend": {
+      "sha256": "4eafeb11d7f7bd341599c78d943cb54550ed17bc7dd3f33129de3c6f20d09879",
+      "bytes": 86680
+    },
+    "inset.json": {
+      "sha256": "c28123cb4f24d85c61029e43a3792cfe650d892169de53b907e293af0e05788f",
+      "bytes": 774
+    },
+    "tray-reference.png": {
+      "sha256": "2958b992cb20e455037fee0b446ffc386bb4935caf19d712156cb4c61f941010",
+      "bytes": 503380
+    }
+  }
+}
