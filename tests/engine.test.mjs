@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import lesson from '../bambu-studio/getting-started/lesson.js';
 import {loadProgress,saveProgress,normalizeProgress,progressKey,retryStepProgress,completedThroughStep} from '../shared/teaching/progress.js';
-import {createCountdown} from '../shared/teaching/countdown.js';
+import {createCountdown,completionPause} from '../shared/teaching/countdown.js';
 import {safeReturnUrl,resolveCourseReturn} from '../shared/teaching/return-to-course.js';
 const memory=()=>{const values=new Map();return {getItem:key=>values.get(key)??null,setItem:(key,value)=>values.set(key,value)};};
 test('legacy progress migrates by the old ordering and requires the new Top task',()=>{
@@ -88,4 +88,18 @@ test('replaying an earlier workspace hides effects of later completed tasks',()=
  assert.deepEqual(visible.map(s=>s.id),['prepare']);assert.ok(!visible.some(s=>s.simulation.effects?.modelVisible));
  const retried=retryStepProgress(lesson,{completed:[...completed]},'import-model');
  assert.ok(!completedThroughStep(lesson,new Set(retried.completed),new Set(),lesson.steps.findIndex(s=>s.id==='import-model')).some(s=>s.simulation.effects?.modelVisible));
+});
+
+
+test('every completed action gets a pause, while only repeatable tasks invite practice',async()=>{
+ const otherLessons=await Promise.all(['object-manipulation','material-installation','slicing-and-printing'].map(name=>import(`../bambu-studio/${name}/lesson.js`)));
+ for(const course of [lesson,...otherLessons.map(m=>m.default)])for(const step of course.steps.filter(s=>!s.terminal)){
+  const pause=completionPause(step);assert.ok(pause.durationMs>0);
+  assert.equal(pause.practice,['orbit','pan','zoom','transform','layers'].includes(step.simulation?.action),step.id);
+ }
+ assert.equal(completionPause({}).durationMs,3000);
+ assert.equal(completionPause({completionMode:'practice'}).durationMs,5000);
+ assert.doesNotMatch(completionPause(lesson.steps.find(s=>s.id==='top-view')).message,/Keep practicing/);
+ assert.equal(completionPause({completionDelayMs:0}).durationMs,3000);
+ assert.equal(completionPause({completionDelayMs:4000}).durationMs,4000);
 });

@@ -1,7 +1,7 @@
 import {loadProgress,saveProgress,retryStepProgress,completedThroughStep} from './progress.js?v=usability-2';
 import {createSound} from './sound.js';
 import {createGuidance} from './guidance.js';
-import {createCountdown} from './countdown.js';
+import {createCountdown,completionPause} from './countdown.js?v=completion-pause-1';
 import {captureReturnToCourse} from './return-to-course.js';
 
 export async function startTutorial({lesson,createSimulator,root}){
@@ -87,10 +87,10 @@ export async function startTutorial({lesson,createSimulator,root}){
    if(!ready||actionDone()||step().terminal)return;
    $('#partial-notice').hidden=true;(step().quiz?practiced:completed).add(step().id);feedback('');persist();updateProgress();adapter.refreshState();updateGuidance();
    $('#next').disabled=!isCompleted();$('#review-step').hidden=false;sound.play('success');
-   if(!step().completionDelayMs){showCompletion();return;}
-   const active=step().id,timer=createCountdown(step().completionDelayMs,performance.now());
-   $('#completion-notice').hidden=false;$('#completion-seconds').textContent=String(Math.ceil(step().completionDelayMs/1000));$('#completion-countdown').value=0;
-   $('#review-step').hidden=true;$('#control-status').textContent='Good! Keep practicing while the countdown finishes';
+   const pause=completionPause(step());adapter.setPaused(!pause.practice);
+   const active=step().id,timer=createCountdown(pause.durationMs,performance.now());
+   $('#completion-notice').hidden=false;$('#completion-message').textContent=pause.message;$('#completion-seconds').textContent=String(Math.ceil(pause.durationMs/1000));$('#completion-countdown').value=0;
+   $('#review-step').hidden=true;$('#control-status').textContent=pause.practice?'Good! Keep practicing while the countdown finishes':'Step complete · Take a moment to see what changed';
    function tick(now){if(step().id!==active){cancelPause();return;}const t=timer.tick(now,!document.hidden);
      $('#completion-seconds').textContent=String(t.seconds);$('#completion-countdown').value=t.progress;
      if(t.done){showCompletion();return;}frame=requestAnimationFrame(tick);
@@ -113,7 +113,7 @@ export async function startTutorial({lesson,createSimulator,root}){
  function retryStep(){const next=retryStepProgress(lesson,{completed:[...completed],practiced:[...practiced]},step().id);completed=new Set(next.completed);practiced=new Set(next.practiced);lastMistake=-Infinity;go(index);}
  function restart(){completed.clear();practiced.clear();adapter.reset();go(0);}
  try{
-   const response=await fetch(new URL('./shell.html?v=usability-2',import.meta.url));if(!response.ok)throw new Error('Lesson shell unavailable');root.innerHTML=await response.text();
+   const response=await fetch(new URL('./shell.html?v=completion-pause-1',import.meta.url));if(!response.ok)throw new Error('Lesson shell unavailable');root.innerHTML=await response.text();
    document.body.classList.toggle('embed-mode',new URLSearchParams(location.search).get('embed')==='1');
    $('#catalog-link').href=new URL('../../',import.meta.url);$('#credits-link').href=new URL('../../credits.html',import.meta.url);
    for(const [id,value] of [['course-title',lesson.title],['course-subtitle',lesson.subtitle],['course-eyebrow',lesson.eyebrow],['simulator-label',lesson.simulatorLabel],['simulation-note',lesson.simulationNote||'Practice simulation']])$('#'+id).textContent=value;

@@ -30,7 +30,7 @@ for(const s of steps){
 
 const legacyStepIds=steps.map(s=>s.id);
 legacyStepIds.splice(legacyStepIds.indexOf('complete'),0,'check');
-steps.splice(steps.findIndex(s=>s.id==='complete'),0,{id:'top-view',chapter:'02 / 3D NAVIGATION',title:'Look straight down',text:'The view cube follows your camera as you orbit. Click a face to look directly at that side of the model. This changes your viewpoint, not the model’s orientation.',task:'Click the Top face of the view cube in the lower-left corner of the viewport.',done:'You are looking straight down at the build plate. Benchy has not moved or rotated. The cube gives you a repeatable view without dragging.',completionDelayMs:5000});
+steps.splice(steps.findIndex(s=>s.id==='complete'),0,{id:'top-view',chapter:'02 / 3D NAVIGATION',title:'Look straight down',text:'The view cube follows your camera as you orbit. Click a face to look directly at that side of the model. This changes your viewpoint, not the model’s orientation.',task:'Click the Top face of the view cube in the lower-left corner of the viewport.',done:'You are looking straight down at the build plate. Benchy has not moved or rotated. The cube gives you a repeatable view without dragging.'});
 
 const tabViews={prepare:['home','prepare'],preview:['prepare','preview'],device:['preview','device'],'return-prepare':['device','prepare']};
 for(const step of steps){
@@ -38,7 +38,7 @@ for(const step of steps){
   step.simulation={action,target:step.target||step.id,view:'prepare',hint:step.hint||'',camera:['orbit','pan','zoom'].includes(action)?'close':'wide'};
   if(tabViews[step.id]) [step.simulation.viewBefore,step.simulation.viewAfter]=tabViews[step.id];
   if(step.id==='import-model')step.simulation.effects={modelVisible:true};
-  if(['orbit','pan','zoom'].includes(action))step.completionDelayMs=5000;
+  if(['orbit','pan','zoom'].includes(action))step.completionMode='practice';
   if(['orbit','pan','zoom','free'].includes(action))step.controlStatus='Only camera navigation is enabled';
   if(step.keyboard)step.keyboard='Focus the 3D view: '+step.keyboard;
   if(step.id==='top-view')Object.assign(step.simulation,{action:'view',target:'cube-top',camera:'close',selectedView:'Top',hint:'Click Top on the view cube'});

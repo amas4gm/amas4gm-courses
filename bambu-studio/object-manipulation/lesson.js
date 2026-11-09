@@ -23,6 +23,6 @@ const steps=[
 for(const step of steps){
  Object.assign(step.simulation,{editing:true,view:'prepare',camera:'object',hint:step.simulation.action==='object-select'?'Click Benchy to select it':'Left-drag empty space: orbit · Right-drag: pan · Scroll: zoom'});
  step.controlStatus=step.terminal?'Object tools and camera navigation enabled':'Only the current object tool and camera navigation are active';
- if(['transform','lay-face'].includes(step.simulation.action))step.completionDelayMs=5000;
+ if(step.simulation.action==='transform')step.completionMode='practice';
 }
 export default {id:'object-manipulation',software:'bambu-studio',version:2,title:'Move, scale, and orient models',subtitle:'Change the object. Get its base onto the plate.',eyebrow:'INTRO TO 3D PRINTING SLICING / TUTORIAL 02',simulatorLabel:'SIMULATED BAMBU STUDIO',simulationNote:'Practice model editing · no slicing or printer connection',capabilities:['manipulation'],progressMigrations:[{key:'amas-tutorial:bambu-studio:object-manipulation:v1',migrate(saved){return {...saved,completed:(Array.isArray(saved.completed)?saved.completed:[]).filter(id=>id!=='rotate-z')};}}],initialState:{view:'prepare',modelVisible:true},model:{url:new URL('../../shared/assets/models/Benchy.stl',import.meta.url).href,name:'Benchy.stl'},steps};
