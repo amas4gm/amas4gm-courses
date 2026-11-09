@@ -1,8 +1,10 @@
-// Offline extraction of deposited support paths from Bambu Studio's G-code.
+// Offline extraction of deposited body and support paths from Bambu Studio's G-code.
 // No machine commands or printer identifiers are included in the web asset.
-export function extractSupportPaths(gcode,{centerX=128,centerY=128,chordError=.015}={}){
+export const bodyFeatures=['Outer wall','Inner wall','Sparse infill','Internal solid infill','Top surface','Bottom surface','Gap infill','Bridge','Overhang wall','Floating vertical shell'];
+export function extractSupportPaths(gcode,options={}){return extractToolpaths(gcode,{...options,features:['Support','Support interface']});}
+export function extractToolpaths(gcode,{centerX=128,centerY=128,chordError=.015,features=bodyFeatures}={}){
  let x=0,y=0,z=0,e=0,relativeE=false,relativeXYZ=false,feature='',width=.42,height=.2,wiping=false;
- const segments=[],counts={Support:0,'Support interface':0};
+ const segments=[],counts=Object.fromEntries(features.map(name=>[name,0]));
  function add(a,b){
   if(Math.hypot(b[0]-a[0],b[1]-a[1])<1e-6)return;
   // Bambu Z-up -> simulator Y-up; origin at the model's plate center.
@@ -28,7 +30,7 @@ export function extractSupportPaths(gcode,{centerX=128,centerY=128,chordError=.0
   const nx=next('X',x),ny=next('Y',y),nz=next('Z',z),de=p.E===undefined?0:relativeE?p.E:p.E-e;
   if(!wiping&&de>0&&Object.hasOwn(counts,feature)){
    if(command==='G2'||command==='G3'){
-    if(p.R!==undefined||p.I===undefined&&p.J===undefined)throw new Error('Expected an I/J support arc');
+    if(p.R!==undefined||p.I===undefined&&p.J===undefined)throw new Error('Expected an I/J extrusion arc');
     const cx=x+(p.I??0),cy=y+(p.J??0),radius=Math.hypot(x-cx,y-cy),start=Math.atan2(y-cy,x-cx);
     let sweep=Math.atan2(ny-cy,nx-cx)-start;
     if(command==='G2'){if(sweep>=0)sweep-=Math.PI*2;}else if(sweep<=0)sweep+=Math.PI*2;

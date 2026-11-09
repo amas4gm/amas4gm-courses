@@ -1,0 +1,22 @@
+{
+  "source": "Benchy.3mf sliced with Bambu Studio 02.08.02.61",
+  "gcodeSha256": "0c844e352db0a697c5a43e144b4efa659e644086c5186bf6f18a3f96ecfbf4f8",
+  "format": "Gzip-compressed little-endian Float32 records: start XYZ, end XYZ, width, height (8 floats). Simulator Y-up, mm, plate center 128/128. Sorted by maximum endpoint height.",
+  "arcChordErrorMm": 0.015,
+  "segments": 251161,
+  "counts": {
+    "Outer wall": 81065,
+    "Inner wall": 45292,
+    "Sparse infill": 72508,
+    "Internal solid infill": 17370,
+    "Top surface": 1320,
+    "Bottom surface": 323,
+    "Gap infill": 23494,
+    "Bridge": 654,
+    "Overhang wall": 111,
+    "Floating vertical shell": 9024
+  },
+  "compressedBytes": 2503855,
+  "decodedBytes": 8037152,
+  "header": "; HEADER_BLOCK_START\n; BambuStudio 02.08.02.61\n; model printing time: 1h 34m 49s; total estimated time: 1h 39m 57s\n; total layer number: 599\n; total filament length [mm] : 3892.83\n; total filament volume [cm^3] : 9363.36\n; total filament weight [g] : 11.80\n; filament_density: 1.26,1.26,1.26\n; filament_diameter: 1.75,1.75,1.75\n; max_z_height: 48.04\n; filament: 1\n; support_material_on_wipe_tower: 0"
+}
