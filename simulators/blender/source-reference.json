@@ -1,0 +1,786 @@
+{
+  "blenderVersion": "5.2.2 LTS",
+  "sourceTag": "v5.2.2",
+  "commit": "d13f752e3b9c4f8c261cda552b1021f8bcc0382c",
+  "matchesInstalledBuild": true,
+  "icons": [
+    {
+      "file": "native-assets/icons/blender.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/blender.svg",
+      "sha256": "6ce4eadaa830d3fa1b55ef2189234fb775f9da01ebee43e09fcdb012201e92e8",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/view3d.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/view3d.svg",
+      "sha256": "71e66302b26fa3a4c5bb3c06f41cafce39d74f21d21dd89be6b5419172be9839",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/object_datamode.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/object_datamode.svg",
+      "sha256": "cfe32e515b13d6b15d81fa676d1c0c32c3776c4279ca7feb8c4b748bd0ffb494",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/editmode_hlt.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/editmode_hlt.svg",
+      "sha256": "c53fe0ef02ed302aaa0d5d58d87c15e933a068a474113fabb08a406b86929b88",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/vertexsel.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/vertexsel.svg",
+      "sha256": "db6afa128d85aa9c542040f489b2f8a8bd23d82a258ffc0fda08f91110a9547f",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/edgesel.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/edgesel.svg",
+      "sha256": "092971fed1337ad63ce2931dce6d105eb653665adce0446ff2ca92f8e26055bb",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/facesel.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/facesel.svg",
+      "sha256": "c6f4310c7fb69fe8c845f473e399482c13bfd7c4e38360e0522c0b9b38142c27",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/cursor.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/cursor.svg",
+      "sha256": "1ba0bcca7dad80a07c8e6926b7fe9468416fe475689ef8394a174fc6138a9c5a",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/select_set.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/select_set.svg",
+      "sha256": "d49079c01ef503f688f1aa6f6155ac384e76b2307b81c9f3578819ef0817cae7",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/select_extend.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/select_extend.svg",
+      "sha256": "3c0d5688f58dc97cf755256b7639403565993bf5ce58abaf268bfe75edd53297",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/select_subtract.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/select_subtract.svg",
+      "sha256": "70cfb730b8e460a7464b8a888140c9a77e7c38780b88dff726fb27fe6ba4d671",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/select_intersect.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/select_intersect.svg",
+      "sha256": "87c15f38e21a6c85701abaca2ba750ae5a007565f8d54be708aa3e74930daef6",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/select_difference.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/select_difference.svg",
+      "sha256": "07a4ae30a91c5e8a30163888cce1aabf57548714c205b5cd5979099cfbb72493",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/orientation_global.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/orientation_global.svg",
+      "sha256": "3812b6d8a514ee4e63ae6136b33b525d4acba0fc9b30ca8a85910b52184c564b",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/pivot_median.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/pivot_median.svg",
+      "sha256": "62eca7be36b5ff98e70c79121a7326aa871c54f768cc650d52df80f88beff372",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/snap_off.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/snap_off.svg",
+      "sha256": "6e5682e8e3f9e2e46ed8512bc449a1d94742fca9d2c0ccc29963613758c5ccb8",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/snap_on.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/snap_on.svg",
+      "sha256": "7d1b26c4dc296bf4e016b3e8b824014c3efdb11d511dd1c6630a0bc68966bcd8",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/prop_off.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/prop_off.svg",
+      "sha256": "81c9f196d329bf82eb687acb8ad5bfe42b62faa8096c587651ef54c6fe152a10",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/overlay.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/overlay.svg",
+      "sha256": "c313a25884acb05806279c4b6a7aba395dfd6ac5d436aff23688d3cdf90f6ca2",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/xray.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/xray.svg",
+      "sha256": "3bdc26079078bb1e81027169c4eba78e3f94a52df8b9693c63a4cd45cb3a1ee6",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/shading_wire.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/shading_wire.svg",
+      "sha256": "3d088bb8773a64c10ba414e20ba3ae0986805f2bae07a26d9f89551c9b00aa52",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/shading_solid.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/shading_solid.svg",
+      "sha256": "5c44c75ebf53d05a0853eb4528ce637fc13c1cb4cb0f1746e68cb12820b0ea0b",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/shading_texture.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/shading_texture.svg",
+      "sha256": "959144b6f29a0de7a078f5e29dbd8d5a531ea232f8c3656f57404c2ff669daa0",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/shading_rendered.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/shading_rendered.svg",
+      "sha256": "c10e7a1ec9675d709dd62f82a1e7c678f566929d6f9feefd7bffecc9977a1e70",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_collection.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_collection.svg",
+      "sha256": "cb3ea48d45ed3615fa7c328e32e3eaeb9a0fe709ef4f4ad7a5bb27d013f8be5a",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_mesh.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_mesh.svg",
+      "sha256": "ea5199353617e3d7e9762709f3719196afd122a463f341f3784f5575ac54146a",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_camera.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_camera.svg",
+      "sha256": "dd0249df523823154967f72f7cfe8e34df1d0515947a822edac1501663fe1ed1",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_light.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_light.svg",
+      "sha256": "504a56d15387acec0ecaeb597135a06b8c58d19a5990415064bd260be2dff7ab",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_curve.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_curve.svg",
+      "sha256": "50855ed360decff05d22ada2c3ee10090d748a54f372a1a0240b4564225c6081",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_surface.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_surface.svg",
+      "sha256": "2f113bf6b78fa64b67e789402cfde7f1534b05bcb77f647d83a855f6d403e099",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_meta.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_meta.svg",
+      "sha256": "bc8e810654b86f4089f46dd6892e01e9c57ce93d00a0bc1ebf0ae49b2172d8a4",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_font.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_font.svg",
+      "sha256": "11441c9acd7f75214f8ccdc9e7ef4aeebf798da10dab92603d792fece3f86e46",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_pointcloud.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_pointcloud.svg",
+      "sha256": "7dc371292e18b3bbcf56efcb62edc59173040c81cdf052ed8e21bb6edc6d8e99",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_volume.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_volume.svg",
+      "sha256": "9c184aaeea9d22ecfe0f858ca708f466d104fb04015b447e720cc6a21e65628e",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_greasepencil.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_greasepencil.svg",
+      "sha256": "b7712a1b438eb54f26ced01f61bad10383c57482502d3df1a639e478f54226eb",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_armature.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_armature.svg",
+      "sha256": "54caafe80e8e84fad3a2a7a62ec5c801d3cd8c53607622aa8efaa7a53c93a99f",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_lattice.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_lattice.svg",
+      "sha256": "69b9cc8290c6b7f975a9becfa56652c418ef92b920fb52060e29a3cf5d9b13af",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_empty.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_empty.svg",
+      "sha256": "96ce438123210b0e06125ca424817e4cfd5b3de90baa43d98bcb15ec9296ba55",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_image.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_image.svg",
+      "sha256": "8e441b4c3bbef363a1726d0dc02d0cc9f10078b45b55d989e448435e1e1bb7e9",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_lightprobe.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_lightprobe.svg",
+      "sha256": "a7118e3df5de303eedd2c43e95b337eea719e1d32e716711b6b7607d85f04497",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_speaker.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_speaker.svg",
+      "sha256": "c76a84b275e4e244a8bdd3560e99fc2a26880c193fec7dc06d96a813902ddf48",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_force_field.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_force_field.svg",
+      "sha256": "54a97aa80abd2476889fd3188dc7d6de7f0022625c8a7e2ffa07f641c8c5e4b8",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/outliner_ob_group_instance.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/outliner_ob_group_instance.svg",
+      "sha256": "556f93f1f05402d6fe51f67adcf3905ed4aca90428e7b7864edcff06aa8e2443",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/properties.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/properties.svg",
+      "sha256": "2d628d3360f1599cac296283e2748daf58552c2bf30654cbb6c397780cbc39d6",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/scene.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/scene.svg",
+      "sha256": "15a839b85e940cded52f0955fb85939b44001273be7fcc1de6537d9117533c95",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/render_still.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/render_still.svg",
+      "sha256": "8243bd06361e79d4a1387d4664cef7bd7cba76412a6670aa076058c9ff88a5b7",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/renderlayers.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/renderlayers.svg",
+      "sha256": "068a4979a7ea06d6e3c759610031e2ca1fb9704e8446943cad5e91f307711a61",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/world.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/world.svg",
+      "sha256": "6f15de148ee3064afdaf8e350ec3f25faf2d6da926ce070cf14b2eeca9c83ed6",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/object_data.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/object_data.svg",
+      "sha256": "cfe32e515b13d6b15d81fa676d1c0c32c3776c4279ca7feb8c4b748bd0ffb494",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/modifier.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/modifier.svg",
+      "sha256": "cfcbea3c66ca8339d7faf1a1d115f986ff6a7142a5ca8eff8990bdc0e894812a",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/physics.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/physics.svg",
+      "sha256": "7b410ce098fb001dfd80c92a6373b8e8ac34d7cfb06fb7850532e7e332ab8d6d",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/constraint.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/constraint.svg",
+      "sha256": "35e43e2556da81589ec4494780f20519f5970488b2f8f100e96aa18e7a392cd6",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/mesh_data.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/mesh_data.svg",
+      "sha256": "979446de91f6c4f9e0ba7979a9ca5fc0eed5cbb88662a52ee09af60a3c87d204",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/material.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/material.svg",
+      "sha256": "02d6e4195b49ba8d8d2b15d441de54997c27bf111724ae238f9765a59e093edf",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/texture.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/texture.svg",
+      "sha256": "385cb20c299facf030458d2c676fa9d317886ddd22cd67972768ecf559cf4937",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/camera_data.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/camera_data.svg",
+      "sha256": "564ac523da1fe377c83265f53e51634516550d889b7ef5b9ecfe492634d2169b",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/light_data.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/light_data.svg",
+      "sha256": "f993f0b37de1e7fa8e4fe83344dca6461f31798c8193e073b791c74a13bfc0a2",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/hide_off.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/hide_off.svg",
+      "sha256": "2b7b6445b7ea9d3a524351501d09f471540f223d8d3d35b485de3517b250de83",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/restrict_render_off.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/restrict_render_off.svg",
+      "sha256": "b58d999babd754c30e0ae2f081dda07a665e5b142ee350671ab703a69e3bfc41",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/restrict_select_off.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/restrict_select_off.svg",
+      "sha256": "911bb4e2c5421640b8bafed6f31aa7b20afe451cb5201e8eb238cdb4c5c2a722",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/checkbox_hlt.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/checkbox_hlt.svg",
+      "sha256": "0c7d792aac276c0ebea843bb1d2e4870e19517f43c9f3ef1b494d8d6c2f266cd",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/checkbox_dehlt.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/checkbox_dehlt.svg",
+      "sha256": "5fcacba19714529d2283550eeff5c052cf59b190aa32403d2e692dc1ca424b07",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/mesh_plane.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/mesh_plane.svg",
+      "sha256": "2025284deaf1807332f361abe670515264c3c9acb8159b16b2a060796c3b1fcd",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/mesh_cube.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/mesh_cube.svg",
+      "sha256": "46dc02909a1b54e02138527bfdddfdd4688b182cff5cfed37cf8d10430eaf74b",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/mesh_circle.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/mesh_circle.svg",
+      "sha256": "cbbf87ad4bce5632970a5610f294b49ddc712892c2424ff6984492ca553b2e8c",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/mesh_uvsphere.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/mesh_uvsphere.svg",
+      "sha256": "b9566acca140f60d5ce23545f39fb3ad482d7aa470a745e1141ff98ad7f05aed",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/mesh_icosphere.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/mesh_icosphere.svg",
+      "sha256": "2e9e0462cd2e33abaf96ec904f5de838d678683b6ad5c3cf6f4aa5630e9f1e44",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/mesh_cylinder.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/mesh_cylinder.svg",
+      "sha256": "0c4c9b1b8a07ff8b8cc666258a6fe69170afe7a24de688fadd0f7d8c1345938e",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/mesh_cone.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/mesh_cone.svg",
+      "sha256": "d27ed031eb512b078d0c7c49141a76f2fdd4e0c06ac70334c376c663960cc27d",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/mesh_torus.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/mesh_torus.svg",
+      "sha256": "2b0230517749c15c98a5de65e3c854fe0f7e6cbcb633a124f94fe7e947438205",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/mesh_grid.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/mesh_grid.svg",
+      "sha256": "8dc30d08887ed6c509016185040864b25f2e0e8febc2650883e0b706e44342b8",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/mesh_monkey.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/mesh_monkey.svg",
+      "sha256": "47c3c77edb179aab9f0e927e8a58d7f7d56eb9308fcc427a4fb3b8f9bf3cddfd",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/play.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/play.svg",
+      "sha256": "354497080cdfdcc06206cf9dad004abc04530926e94da8f4c5ed77eae23fa5f4",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/play_reverse.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/play_reverse.svg",
+      "sha256": "6f586893adedbb5c41f30754eb06557ccf6e449853545ffa3cd92bb5947683a8",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/pause.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/pause.svg",
+      "sha256": "74e79096516749a8e486e47d102a7ed5097ed35d3b7891ef57d4c47f2b1c0db4",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/rew.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/rew.svg",
+      "sha256": "73c3a6a00e3e9716b2e600a35874a674c685529b1301e62fb3c65fb1da07da9d",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/ff.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/ff.svg",
+      "sha256": "ca5d7632741a115682aaf754481b110f3787c67d9bb680498c9c158443123cb2",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/keyframe_hlt.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/keyframe_hlt.svg",
+      "sha256": "8b23ca0257f9cdb80acae0c5fab1278c41db5a146f9879414ce99aba0a69df7f",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/record_off.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/record_off.svg",
+      "sha256": "e68a60dbb98e7abaad5c52047817db4e092c366289bfde725e161f4ad4368ff0",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/view_camera.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/view_camera.svg",
+      "sha256": "17fd5360f46a00bcf2c3d72f115f017ee693775dd3af44fab89e1a939a879e07",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/view_pan.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/view_pan.svg",
+      "sha256": "7afe246db6ebd3937c14931d6fa139b4f9c850e89d8a7c3ba9387d27f8b49d00",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/view_zoom.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/view_zoom.svg",
+      "sha256": "699bc02f382806d49b602b1992bb8ba387ab695d20ce4e4b6fd76e374ac7a968",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/zoom_in.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/zoom_in.svg",
+      "sha256": "066cfcbe605b4c372ac86987b565e08609ce5b9511530758d2c80db85dd16db1",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/zoom_out.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/zoom_out.svg",
+      "sha256": "ffdac0eada54a715fb63364b3b386fd9e6111f214f0ec66535637902d71a485e",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/zoom_selected.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/zoom_selected.svg",
+      "sha256": "2d70e3f1c7731f67b085e68c7a51a2fc1fcd9859c9c0f20d320ce0cb5fd153a7",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/file_new.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/file_new.svg",
+      "sha256": "41830f1489a8ac3e721c10d6d4d579b9d5ffaed59327c5e2ddd5213a5c9733dc",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/file_folder.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/file_folder.svg",
+      "sha256": "f5823477533c18414a84dce21f1cca4713a22679ef8f14daed6ace6e37435cf9",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/file_parent.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/file_parent.svg",
+      "sha256": "42db869da918d13d79fd84b2bf6767a6dcb96c300f050b498cca0c33e75c2a72",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/file_blend.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/file_blend.svg",
+      "sha256": "cbe5c8177ca58a9c6092f99b546c8c26085baa29d482fc076555538e2a7a8ea6",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/file_tick.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/file_tick.svg",
+      "sha256": "ee7b1058d51ba23378dbd25cb082ac1cff2f73c4bc2d3b3d7c886da0733e1d2e",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/file_refresh.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/file_refresh.svg",
+      "sha256": "5d5250ecab6c77dd3c3b4e732ec95d357ed686f268c5a771fb1200da4d705ac8",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/filebrowser.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/filebrowser.svg",
+      "sha256": "f5823477533c18414a84dce21f1cca4713a22679ef8f14daed6ace6e37435cf9",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/tria_right.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/tria_right.svg",
+      "sha256": "2c91b7909540c1a2a465f04ac12cac17da8a1f7559346c6fdb7faea382bd8262",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/tria_down.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/tria_down.svg",
+      "sha256": "55cc02eb89143156100e074788e8313a69bff1ca1bc33675f77428b32dd3f483",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/downarrow_hlt.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/downarrow_hlt.svg",
+      "sha256": "a63ad42be88cc5a85f5c86c25d3f8758b35cb83ac72e77cb5cfb034c01cc08d9",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/disclosure_tri_right.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/disclosure_tri_right.svg",
+      "sha256": "fc578b2fa85b886f78fea7a60f30d15fc79351ff0e8d9162224086b62e98838a",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/disclosure_tri_down.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/disclosure_tri_down.svg",
+      "sha256": "de765765b7bd3a4f74b1cbfc292a3844082c906f06e4462ad5468ff5db9dd820",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/checkmark.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/checkmark.svg",
+      "sha256": "a9192f3d01de6e583476a3ce72668dd0b67e946a0b641b03c9499ce7f52b1dfa",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/cancel.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/cancel.svg",
+      "sha256": "5cfe0b83d4ac5c7e23b2d6e1ca823bd2b65ce48b0eb20b66e39d693cf9edab9a",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/append_blend.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/append_blend.svg",
+      "sha256": "f200b101347d78fd355828ff402c2bdb6d8cba27178cec9396e4d1647379f5ad",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/asset_manager.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/asset_manager.svg",
+      "sha256": "1ddab43cf964ad15e91b0c5c04a55a0ddb10c24bf435473466caf21ed2bf7f02",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/copydown.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/copydown.svg",
+      "sha256": "47fe39f381cabcf927de94c68069410007cf7c94a82ae9561a3d331296d2ae5b",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/export.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/export.svg",
+      "sha256": "a4ef627466f3c4604a5a64951d8c96e371154c5e5b89b9d2828fe20c67d5f260",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/import.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/import.svg",
+      "sha256": "24c2d32a911d6b364a9a38aa7a2a44b89adcda37a4c69dced412cace80ace303",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/library_data_override.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/library_data_override.svg",
+      "sha256": "07dca7d6c34a813d1b25daf8ce4721dc5f05746b5b5020d5d84c8ee3747d9368",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/link_blend.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/link_blend.svg",
+      "sha256": "cb69920ded0e1a26564b2a45b71697544b80558f19ae44dd4e985d43cf19601a",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/pastedown.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/pastedown.svg",
+      "sha256": "c5893a7d03958aff558f18a94d1d560f60a7b51060d06f176af1de1f16222b25",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/quit.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/quit.svg",
+      "sha256": "07a4864823061e0b6782aec5ded5790300370f6a6def171062d0578c51182962",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/render_animation.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/render_animation.svg",
+      "sha256": "9d0445e08692bae06028ee4f83f80e075a254851636fe0db26317bffa25f465e",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/sculptmode_hlt.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/sculptmode_hlt.svg",
+      "sha256": "ec3564027214b05e7e00500b793a13c82a3b26325bb318522dc49be5c308b89a",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/tpaint_hlt.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/tpaint_hlt.svg",
+      "sha256": "a1250a7bfc11492897749e23cca6dbebe1b5d17eb00239b5ab967a064b31e556",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/vpaint_hlt.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/vpaint_hlt.svg",
+      "sha256": "704c61e0bbf92dd81904ea52d24df90ce199790d7121fffe08e6967551aa4dc8",
+      "modified": false
+    },
+    {
+      "file": "native-assets/icons/wpaint_hlt.svg",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/release/datafiles/icons_svg/wpaint_hlt.svg",
+      "sha256": "0a1ad87d3c82da6f66e2725b1e38ac65a3205104d38f806d77852f5601cce82f",
+      "modified": false
+    }
+  ],
+  "font": {
+    "file": "native-assets/Inter.woff2",
+    "source": "Blender 5.2.2 installation: 5.2/datafiles/fonts/Inter.woff2",
+    "copyright": "Copyright 2020 The Inter Project Authors (https://github.com/rsms/inter)",
+    "license": "SIL Open Font License 1.1",
+    "sha256": "fb865a5087637ba194b14aef6f0558214f3c4b3ec939e3c0812c66de41036a47",
+    "modified": false
+  },
+  "sourceFiles": [
+    {
+      "file": "native-assets/source/space_view3d.py",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/scripts/startup/bl_ui/space_view3d.py",
+      "sha256": "b1eec91172e68d8ca3ea2c8a0f3badc8c2331b4ab9ec5bb06ec7691f62677fcc",
+      "modified": false
+    },
+    {
+      "file": "native-assets/source/space_toolsystem_toolbar.py",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/scripts/startup/bl_ui/space_toolsystem_toolbar.py",
+      "sha256": "240c55cdd89429ddce91753dbf8b62f11e83e158acf763e4e331c7394fe59de9",
+      "modified": false
+    },
+    {
+      "file": "native-assets/source/blender_default.py",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/scripts/presets/keyconfig/keymap_data/blender_default.py",
+      "sha256": "fd8aae31c1e90319e20ff07dc7ec63143d0fb99fe225eaccbcdcdc06091d8c5d",
+      "modified": false
+    },
+    {
+      "file": "native-assets/source/view2d_ops.cc",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/source/blender/editors/interface/view2d/view2d_ops.cc",
+      "sha256": "7c3ba795753fe00eb87184663f50087768269fd9262b4bd8dfdfb1094f8c2e77",
+      "modified": false
+    },
+    {
+      "file": "native-assets/source/interface_handlers.cc",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/source/blender/editors/interface/interface_handlers.cc",
+      "sha256": "9bcd285f9c24b7c4a6ebf061bc0e8ee0f45a311b9133e51828ae51b08ac60521",
+      "modified": false
+    },
+    {
+      "file": "native-assets/source/transform.cc",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/source/blender/editors/transform/transform.cc",
+      "sha256": "68a0c566f29ecb395bc8411e2110c1c1861bc278903a3ac2978954854338f872",
+      "modified": false
+    },
+    {
+      "file": "native-assets/source/space_topbar.py",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/scripts/startup/bl_ui/space_topbar.py",
+      "sha256": "437b3dfc69d101140ab994a10484e4c954b650514b173a45056bd04e3ae8826a",
+      "modified": false
+    },
+    {
+      "file": "native-assets/source/rna_object.cc",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/source/blender/makesrna/intern/rna_object.cc",
+      "sha256": "de0c7ab9abe8127dd0c534e94fec469d21fdca7d33d6991c61c1c7667eee9886",
+      "modified": false
+    },
+    {
+      "file": "native-assets/source/object_edit.cc",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/source/blender/editors/object/object_edit.cc",
+      "sha256": "99bfb6e580aa033fc769bf18c26d5c02bd6ca634474b0ce431c054778a63b073",
+      "modified": false
+    },
+    {
+      "file": "native-assets/source/object_modes.cc",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/source/blender/editors/object/object_modes.cc",
+      "sha256": "9a1dbf3bfc233cc9d3dbb8709e6642a1f53ac3b93c5cfb1bfe492503eae61701",
+      "modified": false
+    },
+    {
+      "file": "native-assets/source/space_topbar.cc",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/source/blender/editors/space_topbar/space_topbar.cc",
+      "sha256": "00c2838acfaf1a18b807656099489d7be887b16330e5433b4dd87df7264e75e5",
+      "modified": false
+    }
+  ],
+  "notes": [
+    "SVG files are unmodified official Blender source assets. Browser CSS may tint monochrome masks to match the native theme.",
+    "Toolbar geometry icons are rendered by Blender in the full UI reference screenshots; do not replace them with Unicode or generic SVG lookalikes.",
+    "The official v5.2.2 tag resolves to the exact installed build commit.",
+    "Blender copyright and GPL notices are included; Inter remains under OFL-1.1."
+  ],
+  "menuReference": "native-assets/menu-reference.json",
+  "behaviorReference": "native-assets/BEHAVIOR.txt",
+  "sourceAnchors": {
+    "modeHeader": "space_view3d.py:846",
+    "modeEnums": "rna_object.cc:36",
+    "modeFiltering": "object_edit.cc:2007; object_modes.cc:103",
+    "add": "space_view3d.py:2679",
+    "addMesh": "space_view3d.py:2418",
+    "object": "space_view3d.py:2806",
+    "apply": "space_view3d.py:3197",
+    "view": "space_view3d.py:1453",
+    "file": "space_topbar.py:157",
+    "export": "space_topbar.py:391",
+    "overlayGeometry": "space_view3d.py:7184",
+    "faceOrientation": "space_view3d.py:7224",
+    "horizontalHeaderScroll": "blender_default.py:952; view2d_ops.cc:461",
+    "transformModal": "blender_default.py:6153"
+  }
+}

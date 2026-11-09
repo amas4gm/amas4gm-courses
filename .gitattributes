@@ -3,3 +3,6 @@ shared/vendor/** -text
 shared/assets/** -text
 simulators/bambu-studio/assets/** -text
 simulators/bambu-studio/BAMBU-LICENSE.txt -text
+simulators/blender/native-assets/** -text whitespace=cr-at-eol
+# Retain the official copyright notice's final blank line.
+simulators/blender/native-assets/licenses/Blender-copyright.txt whitespace=cr-at-eol,-blank-at-eof

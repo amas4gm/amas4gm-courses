@@ -1,2 +1,4 @@
 node_modules/
 .test-output/
+# Raw authoring captures remain local. Only lossless packaged frames are published.
+simulators/blender/reference/

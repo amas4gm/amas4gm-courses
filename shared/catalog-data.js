@@ -20,7 +20,7 @@ export const software=[{
         "Real Blender checkpoints"
       ],
       "number": "01",
-      "steps": 12
+      "steps": 14
     },
     {
       "id": "object-manipulation",
@@ -42,7 +42,7 @@ export const software=[{
         "Real Blender checkpoints"
       ],
       "number": "03",
-      "steps": 13
+      "steps": 14
     }
   ]
 }];

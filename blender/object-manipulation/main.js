@@ -1,4 +1,4 @@
 import lesson from './lesson.js';
 import {startTutorial} from '../../shared/teaching/engine.js?v=completion-pause-2';
-import {createBlenderSimulator} from '../../simulators/blender/simulator.js';
+import {createBlenderSimulator} from '../../simulators/blender/native-simulator.js';
 startTutorial({lesson,createSimulator:createBlenderSimulator,root:document.querySelector('#app')});

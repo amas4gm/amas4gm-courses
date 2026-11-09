@@ -1,18 +1,18 @@
 export default {
   "id": "getting-started",
   "software": "blender",
-  "version": 1,
+  "version": 2,
   "title": "Meet Blender",
   "subtitle": "Find your way around the interface and practice navigation.",
   "eyebrow": "INTRODUCTION TO BLENDER FOR 3D PRINTING",
   "simulatorLabel": "SIMULATED BLENDER",
-  "simulationNote": "Focused practice · Blender-generated checkpoints · no printer connection",
+  "simulationNote": "Native Blender 5.2.2 interface · bounded checkpoint practice",
   "follow": "Open real Blender alongside this lesson. Download a checkpoint to catch up. Save often.",
   "steps": [
     {
       "id": "viewport",
       "title": "Meet the 3D Viewport",
-      "text": "This is a focused simulation of Blender 5.2. The large center area is the 3D Viewport: where you inspect and edit your model. We start with a prepared millimeter scene; download Start below to follow along.",
+      "text": "This is Blender’s complete Layout workspace. The large 3D Viewport is surrounded by the Outliner, Properties editor, Timeline, workspaces, menus, and tools. We will isolate one control at a time, keeping the surrounding interface visible.",
       "task": "Click inside the 3D Viewport.",
       "done": "The viewport shows your scene. The surrounding editors offer different views of the same project.",
       "simulation": {
@@ -22,7 +22,7 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The viewport shows your scene. The surrounding editors offer different views of the same project. Save your real Blender file before experimenting."
+      "follow": "The viewport shows your scene. The surrounding editors offer different views of the same project. Save your own real Blender file before experimenting."
     },
     {
       "id": "outliner",
@@ -38,13 +38,13 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The Outliner selects the same object you see in the viewport. Save your real Blender file before experimenting."
+      "follow": "The Outliner selects the same object you see in the viewport. Save your own real Blender file before experimenting."
     },
     {
       "id": "sidebar",
       "title": "Read the Item panel",
-      "text": "The Item Sidebar displays location, rotation, scale, and dimensions. In real Blender, N toggles this Sidebar inside the viewport. This simulation keeps the relevant fields visible.",
-      "task": "Click Item above the Transform fields.",
+      "text": "The Item Sidebar lives inside the 3D Viewport. It displays location, rotation, scale, and dimensions. Blender shortcuts act on the editor under your pointer.",
+      "task": "Move into the viewport and press N, or choose View → Sidebar.",
       "done": "Dimensions are the size of the object. Location describes its origin, not the bottom surface.",
       "simulation": {
         "action": "sidebar",
@@ -52,13 +52,27 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "Dimensions are the size of the object. Location describes its origin, not the bottom surface. Save your real Blender file before experimenting."
+      "follow": "Dimensions are the size of the object. Location describes its origin, not the bottom surface. Save your own real Blender file before experimenting."
+    },
+    {
+      "id": "headers",
+      "title": "Find controls in a crowded header",
+      "text": "This step deliberately uses a narrow Blender window. When an editor is too narrow, controls remain in its horizontally scrollable header. They have not disappeared. Hover over that header and use the wheel, trackpad horizontal scroll, or middle-mouse drag. Widening the window also helps.",
+      "task": "Scroll over the viewport header to reveal controls at its right end, or middle-drag the header to the left.",
+      "done": "You scrolled the header without moving the 3D view. In real Blender, this also applies to other crowded editor headers and workspace tabs.",
+      "simulation": {
+        "action": "header-scroll",
+        "asset": "cube"
+      },
+      "chapter": "BLENDER / PART 1 · OBJECT MODE",
+      "controlStatus": "Narrow-window exercise · scroll the header",
+      "follow": "Try narrowing Blender, scroll its header, then maximize it again before continuing."
     },
     {
       "id": "units",
       "title": "A scene for millimeters",
-      "text": "Our downloadable starting scene uses Metric, Unit Scale 0.001, and Length Millimeters. One coordinate unit represents one millimeter. Use this checkpoint so your real project matches.",
-      "task": "Click Scene Units.",
+      "text": "The prepared millimeter checkpoint uses Metric, Unit Scale 0.001, and Length Millimeters. These settings are already set here. Expand the actual Units section to inspect them.",
+      "task": "Expand Units in Scene Properties on the right.",
       "done": "These settings are already prepared in the checkpoint. Explicit entries such as 100 mm avoid ambiguity. Export scale must still be checked.",
       "simulation": {
         "action": "units",
@@ -66,12 +80,12 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "These settings are already prepared in the checkpoint. Explicit entries such as 100 mm avoid ambiguity. Export scale must still be checked. Save your real Blender file before experimenting."
+      "follow": "These settings are already prepared in the checkpoint. Explicit entries such as 100 mm avoid ambiguity. Export scale must still be checked. Save your own real Blender file before experimenting."
     },
     {
       "id": "delete",
-      "title": "Remove the practice cube",
-      "text": "Object Mode acts on whole objects. Delete removes the selected object. In real Blender you can undo accidental deletion with Ctrl+Z.",
+      "title": "Remove the practice object",
+      "text": "We now load the prepared Start checkpoint: a single mesh named Desk Tray, with millimeter units. Object Mode acts on whole objects. Delete removes the selected object; Ctrl+Z in real Blender can recover an accidental deletion.",
       "task": "Focus the viewport and press Delete, or use the practice aid below.",
       "done": "The object was removed. Next you will add your own mesh.",
       "simulation": {
@@ -87,7 +101,7 @@ export default {
       ],
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The object was removed. Next you will add your own mesh. Save your real Blender file before experimenting."
+      "follow": "The object was removed. Next you will add your own mesh. Save your own real Blender file before experimenting."
     },
     {
       "id": "add",
@@ -104,13 +118,27 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "A new cube appears and becomes selected. In Blender, Shift+A also opens Add. Save your real Blender file before experimenting."
+      "follow": "A new cube appears and becomes selected. In Blender, Shift+A also opens Add. Save your own real Blender file before experimenting."
+    },
+    {
+      "id": "rename",
+      "title": "Give the object a useful name",
+      "text": "Blender names a new mesh Cube. A useful object name makes it easier to find in the Outliner as a project grows. F2 renames the active object.",
+      "task": "Click the viewport. Press F2, type Desk Tray, then Enter.",
+      "done": "The Outliner and viewport identify the same object as Desk Tray. Renaming changes its label, not its geometry.",
+      "simulation": {
+        "action": "rename",
+        "asset": "cube"
+      },
+      "chapter": "BLENDER / PART 1 · OBJECT MODE",
+      "controlStatus": "Only this step’s interaction is enabled",
+      "follow": "Name the object Desk Tray in real Blender, then save your project."
     },
     {
       "id": "orbit",
       "title": "Orbit around the object",
-      "text": "Orbit changes where you look from. In Blender, drag the middle mouse button. A touch device may use one-finger dragging in this simulation.",
-      "task": "Middle-drag to orbit. A labeled simulator aid is available below.",
+      "text": "Orbit changes where you look from. In Blender, drag the middle mouse button. Here we isolate horizontal orbit so you can learn the gesture without losing the object.",
+      "task": "Middle-drag horizontally to orbit, or use the labeled simulation aid.",
       "done": "The view changed; the cube did not rotate.",
       "simulation": {
         "action": "orbit",
@@ -135,7 +163,7 @@ export default {
       ],
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The view changed; the cube did not rotate. Save your real Blender file before experimenting."
+      "follow": "The view changed; the cube did not rotate. Save your own real Blender file before experimenting."
     },
     {
       "id": "pan",
@@ -156,7 +184,7 @@ export default {
       ],
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "Panning helps you inspect details without changing the model. Save your real Blender file before experimenting."
+      "follow": "Panning helps you inspect details without changing the model. Save your own real Blender file before experimenting."
     },
     {
       "id": "zoom",
@@ -181,7 +209,7 @@ export default {
       ],
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "Your model remains the same size in millimeters. Save your real Blender file before experimenting."
+      "follow": "Your model remains the same size in millimeters. Save your own real Blender file before experimenting."
     },
     {
       "id": "top",
@@ -195,7 +223,7 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "You are looking down at the top of the cube. Save your real Blender file before experimenting."
+      "follow": "You are looking down at the top of the cube. Save your own real Blender file before experimenting."
     },
     {
       "id": "frame",
@@ -210,7 +238,7 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The selected object is centered again. Save your real Blender file before experimenting."
+      "follow": "The selected object is centered again. Save your own real Blender file before experimenting."
     },
     {
       "id": "save",
@@ -226,14 +254,14 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "In real Blender, save desk-tray-01-start.blend. Save again after each meaningful change. Save your real Blender file before experimenting."
+      "follow": "In real Blender, save desk-tray-01-start.blend. Save again after each meaningful change. Save your own real Blender file before experimenting."
     },
     {
       "id": "complete",
-      "title": "Keep inspecting",
+      "title": "Continue in real Blender",
       "chapter": "TUTORIAL COMPLETE",
-      "text": "You completed this tutorial. You may orbit, pan, and zoom around the checkpoint here. Continue with the next tutorial from the course page.",
-      "task": "Inspect the model, or return to the course.",
+      "text": "You completed this tutorial. Download the checkpoint and inspect it in real Blender. Save a new version before experimenting.",
+      "task": "Download a checkpoint, or return to the course.",
       "done": "Save your real Blender project before leaving.",
       "terminal": true,
       "simulation": {

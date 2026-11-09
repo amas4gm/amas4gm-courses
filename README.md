@@ -112,7 +112,7 @@ Browser checks include Home/empty plate, tab panels, importing, modal focus/reop
 
 GitHub Pages publishes main from the repository root. Commit and push through Git/SSH.
 
-The site is approximately 21 MB excluding .git, including one 11.26 MB STL and about 1.37 MB of Three.js code. Git history is not part of the published site. New text-based lessons add little space; unique models, screenshots, videos, and duplicated bundles drive growth. Load only the chosen software and share media by URL.
+The site source is approximately 40 MB excluding .git and local authoring references, including one 11.26 MB Benchy STL, about 1.37 MB of Three.js code, and 16.12 MB of lossless native Blender UI captures. Git history is not part of the published site. New text-based lessons add little space; unique models, screenshots, videos, and duplicated bundles drive growth. Load only the chosen software and share media by URL.
 
 npm run check reports size, detects duplicate media, and flags growth above a deliberate 100 MB review budget, well before the 1 GB Pages published-site limit. That review threshold is a project choice, not GitHub's limit. Host large video separately if needed. See [GitHub Pages limits](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits).
 
@@ -164,17 +164,23 @@ node scripts/extract-body-paths.mjs path/to/unsupported.gcode simulators/bambu-s
 
 The two compressed assets total 5.01 MB, decoded with the browser's native DecompressionStream. Each contains about 251,000 deposited segments, rendered with instancing and sorted by height so lowering the slider also reduces drawing work. Only one body variant is visible at a time. The printing animation shares the supported path data, and uses a height limit as the build plate lowers. Browser support for WebGL and DecompressionStream is required. The estimated full site is 20.7 MB, comfortably within the 100 MB review budget and 1 GB Pages limit.
 
-## Blender first review release
+## Blender native-interface course
 
 Course: https://amas4gm.github.io/amas4gm-courses/blender/
 
-Three tutorials, 36 actions: getting-started (12), object-manipulation (11), edit-mode (13). The shared engine handles progress, quizzes, retry, sound, observation pauses, and embeds. The Blender adapter uses shared Three.js and real Blender geometry.
+Three tutorials, 39 actions: getting-started (14), object-manipulation (11), edit-mode (14). The deliverable is a 100 × 70 × 18 mm desktop tray, with 3 mm walls and floor and a 0.6 mm outer rim bevel. Real `.blend` checkpoints and a dimension-checked STL support following along in Blender and saving separate experiments.
 
-Blender 5.2.2 LTS generated cube, blank, inset, cavity, and finished JSON/.blend checkpoints. Run Blender with `--background --factory-startup --python scripts/generate-blender-course.py`. The manifest records build hash, asset hashes, and mesh checks. The preview PNG is rendered in Blender. Coordinates are millimeters: Metric, unit scale 0.001. Export STL at scale 1 with Scene Unit off. STL reimport confirms 100 x 70 x 18 mm. Floor/walls are 3 mm; the outer top rim bevel is 0.6 mm with three segments. Physical printing and printer-specific slicing are not yet validated.
+The Blender adapter uses complete native Blender 5.2.2 LTS captures instead of the former simplified HTML/Three.js interface. Regular captures are 2400 × 1494 from the maximized application. Lossless WebP preserves their pixels. Full native menus, popovers, file browsers, transform previews, axis constraints, mode indicators, and status bars remain visible. Transparent named controls admit only the current exercise's interaction. The course offers a full-width layout and an expanded workspace.
 
-This release implements numeric transforms, target-value mesh previews, reconstructed interface controls, prepared bevel selection, simulated save/export dialogs, and separate real downloads. It does not reproduce all native modal gestures or arbitrary topology. Loop cut/slide, fill, dissolve, repair exercises, and a less-guided assessment remain future work.
+A separate 1000 × 1000 capture sequence teaches horizontal scrolling of a crowded editor header using the wheel or middle-mouse dragging. Other navigation exercises use bounded native orbit, pan, and zoom frames. Modal input follows the authored axis and numeric path, with Enter/left-click confirmation and Escape/right-click cancellation. Extrusion cancellation deliberately requires Ctrl+Z to remove the geometry left at zero distance. These are checkpoint exercises, not a general-purpose Blender implementation.
 
-Validation: 55 passing tests and site checks. Browser walkthroughs covered all 36 actions using navigation aids, rejected values, cancelled inset, and pending extrusion quiz after reload. An ignored local `.qa` harness shortens observation pauses for UI testing; production uses the normal shared timing. Broader mouse/touch and accessibility acceptance testing remains.
+`native-state.js` maps lesson boundaries to native frames; `native-modal.js` defines the admitted modal entry sequences; `native-simulator.js` supplies the interaction layer. `source-reference.json` pins original SVG icons, the Inter font, menu draw functions, keymaps, and relevant C++ source to upstream v5.2.2 / d13f752e3b9c. Asset notices and upstream license texts are included. The Blender adapter does not load Three.js. Bambu tutorials keep their existing adapters and shared teaching engine.
+
+Rebuild model artifacts with Blender `--background --factory-startup --python scripts/generate-blender-course.py`. Model hashes, topology checks, and STL roundtrip measurements are in `simulators/blender/assets/manifest.json`. Physical printing has not been validated.
+
+Rebuild native UI states in a separate Blender session with `--factory-startup -M --python scripts/capture-blender-ui.py`. Use an isolated `BLENDER_USER_CONFIG` for authoring. The narrow sequence uses `-p 50 50 1000 1000` and script argument `--narrow`; retain the regular capture manifest. The script also accepts explicit capture requests for manually verified menus and modal states. Raw PNGs stay in the ignored `simulators/blender/reference/` authoring directory. `python scripts/package-blender-ui.py` packages the lossless frames and exact menu crops, with geometry and SHA-256 provenance in `assets/ui/manifest.json`. Publish only the packaged assets.
+
+Validation includes native asset integrity, full-frame coverage for every step and admitted modal value, evaluated Blender dimensions, closed manifold model topology, STL dimensions, numeric units, and progress/quiz persistence. Run `node --test tests/*.test.mjs`, `node scripts/check-site.mjs`, and a browser walkthrough after changing interaction code. The ignored `.qa` pages expose authored checkpoints for development; production retains the shared engine's observation pauses and quiz gates.
 
 ## Repository rename and embed migration
 

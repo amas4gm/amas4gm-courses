@@ -1,0 +1,31 @@
+@font-face{font-family:BlenderInter;src:url('./native-assets/Inter.woff2') format('woff2');font-display:swap}
+.blender-course main{max-width:none;padding:18px 22px}
+.blender-course .learning-layout{grid-template-columns:1fr;gap:14px}
+.blender-course .lesson-panel{min-height:0;display:grid;grid-template-columns:minmax(240px,1fr) minmax(320px,1.5fr) auto;gap:6px 24px;padding:16px 20px}
+.blender-course .lesson-progress{grid-column:1;grid-row:1}.blender-course #progress{grid-column:1;grid-row:2;margin:0;height:4px}
+.blender-course #chapter{grid-column:1;grid-row:3;margin:4px 0}.blender-course #lesson-title{grid-column:1;grid-row:4;font-size:22px;margin:0}
+.blender-course #lesson-text{grid-column:2;grid-row:1/4;margin:0;font-size:14px}.blender-course .task-box{grid-column:2;grid-row:4/7;margin:0;padding:8px 12px}
+.blender-course .lesson-actions{grid-column:3;grid-row:1/3;margin:0}.blender-course .outline{grid-column:3;grid-row:3/7;max-width:260px}
+.blender-course #feedback{grid-column:1;grid-row:5;margin:0;min-height:0}.blender-course #practice-tools{grid-column:1;grid-row:6}.blender-course .small-note{display:none}
+.native-controls{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 12px;background:#222;color:#ddd;font-size:12px}
+.native-controls button{background:#3d3d3d;border:1px solid #666;border-radius:4px;color:white;padding:7px 12px}
+.native-host{position:relative;width:100%;overflow:hidden;background:#303030;isolation:isolate}
+.native-stage{position:relative;transform-origin:top left;outline:0;user-select:none;font:16px/1 BlenderInter,Arial,sans-serif;color:#ddd}
+.native-frame{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.native-hotspots,.native-menus{position:absolute;inset:0;pointer-events:none}
+.native-hit{position:absolute;z-index:2;pointer-events:auto;appearance:none;background:transparent!important;border:0!important;border-radius:3px;padding:0;box-shadow:none;color:transparent;cursor:default}
+.native-hit:focus-visible{outline:2px solid #90b6e9!important;outline-offset:-2px}.native-hit.active-target{outline:2px solid #e7bd68!important;outline-offset:1px;box-shadow:0 0 0 4px #ffcd5a1c!important}
+.native-menu{position:absolute;pointer-events:auto;background:#181818f7;border:1px solid #101010;border-radius:5px;padding:5px 0;box-shadow:1px 3px 9px #0008;font:16px BlenderInter,Arial,sans-serif;color:#ddd;overflow:auto;max-height:calc(100% - 80px)}
+.native-menu-row{width:100%;height:29px;display:flex;align-items:center;gap:9px;color:#ddd;background:none;border:0;text-align:left;padding:0 13px 0 9px;font:inherit;white-space:nowrap;border-radius:3px}
+.native-menu-row:hover,.native-menu-row:focus{background:#4772b3;color:#fff;outline:none}.native-menu-row.active-target{box-shadow:inset 0 0 0 1px #e7bd68}
+.native-menu-icon{width:21px;min-width:21px;height:21px;display:inline-flex;align-items:center;justify-content:center}.native-menu-icon img{width:20px;height:20px}
+.native-menu-tail{margin-left:auto;padding-left:16px;color:#aaa;font-size:15px}.native-menu hr{border:0;border-top:1px solid #424242;margin:5px 9px 4px}
+.native-menu.captured-menu{z-index:3;background-color:transparent;background-repeat:no-repeat;border:0;padding:5px 0;overflow:visible;box-shadow:1px 3px 7px #0005;max-height:none}
+.captured-menu .native-menu-row>span{opacity:0}.captured-menu .native-menu-row:hover,.captured-menu .native-menu-row:focus{background:#ffffff18}
+.captured-menu hr{height:10px;margin:0;border:0}
+.native-input{position:absolute;z-index:4;pointer-events:auto;font:17px BlenderInter,Arial,sans-serif;color:#fff;border:1px solid #4772b3;border-radius:4px;background:#222;padding:2px 9px;outline:none;text-align:right}
+.native-input.filename{text-align:left;border-color:#303030;background:#1d1d1d}.native-operation{position:absolute;left:4px;top:40px;min-width:850px;height:36px;padding:9px;background:#303030;color:#ddd;font:16px BlenderInter,Arial,sans-serif;pointer-events:none}
+.native-popover{position:absolute;pointer-events:none}
+.bl-follow{background:#f6f8f5;border:1px solid #dce4dd;padding:15px 18px;font-size:13px;line-height:1.5}.bl-follow p{margin:5px 0 8px}.downloads{display:flex;flex-wrap:wrap;gap:15px}.downloads a{color:#175c43}.bl-follow summary{cursor:pointer}
+.native-expanded .course-header,.native-expanded .intro-row,.native-expanded .lesson-panel,.native-expanded .sim-caption,.native-expanded .under-sim,.native-expanded footer{display:none}
+.native-expanded main{padding:0}.native-expanded .sim-wrap{border-radius:0}.native-expanded .native-controls{position:sticky;top:0;z-index:4}
+@media(max-width:900px){.blender-course main{padding:10px}.blender-course .lesson-panel{display:block}.blender-course .lesson-panel>*{margin-bottom:10px!important}.blender-course #lesson-text{font-size:13px}.blender-course .outline{max-width:none}.native-controls{font-size:11px}}

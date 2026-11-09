@@ -1,0 +1,22 @@
+Blender 5.2.2 interface reference
+
+Version and assets
+The source tag v5.2.2 resolves to installed commit d13f752e3b9c4f8c261cda552b1021f8bcc0382c. The manifest lists each unmodified SVG/font/source file and its SHA256. Native screenshots render the actual geometry-based toolbar icons; the SVG assets are for native menu, header and Properties icons. Use original icon identity, not Unicode substitutes.
+
+Menu structure
+menu-reference.json contains complete rows recorded from native Python UI draw functions and RNA labels, plus source-filtered mode items. Icon IDs map directly to icons/<lowercase id>.svg. Rows without source-declared icons should remain iconless. Layout structure, conditional rows and source line anchors are retained in the complete source files. Native screenshots remain the authority for geometry and theme.
+The ordinary mesh mode selector has Object Mode, Edit Mode, Sculpt Mode, Vertex Paint, Weight Paint, Texture Paint. Pose Mode is incompatible with a mesh. Particle Edit requires particle editing support and is absent for this course's mesh. See rna_object.cc:36, object_edit.cc:2007, object_modes.cc:103.
+Add -> Mesh includes Plane, Cube, Circle, UV Sphere, Ico Sphere, Cylinder, Cone, Torus; separator; Grid, Monkey. Each uses the source mesh icon. See space_view3d.py:2418.
+Object -> Apply begins Location, Rotation, Scale, All Transforms, Rotation & Scale. All are iconless. Scale is third. See space_view3d.py:3197.
+View -> Frame Selected follows the first separator, before Frame All. See space_view3d.py:1453.
+File -> Save As... is below Save. File -> Export -> STL (.stl) is a submenu item. Source topbar definitions: space_topbar.py:157 and :391. Open Recent's label is registered in space_topbar.cc:220. Export menu may include addons; the recording includes the installed defaults.
+Face Orientation is a checkbox in the Geometry section of the Viewport Overlays popover. In Edit Mode, Fade Inactive Geometry appears above it. Geometry fields are disabled when overlays are disabled. See space_view3d.py:7184-7224.
+
+Narrow headers
+Blender's headers can extend beyond their editor width. Pan horizontally with middle-mouse drag over the header, or scroll over the header. A trackpad pan is supported. Ctrl+wheel down scrolls right; Ctrl+wheel up scrolls left. Unmodified wheel events fall through to horizontal scrolling when vertical movement is locked. This must be a local header interaction, independent of viewport navigation and page scrolling. See blender_default.py:952-989 and view2d_ops.cc:461 onward.
+
+Transform interactions
+The default Transform Modal Map confirms with left click, Enter, numpad Enter, or Space; cancels with right click or Escape. X/Y/Z constrain axes; Shift+X/Y/Z constrain planes; Shift supplies precision; Ctrl inverts snapping. Numeric input belongs to the active modal operator. See blender_default.py:6153 and transform.cc. Model each step's permitted action while preserving these native interaction semantics.
+
+Font and licensing
+Inter.woff2 is the unmodified font from the installed Blender distribution, under SIL OFL-1.1. Blender SVGs and code retain Blender's licensing; copyright and GPL texts are included in licenses/. The source-reference.json manifest records original locations.
