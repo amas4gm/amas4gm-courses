@@ -82,7 +82,7 @@ export async function createLiveViewport({stage,frame,manifest,url,onView,onTop,
  return {
   canvas,topButton,
   setVertexSelection(ids){state.selectedVertices=[...ids];rebuild();},
-  vertexGuide(exclude=[]){render();const next=visibleVertices().find(v=>!exclude.includes(v.index));if(!next)return null;selectionPoint=next.world;render();selectionTarget.dataset.mouseGesture=exclude.length?'shift-click':'click';return selectionTarget;},
+  vertexGuide(exclude=[]){render();const visible=visibleVertices(),selected=visible.filter(v=>exclude.includes(v.index)),candidates=visible.filter(v=>!exclude.includes(v.index));if(selected.length)candidates.sort((a,b)=>Math.min(...selected.map(v=>Math.hypot(b.x-v.x,b.y-v.y)))-Math.min(...selected.map(v=>Math.hypot(a.x-v.x,a.y-v.y))));const next=candidates[0];if(!next)return null;selectionPoint=next.world;render();selectionTarget.dataset.mouseGesture=exclude.length?'shift-click':'click';return selectionTarget;},
   visibleVertexIds(){render();return visibleVertices().map(v=>v.index);},
   hitVertex(clientX,clientY){render();const b=canvas.getBoundingClientRect(),scale=b.width/rect.width,x=rect.x+(clientX-b.left)/scale,y=rect.y+(clientY-b.top)/scale;const candidates=visibleVertices().map(v=>({...v,d:Math.hypot(v.x-x,v.y-y)*scale})).filter(v=>v.d<=10).sort((a,b)=>a.d-b.d);return candidates[0]?.index??null;},
   viewport:()=>rect,
