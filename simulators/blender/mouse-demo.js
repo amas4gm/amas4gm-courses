@@ -53,7 +53,7 @@ export function createMouseDemo({stage,onComplete=()=>{},requestFrame=requestAni
   if(lastLabel!==state.label){node.querySelector('.bl-mouse-caption').textContent=state.label;lastLabel=state.label;}
   const key=node.querySelector('kbd');key.textContent=state.key;key.hidden=!state.key;
  }
- function tick(now){if(!node||!plan)return;start??=now;elapsed+=Math.min(80,Math.max(0,now-start));start=now;const state=sampleMouseDemo(plan,elapsed);paint(state);if(state.done){const keys=plan.thenKeys;stop();if(keys)onComplete();return;}frame=requestFrame(tick);}
+ function tick(now){if(!node||!plan)return;start??=now;elapsed+=Math.min(80,Math.max(0,now-start));start=now;const state=sampleMouseDemo(plan,elapsed);paint(state);node.style.opacity=String(clamp((plan.duration+300-elapsed)/300,0,1));if(elapsed>=plan.duration+300){stop();onComplete();return;}frame=requestFrame(tick);}
  return {
   stop,
   play(next){stop();if(!next)return;plan=next;lastLabel='';node=document.createElement('div');node.className='bl-mouse-demo';node.setAttribute('aria-hidden','true');

@@ -1,4 +1,4 @@
-import {software} from './catalog-data.js?v=blender-input-5';
+import {software} from './catalog-data.js?v=input-sequence-1';
 const base=new URL('../',import.meta.url),selected=document.body.dataset.software;
 const items=selected?software.filter(s=>s.id===selected):software;
 const list=document.querySelector('#catalog');

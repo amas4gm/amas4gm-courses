@@ -1,6 +1,6 @@
 import * as THREE from '../../shared/vendor/three.module.js';
 import {precisionDelta,dragZoomDistance} from './native-modal.js?v=input-5';
-import {liveState,meshForState,viewportRect} from './live-state.js?v=input-5';
+import {liveState,meshForState,viewportRect} from './live-state.js?v=input-sequence-1';
 
 const baseRotation=new THREE.Quaternion(.425,.176,.340,.820).normalize();
 const svgNS='http://www.w3.org/2000/svg';
@@ -26,6 +26,7 @@ export async function createLiveViewport({stage,frame,manifest,url,onView,onTop,
  function requestRender(){if(!queued)queued=requestAnimationFrame(()=>{queued=0;render();});}
  function cameraReset(s){rotation.copy(baseRotation);if(s.angle)rotation.premultiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,0,1),s.angle));target.set(s.pan||0,0,s.asset==='cube'?0:9);distance=(s.asset==='cube'&&!['dx','dy','dz'].some(k=>k in s.values)?10:185)*(s.zoom||1);camera=s.top?ortho:perspective;if(s.top)rotation.identity();viewChanged=false;}
  function layout(){if(!rect)return;Object.assign(canvas.style,{left:`${rect.x}px`,top:`${rect.y}px`,width:`${rect.width}px`,height:`${rect.height}px`});const scale=stage.getBoundingClientRect().width/parseFloat(stage.style.width)||1;const w=Math.max(1,Math.round(rect.width*scale)),h=Math.max(1,Math.round(rect.height*scale));if(w!==renderWidth||h!==renderHeight){renderer.setSize(w,h,false);renderWidth=w;renderHeight=h;}
+  for(const c of [perspective,ortho]){c.near=state.clipStart??.01;c.far=state.clipEnd??10000;}
   perspective.aspect=rect.width/rect.height;perspective.fov=2*Math.atan(1/(1.3888888359069824*perspective.aspect))*180/Math.PI;perspective.updateProjectionMatrix();const half=distance/(1.3888888359069824*perspective.aspect);ortho.left=-half*perspective.aspect;ortho.right=half*perspective.aspect;ortho.top=half;ortho.bottom=-half;ortho.updateProjectionMatrix();
   Object.assign(label.style,{left:`${rect.left+10}px`,top:`${rect.visibleY+14}px`});Object.assign(gizmo.style,{left:`${rect.right-155}px`,top:`${rect.visibleY+4}px`});requestRender();
  }
@@ -86,6 +87,7 @@ export async function createLiveViewport({stage,frame,manifest,url,onView,onTop,
    }else if(op.kind==='extrude'){const axis=new THREE.Vector3(0,0,1).applyQuaternion(rotation.clone().invert());op.visualValue+=(dx*axis.x-dy*axis.y)*worldPerPixel/Math.max(.01,axis.x*axis.x+axis.y*axis.y);}
    else {const c=new THREE.Vector3(0,0,18).project(camera),center=[rect.x+(c.x+1)*rect.width/2,rect.y+(1-c.y)*rect.height/2],radial=Math.hypot(virtualTo[0]-center[0],virtualTo[1]-center[1])-Math.hypot(virtualFrom[0]-center[0],virtualFrom[1]-center[1]);op.visualValue=Math.max(0,op.visualValue+radial*worldPerPixel*(op.kind==='inset'?-1:1));if(op.kind==='inset')op.visualValue=Math.min(34.9,op.visualValue);if(op.kind==='bevel')op.visualValue=Math.min(2.9,op.visualValue);}
   },
+  previewClipping(setting,value){state[setting]=value;layout();},
   beginZoom(y){return {distance,y};},
   dragZoom(initial,y){const before=distance;distance=dragZoomDistance(initial.distance,y-initial.y,rect.height);viewChanged=true;layout();if(distance!==before)onView?.('zoom',distance-before,0);},
   selectionGuide(topOnly=false){const data=meshForState(state,assets);selectionPoint=new THREE.Vector3();if(data){const ids=topOnly?(data.faces.find(f=>f.every(i=>Math.abs(data.vertices[i][2]-18)<1e-5))||[]):data.vertices.map((_,i)=>i);for(const i of ids)selectionPoint.add(new THREE.Vector3(...data.vertices[i]));selectionPoint.divideScalar(ids.length||1);}render();return selectionTarget;},

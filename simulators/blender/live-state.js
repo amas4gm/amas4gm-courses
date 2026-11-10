@@ -13,7 +13,7 @@ export function liveState(name,manifest){
  }
  if(name==='extrude-cancelled')op={kind:'extrude',value:0,segments:1};
  const cfg=structuredClone(manifest.states[source]?.configuration||{});
- return {asset:'cube',mode:'OBJECT',selection:'all',...cfg,values:{...(cfg.values||{})},name:source,operation:op};
+ return {asset:'cube',mode:'OBJECT',selection:'all',...cfg,values:{...(cfg.values||{})},clipStart:manifest.states[source]?.settings?.clipStart,clipEnd:manifest.states[source]?.settings?.clipEnd,name:source,operation:op};
 }
 export function meshForState(state,assets){
  if(!state||state.empty)return null;

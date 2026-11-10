@@ -44,19 +44,18 @@ export default {
       "id": "sidebar",
       "title": "Read the Item panel",
       "text": "The Item Sidebar lives inside the 3D Viewport. It displays location, rotation, scale, and dimensions. Blender shortcuts act on the editor under your pointer.",
-      "task": "Move into the viewport and press N, or choose View → Sidebar.",
+      "task": "Choose View, then Sidebar. Use the menu for this step; you will practice N next.",
       "done": "Dimensions are the size of the object. Location describes its origin, not the bottom surface.",
       "simulation": {
         "action": "sidebar",
-        "asset": "cube"
+        "asset": "cube",
+        "menuOnly": true
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
       "follow": "Dimensions are the size of the object. Location describes its origin, not the bottom surface. Save your own real Blender file before experimenting.",
-      "keys": [
-        "N"
-      ],
-      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
+      "keys": [],
+      "inputHint": "Open View, then click Sidebar. The next step teaches the N shortcut."
     },
     {
       "id": "sidebar-shortcut",
@@ -90,20 +89,6 @@ export default {
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Narrow-window exercise · scroll the header",
       "follow": "Try narrowing Blender, scroll its header, then maximize it again before continuing."
-    },
-    {
-      "id": "units",
-      "title": "A scene for millimeters",
-      "text": "The prepared millimeter checkpoint uses Metric, Unit Scale 0.001, and Length Millimeters. These settings are already set here. Expand the actual Units section to inspect them.",
-      "task": "Expand Units in Scene Properties on the right.",
-      "done": "These settings are already prepared in the checkpoint. Explicit entries such as 100 mm avoid ambiguity. Export scale must still be checked.",
-      "simulation": {
-        "action": "units",
-        "asset": "cube"
-      },
-      "chapter": "BLENDER / PART 1 · OBJECT MODE",
-      "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "These settings are already prepared in the checkpoint. Explicit entries such as 100 mm avoid ambiguity. Export scale must still be checked. Save your own real Blender file before experimenting."
     },
     {
       "id": "delete",

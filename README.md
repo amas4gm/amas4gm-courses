@@ -168,7 +168,7 @@ The two compressed assets total 5.01 MB, decoded with the browser's native Decom
 
 Course: https://amas4gm.github.io/amas4gm-courses/blender/
 
-Three tutorials, 47 actions: getting-started (17), object-manipulation (15), edit-mode (15). The deliverable is a 100 × 70 × 18 mm desktop tray, with 3 mm walls and floor and a 0.6 mm outer rim bevel. Real `.blend` checkpoints and a dimension-checked STL support following along in Blender and saving separate experiments.
+Four tutorials, 57 actions: getting-started (16), setup-for-printing (11), object-manipulation (15), edit-mode (15). The deliverable is a 100 × 70 × 18 mm desktop tray, with 3 mm walls and floor and a 0.6 mm outer rim bevel. Real `.blend` checkpoints and a dimension-checked STL support following along in Blender and saving separate experiments.
 
 The Blender adapter places a live WebGL viewport behind complete native Blender 5.2.2 LTS captures. A luminance mask makes the viewport transparent while preserving the original surrounding UI pixels. Regular captures are 2400 × 1494 from the maximized application. Lossless WebP preserves their pixels. Full native menus, popovers, file browsers, transform previews, axis constraints, mode indicators, and status bars remain visible. Transparent named controls admit only the current exercise's interaction. The shared Bambu-style lesson card stays in a left sidebar in both regular and expanded mode. Expanded mode removes the page header and fits Blender into the space to the right, keeping the current instructions, feedback, and lesson controls beside it.
 
@@ -189,3 +189,12 @@ Validation includes native asset integrity, full-frame coverage for every step a
 Renamed from bambu-studio-course to amas4gm-courses on November 9, 2026. Bambu lesson paths are unchanged below the new prefix. Update OpenLearn iframe URLs to `https://amas4gm.github.io/amas4gm-courses/bambu-studio/<lesson>/?embed=1`. Do not depend on old Pages URLs redirecting. Browser progress keys remain unchanged on the same origin. External OpenLearn course pages have not been edited.
 
 Blender embeds: `https://amas4gm.github.io/amas4gm-courses/blender/getting-started/?embed=1`, and corresponding object-manipulation/edit-mode paths. An iframe height of 1100 px includes the follow-along downloads.
+
+
+## Blender printing setup and input demonstrations
+
+The separate `blender/setup-for-printing/` tutorial starts with no unit system. Eleven guided steps cover Scene Properties, Units, Metric, Unit Scale 0.001, Millimeters, the viewport Sidebar and View tab, Clip Start 0.1 mm, End 10000 mm, and File > Defaults > Save Startup File with its native confirmation. The template retains Cube, Camera, and Light. Clipping is saved for the Layout viewport; other workspaces retain their own view settings. `printing-setup.blend` is an optional scene template, never an automatic installer of user preferences. Its settings were checked by reopening the file in Blender 5.2.2.
+
+Setup screenshots were captured from an isolated Blender profile in `.qa/blender-setup-config`. `scripts/capture-blender-setup.py` records the configuration states from an open VIEW_3D editor; manually verified Scene/Sidebar/dropdown/pop-up captures supply the remaining frames. `scripts/package-blender-setup.py` packages those native pixels and their hashes. Reference behavior: [Scene units](https://docs.blender.org/manual/en/5.0/scene_layout/scene/properties.html), [startup defaults](https://docs.blender.org/manual/en/dev/getting_started/configuration/defaults.html), and the installed Blender `VIEW3D_PT_view3d_properties` panel in `space_view3d.py`.
+
+Meet Blender now requires the Sidebar menu first, then practices N. `input-demo.js` sequences target-specific mouse input, mouse fade-out, and in-workspace keycap presses with release/fade between keys. Numeric entry includes every digit and Enter; visual transforms show free pointer movement, Shift precision, and LMB confirmation. Demonstrations never perform the user's interaction. Reduced-motion mode displays the complete ordered sequence without animation. New and revised passages use one ElevenLabs Bella recording each.

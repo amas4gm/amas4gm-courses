@@ -1,6 +1,11 @@
 // Every state names a complete, unretouched Blender capture. Coordinates are
 // native capture pixels, never percentages inferred from the course layout.
 export const frames = {
+ 'setup-for-printing': {
+  scene:['setup-start','setup-scene'],units:['setup-scene','setup-units'],system:['setup-units','setup-metric'],scale:['setup-metric','setup-scale'],length:['setup-scale','setup-mm'],
+  sidebar:['setup-mm','setup-sidebar'],view:['setup-sidebar','setup-view'],'clip-start':['setup-view','setup-clip-start'],'clip-end':['setup-clip-start','setup-clip-end'],
+  startup:['setup-clip-end','setup-clip-end'],confirm:['setup-clip-end','setup-clip-end'],complete:['setup-clip-end','setup-clip-end']
+ },
  'getting-started': {
   viewport:['startup','startup'],outliner:['startup','startup'],sidebar:['startup','startup-sidebar'],
   units:['units','units-expanded'],headers:['header-narrow-00','header-narrow-16'],

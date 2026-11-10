@@ -1073,11 +1073,11 @@
       "duration": 11.2,
       "generationId": "eUx9Wmeew4tzT6VjBSEw"
     },
-    "8c1b2c9b929a53f0effa": {
-      "text": "Move into the viewport and press N, or choose View , then Sidebar.",
-      "file": "8c1b2c9b929a53f0effa.mp3",
-      "duration": 5.04,
-      "generationId": "8HyyJxX2Ek3a1J4mPySh"
+    "67a7b97e283b1595b8d9": {
+      "text": "Choose View, then Sidebar. Use the menu for this step; you will practice N next.",
+      "file": "67a7b97e283b1595b8d9.mp3",
+      "duration": 6.64,
+      "generationId": "Jf2a38HhCwXruWjHtvXP"
     },
     "e57241051e26c3fc78b4": {
       "text": "Dimensions are the size of the object. Location describes its origin, not the bottom surface.",
@@ -1114,24 +1114,6 @@
       "file": "645c40b0cd83cfccef45.mp3",
       "duration": 8.56,
       "generationId": "FRRPuNxmxIuZxWLshujV"
-    },
-    "b9b3fe8bb9b9ceff9327": {
-      "text": "The prepared millimeter checkpoint uses Metric, Unit Scale 0.001, and Length Millimeters. These settings are already set here. Expand the actual Units section to inspect them.",
-      "file": "b9b3fe8bb9b9ceff9327.mp3",
-      "duration": 13.04,
-      "generationId": "RD9vXLNyOI2NYzEi4Wax"
-    },
-    "e0c253c529cc3a059838": {
-      "text": "Expand Units in Scene Properties on the right.",
-      "file": "e0c253c529cc3a059838.mp3",
-      "duration": 3.04,
-      "generationId": "5Lo1ELSeFpGJfl2fjPBy"
-    },
-    "3e68e44332ed583f393b": {
-      "text": "These settings are already prepared in the checkpoint. Explicit entries such as 100 mm avoid ambiguity. Export scale must still be checked.",
-      "file": "3e68e44332ed583f393b.mp3",
-      "duration": 10,
-      "generationId": "ZOj2YnQjAJoLdu5coaTG"
     },
     "61cba166bad8d3242a56": {
       "text": "We now load the prepared Start checkpoint: a single mesh named Desk Tray, with millimeter units. Object Mode acts on whole objects. Delete removes the selected object; Control+Z in real Blender can recover an accidental deletion.",
@@ -1342,6 +1324,222 @@
       "file": "1b16dbea7aad280f2b7f.mp3",
       "duration": 2.88,
       "generationId": "oEHfHGgISqQywkH95KlB"
+    },
+    "54aa84a8cce5f7a5cd9a": {
+      "text": "Scene units belong to the scene. Find the Properties editor at the right, then its Scene tab: the icon combines a cone, sphere, and light. This is different from the Item Sidebar inside the viewport.",
+      "file": "54aa84a8cce5f7a5cd9a.mp3",
+      "duration": 13.6,
+      "generationId": "NzHHD4oeOLxBmk9dHoEC"
+    },
+    "9866378f949c22bbb37b": {
+      "text": "Click the Scene Properties tab.",
+      "file": "9866378f949c22bbb37b.mp3",
+      "duration": 1.92,
+      "generationId": "qbcZ7h0qtsZx0Un1Gyqy"
+    },
+    "d78c80658d945a7f52c7": {
+      "text": "You selected Scene Properties. Next, open its Units section.",
+      "file": "d78c80658d945a7f52c7.mp3",
+      "duration": 4.64,
+      "generationId": "XAfA7VlDhgdvCW5sdGEc"
+    },
+    "3040e32b2563ea666c07": {
+      "text": "The Units section is collapsed. We start without a unit system so you can configure it yourself. These scene settings travel with your Blender file.",
+      "file": "3040e32b2563ea666c07.mp3",
+      "duration": 8.72,
+      "generationId": "6UNtYLqW5cI4d0qS7csh"
+    },
+    "b7f36bcc7654007e0ee3": {
+      "text": "Click the Units heading to expand it.",
+      "file": "b7f36bcc7654007e0ee3.mp3",
+      "duration": 2.4,
+      "generationId": "AgnxroIkUT6PK0guQrS1"
+    },
+    "c1f34685c648902dded6": {
+      "text": "Unit System currently reads None. The scale and length controls become useful after choosing Metric.",
+      "file": "c1f34685c648902dded6.mp3",
+      "duration": 7.12,
+      "generationId": "YeoAgq4G1P8tM1TRM1Uj"
+    },
+    "f63033efdb1a64a23c56": {
+      "text": "Metric enables familiar physical measurements. Choosing Millimeters later changes the displayed length unit; Unit Scale controls how Blender units relate to physical size.",
+      "file": "f63033efdb1a64a23c56.mp3",
+      "duration": 11.12,
+      "generationId": "eBWTGZbQToekvsH5vc41"
+    },
+    "ffb00b5cf72855dc2d45": {
+      "text": "Open Unit System and choose Metric.",
+      "file": "ffb00b5cf72855dc2d45.mp3",
+      "duration": 2.88,
+      "generationId": "6HQCWuNcmBhWfseitO1L"
+    },
+    "0acd3ca1152e3baae8af": {
+      "text": "Metric is selected. The scale is still 1, so one Blender unit currently represents one meter.",
+      "file": "0acd3ca1152e3baae8af.mp3",
+      "duration": 6.88,
+      "generationId": "Wydan4smGZA4UKm8qTuS"
+    },
+    "f8c0246b0614419af30d": {
+      "text": "For this course, use Unit Scale 0.001: one Blender unit represents one millimeter. This is a course convention, not the only valid printing workflow. Changing Unit Scale changes the interpretation of existing geometry, so set it before modeling.",
+      "file": "f8c0246b0614419af30d.mp3",
+      "duration": 18.16,
+      "generationId": "j2qNvF7kGQ49cgWEAHkp"
+    },
+    "0dcc0c3506e19291a9fa": {
+      "text": "Double-click Unit Scale, type 0 . 0 0 1, then press Enter.",
+      "file": "0dcc0c3506e19291a9fa.mp3",
+      "duration": 5.68,
+      "generationId": "p1bAX8OnkDNmJ39PY2ey"
+    },
+    "88931148e1893caef7e5": {
+      "text": "Unit Scale is 0.001. A default two-unit cube now represents 2 millimeters on each side.",
+      "file": "88931148e1893caef7e5.mp3",
+      "duration": 8.16,
+      "generationId": "hxisBjTixPrj1vKaQws9"
+    },
+    "8b2cf481aa9ca36d4801": {
+      "text": "Length controls how distances are displayed. Set it to Millimeters so dimensions and viewport clipping distances use the same unit as the tray project.",
+      "file": "8b2cf481aa9ca36d4801.mp3",
+      "duration": 9.36,
+      "generationId": "M7WrZ5voziwbvPddmiUN"
+    },
+    "84b74caac68c51b2cd9e": {
+      "text": "Open Length and choose Millimeters.",
+      "file": "84b74caac68c51b2cd9e.mp3",
+      "duration": 2.56,
+      "generationId": "Npc7Az6fT7zghDQzGPnt"
+    },
+    "2fa7450b67024f59a602": {
+      "text": "Distances are displayed in millimeters. This does not resize the mesh.",
+      "file": "2fa7450b67024f59a602.mp3",
+      "duration": 4.72,
+      "generationId": "TKp5ItbH3eC2xYZIWOBE"
+    },
+    "64b1b35265202ea93bff": {
+      "text": "Viewport settings are separate from scene settings. Open the Sidebar inside the three D Viewport. You can use the View menu or the N shortcut learned in Meet Blender.",
+      "file": "64b1b35265202ea93bff.mp3",
+      "duration": 10.72,
+      "generationId": "Ckp0mCfIL0APqH9TlMLi"
+    },
+    "e073e6b9ff33a54d919e": {
+      "text": "Choose View , then Sidebar, or focus the viewport and press N.",
+      "file": "e073e6b9ff33a54d919e.mp3",
+      "duration": 5.04,
+      "generationId": "EjRCPHG2njp5d0pWIj1J"
+    },
+    "3c828a3f890c2f0594cf": {
+      "text": "The Sidebar is open. Its Item tab shows the cube dimensions; the View tab contains clipping settings.",
+      "file": "3c828a3f890c2f0594cf.mp3",
+      "duration": 7.04,
+      "generationId": "ynN45qaxdaT2VOnfQZmZ"
+    },
+    "cbf0b3484ec4229c054b": {
+      "text": "The Sidebar has vertical tabs on its right edge. Choose View to find the viewport lens and clipping distances. Leave Focal Length at 50 millimeters for this course.",
+      "file": "cbf0b3484ec4229c054b.mp3",
+      "duration": 10.96,
+      "generationId": "t9YAeg8FDLq5YjJQ2glD"
+    },
+    "13d10b62b6805eb28816": {
+      "text": "Click the Sidebar’s View tab.",
+      "file": "13d10b62b6805eb28816.mp3",
+      "duration": 2.16,
+      "generationId": "JPiy4tSd2mlWBlHvPFRT"
+    },
+    "3c5fdf189eade89cb0c5": {
+      "text": "Clip Start and End define the nearest and farthest surfaces the viewport can display. They do not cut or resize your model.",
+      "file": "3c5fdf189eade89cb0c5.mp3",
+      "duration": 8.32,
+      "generationId": "IHjeSAPqjWLyrY8g6SJd"
+    },
+    "4e6203d9793c4e7d59d7": {
+      "text": "Clip Start hides surfaces closer to the viewpoint than this distance. If a close-up seems sliced open, reduce this value. Use 0.1 millimeters for this course, and reduce it further only when the detail needs it.",
+      "file": "4e6203d9793c4e7d59d7.mp3",
+      "duration": 14.08,
+      "generationId": "zdW5Fd33UHrjsxSQFNDN"
+    },
+    "39715ea36d36b9dcd75f": {
+      "text": "Double-click Clip Start, enter 0 . 1, then press Enter.",
+      "file": "39715ea36d36b9dcd75f.mp3",
+      "duration": 5.04,
+      "generationId": "r6lcnNhMzxsWEqetfkjM"
+    },
+    "cf3de79227a152a80d5e": {
+      "text": "The near clipping distance is 0.1 millimeters. This is a viewport setting; a render camera has separate clipping controls.",
+      "file": "cf3de79227a152a80d5e.mp3",
+      "duration": 8.48,
+      "generationId": "DX8Ank2njKEu1Y5Q49A9"
+    },
+    "f818d573f185aa8ff136": {
+      "text": "End hides surfaces beyond the far clipping distance. Use 10000 millimeters, or 10 meters, for this course workspace. Avoid making the range unnecessarily enormous: an extreme range can reduce depth precision.",
+      "file": "f818d573f185aa8ff136.mp3",
+      "duration": 14.96,
+      "generationId": "QrMUnSKPCeUSMe73ChZz"
+    },
+    "6b61031f9f1adc98a205": {
+      "text": "Double-click End, enter 1 0 0 0 0, then press Enter.",
+      "file": "6b61031f9f1adc98a205.mp3",
+      "duration": 5.76,
+      "generationId": "iyqvtKqfF3jkjTABR2MS"
+    },
+    "afec4cc34685d44f17ea": {
+      "text": "The viewport range is now 0.1 to 10000 millimeters. These settings affect this three D Viewport, not every editor in every Blender file.",
+      "file": "afec4cc34685d44f17ea.mp3",
+      "duration": 10.08,
+      "generationId": "1klykhQKVvOUUfCdAQtd"
+    },
+    "8aae6f168f0386ce4654": {
+      "text": "A startup file stores the current scene and workspace, including scene units and this viewport’s settings. Save it before building the tray, so future new files do not start with your finished model. Our practice scene still contains the default Cube, Camera, and Light.",
+      "file": "8aae6f168f0386ce4654.mp3",
+      "duration": 17.28,
+      "generationId": "xxNfDvI6bKTUZSP5XnPk"
+    },
+    "693d5f5b0792a5de78da": {
+      "text": "Choose File , then Defaults , then Save Startup File.",
+      "file": "693d5f5b0792a5de78da.mp3",
+      "duration": 4.32,
+      "generationId": "AxOEDFK6giCkEcUdabvG"
+    },
+    "a7186bd71638bafb2865": {
+      "text": "Blender asks before replacing the startup file. Saving a startup file is different from saving a named project with Save As.",
+      "file": "a7186bd71638bafb2865.mp3",
+      "duration": 8.08,
+      "generationId": "FUMItvw4ZOsNHQ1JeKQm"
+    },
+    "6b31b12e16efb4c5ec4e": {
+      "text": "In real Blender, this replaces your previous startup scene. In this simulation, only the practice checkpoint changes. If you want to keep a customized startup in real Blender, save a separate scene template instead.",
+      "file": "6b31b12e16efb4c5ec4e.mp3",
+      "duration": 13.52,
+      "generationId": "wK6HcGn4zxc6iDMtUZVY"
+    },
+    "ce958ad0d5411c02bd7e": {
+      "text": "Click Overwrite to save this simulated startup configuration.",
+      "file": "ce958ad0d5411c02bd7e.mp3",
+      "duration": 3.84,
+      "generationId": "ktrWxhsd3o8P5n3B5p5i"
+    },
+    "d67bcd95449118e93480": {
+      "text": "Your setup is saved. In real Blender, test File , then New , then General after saving any current work. Check Metric, 0.001, Millimeters, and the View tab’s clipping values.",
+      "file": "d67bcd95449118e93480.mp3",
+      "duration": 14.48,
+      "generationId": "UetSmEHnfNedvKM4AX3L"
+    },
+    "d432cd8ccfc0225c536b": {
+      "text": "You configured scene units, viewport clipping, and a startup file. The downloadable setup scene is an optional recovery point. Open a new file in real Blender and verify the settings, then continue to the tray lessons.",
+      "file": "d432cd8ccfc0225c536b.mp3",
+      "duration": 13.6,
+      "generationId": "dJwFRbpdI4v7zBfetQ5t"
+    },
+    "e6e82bb6e1f49d324b35": {
+      "text": "Keep Blender open and save each project under its own name.",
+      "file": "e6e82bb6e1f49d324b35.mp3",
+      "duration": 4,
+      "generationId": "6OuhSpFFyotf0HZ8prqu"
+    },
+    "3f4041ffe3bc4a6bd078": {
+      "text": "Always check the exported model’s dimensions in your slicer. A startup file does not control every exporter’s scale.",
+      "file": "3f4041ffe3bc4a6bd078.mp3",
+      "duration": 7.52,
+      "generationId": "b3DGhV3fUWCoP79aTkwA"
     },
     "6e79f91353631455903d": {
       "text": "The selected object receives your changes. Click the cube itself, rather than empty space.",
@@ -2706,8 +2904,8 @@
           "display": "The Item Sidebar lives inside the 3D Viewport. It displays location, rotation, scale, and dimensions. Blender shortcuts act on the editor under your pointer."
         },
         "task": {
-          "id": "8c1b2c9b929a53f0effa",
-          "display": "Move into the viewport and press N, or choose View → Sidebar."
+          "id": "67a7b97e283b1595b8d9",
+          "display": "Choose View, then Sidebar. Use the menu for this step; you will practice N next."
         },
         "summary": {
           "id": "e57241051e26c3fc78b4",
@@ -2740,20 +2938,6 @@
         "summary": {
           "id": "645c40b0cd83cfccef45",
           "display": "You scrolled the header without moving the 3D view. In real Blender, this also applies to other crowded editor headers and workspace tabs."
-        }
-      },
-      "units": {
-        "description": {
-          "id": "b9b3fe8bb9b9ceff9327",
-          "display": "The prepared millimeter checkpoint uses Metric, Unit Scale 0.001, and Length Millimeters. These settings are already set here. Expand the actual Units section to inspect them."
-        },
-        "task": {
-          "id": "e0c253c529cc3a059838",
-          "display": "Expand Units in Scene Properties on the right."
-        },
-        "summary": {
-          "id": "3e68e44332ed583f393b",
-          "display": "These settings are already prepared in the checkpoint. Explicit entries such as 100 mm avoid ambiguity. Export scale must still be checked."
         }
       },
       "delete": {
@@ -2926,6 +3110,176 @@
         "summary": {
           "id": "1b16dbea7aad280f2b7f",
           "display": "Save your real Blender project before leaving."
+        }
+      }
+    },
+    "blender/setup-for-printing": {
+      "scene": {
+        "description": {
+          "id": "54aa84a8cce5f7a5cd9a",
+          "display": "Scene units belong to the scene. Find the Properties editor at the right, then its Scene tab: the icon combines a cone, sphere, and light. This is different from the Item Sidebar inside the viewport."
+        },
+        "task": {
+          "id": "9866378f949c22bbb37b",
+          "display": "Click the Scene Properties tab."
+        },
+        "summary": {
+          "id": "d78c80658d945a7f52c7",
+          "display": "You selected Scene Properties. Next, open its Units section."
+        }
+      },
+      "units": {
+        "description": {
+          "id": "3040e32b2563ea666c07",
+          "display": "The Units section is collapsed. We start without a unit system so you can configure it yourself. These scene settings travel with your Blender file."
+        },
+        "task": {
+          "id": "b7f36bcc7654007e0ee3",
+          "display": "Click the Units heading to expand it."
+        },
+        "summary": {
+          "id": "c1f34685c648902dded6",
+          "display": "Unit System currently reads None. The scale and length controls become useful after choosing Metric."
+        }
+      },
+      "system": {
+        "description": {
+          "id": "f63033efdb1a64a23c56",
+          "display": "Metric enables familiar physical measurements. Choosing Millimeters later changes the displayed length unit; Unit Scale controls how Blender units relate to physical size."
+        },
+        "task": {
+          "id": "ffb00b5cf72855dc2d45",
+          "display": "Open Unit System and choose Metric."
+        },
+        "summary": {
+          "id": "0acd3ca1152e3baae8af",
+          "display": "Metric is selected. The scale is still 1, so one Blender unit currently represents one meter."
+        }
+      },
+      "scale": {
+        "description": {
+          "id": "f8c0246b0614419af30d",
+          "display": "For this course, use Unit Scale 0.001: one Blender unit represents one millimeter. This is a course convention, not the only valid printing workflow. Changing Unit Scale changes the interpretation of existing geometry, so set it before modeling."
+        },
+        "task": {
+          "id": "0dcc0c3506e19291a9fa",
+          "display": "Double-click Unit Scale, type `0` `.` `0` `0` `1`, then press `Enter`."
+        },
+        "summary": {
+          "id": "88931148e1893caef7e5",
+          "display": "Unit Scale is 0.001. A default two-unit cube now represents 2 millimeters on each side."
+        }
+      },
+      "length": {
+        "description": {
+          "id": "8b2cf481aa9ca36d4801",
+          "display": "Length controls how distances are displayed. Set it to Millimeters so dimensions and viewport clipping distances use the same unit as the tray project."
+        },
+        "task": {
+          "id": "84b74caac68c51b2cd9e",
+          "display": "Open Length and choose Millimeters."
+        },
+        "summary": {
+          "id": "2fa7450b67024f59a602",
+          "display": "Distances are displayed in millimeters. This does not resize the mesh."
+        }
+      },
+      "sidebar": {
+        "description": {
+          "id": "64b1b35265202ea93bff",
+          "display": "Viewport settings are separate from scene settings. Open the Sidebar inside the 3D Viewport. You can use the View menu or the N shortcut learned in Meet Blender."
+        },
+        "task": {
+          "id": "e073e6b9ff33a54d919e",
+          "display": "Choose View → Sidebar, or focus the viewport and press `N`."
+        },
+        "summary": {
+          "id": "3c828a3f890c2f0594cf",
+          "display": "The Sidebar is open. Its Item tab shows the cube dimensions; the View tab contains clipping settings."
+        }
+      },
+      "view": {
+        "description": {
+          "id": "cbf0b3484ec4229c054b",
+          "display": "The Sidebar has vertical tabs on its right edge. Choose View to find the viewport lens and clipping distances. Leave Focal Length at 50 millimeters for this course."
+        },
+        "task": {
+          "id": "13d10b62b6805eb28816",
+          "display": "Click the Sidebar’s View tab."
+        },
+        "summary": {
+          "id": "3c5fdf189eade89cb0c5",
+          "display": "Clip Start and End define the nearest and farthest surfaces the viewport can display. They do not cut or resize your model."
+        }
+      },
+      "clip-start": {
+        "description": {
+          "id": "4e6203d9793c4e7d59d7",
+          "display": "Clip Start hides surfaces closer to the viewpoint than this distance. If a close-up seems sliced open, reduce this value. Use 0.1 millimeters for this course, and reduce it further only when the detail needs it."
+        },
+        "task": {
+          "id": "39715ea36d36b9dcd75f",
+          "display": "Double-click Clip Start, enter `0` `.` `1`, then press `Enter`."
+        },
+        "summary": {
+          "id": "cf3de79227a152a80d5e",
+          "display": "The near clipping distance is 0.1 millimeters. This is a viewport setting; a render camera has separate clipping controls."
+        }
+      },
+      "clip-end": {
+        "description": {
+          "id": "f818d573f185aa8ff136",
+          "display": "End hides surfaces beyond the far clipping distance. Use 10000 millimeters, or 10 meters, for this course workspace. Avoid making the range unnecessarily enormous: an extreme range can reduce depth precision."
+        },
+        "task": {
+          "id": "6b61031f9f1adc98a205",
+          "display": "Double-click End, enter `1` `0` `0` `0` `0`, then press `Enter`."
+        },
+        "summary": {
+          "id": "afec4cc34685d44f17ea",
+          "display": "The viewport range is now 0.1 to 10000 millimeters. These settings affect this 3D Viewport, not every editor in every Blender file."
+        }
+      },
+      "startup": {
+        "description": {
+          "id": "8aae6f168f0386ce4654",
+          "display": "A startup file stores the current scene and workspace, including scene units and this viewport’s settings. Save it before building the tray, so future new files do not start with your finished model. Our practice scene still contains the default Cube, Camera, and Light."
+        },
+        "task": {
+          "id": "693d5f5b0792a5de78da",
+          "display": "Choose File → Defaults → Save Startup File."
+        },
+        "summary": {
+          "id": "a7186bd71638bafb2865",
+          "display": "Blender asks before replacing the startup file. Saving a startup file is different from saving a named project with Save As."
+        }
+      },
+      "confirm": {
+        "description": {
+          "id": "6b31b12e16efb4c5ec4e",
+          "display": "In real Blender, this replaces your previous startup scene. In this simulation, only the practice checkpoint changes. If you want to keep a customized startup in real Blender, save a separate scene template instead."
+        },
+        "task": {
+          "id": "ce958ad0d5411c02bd7e",
+          "display": "Click Overwrite to save this simulated startup configuration."
+        },
+        "summary": {
+          "id": "d67bcd95449118e93480",
+          "display": "Your setup is saved. In real Blender, test File → New → General after saving any current work. Check Metric, 0.001, Millimeters, and the View tab’s clipping values."
+        }
+      },
+      "complete": {
+        "description": {
+          "id": "d432cd8ccfc0225c536b",
+          "display": "You configured scene units, viewport clipping, and a startup file. The downloadable setup scene is an optional recovery point. Open a new file in real Blender and verify the settings, then continue to the tray lessons."
+        },
+        "task": {
+          "id": "e6e82bb6e1f49d324b35",
+          "display": "Keep Blender open and save each project under its own name."
+        },
+        "summary": {
+          "id": "3f4041ffe3bc4a6bd078",
+          "display": "Always check the exported model’s dimensions in your slicer. A startup file does not control every exporter’s scale."
         }
       }
     },

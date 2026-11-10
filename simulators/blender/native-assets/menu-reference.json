@@ -1066,6 +1066,18 @@
         },
         "enabled": true
       }
+    ],
+    "TOPBAR_MT_file_defaults": [
+      {
+        "kind": "operator",
+        "label": "Save Startup File",
+        "operator": "wm.save_homefile"
+      },
+      {
+        "kind": "operator",
+        "label": "Load Factory Settings",
+        "operator": "wm.read_factory_settings"
+      }
     ]
   },
   "notes": [

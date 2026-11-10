@@ -73,7 +73,7 @@ export function createNarration({root,lesson,storage,media=new Audio(),fetcher=f
  function unlock(event){if(blocked&&autoplay&&!event.target.closest('.narration-player, #narration-settings'))playKind(active);}
  on(root,'pointerup',unlock);on(root,'keydown',unlock);
  on(window,'pagehide',stop);
- const ready=fetcher(new URL('manifest.json?v=narration-1',base)).then(r=>{if(!r.ok)throw Error('Narration manifest unavailable');return r.json();}).then(value=>{if(disposed)return;manifest=value;if(step){assign();startPhase();}}).catch(()=>{if(disposed)return;settings.querySelector('small').textContent='Narration unavailable. You can continue without audio.';for(const p of players.values())p.host.hidden=true;});
+ const ready=fetcher(new URL('manifest.json?v=input-sequence-1',base)).then(r=>{if(!r.ok)throw Error('Narration manifest unavailable');return r.json();}).then(value=>{if(disposed)return;manifest=value;if(step){assign();startPhase();}}).catch(()=>{if(disposed)return;settings.querySelector('small').textContent='Narration unavailable. You can continue without audio.';for(const p of players.values())p.host.hidden=true;});
  return {
   ready,
   setStep(value,{summary=false}={}){stop();step=value;phase=summary?'pending-summary':'step';assign();if(!summary)startPhase();},

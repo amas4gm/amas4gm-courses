@@ -20,7 +20,18 @@ export const software=[{
         "Real Blender checkpoints"
       ],
       "number": "01",
-      "steps": 17
+      "steps": 16
+    },
+    {
+      "id": "setup-for-printing",
+      "title": "Setting up Blender for 3D printing",
+      "description": "Choose scene units, set viewport clipping, and save your startup configuration.",
+      "topics": [
+        "Units & View settings",
+        "Save Startup File"
+      ],
+      "number": "02",
+      "steps": 11
     },
     {
       "id": "object-manipulation",
@@ -30,7 +41,7 @@ export const software=[{
         "Interface & Objects",
         "Real Blender checkpoints"
       ],
-      "number": "02",
+      "number": "03",
       "steps": 15
     },
     {
@@ -41,7 +52,7 @@ export const software=[{
         "Mesh editing",
         "Real Blender checkpoints"
       ],
-      "number": "03",
+      "number": "04",
       "steps": 15
     }
   ]

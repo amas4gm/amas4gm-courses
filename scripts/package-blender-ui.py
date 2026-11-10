@@ -47,3 +47,6 @@ kept={r['file'] for r in manifest['states'].values()}|{r['file'] for r in manife
 for path in out.glob('*.webp'):
  if path.name not in kept and path.resolve().parent==out.resolve():path.unlink()
 print('Packaged',len(manifest['states']),'native UI captures;',round(sum(p.stat().st_size for p in out.iterdir())/1e6,2),'MB')
+
+# Add independently captured setup states after the base package pass.
+if (src/'setup-manifest.json').exists():subprocess.run(['python',str(root/'scripts/package-blender-setup.py')],check=True)
