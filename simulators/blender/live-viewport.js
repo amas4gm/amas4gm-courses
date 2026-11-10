@@ -1,5 +1,6 @@
 import * as THREE from '../../shared/vendor/three.module.js';
-import {liveState,meshForState,viewportRect} from './live-state.js';
+import {precisionDelta,dragZoomDistance} from './native-modal.js?v=input-5';
+import {liveState,meshForState,viewportRect} from './live-state.js?v=input-5';
 
 const baseRotation=new THREE.Quaternion(.425,.176,.340,.820).normalize();
 const svgNS='http://www.w3.org/2000/svg';
@@ -50,11 +51,11 @@ export async function createLiveViewport({stage,frame,manifest,url,onView,onTop,
    const ep=[],ec=[];data.edges.forEach(([a,b],i)=>{ep.push(...data.vertices[a],...data.vertices[b]);const c=new THREE.Color(data.selectedEdges[i]?(state.operation?.kind==='extrude'?0xffffff:0xffa33a):0x242424);ec.push(c.r,c.g,c.b,c.r,c.g,c.b);});const eg=new THREE.BufferGeometry();eg.setAttribute('position',new THREE.Float32BufferAttribute(ep,3));eg.setAttribute('color',new THREE.Float32BufferAttribute(ec,3));model.add(new THREE.LineSegments(eg,new THREE.LineBasicMaterial({vertexColors:true})));
    if(state.tool==='vertex'){const vg=new THREE.BufferGeometry();vg.setAttribute('position',new THREE.Float32BufferAttribute(data.vertices.flat(),3));model.add(new THREE.Points(vg,new THREE.PointsMaterial({color:state.selection==='all'?0xffa33a:0x161616,size:4,sizeAttenuation:false})));}
   }else if(state.selection!=='none'){
-   const outline=new THREE.Mesh(geometry.clone(),new THREE.MeshBasicMaterial({color:0xffa33a,side:THREE.BackSide}));geometry.computeBoundingBox();const center=geometry.boundingBox.getCenter(new THREE.Vector3());outline.scale.setScalar(1.006);outline.position.copy(center).multiplyScalar(-.006);model.add(outline);
+   const outline=new THREE.Mesh(geometry.clone(),new THREE.MeshBasicMaterial({color:state.operation&&!state.operation.confirmed?0xffffff:0xffa33a,side:THREE.BackSide}));geometry.computeBoundingBox();const center=geometry.boundingBox.getCenter(new THREE.Vector3());outline.scale.setScalar(1.006);outline.position.copy(center).multiplyScalar(-.006);model.add(outline);
   }
-  const origin=new THREE.Mesh(new THREE.SphereGeometry(state.asset==='cube'?.018:.25,8,6),new THREE.MeshBasicMaterial({color:0xffa33a}));origin.position.set(state.values.x||0,0,state.asset==='cube'?(state.values.z||0):9);model.add(origin);
-  if(state.operation?.axis){const g=new THREE.BufferGeometry(),isX=state.operation.axis==='x';g.setAttribute('position',new THREE.Float32BufferAttribute(isX?[-10000,0,0,10000,0,0]:[0,0,-10000,0,0,10000],3));const line=new THREE.LineSegments(g,new THREE.LineBasicMaterial({color:isX?0xb34c58:0x6b98c7,depthTest:false}));line.renderOrder=20;model.add(line);}
-  canvas.dataset.mesh=JSON.stringify({asset:data.asset,vertices:data.vertices.length,faces:data.faces.length});requestRender();
+  const origin=new THREE.Mesh(new THREE.SphereGeometry(state.asset==='cube'?.018:.25,8,6),new THREE.MeshBasicMaterial({color:0xffa33a}));origin.position.set((state.values.x||0)+(state.operation?.kind==='move'?(state.operation.axis==='x'?state.operation.value:state.operation.vector?.[0]||0):0),state.operation?.kind==='move'?(state.operation.axis==='y'?state.operation.value:state.operation.vector?.[1]||0):0,(state.asset==='cube'?(state.values.z||0):9)+(state.operation?.kind==='move'?(state.operation.axis==='z'?state.operation.value:state.operation.vector?.[2]||0):0));model.add(origin);
+  if(state.operation?.axis&&!state.operation.confirmed){const g=new THREE.BufferGeometry(),isX=state.operation.axis==='x',isY=state.operation.axis==='y';g.setAttribute('position',new THREE.Float32BufferAttribute(isX?[-10000,0,0,10000,0,0]:isY?[0,-10000,0,0,10000,0]:[0,0,-10000,0,0,10000],3));const line=new THREE.LineSegments(g,new THREE.LineBasicMaterial({color:isX?0xb34c58:isY?0x83a44c:0x6b98c7,depthTest:false}));line.renderOrder=20;model.add(line);}
+  canvas.dataset.mesh=JSON.stringify({asset:data.asset,vertices:data.vertices.length,faces:data.faces.length,bounds:[0,1,2].map(i=>[Math.min(...data.vertices.map(v=>v[i])),Math.max(...data.vertices.map(v=>v[i]))])});requestRender();
  }
  function drawGizmo(){gizmo.replaceChildren();const inverse=rotation.clone().invert();const projected=[];
   for(const [name,v,color] of axes)for(const sign of [-1,1]){const point=v.clone().multiplyScalar(sign).applyQuaternion(inverse);projected.push({name,sign,color,point});}
@@ -66,6 +67,27 @@ export async function createLiveViewport({stage,frame,manifest,url,onView,onTop,
  }
  return {
   canvas,topButton,
+  viewport:()=>rect,
+  rotationValues(op){const axis=op.axis?new THREE.Vector3(...[...'xyz'].map(k=>k===op.axis?1:0)):new THREE.Vector3(...(op.viewAxis||[0,0,1]));const e=new THREE.Euler().setFromQuaternion(new THREE.Quaternion().setFromAxisAngle(axis,op.value*Math.PI/180),'XYZ');return {rx:e.x*180/Math.PI,ry:e.y*180/Math.PI,rz:e.z*180/Math.PI};},
+  previewOperation(op){state.operation=structuredClone(op);rebuild();},
+  transformPointer(op,from,to,shift){
+   const factor=precisionDelta(1,shift),dx=(to[0]-from[0])*factor,dy=(to[1]-from[1])*factor,worldPerPixel=2*distance/(rect.width*1.3888888359069824);
+   const virtualFrom=op.virtualPointer||from,virtualTo=[virtualFrom[0]+dx,virtualFrom[1]+dy];op.virtualPointer=virtualTo;
+   op.mouseTravel+=Math.hypot(dx,dy);if(shift)op.precisionTravel+=Math.hypot(to[0]-from[0],to[1]-from[1]);else op.normalTravel+=Math.hypot(to[0]-from[0],to[1]-from[1]);
+   op.viewAxis=new THREE.Vector3(0,0,1).applyQuaternion(rotation).toArray();
+   if(op.kind==='move'){
+    const delta=new THREE.Vector3(dx*worldPerPixel,-dy*worldPerPixel,0).applyQuaternion(rotation);op.vector=op.vector.map((v,i)=>v+delta.getComponent(i));
+    if(op.axis){const axis=new THREE.Vector3(...[...'xyz'].map(k=>k===op.axis?1:0)).applyQuaternion(rotation.clone().invert());op.visualValue+=(dx*axis.x-dy*axis.y)*worldPerPixel/Math.max(.01,axis.x*axis.x+axis.y*axis.y);}else op.visualValue=Math.hypot(...op.vector);
+   }else if(op.kind==='rotate'||op.kind==='scale'){
+    const c=new THREE.Vector3(state.values.x||0,0,state.asset==='cube'?state.values.z||0:9).project(camera),center=[rect.x+(c.x+1)*rect.width/2,rect.y+(1-c.y)*rect.height/2];
+    const before=[virtualFrom[0]-center[0],virtualFrom[1]-center[1]],after=[virtualTo[0]-center[0],virtualTo[1]-center[1]];
+    if(op.kind==='rotate'){let angle=Math.atan2(before[1],before[0])-Math.atan2(after[1],after[0]);angle=Math.atan2(Math.sin(angle),Math.cos(angle));const sign=op.axis?Math.sign(op.viewAxis['xyz'.indexOf(op.axis)])||1:1;op.visualValue+=angle*180/Math.PI*sign;}
+    else op.visualValue=Math.max(.01,op.visualValue*Math.hypot(...after)/Math.max(1,Math.hypot(...before)));
+   }else if(op.kind==='extrude'){const axis=new THREE.Vector3(0,0,1).applyQuaternion(rotation.clone().invert());op.visualValue+=(dx*axis.x-dy*axis.y)*worldPerPixel/Math.max(.01,axis.x*axis.x+axis.y*axis.y);}
+   else {const c=new THREE.Vector3(0,0,18).project(camera),center=[rect.x+(c.x+1)*rect.width/2,rect.y+(1-c.y)*rect.height/2],radial=Math.hypot(virtualTo[0]-center[0],virtualTo[1]-center[1])-Math.hypot(virtualFrom[0]-center[0],virtualFrom[1]-center[1]);op.visualValue=Math.max(0,op.visualValue+radial*worldPerPixel*(op.kind==='inset'?-1:1));if(op.kind==='inset')op.visualValue=Math.min(34.9,op.visualValue);if(op.kind==='bevel')op.visualValue=Math.min(2.9,op.visualValue);}
+  },
+  beginZoom(y){return {distance,y};},
+  dragZoom(initial,y){const before=distance;distance=dragZoomDistance(initial.distance,y-initial.y,rect.height);viewChanged=true;layout();if(distance!==before)onView?.('zoom',distance-before,0);},
   selectionGuide(topOnly=false){const data=meshForState(state,assets);selectionPoint=new THREE.Vector3();if(data){const ids=topOnly?(data.faces.find(f=>f.every(i=>Math.abs(data.vertices[i][2]-18)<1e-5))||[]):data.vertices.map((_,i)=>i);for(const i of ids)selectionPoint.add(new THREE.Vector3(...data.vertices[i]));selectionPoint.divideScalar(ids.length||1);}requestRender();return selectionTarget;},
   beginNavigation(){navigationReverse=new THREE.Vector3(0,1,0).applyQuaternion(rotation).z<0?-1:1;},
   endNavigation(){navigationReverse=null;},

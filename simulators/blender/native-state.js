@@ -20,6 +20,8 @@ export const frames = {
   object:['orientation','finished'],'save-final':['finished','finished'],export:['finished','finished'],complete:['finished','finished']
  }
 };
+for(const [lesson,extra] of Object.entries({'getting-started':{'sidebar-shortcut':'sidebar','frame-shortcut':'frame','save-shortcut':'save'},'object-manipulation':{'apply-shortcut':'apply'},'edit-mode':{'mode-shortcut':'mode'}}))for(const [id,source] of Object.entries(extra))frames[lesson][id]=frames[lesson][source];
+for(const kind of ['move','rotate','scale'])frames['object-manipulation']['visual-'+kind]=['cube-sidebar','cube-sidebar'];
 export const fieldRects={x:[1573,195,263,28],z:[1573,252,263,28],rz:[1573,371,263,28],dx:[1573,585,341,28],dy:[1573,614,341,29],dz:[1573,644,341,29]};
 export function statePair(lesson,step){const result=frames[lesson]?.[step];if(!result)throw Error(`Missing native state: ${lesson}/${step}`);return result;}
 export function boundedFrame(kind,index){const max=kind==='orbit'?48:16;return `${kind}-${String(Math.min(max,Math.max(0,Math.round(index)))).padStart(2,'0')}`;}

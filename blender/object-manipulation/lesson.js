@@ -25,10 +25,70 @@ export default {
       "follow": "The orange outline identifies the active object. Save your own real Blender file before experimenting."
     },
     {
+      "id": "visual-move",
+      "title": "Move by eye with precision",
+      "chapter": "BLENDER / VISUAL TRANSFORMS",
+      "text": "G starts Move. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube.",
+      "task": "Press `G`, move the pointer, then hold `Shift` and move again. Left-click or press `Enter` to confirm.",
+      "keys": [
+        "G",
+        "Shift",
+        "Enter"
+      ],
+      "inputHint": "Move without holding a mouse button after starting the operation. Hold Shift for fine control. Try Escape to cancel and restart.",
+      "done": "You practiced visual transformation and Shift precision. The next checkpoint restores the cube for a new exercise.",
+      "simulation": {
+        "action": "move",
+        "asset": "cube",
+        "visual": true
+      },
+      "follow": "Try the same visual transform in real Blender. Save a new copy before experimenting."
+    },
+    {
+      "id": "visual-rotate",
+      "title": "Rotate by eye",
+      "chapter": "BLENDER / VISUAL TRANSFORMS",
+      "text": "R starts Rotate. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube.",
+      "task": "Press `R`, move the pointer, then hold `Shift` and move again. Left-click or press `Enter` to confirm.",
+      "keys": [
+        "R",
+        "Shift",
+        "Enter"
+      ],
+      "inputHint": "Move without holding a mouse button after starting the operation. Hold Shift for fine control. Try Escape to cancel and restart.",
+      "done": "You practiced visual transformation and Shift precision. The next checkpoint restores the cube for a new exercise.",
+      "simulation": {
+        "action": "rotate",
+        "asset": "cube",
+        "visual": true
+      },
+      "follow": "Try the same visual transform in real Blender. Save a new copy before experimenting."
+    },
+    {
+      "id": "visual-scale",
+      "title": "Scale by eye",
+      "chapter": "BLENDER / VISUAL TRANSFORMS",
+      "text": "S starts Scale. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube.",
+      "task": "Press `S`, move the pointer, then hold `Shift` and move again. Left-click or press `Enter` to confirm.",
+      "keys": [
+        "S",
+        "Shift",
+        "Enter"
+      ],
+      "inputHint": "Move without holding a mouse button after starting the operation. Hold Shift for fine control. Try Escape to cancel and restart.",
+      "done": "You practiced visual transformation and Shift precision. The next checkpoint restores the cube for a new exercise.",
+      "simulation": {
+        "action": "scale",
+        "asset": "cube",
+        "visual": true
+      },
+      "follow": "Try the same visual transform in real Blender. Save a new copy before experimenting."
+    },
+    {
       "id": "move",
       "title": "Move along X",
-      "text": "G starts Blender’s Move operation. X constrains it to the X axis. Numeric entry sets the distance, and Enter confirms. Escape or right-click cancels the operation.",
-      "task": "Click the viewport. Press G, X, 1, then Enter.",
+      "text": "G starts Blender’s Move operation. X constrains it to the X axis. Numeric entry sets the distance, and Enter confirms. Escape or right-click cancels the operation. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm.",
+      "task": "Click the viewport. Press `G` → `X` → `1` → `Enter`. Watch the preview before Enter.",
       "done": "The object moved 1 mm along X. The view and object dimensions stayed unchanged.",
       "simulation": {
         "action": "move",
@@ -37,7 +97,14 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The object moved 1 mm along X. The view and object dimensions stayed unchanged. Save your own real Blender file before experimenting."
+      "follow": "The object moved 1 mm along X. The view and object dimensions stayed unchanged. Save your own real Blender file before experimenting.",
+      "keys": [
+        "G",
+        "X",
+        "1",
+        "Enter"
+      ],
+      "inputHint": "Watch the highlighted numeric record at the top of the viewport. Backspace edits the value; Escape cancels."
     },
     {
       "id": "return",
@@ -56,13 +123,18 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The object returned to X = 0. Save your own real Blender file before experimenting."
+      "follow": "The object returned to X = 0. Save your own real Blender file before experimenting.",
+      "keys": [
+        "0",
+        "Enter"
+      ],
+      "inputHint": "Double-click the named field first. Watch the live size or position as you type; Enter confirms and Escape restores it."
     },
     {
       "id": "rotate",
       "title": "Rotate around Z",
-      "text": "Z is vertical. Rotation around Z turns the object in the horizontal plane.",
-      "task": "Click the viewport. Press R, Z, 45, then Enter.",
+      "text": "Z is vertical. Rotation around Z turns the object in the horizontal plane. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm.",
+      "task": "Click the viewport. Press `R` → `Z` → `4` → `5` → `Enter`. Watch the preview before Enter.",
       "done": "The mesh changed orientation; the view stayed fixed.",
       "simulation": {
         "action": "rotate",
@@ -71,7 +143,15 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The mesh changed orientation; the view stayed fixed. Save your own real Blender file before experimenting."
+      "follow": "The mesh changed orientation; the view stayed fixed. Save your own real Blender file before experimenting.",
+      "keys": [
+        "R",
+        "Z",
+        "4",
+        "5",
+        "Enter"
+      ],
+      "inputHint": "Watch the highlighted numeric record at the top of the viewport. Backspace edits the value; Escape cancels."
     },
     {
       "id": "straighten",
@@ -90,7 +170,12 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The cube is aligned with X and Y again. Save your own real Blender file before experimenting."
+      "follow": "The cube is aligned with X and Y again. Save your own real Blender file before experimenting.",
+      "keys": [
+        "0",
+        "Enter"
+      ],
+      "inputHint": "Double-click the named field first. Watch the live size or position as you type; Enter confirms and Escape restores it."
     },
     {
       "id": "width",
@@ -106,7 +191,14 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "X is now 100 mm. The other dimensions have not changed. Save your own real Blender file before experimenting."
+      "follow": "X is now 100 mm. The other dimensions have not changed. Save your own real Blender file before experimenting.",
+      "keys": [
+        "1",
+        "0",
+        "0",
+        "Enter"
+      ],
+      "inputHint": "Double-click the named field first. Watch the live size or position as you type; Enter confirms and Escape restores it."
     },
     {
       "id": "depth",
@@ -125,7 +217,13 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The footprint is now 100 × 70 mm. Save your own real Blender file before experimenting."
+      "follow": "The footprint is now 100 × 70 mm. Save your own real Blender file before experimenting.",
+      "keys": [
+        "7",
+        "0",
+        "Enter"
+      ],
+      "inputHint": "Double-click the named field first. Watch the live size or position as you type; Enter confirms and Escape restores it."
     },
     {
       "id": "height",
@@ -145,13 +243,19 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The tray blank now measures 100 × 70 × 18 mm. Save your own real Blender file before experimenting."
+      "follow": "The tray blank now measures 100 × 70 × 18 mm. Save your own real Blender file before experimenting.",
+      "keys": [
+        "1",
+        "8",
+        "Enter"
+      ],
+      "inputHint": "Double-click the named field first. Watch the live size or position as you type; Enter confirms and Escape restores it."
     },
     {
       "id": "apply",
       "title": "Apply scale",
       "text": "Changing dimensions in Object Mode changes scale. Apply Scale preserves the visible size while making the scale values 1. This gives dimension-sensitive mesh tools a consistent starting point.",
-      "task": "Choose Object → Apply → Scale.",
+      "task": "Choose Object → Apply → Scale, or press `Ctrl` + `A` and choose Scale.",
       "done": "The blank keeps its dimensions. Scale is now 1 on every axis.",
       "simulation": {
         "action": "apply-scale",
@@ -178,7 +282,39 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The blank keeps its dimensions. Scale is now 1 on every axis. Save your own real Blender file before experimenting."
+      "follow": "The blank keeps its dimensions. Scale is now 1 on every axis. Save your own real Blender file before experimenting.",
+      "keys": [
+        "Ctrl+A"
+      ],
+      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
+    },
+    {
+      "id": "apply-shortcut",
+      "title": "Practice Apply Scale",
+      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Changing dimensions in Object Mode changes scale. Apply Scale preserves the visible size while making the scale values 1. This gives dimension-sensitive mesh tools a consistent starting point.",
+      "task": "Focus the viewport and press `Ctrl` + `A` and choose Scale.",
+      "done": "The blank keeps its dimensions. Scale is now 1 on every axis.",
+      "simulation": {
+        "action": "apply-scale",
+        "asset": "cube",
+        "values": {
+          "dx": 100,
+          "dy": 70,
+          "dz": 18,
+          "sx": 50,
+          "sy": 35,
+          "sz": 9
+        },
+        "target": "object",
+        "shortcutOnly": true
+      },
+      "chapter": "BLENDER / PART 1 · OBJECT MODE",
+      "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
+      "follow": "The blank keeps its dimensions. Scale is now 1 on every axis. Save your own real Blender file before experimenting.",
+      "keys": [
+        "Ctrl+A"
+      ],
+      "inputHint": "Use the shortcut on this second pass. The original menu method remains available in the previous step."
     },
     {
       "id": "ground",
@@ -200,13 +336,18 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The bottom is now at zero. The next checkpoint preserves the blank as actual Blender geometry. Save your own real Blender file before experimenting."
+      "follow": "The bottom is now at zero. The next checkpoint preserves the blank as actual Blender geometry. Save your own real Blender file before experimenting.",
+      "keys": [
+        "9",
+        "Enter"
+      ],
+      "inputHint": "Double-click the named field first. Watch the live size or position as you type; Enter confirms and Escape restores it."
     },
     {
       "id": "save",
       "title": "Save the sized blank",
-      "text": "Before editing topology, save a separate checkpoint. You can return to it if an experiment goes wrong.",
-      "task": "Choose File → Save As and save the sized blank.",
+      "text": "Before editing topology, save a separate checkpoint. You can return to it if an experiment goes wrong. In real Blender, Ctrl+S saves the current named file; Ctrl+Shift+S creates a separately named version.",
+      "task": "Choose File → Save As, or press `Ctrl` + `Shift` + `S`, then confirm the filename.",
       "done": "In real Blender, save desk-tray-02-sized.blend. The Blank download below is available if you need to catch up.",
       "simulation": {
         "action": "save",
@@ -216,7 +357,11 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "In real Blender, save desk-tray-02-sized.blend. The Blank download below is available if you need to catch up. Save your own real Blender file before experimenting."
+      "follow": "In real Blender, save desk-tray-02-sized.blend. The Blank download below is available if you need to catch up. Save your own real Blender file before experimenting.",
+      "keys": [
+        "Ctrl+Shift+S"
+      ],
+      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
     },
     {
       "id": "complete",

@@ -52,7 +52,30 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "Dimensions are the size of the object. Location describes its origin, not the bottom surface. Save your own real Blender file before experimenting."
+      "follow": "Dimensions are the size of the object. Location describes its origin, not the bottom surface. Save your own real Blender file before experimenting.",
+      "keys": [
+        "N"
+      ],
+      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
+    },
+    {
+      "id": "sidebar-shortcut",
+      "title": "Practice the Sidebar shortcut",
+      "text": "The same starting checkpoint is restored so you can practice the keyboard route. The Item Sidebar lives inside the 3D Viewport. It displays location, rotation, scale, and dimensions. Blender shortcuts act on the editor under your pointer.",
+      "task": "Focus the viewport and press `N`, then finish the same action.",
+      "done": "Dimensions are the size of the object. Location describes its origin, not the bottom surface.",
+      "simulation": {
+        "action": "sidebar",
+        "asset": "cube",
+        "shortcutOnly": true
+      },
+      "chapter": "BLENDER / PART 1 · OBJECT MODE",
+      "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
+      "follow": "Dimensions are the size of the object. Location describes its origin, not the bottom surface. Save your own real Blender file before experimenting.",
+      "keys": [
+        "N"
+      ],
+      "inputHint": "Use the shortcut on this second pass. The original menu method remains available in the previous step."
     },
     {
       "id": "headers",
@@ -101,13 +124,17 @@ export default {
       ],
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The object was removed. Next you will add your own mesh. Save your own real Blender file before experimenting."
+      "follow": "The object was removed. Next you will add your own mesh. Save your own real Blender file before experimenting.",
+      "keys": [
+        "Delete"
+      ],
+      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
     },
     {
       "id": "add",
       "title": "Add a mesh cube",
       "text": "The Add menu creates objects. A cube is a useful starting shape for our rectangular organizer tray.",
-      "task": "Choose Add, then Mesh → Cube.",
+      "task": "Choose Add → Mesh → Cube, or press `Shift` + `A`, then choose Mesh → Cube.",
       "done": "A new cube appears and becomes selected. In Blender, Shift+A also opens Add.",
       "simulation": {
         "action": "add-cube",
@@ -118,7 +145,11 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "A new cube appears and becomes selected. In Blender, Shift+A also opens Add. Save your own real Blender file before experimenting."
+      "follow": "A new cube appears and becomes selected. In Blender, Shift+A also opens Add. Save your own real Blender file before experimenting.",
+      "keys": [
+        "Shift+A"
+      ],
+      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
     },
     {
       "id": "rename",
@@ -132,13 +163,17 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only this step’s interaction is enabled",
-      "follow": "Name the object Desk Tray in real Blender, then save your project."
+      "follow": "Name the object Desk Tray in real Blender, then save your project.",
+      "keys": [
+        "F2"
+      ],
+      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
     },
     {
       "id": "orbit",
       "title": "Orbit around the object",
-      "text": "Orbit changes where you look from. In Blender, drag the middle mouse button. Here we isolate horizontal orbit so you can learn the gesture without losing the object.",
-      "task": "Middle-drag horizontally to orbit, or use the labeled simulation aid.",
+      "text": "Drag the rotating axes at the top right to orbit the scene. With a mouse, dragging the middle button in the viewport does the same thing. This moves your viewpoint, not the object.",
+      "task": "Drag the colored axes, or drag with the middle mouse button.",
       "done": "The view changed; the cube did not rotate.",
       "simulation": {
         "action": "orbit",
@@ -155,67 +190,48 @@ export default {
         "success": "Correct. Carry that distinction into real Blender."
       },
       "completionMode": "practice",
-      "tools": [
-        [
-          "orbit-aid",
-          "Simulator aid: orbit"
-        ]
-      ],
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The view changed; the cube did not rotate. Save your own real Blender file before experimenting."
+      "follow": "The view changed; the cube did not rotate. Save your own real Blender file before experimenting.",
+      "inputHint": "Press and hold on the colored axes, move the pointer, then release."
     },
     {
       "id": "pan",
       "title": "Move the view sideways",
-      "text": "In Blender, Shift + middle-drag pans the view. Panning changes the camera target without moving the object.",
-      "task": "Hold Shift and middle-drag to pan, or use the simulator aid.",
+      "text": "The hand below the rotating axes is Blender’s drag control for panning. It works with a mouse, pen, or touch. With a mouse you can also hold Shift and drag the middle button.",
+      "task": "Drag the hand icon below the axes to slide the view.",
       "done": "Panning helps you inspect details without changing the model.",
       "simulation": {
         "action": "pan",
         "asset": "cube"
       },
       "completionMode": "practice",
-      "tools": [
-        [
-          "pan-aid",
-          "Simulator aid: pan"
-        ]
-      ],
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "Panning helps you inspect details without changing the model. Save your own real Blender file before experimenting."
+      "follow": "Panning helps you inspect details without changing the model. Save your own real Blender file before experimenting.",
+      "inputHint": "Press and hold the hand icon, move in any direction, then release."
     },
     {
       "id": "zoom",
       "title": "Zoom in and out",
-      "text": "Scroll the mouse wheel to zoom. Zoom changes apparent size, not physical dimensions.",
-      "task": "Zoom in, then zoom out. Both directions are required.",
+      "text": "Drag Blender’s magnifier below the axes up to zoom in and down to zoom out. A mouse wheel also zooms. The object’s dimensions do not change.",
+      "task": "Drag the magnifier up, then down. Practice both directions.",
       "done": "Your model remains the same size in millimeters.",
       "simulation": {
         "action": "zoom",
         "asset": "cube"
       },
       "completionMode": "practice",
-      "tools": [
-        [
-          "zoom-in",
-          "Simulator aid: zoom in"
-        ],
-        [
-          "zoom-out",
-          "Simulator aid: zoom out"
-        ]
-      ],
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "Your model remains the same size in millimeters. Save your own real Blender file before experimenting."
+      "follow": "Your model remains the same size in millimeters. Save your own real Blender file before experimenting.",
+      "inputHint": "Press and hold the magnifier. Drag upward to enlarge the view, then downward to pull back."
     },
     {
       "id": "top",
       "title": "Look from above",
       "text": "The navigation gizmo gives you axis-aligned views. Z is the vertical axis; looking along it shows the top.",
-      "task": "Click Z on the navigation gizmo.",
+      "task": "Click Z on the navigation gizmo, or press `Numpad 7`.",
       "done": "You are looking down at the top of the cube.",
       "simulation": {
         "action": "top",
@@ -223,13 +239,17 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "You are looking down at the top of the cube. Save your own real Blender file before experimenting."
+      "follow": "You are looking down at the top of the cube. Save your own real Blender file before experimenting.",
+      "keys": [
+        "Numpad 7"
+      ],
+      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
     },
     {
       "id": "frame",
       "title": "Find your selection again",
       "text": "Frame Selected centers and fits the selected object. It is useful when you have lost sight of your model. In real Blender, use numpad period or View → Frame Selected.",
-      "task": "Open View and choose Frame Selected.",
+      "task": "Choose View → Frame Selected, or press `Numpad .`.",
       "done": "The selected object is centered again.",
       "simulation": {
         "action": "frame",
@@ -238,13 +258,37 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The selected object is centered again. Save your own real Blender file before experimenting."
+      "follow": "The selected object is centered again. Save your own real Blender file before experimenting.",
+      "keys": [
+        "Numpad ."
+      ],
+      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
+    },
+    {
+      "id": "frame-shortcut",
+      "title": "Practice Frame Selected",
+      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Frame Selected centers and fits the selected object. It is useful when you have lost sight of your model. In real Blender, use numpad period or View → Frame Selected.",
+      "task": "Focus the viewport and press `Numpad .`, then finish the same action.",
+      "done": "The selected object is centered again.",
+      "simulation": {
+        "action": "frame",
+        "asset": "cube",
+        "target": "view",
+        "shortcutOnly": true
+      },
+      "chapter": "BLENDER / PART 1 · OBJECT MODE",
+      "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
+      "follow": "The selected object is centered again. Save your own real Blender file before experimenting.",
+      "keys": [
+        "Numpad ."
+      ],
+      "inputHint": "Use the shortcut on this second pass. The original menu method remains available in the previous step."
     },
     {
       "id": "save",
       "title": "Save your starting project",
-      "text": "Use File → Save As for a named checkpoint. The simulated dialog teaches the workflow; it does not save your real Blender project.",
-      "task": "Choose File → Save As and confirm the filename.",
+      "text": "Use File → Save As for a named checkpoint. The simulated dialog teaches the workflow; it does not save your real Blender project. In real Blender, Ctrl+S saves the current named file; Ctrl+Shift+S creates a separately named version.",
+      "task": "Choose File → Save As, or press `Ctrl` + `Shift` + `S`, then confirm the filename.",
       "done": "In real Blender, save desk-tray-01-start.blend. Save again after each meaningful change.",
       "simulation": {
         "action": "save",
@@ -254,7 +298,32 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "In real Blender, save desk-tray-01-start.blend. Save again after each meaningful change. Save your own real Blender file before experimenting."
+      "follow": "In real Blender, save desk-tray-01-start.blend. Save again after each meaningful change. Save your own real Blender file before experimenting.",
+      "keys": [
+        "Ctrl+Shift+S"
+      ],
+      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
+    },
+    {
+      "id": "save-shortcut",
+      "title": "Practice Save As",
+      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Use File → Save As for a named checkpoint. The simulated dialog teaches the workflow; it does not save your real Blender project. In real Blender, Ctrl+S saves the current named file; Ctrl+Shift+S creates a separately named version.",
+      "task": "Focus the viewport and press `Ctrl` + `Shift` + `S`, then finish the same action.",
+      "done": "In real Blender, save desk-tray-01-start.blend. Save again after each meaningful change.",
+      "simulation": {
+        "action": "save",
+        "asset": "cube",
+        "target": "file",
+        "filename": "desk-tray-01-start.blend",
+        "shortcutOnly": true
+      },
+      "chapter": "BLENDER / PART 1 · OBJECT MODE",
+      "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
+      "follow": "In real Blender, save desk-tray-01-start.blend. Save again after each meaningful change. Save your own real Blender file before experimenting.",
+      "keys": [
+        "Ctrl+Shift+S"
+      ],
+      "inputHint": "Use the shortcut on this second pass. The original menu method remains available in the previous step."
     },
     {
       "id": "complete",

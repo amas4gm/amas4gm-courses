@@ -13,7 +13,7 @@ export default {
       "id": "mode",
       "title": "Enter Edit Mode",
       "text": "Object Mode transforms the whole object. Edit Mode changes its vertices, edges, and faces. The Layout workspace can contain either mode.",
-      "task": "Open the mode selector and choose Edit Mode.",
+      "task": "Choose Edit Mode in the mode selector, or press `Tab` in the viewport.",
       "done": "You are now working on the mesh inside the object.",
       "simulation": {
         "action": "edit-mode",
@@ -32,13 +32,37 @@ export default {
       },
       "chapter": "BLENDER / PART 2 · EDIT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "You are now working on the mesh inside the object. Save your own real Blender file before experimenting."
+      "follow": "You are now working on the mesh inside the object. Save your own real Blender file before experimenting.",
+      "keys": [
+        "Tab"
+      ],
+      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
+    },
+    {
+      "id": "mode-shortcut",
+      "title": "Practice the mode shortcut",
+      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Object Mode transforms the whole object. Edit Mode changes its vertices, edges, and faces. The Layout workspace can contain either mode.",
+      "task": "Focus the viewport and press `Tab`, then finish the same action.",
+      "done": "You are now working on the mesh inside the object.",
+      "simulation": {
+        "action": "edit-mode",
+        "asset": "blank",
+        "target": "mode",
+        "shortcutOnly": true
+      },
+      "chapter": "BLENDER / PART 2 · EDIT MODE",
+      "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
+      "follow": "You are now working on the mesh inside the object. Save your own real Blender file before experimenting.",
+      "keys": [
+        "Tab"
+      ],
+      "inputHint": "Use the shortcut on this second pass. The original menu method remains available in the previous step."
     },
     {
       "id": "vertices",
       "title": "Identify vertices",
       "text": "Vertices are the corner points of a mesh. Moving one changes the connected edges and faces.",
-      "task": "Click Vertex Select in the viewport header.",
+      "task": "Click Vertex Select in the viewport header. Or press `1` on the top row of your keyboard.",
       "done": "The corner points are visible. In real Blender, top-row 1 chooses Vertex Select in Edit Mode.",
       "simulation": {
         "action": "vertex",
@@ -47,13 +71,17 @@ export default {
       },
       "chapter": "BLENDER / PART 2 · EDIT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The corner points are visible. In real Blender, top-row 1 chooses Vertex Select in Edit Mode. Save your own real Blender file before experimenting."
+      "follow": "The corner points are visible. In real Blender, top-row 1 chooses Vertex Select in Edit Mode. Save your own real Blender file before experimenting.",
+      "keys": [
+        "1"
+      ],
+      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
     },
     {
       "id": "edges",
       "title": "Identify edges",
       "text": "Edges connect pairs of vertices. Beveling selected edges adds a narrow transition between surfaces.",
-      "task": "Click Edge Select.",
+      "task": "Click Edge Select. Or press `2` on the top row of your keyboard.",
       "done": "Edges are the lines of the mesh. Top-row 2 chooses Edge Select.",
       "simulation": {
         "action": "edge",
@@ -63,13 +91,17 @@ export default {
       },
       "chapter": "BLENDER / PART 2 · EDIT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "Edges are the lines of the mesh. Top-row 2 chooses Edge Select. Save your own real Blender file before experimenting."
+      "follow": "Edges are the lines of the mesh. Top-row 2 chooses Edge Select. Save your own real Blender file before experimenting.",
+      "keys": [
+        "2"
+      ],
+      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
     },
     {
       "id": "faces",
       "title": "Identify faces",
       "text": "Faces are the surfaces bounded by edges. Our tray begins by editing its top face.",
-      "task": "Click Face Select.",
+      "task": "Click Face Select. Or press `3` on the top row of your keyboard.",
       "done": "Top-row 3 chooses Face Select. Numpad keys control views instead.",
       "simulation": {
         "action": "face",
@@ -79,7 +111,11 @@ export default {
       },
       "chapter": "BLENDER / PART 2 · EDIT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "Top-row 3 chooses Face Select. Numpad keys control views instead. Save your own real Blender file before experimenting."
+      "follow": "Top-row 3 chooses Face Select. Numpad keys control views instead. Save your own real Blender file before experimenting.",
+      "keys": [
+        "3"
+      ],
+      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
     },
     {
       "id": "top-face",
@@ -100,8 +136,8 @@ export default {
     {
       "id": "inset",
       "title": "Define 3 mm walls",
-      "text": "Inset Faces creates a smaller face surrounded by a rim. The rim becomes our wall footprint.",
-      "task": "Click the viewport. Press I, type 3, then press Enter. Escape cancels.",
+      "text": "Inset Faces creates a smaller face surrounded by a rim. The rim becomes our wall footprint. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm.",
+      "task": "Click the viewport. Press `I` → `3` → `Enter`. Watch the preview before Enter.",
       "done": "The inner face measures 94 × 64 mm. The surrounding rim is 3 mm wide.",
       "simulation": {
         "action": "inset",
@@ -112,7 +148,13 @@ export default {
       },
       "chapter": "BLENDER / PART 2 · EDIT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The inner face measures 94 × 64 mm. The surrounding rim is 3 mm wide. Save your own real Blender file before experimenting."
+      "follow": "The inner face measures 94 × 64 mm. The surrounding rim is 3 mm wide. Save your own real Blender file before experimenting.",
+      "keys": [
+        "I",
+        "3",
+        "Enter"
+      ],
+      "inputHint": "Watch the highlighted numeric record at the top of the viewport. Backspace edits the value; Escape cancels."
     },
     {
       "id": "cancel-extrude",
@@ -127,13 +169,19 @@ export default {
       },
       "chapter": "BLENDER / PART 2 · EDIT MODE",
       "controlStatus": "Practice Blender’s real cancellation and undo sequence",
-      "follow": "In real Blender, undo an extrusion after cancelling its movement. Save before experimenting."
+      "follow": "In real Blender, undo an extrusion after cancelling its movement. Save before experimenting.",
+      "keys": [
+        "E",
+        "Escape",
+        "Ctrl+Z"
+      ],
+      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
     },
     {
       "id": "extrude",
       "title": "Create the cavity",
-      "text": "Extrude the selected inner face downward by 15 mm. Starting from a height of 18 mm leaves a 3 mm floor. Enter a negative value to move down Z.",
-      "task": "Click the viewport. Press E, type -15, then press Enter.",
+      "text": "Extrude the selected inner face downward by 15 mm. Starting from a height of 18 mm leaves a 3 mm floor. Enter a negative value to move down Z. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm.",
+      "task": "Click the viewport. Press `E` → `-` → `1` → `5` → `Enter`. Watch the preview before Enter.",
       "done": "The tray has an open cavity, 3 mm walls, and a 3 mm floor.",
       "simulation": {
         "action": "extrude",
@@ -155,13 +203,21 @@ export default {
       },
       "chapter": "BLENDER / PART 2 · EDIT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The tray has an open cavity, 3 mm walls, and a 3 mm floor. Save your own real Blender file before experimenting."
+      "follow": "The tray has an open cavity, 3 mm walls, and a 3 mm floor. Save your own real Blender file before experimenting.",
+      "keys": [
+        "E",
+        "-",
+        "1",
+        "5",
+        "Enter"
+      ],
+      "inputHint": "Watch the highlighted numeric record at the top of the viewport. Backspace edits the value; Escape cancels."
     },
     {
       "id": "save-cavity",
       "title": "Save before finishing",
-      "text": "This is a useful recovery point. Save a version before adding bevel geometry.",
-      "task": "Choose File → Save As and save the cavity checkpoint.",
+      "text": "This is a useful recovery point. Save a version before adding bevel geometry. In real Blender, Ctrl+S saves the current named file; Ctrl+Shift+S creates a separately named version.",
+      "task": "Choose File → Save As, or press `Ctrl` + `Shift` + `S`, then confirm the filename.",
       "done": "In real Blender, save desk-tray-03-cavity.blend, then experiment on a copy.",
       "simulation": {
         "action": "save",
@@ -172,13 +228,17 @@ export default {
       },
       "chapter": "BLENDER / PART 2 · EDIT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "In real Blender, save desk-tray-03-cavity.blend, then experiment on a copy. Save your own real Blender file before experimenting."
+      "follow": "In real Blender, save desk-tray-03-cavity.blend, then experiment on a copy. Save your own real Blender file before experimenting.",
+      "keys": [
+        "Ctrl+Shift+S"
+      ],
+      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
     },
     {
       "id": "bevel",
       "title": "Soften the outside rim",
-      "text": "This checkpoint prepares the four outer top rim edges. In real Blender, use Edge Select and Shift-click those four edges. A 0.6 mm bevel with three segments softens the upper outside rim.",
-      "task": "Click the viewport. Press Ctrl+B, type 0.6, scroll up twice for 3 segments, then Enter.",
+      "text": "This checkpoint prepares the four outer top rim edges. In real Blender, use Edge Select and Shift-click those four edges. A 0.6 mm bevel with three segments softens the upper outside rim. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm.",
+      "task": "Click the viewport. Press `Ctrl` + `B`, type `0` `.` `6`, scroll up twice for 3 segments, then `Enter`.",
       "done": "The outside rim now has real rounded geometry. Smooth shading by itself would not change the printed shape.",
       "simulation": {
         "action": "bevel",
@@ -190,7 +250,15 @@ export default {
       },
       "chapter": "BLENDER / PART 2 · EDIT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The outside rim now has real rounded geometry. Smooth shading by itself would not change the printed shape. Save your own real Blender file before experimenting."
+      "follow": "The outside rim now has real rounded geometry. Smooth shading by itself would not change the printed shape. Save your own real Blender file before experimenting.",
+      "keys": [
+        "Ctrl+B",
+        "0",
+        ".",
+        "6",
+        "Enter"
+      ],
+      "inputHint": "Watch the highlighted numeric record at the top of the viewport. Backspace edits the value; Escape cancels."
     },
     {
       "id": "orientation",
@@ -211,7 +279,7 @@ export default {
       "id": "object",
       "title": "Return to Object Mode",
       "text": "Return to Object Mode before exporting the selected tray. Keep the editable Blender project as your source.",
-      "task": "Open the mode selector and choose Object Mode.",
+      "task": "Choose Object Mode in the mode selector, or press `Tab` in the viewport.",
       "done": "The entire tray is selected for saving and export.",
       "simulation": {
         "action": "object-mode",
@@ -221,13 +289,17 @@ export default {
       },
       "chapter": "BLENDER / PART 2 · EDIT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The entire tray is selected for saving and export. Save your own real Blender file before experimenting."
+      "follow": "The entire tray is selected for saving and export. Save your own real Blender file before experimenting.",
+      "keys": [
+        "Tab"
+      ],
+      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
     },
     {
       "id": "save-final",
       "title": "Save the editable model",
-      "text": "STL stores a mesh, not the complete Blender project. Save your .blend first so you can revise the design later.",
-      "task": "Choose File → Save As and save the finished tray.",
+      "text": "STL stores a mesh, not the complete Blender project. Save your .blend first so you can revise the design later. In real Blender, Ctrl+S saves the current named file; Ctrl+Shift+S creates a separately named version.",
+      "task": "Choose File → Save As, or press `Ctrl` + `Shift` + `S`, then confirm the filename.",
       "done": "In real Blender, save desk-tray-04-finished.blend.",
       "simulation": {
         "action": "save",
@@ -237,7 +309,11 @@ export default {
       },
       "chapter": "BLENDER / PART 2 · EDIT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "In real Blender, save desk-tray-04-finished.blend. Save your own real Blender file before experimenting."
+      "follow": "In real Blender, save desk-tray-04-finished.blend. Save your own real Blender file before experimenting.",
+      "keys": [
+        "Ctrl+Shift+S"
+      ],
+      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
     },
     {
       "id": "export",

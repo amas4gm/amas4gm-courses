@@ -7,7 +7,7 @@ export function liveState(name,manifest){
  if(name.startsWith('dialog-'))return null;
  let source=aliases[name]||name,op=null;
  if(name.includes('-modal-')){
-  const kind=name.split('-modal-')[0];source=({move:'cube-sidebar',rotate:'cube-sidebar',inset:'edit-top',extrude:'inset',bevel:'rim'})[kind];
+  const kind=name.split('-modal-')[0];source=({move:'cube-sidebar',rotate:'cube-sidebar',scale:'cube-sidebar',inset:'edit-top',extrude:'inset',bevel:'rim'})[kind];
   const value=name.endsWith('ready')?({move:1,rotate:45,inset:3,extrude:-15}[kind]):name==='rotate-modal-4'?4:name==='extrude-modal-minus1'?-1:name.startsWith('bevel-modal-')&&!name.endsWith('start')?.6:0;
   op={kind,value,axis:kind==='extrude'?'z':!name.endsWith('start')?kind==='move'?'x':kind==='rotate'?'z':'': '',segments:kind==='bevel'?Number(name.at(-1))||1:1};
  }
@@ -26,8 +26,14 @@ export function meshForState(state,assets){
  if(asset==='cube')for(const v of vertices){v[0]*=(values.dx??2)/2;v[1]*=(values.dy??2)/2;v[2]*=(values.dz??2)/2;}
  if(op?.kind==='inset')for(const i of [1,3,5,7]){vertices[i][0]=Math.sign(vertices[i][0])*(50-op.value);vertices[i][1]=Math.sign(vertices[i][1])*(35-op.value);}
  if(op?.kind==='extrude')for(let i=12;i<16;i++)vertices[i][2]=18+op.value;
- const rotation=((values.rz||0)+(op?.kind==='rotate'?op.value:0))*Math.PI/180;
- for(const v of vertices){const x=v[0],y=v[1];v[0]=x*Math.cos(rotation)-y*Math.sin(rotation)+(values.x||0)+(op?.kind==='move'?op.value:0);v[1]=x*Math.sin(rotation)+y*Math.cos(rotation);v[2]+=values.z||0;}
+ if(op?.kind==='bevel'&&op.value>0){const factor=Math.min(op.value,2.9)/.6;for(const v of vertices){const nearest=assets.cavity.vertices.reduce((best,c)=>Math.hypot(...c.map((x,i)=>x-v[i]))<Math.hypot(...best.map((x,i)=>x-v[i]))?c:best);for(let i=0;i<3;i++)v[i]=nearest[i]+(v[i]-nearest[i])*factor;}}
+ const rz=(values.rz||0)*Math.PI/180;
+ for(const v of vertices){const x=v[0],y=v[1];v[0]=x*Math.cos(rz)-y*Math.sin(rz);v[1]=x*Math.sin(rz)+y*Math.cos(rz);
+  if(op?.kind==='scale')for(let i=0;i<3;i++)if(!op.axis||'xyz'[i]===op.axis)v[i]*=op.value;
+  if(op?.kind==='rotate'){const a=op.axis?[...op.axis].flatMap(k=>[k==='x'?1:0,k==='y'?1:0,k==='z'?1:0]):(op.viewAxis||[0,0,1]),r=op.value*Math.PI/180,c=Math.cos(r),s=Math.sin(r),dot=v.reduce((n,x,i)=>n+x*a[i],0),cross=[a[1]*v[2]-a[2]*v[1],a[2]*v[0]-a[0]*v[2],a[0]*v[1]-a[1]*v[0]];for(let i=0;i<3;i++)v[i]=v[i]*c+cross[i]*s+a[i]*dot*(1-c);}
+  v[0]+=values.x||0;v[1]+=values.y||0;v[2]+=values.z||0;
+  if(op?.kind==='move')for(let i=0;i<3;i++)v[i]+=op.axis?('xyz'[i]===op.axis?op.value:0):(op.vector?.[i]||0);
+ }
  let selection=state.selection;
  if(op?.kind==='inset')selection='inner';if(op?.kind==='extrude')selection='floor';
  const selectedFaces=data.faces.map((f,i)=>{

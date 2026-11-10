@@ -49,7 +49,7 @@ test('every admitted modal input has a native frame and waits for confirmation',
   let op=startModal(kind);assert.equal(modalReady(op),false);assert.ok(manifest.states[modalFrame(op)],modalFrame(op));
   for(const key of keys){op=modalKey(op,key);assert.ok(op);assert.ok(manifest.states[modalFrame(op)],modalFrame(op));}
   if(kind==='bevel'){assert.equal(modalReady(op),false);op.segments=3;}
-  assert.ok(modalReady(op));assert.equal(modalKey(op,'9'),null);
+  assert.ok(modalReady(op));assert.ok(modalKey(op,'9'));assert.equal(modalReady(modalKey(op,'9')),false);
   assert.equal(modalReady(modalKey(op,'Backspace')),false);
  }
 });
