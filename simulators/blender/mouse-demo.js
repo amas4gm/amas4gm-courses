@@ -32,7 +32,7 @@ export function mouseDemoPlan({action,target,viewport,operator,gesture,shortcutO
  }else if(action==='header-scroll'){
   if(!target)return null;drag(at,[Math.max(target.x+24,at[0]-180),at[1]],'middle','Hold MMB · drag the header left');
  }else if(gesture==='shift-click'){
-  arrive(at);add(1100,at,'Hold Shift','', 'Shift');add(1500,at,'Shift + LMB · add this vertex','left','Shift');add(1750,at,'Release LMB · keep Shift held','','Shift');add(2100,at,'Release Shift');add(2550,at,'Vertex added to selection');
+  arrive(at);add(1100,at,'Hold Shift','', 'Shift');add(1500,at,'Shift + LMB · add to selection','left','Shift');add(1750,at,'Release LMB · keep Shift held','','Shift');add(2100,at,'Release Shift');add(2550,at,'Added to selection');
  }else if(gesture==='hover'){
   arrive(at);add(1700,at,'Hover here to open the submenu');add(2600,at,'No mouse button needed');
  }else if(shortcutOnly&&!gesture){click(focus);thenKeys=true;}

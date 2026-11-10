@@ -21,7 +21,7 @@ export const frames = {
  'edit-mode': {
   mode:['blank','edit-all'],vertices:['edit-all','edit-all'],edges:['edit-all','edit-edges'],faces:['edit-edges','edit-faces'],
   'top-face':['edit-none','edit-top'],inset:['edit-top','inset-confirmed'],'cancel-extrude':['inset','inset'],extrude:['inset','extrude-confirmed'],
-  'save-cavity':['cavity','cavity'],bevel:['rim','bevel-confirmed'],orientation:['finished-edit','orientation'],
+  'save-cavity':['cavity','cavity'],'rim-edges':['rim','rim'],bevel:['rim','bevel-confirmed'],orientation:['finished-edit','orientation'],
   object:['orientation','finished'],'save-final':['finished','finished'],export:['finished','finished'],complete:['finished','finished']
  }
 };

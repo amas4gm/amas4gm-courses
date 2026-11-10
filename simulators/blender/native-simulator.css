@@ -61,3 +61,5 @@
 .bl-input-demo-static{position:absolute;z-index:12;left:20%;top:38%;max-width:60%;max-height:50%;overflow:auto;background:#142a22f5;color:#fff;border:2px solid #719084;border-radius:12px;padding:24px 30px 24px 65px;font:28px/1.7 BlenderInter,Arial,sans-serif;pointer-events:none}
 .bl-input-demo-static kbd{min-width:0;padding:4px 9px;border-width:2px;border-bottom-width:5px;border-radius:5px;font-size:28px}
 .bl-mouse-body kbd{font-size:32px!important;padding:7px 12px!important}
+
+.handoff-controls[hidden]{display:none}.handoff-controls a{color:#c9edd8;padding:5px 9px;border:1px solid #668571;border-radius:4px;text-decoration:none}.blender-course .studio{width:1582px;max-width:none}

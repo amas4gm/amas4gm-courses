@@ -68,58 +68,62 @@
       ],
       "nonManifoldEdges": 0,
       "boundaryEdges": 0,
-      "volumeMm3": 35648.836707
+      "volumeMm3": 35729.505549
     }
   },
   "physicalPrintValidated": false,
   "files": {
     "blank.blend": {
-      "sha256": "2585117883d5ebd6ef4cd0317269e09790f5eb0c5d09e17ccd206c58564ae239",
-      "bytes": 86514
+      "sha256": "71a074d637a40d520c344fac24d35ffd4f321efc8801abbfdb91e33196b0c56b",
+      "bytes": 86516
     },
     "blank.json": {
       "sha256": "fca70d85a31b68f756b0aaf99aa17be98829f9f5d275fd879e60df0dc335c378",
       "bytes": 612
     },
     "cavity.blend": {
-      "sha256": "078f34c33acb7cc7f372be451158ab03b29baac5459b70881846931bded1c5b7",
-      "bytes": 86802
+      "sha256": "397eb3d399f467b56f67ed0cd3eb43b9916ae99c7659f06d96d93077fc550b04",
+      "bytes": 86803
     },
     "cavity.json": {
       "sha256": "4023a394512656224009d0c1b1c80998522961db5978b0d540234e6feece9b3d",
       "bytes": 961
     },
     "cube.blend": {
-      "sha256": "42f63fbbe05a6b9fcae13c47a8f2e5ec7c4519b738443780795a898af0cee131",
-      "bytes": 86483
+      "sha256": "5e25a908026aaef72eede52a95a3521c40a813069a45ce3bacc4302f16264980",
+      "bytes": 86484
     },
     "cube.json": {
       "sha256": "355ea61f90d5b8102d5f4e25a16547f291f7949e1e64caf69318c51a83ab6ad9",
       "bytes": 598
     },
     "desk-tray.stl": {
-      "sha256": "d8c37666c2b56a852e50fd11c0b3867e9fb2398661dcaa3a1cd1651987a97bee",
+      "sha256": "7dd149861b8ad9a16e6810e234c566d5e2dd07cb24154964dbea8f4ce8152ebb",
       "bytes": 2684
     },
     "finished.blend": {
-      "sha256": "c11967198e8920a4c27248307021d485f61330066c6d90e45825696f0c638412",
-      "bytes": 87268
+      "sha256": "4e2e90aa3cdfbcabf57e0dda9f9bfa89b4cea485108668e7b5aa8c7ce6e9db08",
+      "bytes": 87289
     },
     "finished.json": {
-      "sha256": "0dbb4e589b06325677bc5e96efc809253c93cd2ce8193362c45e852fabb4a6bb",
+      "sha256": "585042505739264f3abad2a96fa6f037184b04b95878048c6a5acba644188484",
       "bytes": 1800
     },
     "inset.blend": {
-      "sha256": "4eafeb11d7f7bd341599c78d943cb54550ed17bc7dd3f33129de3c6f20d09879",
-      "bytes": 86680
+      "sha256": "bf47b8ca4279e7c6310218355b4a1e4d2ffcc14ef1338fe205dfaf148699a63f",
+      "bytes": 86681
     },
     "inset.json": {
       "sha256": "c28123cb4f24d85c61029e43a3792cfe650d892169de53b907e293af0e05788f",
       "bytes": 774
     },
+    "printing-setup.blend": {
+      "sha256": "26f2de811ae3f576853c5b201741a23ca014c2d03db252abaf10d22d558f5f68",
+      "bytes": 99227
+    },
     "tray-reference.png": {
-      "sha256": "2958b992cb20e455037fee0b446ffc386bb4935caf19d712156cb4c61f941010",
-      "bytes": 503380
+      "sha256": "792f3f28dfea3f6c9eb958d21091643a6f170efd30d73149add99e35e98e94a4",
+      "bytes": 506774
     }
   }
 }

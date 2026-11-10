@@ -168,7 +168,7 @@ The two compressed assets total 5.01 MB, decoded with the browser's native Decom
 
 Course: https://amas4gm.github.io/amas4gm-courses/blender/
 
-Four tutorials, 55 actions: getting-started (14), setup-for-printing (11), object-manipulation (15), edit-mode (15). The deliverable is a 100 × 70 × 18 mm desktop tray, with 3 mm walls and floor and a 0.6 mm outer rim bevel. Real `.blend` checkpoints and a dimension-checked STL support following along in Blender and saving separate experiments.
+Four tutorials, 59 actions: getting-started (14), setup-for-printing (11), object-manipulation (15), edit-mode (19). The deliverable is a 100 × 70 × 18 mm desktop tray, with 3 mm walls and floor and a 0.6 mm outer rim bevel. Real `.blend` checkpoints and a dimension-checked STL support following along in Blender and saving separate experiments.
 
 The Blender adapter places a live WebGL viewport behind complete native Blender 5.2.2 LTS captures. A luminance mask makes the viewport transparent while preserving the original surrounding UI pixels. Regular captures are 2400 × 1494 from the maximized application. Lossless WebP preserves their pixels. Full native menus, popovers, file browsers, transform previews, axis constraints, mode indicators, and status bars remain visible. Transparent named controls admit only the current exercise's interaction. The shared Bambu-style lesson card stays in a left sidebar in both regular and expanded mode. Expanded mode removes the page header and fits Blender into the space to the right, keeping the current instructions, feedback, and lesson controls beside it.
 
@@ -201,3 +201,7 @@ Meet Blender now requires the Sidebar menu first, then practices N. `input-demo.
 
 
 The November 10 feedback revision removes the repeated Frame Selected and Save As drills and the orbit quiz. Numpad navigation remains optional. Apply Scale and Edit Mode require the menu first and the keyboard route second. Vertex selection now raycasts visible projected corners, replaces the selection on plain click, and toggles membership on Shift-click; point, edge, and face highlights follow the selected vertices. This matches the installed Blender keymap's `view3d.select` toggle behavior. The source highlight's inherited background no longer makes native text fields transparent. The Z axis is excluded from orbit pointer capture so its click reaches Top View. A retired step ID resumes at the next unfinished task rather than returning to the beginning.
+
+The tray handoff reuses the Bambu Studio simulator and loads the exported STL. Learners select all four outer rim edges before beveling. Live bevel widths are interpolated from native Blender geometry with explicit profile 0.5, independently checked against Blender samples at 0.1, 1.2, and 2.4 mm for each segment count.
+
+Course collections are labeled BambuLab Level 1 and Blender Level 1. Existing URLs and progress keys stay stable; each follow-on course advances to the next level, with its tutorials grouped within that level.

@@ -26,7 +26,7 @@ export function meshForState(state,assets){
  if(asset==='cube')for(const v of vertices){v[0]*=(values.dx??2)/2;v[1]*=(values.dy??2)/2;v[2]*=(values.dz??2)/2;}
  if(op?.kind==='inset')for(const i of [1,3,5,7]){vertices[i][0]=Math.sign(vertices[i][0])*(50-op.value);vertices[i][1]=Math.sign(vertices[i][1])*(35-op.value);}
  if(op?.kind==='extrude')for(let i=12;i<16;i++)vertices[i][2]=18+op.value;
- if(op?.kind==='bevel'&&op.value>0){const factor=Math.min(op.value,2.9)/.6;for(const v of vertices){const nearest=assets.cavity.vertices.reduce((best,c)=>Math.hypot(...c.map((x,i)=>x-v[i]))<Math.hypot(...best.map((x,i)=>x-v[i]))?c:best);for(let i=0;i<3;i++)v[i]=nearest[i]+(v[i]-nearest[i])*factor;}}
+ if(op?.kind==='bevel'&&op.value>0){const factor=Math.min(op.value,2.9)/data.width;vertices.forEach((v,j)=>{for(let i=0;i<3;i++){const zero=data.zeroVertices[j][i];v[i]=zero+(v[i]-zero)*factor;}});}
  const rz=(values.rz||0)*Math.PI/180;
  for(const v of vertices){const x=v[0],y=v[1];v[0]=x*Math.cos(rz)-y*Math.sin(rz);v[1]=x*Math.sin(rz)+y*Math.cos(rz);
   if(op?.kind==='scale')for(let i=0;i<3;i++)if(!op.axis||'xyz'[i]===op.axis)v[i]*=op.value;
@@ -45,7 +45,7 @@ export function meshForState(state,assets){
   if(selection==='inner'||selection==='floor')return data.selectedFaces.includes(i);
   return selection==='top'&&f.every(j=>Math.abs(vertices[j][2]-18)<1e-5);
  });
- const selectedEdges=data.edges.map(([a,b])=>state.selectedVertices?[a,b].every(i=>state.selectedVertices.includes(i)):selection==='rim'&&asset==='cavity'?[a,b].every(i=>Math.abs(vertices[i][2]-18)<1e-5&&(Math.abs(vertices[i][0])>49.99||Math.abs(vertices[i][1])>34.99)):data.faces.some((f,i)=>selectedFaces[i]&&f.includes(a)&&f.includes(b)));
+ const selectedEdges=data.edges.map(([a,b],index)=>state.selectedEdges?state.selectedEdges.includes(index):state.selectedVertices?[a,b].every(i=>state.selectedVertices.includes(i)):selection==='rim'&&asset==='cavity'?[a,b].every(i=>Math.abs(vertices[i][2]-18)<1e-5&&(Math.abs(vertices[i][0])>49.99||Math.abs(vertices[i][1])>34.99)):data.faces.some((f,i)=>selectedFaces[i]&&f.includes(a)&&f.includes(b)));
  const selectedVertices=vertices.map((_,i)=>state.selectedVertices?state.selectedVertices.includes(i):selection==='all'||data.faces.some((f,j)=>selectedFaces[j]&&f.includes(i)));
  return {...data,vertices,selectedFaces,selectedEdges,selectedVertices,asset};
 }

@@ -4,7 +4,7 @@ export default {
   "version": 2,
   "title": "Meet Blender",
   "subtitle": "Find your way around the interface and practice navigation.",
-  "eyebrow": "INTRODUCTION TO BLENDER FOR 3D PRINTING",
+  "eyebrow": "Blender Level 1 / 3D PRINTING",
   "simulatorLabel": "SIMULATED BLENDER",
   "simulationNote": "Native Blender 5.2.2 UI · live 3D practice",
   "follow": "Open real Blender alongside this lesson. Download a checkpoint to catch up. Save often.",

@@ -1,5 +1,5 @@
-import {createMouseDemo,mouseDemoPlan} from './mouse-demo.js?v=feedback-2';
-import {modalReady} from './native-modal.js?v=input-5';
+import {createMouseDemo,mouseDemoPlan} from './mouse-demo.js?v=bevel-handoff-1';
+import {modalReady} from './native-modal.js?v=bevel-handoff-1';
 
 // A demonstration describes input, but never dispatches it to the simulator.
 // Keep mouse and keyboard in one queue so neither can run ahead of the other.

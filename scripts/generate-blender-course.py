@@ -96,7 +96,7 @@ rim = [e for e in bm.edges if all(abs(v.co.z - 9) < 1e-5 for v in e.verts)
 assert len(rim) == 4, f'Expected four outer rim edges, found {len(rim)}'
 for f in bm.faces:
     f.select = False
-result = bmesh.ops.bevel(bm, geom=rim, offset=.6, segments=3, affect='EDGES', clamp_overlap=True)
+result = bmesh.ops.bevel(bm, geom=rim, offset=.6, segments=3, profile=.5, affect='EDGES', clamp_overlap=True)
 for f in result['faces']:
     f.select = True
 bmesh.ops.recalc_face_normals(bm, faces=list(bm.faces))

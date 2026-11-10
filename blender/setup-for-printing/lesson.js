@@ -4,7 +4,7 @@ export default {
   "version": 1,
   "title": "Setting up Blender for 3D printing",
   "subtitle": "Configure units, viewport clipping, and your startup scene.",
-  "eyebrow": "BLENDER / FIRST-TIME SETUP",
+  "eyebrow": "Blender Level 1 / 3D PRINTING",
   "simulatorLabel": "SIMULATED BLENDER",
   "simulationNote": "Native Blender 5.2.2 UI · live 3D practice",
   "follow": "Follow these steps in a new real Blender scene. Save any current work before starting. Save named project files often.",

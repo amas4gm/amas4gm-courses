@@ -1,23 +1,23 @@
 import {meetsGoal,numericValue} from './state.js';
-import {setupValue,setupReady} from './setup-state.js?v=feedback-2';
-import {selectVertex} from './selection.js?v=feedback-2';
-import {statePair,fieldRects,boundedFrame} from './native-state.js?v=feedback-2';
-import {startModal,modalKey,modalReady,modalValue,modalCaption,visualReady} from './native-modal.js?v=input-5';
-import {createLiveViewport} from './live-viewport.js?v=feedback-2';
-import {createInputCoach} from './input-coach.js?v=feedback-2';
-import {createInputDemo,inputDemoPlan} from './input-demo.js?v=feedback-2';
+import {setupValue,setupReady} from './setup-state.js?v=bevel-handoff-1';
+import {selectVertex,selectEdge} from './selection.js?v=bevel-handoff-1';
+import {statePair,fieldRects,boundedFrame} from './native-state.js?v=bevel-handoff-1';
+import {startModal,modalKey,modalReady,modalValue,modalCaption,visualReady} from './native-modal.js?v=bevel-handoff-1';
+import {createLiveViewport} from './live-viewport.js?v=bevel-handoff-1';
+import {createInputCoach} from './input-coach.js?v=bevel-handoff-1';
+import {createInputDemo,inputDemoPlan} from './input-demo.js?v=bevel-handoff-1';
 
 // Each frame contains Blender's complete, unmodified native interface. Only
 // the current checkpoint's controls receive a transparent interaction layer.
 export async function createBlenderSimulator({container,lesson,api}) {
  const base=new URL('./',import.meta.url),url=p=>new URL(p,base).href;
- const [manifest,reference]=await Promise.all(['assets/ui/manifest.json','native-assets/menu-reference.json'].map(async p=>{const r=await fetch(url(p)+'?v=feedback-2');if(!r.ok)throw Error(`Missing reference: ${p}`);return r.json();}));
+ const [manifest,reference]=await Promise.all(['assets/ui/manifest.json','native-assets/menu-reference.json'].map(async p=>{const r=await fetch(url(p)+'?v=bevel-handoff-1');if(!r.ok)throw Error(`Missing reference: ${p}`);return r.json();}));
  document.body.classList.add('blender-course');
  container.innerHTML=`<div class="native-controls"><span>Blender 5.2.2 LTS · native interface</span><button type="button" class="expand-native">Expand workspace</button></div><div class="native-host"><div class="native-stage" tabindex="0" role="application" aria-label="Blender practice workspace"><img class="native-frame" alt="" draggable="false"><div class="native-hotspots"></div><div class="native-menus"></div></div></div><div class="bl-follow"><strong>Follow along in real Blender · save often</strong><p class="follow-copy"></p><details><summary>Blender checkpoints and recovery</summary><p>Save your own copy before experimenting. Browser progress does not save your real Blender project.</p><div class="downloads"></div></details></div>`;
  const $=s=>container.querySelector(s),host=$('.native-host'),stage=$('.native-stage'),frame=$('.native-frame'),spots=$('.native-hotspots'),menus=$('.native-menus');
  const abort=new AbortController(),on=(el,event,fn,extra={})=>el.addEventListener(event,fn,{signal:abort.signal,...extra});
  let step,pair,paused=false,finished=false,current='',scale=1,guide=null,drag=null,navIndex=8,operator=null,dialog=false,popup=false,loadToken=0;
- let zoomDirections=new Set(),extrusionUndo=false,orientationEnabled=false,travel=0,vertexSelection=null;const loaded=new Map();let pointer=[900,600],lastInput=performance.now(),readout=null,visualResult=null,shortcutInvoked=false,suppressClick=false;const valuesLayer=document.createElement('div');stage.append(valuesLayer);
+ let zoomDirections=new Set(),extrusionUndo=false,orientationEnabled=false,travel=0,vertexSelection=null,edgeSelection=[];const loaded=new Map();let pointer=[900,600],lastInput=performance.now(),readout=null,visualResult=null,shortcutInvoked=false,suppressClick=false;const valuesLayer=document.createElement('div');stage.append(valuesLayer);
  const coach=createInputCoach({stage,container,onDemonstrate:()=>demonstrate()});
  const inputDemo=createInputDemo({stage,onKey:key=>coach.pressed(key)});
  const live=await createLiveViewport({stage,frame,manifest,url,onView(kind,dx,dy){
@@ -153,7 +153,7 @@ export async function createBlenderSimulator({container,lesson,api}) {
   return false;
  }
  function buildControls(){
-  spots.replaceChildren();guide=null;navigationControls();if(finished){if(step.simulation.action==='setup-startup')startupConfirmation(false);if(step.simulation.action==='select-vertices')live.setVertexSelection(live.visibleVertexIds().slice(0,2));return;}
+  spots.replaceChildren();guide=null;navigationControls();if(finished){if(step.simulation.action==='setup-startup')startupConfirmation(false);if(step.simulation.action==='select-vertices')live.setVertexSelection(live.visibleVertexIds().slice(0,2));if(step.simulation.action==='select-rim')live.setEdgeSelection(live.rimEdges());return;}
   if(setupControls())return;
   const a=step.simulation.action,edit=step.simulation.mode==='edit'||['vertex','edge','face','select-top','select-vertices','inset','extrude','bevel','orientation','object-mode'].includes(a);
   if(a==='header-scroll'){const r=manifest.states[pair[0]];hotspot('Scrollable viewport header',[3,39,r.layout.areas.find(a=>a.type==='VIEW_3D').width,38],()=>api.feedback('Scroll over the header, or drag it with the middle mouse button.'),{target:true});return;}
@@ -175,6 +175,16 @@ export async function createBlenderSimulator({container,lesson,api}) {
     if(e.shiftKey&&vertexSelection.length>=2){practiceComplete();return;}
     guide=live.vertexGuide(vertexSelection);api.guideChanged();coach.hint(vertexSelection.length?'Now hold Shift and click a different vertex to add it.':'Click one vertex, then Shift-click another.');api.feedback(vertexSelection.length?'One vertex selected. Hold Shift and click another corner.':'Selection cleared. Click one vertex to start again.');
    });guide=live.vertexGuide();
+  }
+  if(a==='select-rim'){
+   edgeSelection=[];live.setEdgeSelection([]);
+   hotspot('Tray rim edges',[88,115,1450,1200],e=>{
+    const index=live.hitEdge(e.clientX,e.clientY),required=live.rimEdges();
+    if(index===null||!required.includes(index))return help('Select an outside top rim edge, not an inside, vertical, or bottom edge.');
+    edgeSelection=selectEdge(edgeSelection,index,e.shiftKey);live.setEdgeSelection(edgeSelection);
+    if(required.every(i=>edgeSelection.includes(i))){practiceComplete();return;}
+    guide=live.edgeGuide(edgeSelection);api.guideChanged();const message=`${edgeSelection.length} of 4 rim edges selected. ${edgeSelection.length?'Hold Shift and click another outside top edge.':'Click an outside top edge to start.'}`;coach.hint(message);api.feedback(message);
+   });guide=live.edgeGuide();
   }
   for(const [i,key] of ['vertex','edge','face'].entries())if(edit)hotspot(`${key[0].toUpperCase()+key.slice(1)} Select`,[219+i*29,39,28,38],()=>a===key?finish():unavailable(),{target:a===key});
   if(a==='top')guide=live.topButton;

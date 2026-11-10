@@ -1,12 +1,13 @@
 import * as THREE from '../../shared/vendor/three.module.js';
-import {precisionDelta,dragZoomDistance} from './native-modal.js?v=input-5';
-import {liveState,meshForState,viewportRect} from './live-state.js?v=feedback-2';
+import {precisionDelta,dragZoomDistance} from './native-modal.js?v=bevel-handoff-1';
+import {liveState,meshForState,viewportRect} from './live-state.js?v=bevel-handoff-1';
+import {rimEdgeIndices} from './selection.js?v=bevel-handoff-1';
 
 const baseRotation=new THREE.Quaternion(.425,.176,.340,.820).normalize();
 const svgNS='http://www.w3.org/2000/svg';
 export async function createLiveViewport({stage,frame,manifest,url,onView,onTop,onRender}){
  const names=['cube','blank','inset','cavity','finished','bevel-1','bevel-2','bevel-3'];
- const assets=Object.fromEntries(await Promise.all(names.map(async name=>{const r=await fetch(url(`assets/${name.startsWith('bevel-')?'live/':''}${name}.json`));if(!r.ok)throw Error(`Mesh unavailable: ${name}`);return [name,await r.json()];})));
+ const assets=Object.fromEntries(await Promise.all(names.map(async name=>{const r=await fetch(url(`assets/${name.startsWith('bevel-')?'live/':''}${name}.json`)+'?v=bevel-handoff-1');if(!r.ok)throw Error(`Mesh unavailable: ${name}`);return [name,await r.json()];})));
  const canvas=document.createElement('canvas');canvas.className='bl-live-canvas';canvas.setAttribute('aria-label','Live Blender 3D viewport');stage.prepend(canvas);
  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false});renderer.setClearColor(0x3f3f3f);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));let renderWidth=0,renderHeight=0;
  const scene=new THREE.Scene(),model=new THREE.Group(),grid=new THREE.Group();scene.add(model,grid);
@@ -58,6 +59,17 @@ export async function createLiveViewport({stage,frame,manifest,url,onView,onTop,
   if(state.operation?.axis&&!state.operation.confirmed){const g=new THREE.BufferGeometry(),isX=state.operation.axis==='x',isY=state.operation.axis==='y';g.setAttribute('position',new THREE.Float32BufferAttribute(isX?[-10000,0,0,10000,0,0]:isY?[0,-10000,0,0,10000,0]:[0,0,-10000,0,0,10000],3));const line=new THREE.LineSegments(g,new THREE.LineBasicMaterial({color:isX?0xb34c58:isY?0x83a44c:0x6b98c7,depthTest:false}));line.renderOrder=20;model.add(line);}
   canvas.dataset.mesh=JSON.stringify({asset:data.asset,vertices:data.vertices.length,faces:data.faces.length,bounds:[0,1,2].map(i=>[Math.min(...data.vertices.map(v=>v[i])),Math.max(...data.vertices.map(v=>v[i]))])});requestRender();
   canvas.dataset.selectedVertices=JSON.stringify(data.selectedVertices.flatMap((selected,i)=>selected?[i]:[]));
+  canvas.dataset.selectedEdges=JSON.stringify(data.selectedEdges.flatMap((selected,i)=>selected?[i]:[]));
+ }
+ function projectedEdges(){
+  if(!mesh)return [];const data=meshForState(state,assets);camera.updateMatrixWorld();mesh.updateMatrixWorld();
+  return data.edges.flatMap(([a,b],index)=>{
+   const va=new THREE.Vector3(...data.vertices[a]),vb=new THREE.Vector3(...data.vertices[b]),world=va.clone().add(vb).multiplyScalar(.5),p=world.clone().project(camera);
+   raycaster.setFromCamera(new THREE.Vector2(p.x,p.y),camera);const hit=raycaster.intersectObject(mesh)[0];
+   if(hit&&hit.distance<raycaster.ray.origin.distanceTo(world)-.01)return [];
+   const project=v=>{const q=v.project(camera);return [rect.x+(q.x+1)*rect.width/2,rect.y+(1-q.y)*rect.height/2];};
+   return [{index,world,a:project(va),b:project(vb)}];
+  });
  }
  function visibleVertices(){
   if(!mesh)return [];camera.updateMatrixWorld();mesh.updateMatrixWorld();
@@ -81,6 +93,10 @@ export async function createLiveViewport({stage,frame,manifest,url,onView,onTop,
  }
  return {
   canvas,topButton,
+  rimEdges(){return rimEdgeIndices(meshForState(state,assets));},
+  setEdgeSelection(ids){state.selection='none';state.selectedEdges=[...ids];rebuild();},
+  edgeGuide(exclude=[]){render();const required=rimEdgeIndices(meshForState(state,assets)),next=projectedEdges().find(e=>required.includes(e.index)&&!exclude.includes(e.index));if(!next)return null;selectionPoint=next.world;render();selectionTarget.dataset.mouseGesture=exclude.length?'shift-click':'click';return selectionTarget;},
+  hitEdge(clientX,clientY){render();const bounds=canvas.getBoundingClientRect(),scale=bounds.width/rect.width,p=[rect.x+(clientX-bounds.left)/scale,rect.y+(clientY-bounds.top)/scale];const hits=projectedEdges().map(e=>{const v=[e.b[0]-e.a[0],e.b[1]-e.a[1]],len=v[0]**2+v[1]**2,t=Math.max(0,Math.min(1,((p[0]-e.a[0])*v[0]+(p[1]-e.a[1])*v[1])/len));return {index:e.index,d:Math.hypot(p[0]-e.a[0]-t*v[0],p[1]-e.a[1]-t*v[1])*scale};}).filter(e=>e.d<=8).sort((a,b)=>a.d-b.d);return hits[0]?.index??null;},
   setVertexSelection(ids){state.selectedVertices=[...ids];rebuild();},
   vertexGuide(exclude=[]){render();const visible=visibleVertices(),selected=visible.filter(v=>exclude.includes(v.index)),candidates=visible.filter(v=>!exclude.includes(v.index));if(selected.length)candidates.sort((a,b)=>Math.min(...selected.map(v=>Math.hypot(b.x-v.x,b.y-v.y)))-Math.min(...selected.map(v=>Math.hypot(a.x-v.x,a.y-v.y))));const next=candidates[0];if(!next)return null;selectionPoint=next.world;render();selectionTarget.dataset.mouseGesture=exclude.length?'shift-click':'click';return selectionTarget;},
   visibleVertexIds(){render();return visibleVertices().map(v=>v.index);},

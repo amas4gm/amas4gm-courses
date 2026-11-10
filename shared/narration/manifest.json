@@ -1943,11 +1943,29 @@
       "duration": 7.76,
       "generationId": "5Qk0CDl0WxbBxLKs8E4A"
     },
-    "ac8a4505ae6616429cbf": {
-      "text": "This checkpoint prepares the four outer top rim edges. In real Blender, use Edge Select and Shift-click those four edges. A 0.6 mm bevel with three segments softens the upper outside rim. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm.",
-      "file": "ac8a4505ae6616429cbf.mp3",
-      "duration": 22.4,
-      "generationId": "E559wkEMnVVc5yT1KEcP"
+    "638e865224f2b802025c": {
+      "text": "Edge Select is active and no edges are selected. We will bevel only the four outside edges around the top rim. A plain click selects one edge; Shift-click adds or removes another edge.",
+      "file": "638e865224f2b802025c.mp3",
+      "generationId": "mpJNY6knURiCE5cdnVZa",
+      "duration": 12.88
+    },
+    "e138fd8adc2e281ccbf7": {
+      "text": "Click one outside top rim edge. Hold Shift and click the other three outside top edges.",
+      "file": "e138fd8adc2e281ccbf7.mp3",
+      "generationId": "hY8SWPx3O94c9J7D2lgv",
+      "duration": 6.32
+    },
+    "72a1b06ffdeb5c0e5d19": {
+      "text": "All four outside top rim edges are selected. The inner opening, vertical edges, and bottom edges remain unselected.",
+      "file": "72a1b06ffdeb5c0e5d19.mp3",
+      "generationId": "SQOwL1swFpl1MMBAvbeM",
+      "duration": 8.4
+    },
+    "90279f43faae18a94a3c": {
+      "text": "Bevel the four outer rim edges you selected. A 0.6 mm bevel with three segments and Profile 0.5 creates a rounded transition with real geometry. Move the pointer to preview the width, or type a number. Scroll the wheel during the operation to change the number of segments. You can zoom in before starting to inspect the edge shape.",
+      "file": "90279f43faae18a94a3c.mp3",
+      "generationId": "MymGmU9Tp4x4CUlKzVjc",
+      "duration": 22.4
     },
     "602ce906959a42d50ada": {
       "text": "Click the viewport. Press Control + B, type 0 . 6, scroll up twice for 3 segments, then Enter.",
@@ -1955,11 +1973,11 @@
       "duration": 8.48,
       "generationId": "H1ocAQpMAtS8AyYj7NoZ"
     },
-    "6bb0db6bee1ded3ab8d2": {
-      "text": "The outside rim now has real rounded geometry. Smooth shading by itself would not change the printed shape.",
-      "file": "6bb0db6bee1ded3ab8d2.mp3",
-      "duration": 7.44,
-      "generationId": "klIk0OTWu9zHee3kQDj5"
+    "ab52539fa4bd1e5f7505": {
+      "text": "The outer rim now contains three curved segments across its 0.6 mm bevel. The cavity and floor remain intact. Orbit and zoom to inspect the new geometry in real Blender.",
+      "file": "ab52539fa4bd1e5f7505.mp3",
+      "generationId": "qWL5jhBwDPT58DDuYfpC",
+      "duration": 12.56
     },
     "f71693964c8639d0c9e9": {
       "text": "This inspection checkpoint starts with the finished mesh deselected. Face Orientation reveals reversed faces. Find the option in Viewport Overlays, under Geometry, then inspect all sides in real Blender.",
@@ -2021,17 +2039,89 @@
       "duration": 7.28,
       "generationId": "dyYSO3LNMMVjr2fnXCJj"
     },
-    "f0bc15d66dbce2846582": {
-      "text": "Download the reference S T L from the course page. In Bambu Studio, verify 100 by 70 by 18 mm, bottom down, cavity up. Slice and inspect the floor and walls before printing. This reference has not yet been physically print-tested.",
-      "file": "f0bc15d66dbce2846582.mp3",
-      "duration": 17.44,
-      "generationId": "dRLSKqHjkjt52ZKXBNVF"
+    "d6148e8db518748687fd": {
+      "text": "The tray is exported as desk-tray.stl. Next, open the simulated Bambu Studio workspace and import this model to verify its dimensions and orientation.",
+      "file": "d6148e8db518748687fd.mp3",
+      "generationId": "JaBlQjGiAIZ0pLFc7TWA",
+      "duration": 11.76
     },
     "9431e7264118b144e677": {
       "text": "What must you check after importing into the slicer?",
       "file": "9431e7264118b144e677.mp3",
       "duration": 3.04,
       "generationId": "PLv4GlIynmOXjcRPWIbv"
+    },
+    "ed14906658d5bde157d8": {
+      "text": "The Blender model is ready to check in a slicer. Use the course’s launch button to open simulated Bambu Studio, then choose Prepare. In real life, launch Bambu Studio from your desktop or Start menu.",
+      "file": "ed14906658d5bde157d8.mp3",
+      "generationId": "q4CyHCFz50eyCoKu1cMc",
+      "duration": 13.28
+    },
+    "2993c327817abbb924dc": {
+      "text": "Click Open Bambu Studio, then select Prepare.",
+      "file": "2993c327817abbb924dc.mp3",
+      "generationId": "NL6TZhLPhosqDEH2gjoM",
+      "duration": 3.76
+    },
+    "eec4515b49e13b43ea66": {
+      "text": "Bambu Studio is open in Prepare with an empty build plate.",
+      "file": "eec4515b49e13b43ea66.mp3",
+      "generationId": "T6SRA0p5r2IHZqiFYWHm",
+      "duration": 3.92
+    },
+    "6ac64b9e4472bf340cf4": {
+      "text": "Use Add model to import the S T L you exported. This practice file is the actual Blender-generated tray, including its rounded bevel. Importing places the mesh on the plate without slicing it.",
+      "file": "6ac64b9e4472bf340cf4.mp3",
+      "generationId": "S3BgvrC7lWaVi1V0TrCs",
+      "duration": 12.8
+    },
+    "bc15e6b41d170f207271": {
+      "text": "Click Add model, select desk-tray.stl, then choose Open.",
+      "file": "bc15e6b41d170f207271.mp3",
+      "generationId": "DaXxxHG3Y1yaxacNWZfN",
+      "duration": 6.08
+    },
+    "21d9d6db4a4944ed60bc": {
+      "text": "Your tray is on the Bambu Studio build plate, with its flat bottom down and cavity facing up.",
+      "file": "21d9d6db4a4944ed60bc.mp3",
+      "generationId": "821NkNIOZHgAIKhJeiY1",
+      "duration": 5.92
+    },
+    "e6ac15923b92b64bdf52": {
+      "text": "Select the tray and read its size in Bambu Studio. It should measure 100 by 70 by 18 mm. Check that the open cavity faces up and the flat bottom rests on the plate. If dimensions differ in real life, review your Blender export scale before slicing.",
+      "file": "e6ac15923b92b64bdf52.mp3",
+      "generationId": "eDQRwiPwDJYSjBjz4kDX",
+      "duration": 18.16
+    },
+    "40a9196da0094b7eb6ed": {
+      "text": "Click the tray on the plate to select it and show its dimensions.",
+      "file": "40a9196da0094b7eb6ed.mp3",
+      "generationId": "w6XJ70Gt1kNpOyC1YLZl",
+      "duration": 3.76
+    },
+    "80b814e8c19f18a42d40": {
+      "text": "The imported S T L measures 100 by 70 by 18 mm. Continue to the Bambu Studio slicing course to choose the correct printer and material, slice the model, and inspect the layers before printing.",
+      "file": "80b814e8c19f18a42d40.mp3",
+      "generationId": "0oQggVSk8YNOQ5TJd538",
+      "duration": 14.08
+    },
+    "23c3053890c9fb25923e": {
+      "text": "You modeled a tray, selected and beveled its rim, exported it, and imported the actual S T L into Bambu Studio. Inspect it here with orbit, pan, and zoom, then continue with the slicer lessons.",
+      "file": "23c3053890c9fb25923e.mp3",
+      "generationId": "FVElOQgsHrZJLMJldKtk",
+      "duration": 13.52
+    },
+    "c56db958a8dd97452b55": {
+      "text": "Inspect the tray, then continue to the Bambu Studio slicing course.",
+      "file": "c56db958a8dd97452b55.mp3",
+      "generationId": "pkyPxK7jnbcSZbx6CB9B",
+      "duration": 4.48
+    },
+    "fef66aa751e211ec2bda": {
+      "text": "Save often. Keep the editable Blender file alongside your S T L and Bambu Studio project.",
+      "file": "fef66aa751e211ec2bda.mp3",
+      "generationId": "QuJChXXXXln1L0fD2AuX",
+      "duration": 6.72
     }
   },
   "lessons": {
@@ -3600,18 +3690,32 @@
           "display": "In real Blender, save desk-tray-03-cavity.blend, then experiment on a copy."
         }
       },
+      "rim-edges": {
+        "description": {
+          "id": "638e865224f2b802025c",
+          "display": "Edge Select is active and no edges are selected. We will bevel only the four outside edges around the top rim. A plain click selects one edge; Shift-click adds or removes another edge."
+        },
+        "task": {
+          "id": "e138fd8adc2e281ccbf7",
+          "display": "Click one outside top rim edge. Hold `Shift` and click the other three outside top edges."
+        },
+        "summary": {
+          "id": "72a1b06ffdeb5c0e5d19",
+          "display": "All four outside top rim edges are selected. The inner opening, vertical edges, and bottom edges remain unselected."
+        }
+      },
       "bevel": {
         "description": {
-          "id": "ac8a4505ae6616429cbf",
-          "display": "This checkpoint prepares the four outer top rim edges. In real Blender, use Edge Select and Shift-click those four edges. A 0.6 mm bevel with three segments softens the upper outside rim. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm."
+          "id": "90279f43faae18a94a3c",
+          "display": "Bevel the four outer rim edges you selected. A 0.6 mm bevel with three segments and Profile 0.5 creates a rounded transition with real geometry. Move the pointer to preview the width, or type a number. Scroll the wheel during the operation to change the number of segments. You can zoom in before starting to inspect the edge shape."
         },
         "task": {
           "id": "602ce906959a42d50ada",
           "display": "Click the viewport. Press `Ctrl` + `B`, type `0` `.` `6`, scroll up twice for 3 segments, then `Enter`."
         },
         "summary": {
-          "id": "6bb0db6bee1ded3ab8d2",
-          "display": "The outside rim now has real rounded geometry. Smooth shading by itself would not change the printed shape."
+          "id": "ab52539fa4bd1e5f7505",
+          "display": "The outer rim now contains three curved segments across its 0.6 mm bevel. The cavity and floor remain intact. Orbit and zoom to inspect the new geometry in real Blender."
         }
       },
       "orientation": {
@@ -3666,26 +3770,68 @@
           "display": "Choose File → Export → STL (.stl), then Export STL."
         },
         "summary": {
-          "id": "f0bc15d66dbce2846582",
-          "display": "Download the reference STL from the course page. In Bambu Studio, verify 100 × 70 × 18 mm, bottom down, cavity up. Slice and inspect the floor and walls before printing. This reference has not yet been physically print-tested."
+          "id": "d6148e8db518748687fd",
+          "display": "The tray is exported as desk-tray.stl. Next, open the simulated Bambu Studio workspace and import this model to verify its dimensions and orientation."
         },
         "quiz": {
           "id": "9431e7264118b144e677",
           "display": "What must you check after importing into the slicer?"
         }
       },
-      "complete": {
+      "open-bambu": {
         "description": {
-          "id": "350671f13cf0de86a2c8",
-          "display": "You completed this tutorial. Orbit, pan, and zoom the live model here, then download the checkpoint and continue in real Blender. Save a new version before experimenting."
+          "id": "ed14906658d5bde157d8",
+          "display": "The Blender model is ready to check in a slicer. Use the course’s launch button to open simulated Bambu Studio, then choose Prepare. In real life, launch Bambu Studio from your desktop or Start menu."
         },
         "task": {
-          "id": "3d9e9ddda50c86462532",
-          "display": "Download a checkpoint, or return to the course."
+          "id": "2993c327817abbb924dc",
+          "display": "Click Open Bambu Studio, then select Prepare."
         },
         "summary": {
-          "id": "1b16dbea7aad280f2b7f",
-          "display": "Save your real Blender project before leaving."
+          "id": "eec4515b49e13b43ea66",
+          "display": "Bambu Studio is open in Prepare with an empty build plate."
+        }
+      },
+      "import-tray": {
+        "description": {
+          "id": "6ac64b9e4472bf340cf4",
+          "display": "Use Add model to import the STL you exported. This practice file is the actual Blender-generated tray, including its rounded bevel. Importing places the mesh on the plate without slicing it."
+        },
+        "task": {
+          "id": "bc15e6b41d170f207271",
+          "display": "Click Add model, select desk-tray.stl, then choose Open."
+        },
+        "summary": {
+          "id": "21d9d6db4a4944ed60bc",
+          "display": "Your tray is on the Bambu Studio build plate, with its flat bottom down and cavity facing up."
+        }
+      },
+      "inspect-tray": {
+        "description": {
+          "id": "e6ac15923b92b64bdf52",
+          "display": "Select the tray and read its size in Bambu Studio. It should measure 100 × 70 × 18 mm. Check that the open cavity faces up and the flat bottom rests on the plate. If dimensions differ in real life, review your Blender export scale before slicing."
+        },
+        "task": {
+          "id": "40a9196da0094b7eb6ed",
+          "display": "Click the tray on the plate to select it and show its dimensions."
+        },
+        "summary": {
+          "id": "80b814e8c19f18a42d40",
+          "display": "The imported STL measures 100 × 70 × 18 mm. Continue to the Bambu Studio slicing course to choose the correct printer and material, slice the model, and inspect the layers before printing."
+        }
+      },
+      "complete": {
+        "description": {
+          "id": "23c3053890c9fb25923e",
+          "display": "You modeled a tray, selected and beveled its rim, exported it, and imported the actual STL into Bambu Studio. Inspect it here with orbit, pan, and zoom, then continue with the slicer lessons."
+        },
+        "task": {
+          "id": "c56db958a8dd97452b55",
+          "display": "Inspect the tray, then continue to the Bambu Studio slicing course."
+        },
+        "summary": {
+          "id": "fef66aa751e211ec2bda",
+          "display": "Save often. Keep the editable Blender file alongside your STL and Bambu Studio project."
         }
       }
     }

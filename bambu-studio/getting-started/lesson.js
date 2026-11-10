@@ -53,7 +53,7 @@ steps.find(s=>s.id==='top-view').quiz={
 export default {
   id:'getting-started',software:'bambu-studio',version:2,title:'Meet Bambu Studio',
   subtitle:'Find your way around. Then take Benchy for a spin.',
-  eyebrow:'INTRO TO 3D PRINTING SLICING / TUTORIAL 01',simulatorLabel:'SIMULATED BAMBU STUDIO',
+  eyebrow:'BambuLab Level 1 / TUTORIAL 01',simulatorLabel:'SIMULATED BAMBU STUDIO',
   simulationNote:'Example settings · not a print setup recommendation',
   initialState:{view:'home',modelVisible:false},
   model:{url:new URL('../../shared/assets/models/Benchy.stl',import.meta.url).href,name:'Benchy.stl'},

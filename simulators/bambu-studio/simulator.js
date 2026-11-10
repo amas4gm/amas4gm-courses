@@ -12,6 +12,8 @@ export async function createBambuSimulator({container,lesson,api}){
  container.querySelectorAll('img[src]').forEach(img=>img.src=new URL(img.getAttribute('src'),import.meta.url).href);
  let step={simulation:{action:'select'},task:''},context={isCompleted:()=>false,completedSteps:()=>[]},paused=false;
  let loaded=false,ready=false,scene,camera,renderer,controls,mesh,resizeObserver,scaleObserver,cube,manipulation,workflow;
+ const modelName=lesson.model.name,displayName=lesson.model.displayName||'Benchy';
+ $('#benchy-file').firstChild.nodeValue=`▧   ${modelName} `;
  const plateControlMeshes=[];
  let startPosition,startTarget,startAngle,zoomPractice,stepReady=false,resetting=false;
  const mode=()=>step.simulation.action,isEditing=()=>!!step.simulation.editing,isNav=()=>['orbit','pan','zoom','free'].includes(mode());
@@ -22,8 +24,8 @@ export async function createBambuSimulator({container,lesson,api}){
    const state=Object.assign({},lesson.initialState,...context.completedSteps().map(s=>s.simulation?.effects||{}));
    const visible=!!state.modelVisible;mesh.visible=visible;
    $('.filename').textContent=visible?`* ${lesson.model.name.replace(/\.stl$/i,'')}`:'Untitled';$('.object-info').hidden=!visible;
-   $('#scene').setAttribute('aria-label',visible?'Interactive 3D Benchy model':'Empty 3D build plate');
-   $('#viewport').setAttribute('aria-label',visible?'3D build plate with Benchy. Camera controls are enabled during navigation steps.':'Empty 3D build plate. Add a model to begin.');
+   $('#scene').setAttribute('aria-label',visible?`Interactive 3D ${displayName} model`:'Empty 3D build plate');
+   $('#viewport').setAttribute('aria-label',visible?`3D build plate with ${displayName}. Camera controls are enabled during navigation steps.`:'Empty 3D build plate. Add a model to begin.');
    const config=step.simulation;setStudioView(context.isCompleted()?(config.viewAfter||config.view):(config.viewBefore||config.view));workflow?.refreshState();renderScene();
  }
  function setStep(nextStep,nextContext){
@@ -99,7 +101,7 @@ async function init(){
     gesture={x:e.clientX,y:e.clientY,button:e.button,pointerType:e.pointerType,warned:false};
     const rect=canvas.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,camera);
     if(raycaster.intersectObjects(plateControlMeshes).length){e.stopImmediatePropagation();gesture=null;mistake('Plate tools are disabled. Practice moving your view in the empty area beside the model.');return;}
-    if(e.pointerType!=='touch'&&e.button===0&&['orbit','free'].includes(mode())&&raycaster.intersectObject(mesh).length){e.stopImmediatePropagation();gesture=null;mistake('Start your left-drag on empty space beside Benchy. Model editing is disabled.');}
+    if(e.pointerType!=='touch'&&e.button===0&&['orbit','free'].includes(mode())&&raycaster.intersectObject(mesh).length){e.stopImmediatePropagation();gesture=null;mistake(`Start your left-drag on empty space beside ${displayName}. Model editing is disabled.`);}
   },true);
   canvas.addEventListener('pointermove',e=>{if(!gesture||gesture.pointerType==='touch'||gesture.warned||Math.hypot(e.clientX-gesture.x,e.clientY-gesture.y)<7)return;const id=mode(),valid=id==='free'||id==='orbit'&&gesture.button===0||id==='pan'&&[1,2].includes(gesture.button);if(!valid){gesture.warned=true;mistake(`For this step: ${step.task}`);}},true);
   canvas.addEventListener('pointerup',()=>gesture=null);canvas.addEventListener('pointercancel',()=>gesture=null);
@@ -119,6 +121,7 @@ async function init(){
   const plateLabel=document.createElement('canvas');plateLabel.width=1024;plateLabel.height=100;const ctx=plateLabel.getContext('2d');ctx.fillStyle='#cbd0cb';ctx.font='bold 44px Arial';ctx.textAlign='center';ctx.fillText('Bambu Textured PEI Plate',512,65);const texture=new THREE.CanvasTexture(plateLabel);texture.colorSpace=THREE.SRGBColorSpace;const label=new THREE.Mesh(new THREE.PlaneGeometry(190,18),new THREE.MeshBasicMaterial({map:texture,transparent:true,depthWrite:false}));label.rotation.x=-Math.PI/2;label.position.set(0,.02,-113);scene.add(label);
   const geometry=await new STLLoader().loadAsync(lesson.model.url);geometry.rotateX(-Math.PI/2);geometry.computeBoundingBox();const box=geometry.boundingBox,center=new THREE.Vector3();box.getCenter(center);geometry.translate(-center.x,-box.min.y,-center.z);geometry.computeVertexNormals();
   mesh=new THREE.Mesh(geometry,new THREE.MeshStandardMaterial({color:0x8e8960,roughness:.65,metalness:0}));mesh.visible=false;scene.add(mesh);
+  const dimensions=geometry.boundingBox.getSize(new THREE.Vector3());if(lesson.model.displayName)$('.object-info').textContent=`Object name: ${modelName}\nSize: ${dimensions.x.toFixed(2)} × ${dimensions.z.toFixed(2)} × ${dimensions.y.toFixed(2)} mm`;
   const resize=()=>{const rect=$('#viewport').getBoundingClientRect();if(rect.width<1||rect.height<1)return;renderer.setSize(rect.width,rect.height,false);camera.aspect=rect.width/rect.height;camera.updateProjectionMatrix();renderScene();};resizeObserver=new ResizeObserver(resize);resizeObserver.observe($('#viewport'));
   cube=createViewCube({element:$('#view-cube'),camera,controls,canInteract:name=>!paused&&(mode()==='free'||isEditing()||mode()==='view'&&name==='Top'),onSelect:name=>{if(mode()==='view'&&name==='Top')finish();},onRetry:()=>mistake(`For this step: ${step.task}`),onChange:renderScene});
   $('#view-home').addEventListener('click',()=>{if(mode()==='free')resetView(false);});
@@ -134,7 +137,7 @@ function setStudioView(view){
 }
 
  function dispose(){workflow?.dispose();manipulation?.dispose();cube?.dispose();resizeObserver?.disconnect();scaleObserver?.disconnect();controls?.dispose();scene?.traverse(object=>{object.geometry?.dispose();for(const material of [object.material].flat().filter(Boolean)){Object.values(material).forEach(value=>{if(value?.isTexture)value.dispose();});material.dispose();}});renderer?.dispose();container.replaceChildren();}
- try{await init();if(lesson.capabilities?.includes('manipulation')){const {createManipulation}=await import('./manipulation.js?v=rotation-retry-1');manipulation=createManipulation({container,mesh,camera,controls,renderer,render:renderScene,api});}if(lesson.capabilities?.includes('printing')){const {createPrintWorkflow}=await import('./printing.js?v=real-body-1');workflow=await createPrintWorkflow({container,lesson,api,mesh,scene,camera,renderer,render:renderScene,setView:setStudioView});}}catch(error){dispose();throw error;}
+ try{await init();if(lesson.capabilities?.includes('manipulation')){const {createManipulation}=await import('./manipulation.js?v=bevel-handoff-1');manipulation=createManipulation({container,mesh,camera,controls,renderer,render:renderScene,api,modelName});}if(lesson.capabilities?.includes('printing')){const {createPrintWorkflow}=await import('./printing.js?v=real-body-1');workflow=await createPrintWorkflow({container,lesson,api,mesh,scene,camera,renderer,render:renderScene,setView:setStudioView});}}catch(error){dispose();throw error;}
  const scaleStudio=()=>{const scale=Math.min(1,container.clientWidth/1582);$('#studio').style.zoom=String(scale);if(controls){controls.rotateSpeed=1/scale;controls.panSpeed=1/scale;}api.guideChanged();};
  scaleObserver=new ResizeObserver(scaleStudio);scaleObserver.observe(container);scaleStudio();
  return {setStep,refreshState,getGuide,perform:practiceAction,getRegion:()=>$('#studio'),setPaused(value){paused=value;workflow?.setPaused(value);manipulation?.setPaused(value);configureControls();cube?.update();},setGuidance(active){$('#viewport').classList.toggle('navigation-guidance',active&&isNav());},reset(){workflow?.reset();resetView(false);},dispose};

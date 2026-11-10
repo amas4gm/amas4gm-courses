@@ -3,7 +3,7 @@ import {createSelectionOutline} from './selection-outline.js?v=rotation-retry-1'
 import * as THREE from '../../shared/vendor/three.module.js';
 import {axes,rotationQuaternion,rotationDegrees,groundObject,objectBounds,applyObjectState,layOnFace,scaleObject} from './object-transform.js';
 // Shared, optional object-editing capability. Lesson data supplies goals and checkpoints.
-export function createManipulation({container,mesh,camera,controls,renderer,render,api}){
+export function createManipulation({container,mesh,camera,controls,renderer,render,api,modelName='Benchy.stl'}){
  const $=s=>container.querySelector(s),viewport=$('#viewport'),canvas=$('#scene');
  const listeners=new AbortController(),on=(el,type,fn,options={})=>el.addEventListener(type,fn,{...options,signal:listeners.signal});
  const names={move:'Move',scale:'Scale',rotate:'Rotate',flatten:'Lay on face'},colors={X:'#d62929',Y:'#16942a',Z:'#235ae1'};
@@ -66,7 +66,7 @@ export function createManipulation({container,mesh,camera,controls,renderer,rend
   const bounds=objectBounds(mesh),mid=bounds.getCenter(new THREE.Vector3()),s=mesh.scale,r=rotationDegrees(mesh.quaternion);
   const values={position:[mid.x+128,128-mid.z,mid.y],scale:[s.x*100,s.z*100,s.y*100],size:[baseSize.x*s.x,baseSize.z*s.z,baseSize.y*s.y],rotation:r,relative:[0,0,0]};
   for(const el of panel.querySelectorAll('input[data-row]'))if(document.activeElement!==el)el.value=values[el.dataset.row]['XYZ'.indexOf(el.dataset.axis)].toFixed(2);
-  const dimensions=bounds.getSize(new THREE.Vector3());$('.object-info').textContent=`Object name: Benchy.stl\nSize: ${dimensions.x.toFixed(2)} × ${dimensions.z.toFixed(2)} × ${dimensions.y.toFixed(2)} mm\nPosition: ${(mid.x+128).toFixed(1)}, ${(128-mid.z).toFixed(1)}, ${mid.y.toFixed(1)} mm`;
+  const dimensions=bounds.getSize(new THREE.Vector3());$('.object-info').textContent=`Object name: ${modelName}\nSize: ${dimensions.x.toFixed(2)} × ${dimensions.z.toFixed(2)} × ${dimensions.y.toFixed(2)} mm\nPosition: ${(mid.x+128).toFixed(1)}, ${(128-mid.z).toFixed(1)}, ${mid.y.toFixed(1)} mm`;
  }
  function applyInput(input){
   if(!allowed()||input.disabled||input.dataset.committed===input.value)return;input.dataset.committed=input.value;const value=input.value.trim()===''?NaN:Number(input.value),axis=input.dataset.axis,row=input.dataset.row,index='XYZ'.indexOf(axis),component={X:'x',Y:'z',Z:'y'}[axis];
@@ -113,7 +113,7 @@ export function createManipulation({container,mesh,camera,controls,renderer,rend
  on(canvas,'pointerdown',event=>{
   if(!allowed()||event.button!==0)return;const hit=hitModel(event);
   if(cfg().action==='object-select'){
-   event.stopImmediatePropagation();if(!hit){api.retry('Click Benchy itself to select the object.');return;}selected=true;updateToolbar();render();api.complete();return;
+   event.stopImmediatePropagation();if(!hit){api.retry(`Click ${modelName} itself to select the object.`);return;}selected=true;updateToolbar();render();api.complete();return;
   }
   if(tool==='flatten'){const face=pickFace(event);if(hit||face){event.stopImmediatePropagation();lay(face);}return;}
   if(hit&&selected){event.stopImmediatePropagation();if(free()&&tool==='move')beginDrag(event,'XY');else if(cfg().action==='transform')api.retry('Use the colored handles or the number fields for this tool.');}
