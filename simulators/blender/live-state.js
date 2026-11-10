@@ -13,7 +13,7 @@ export function liveState(name,manifest){
  }
  if(name==='extrude-cancelled')op={kind:'extrude',value:0,segments:1};
  const cfg=structuredClone(manifest.states[source]?.configuration||{});
- return {asset:'cube',mode:'OBJECT',selection:'all',...cfg,values:{...(cfg.values||{})},clipStart:manifest.states[source]?.settings?.clipStart,clipEnd:manifest.states[source]?.settings?.clipEnd,name:source,operation:op};
+ return {asset:'cube',mode:'OBJECT',selection:'all',...cfg,values:{...(cfg.values||{})},renamePopup:name==='rename-popup',clipStart:manifest.states[source]?.settings?.clipStart,clipEnd:manifest.states[source]?.settings?.clipEnd,name:source,operation:op};
 }
 export function meshForState(state,assets){
  if(!state||state.empty)return null;
@@ -38,14 +38,16 @@ export function meshForState(state,assets){
  if(op?.kind==='inset')selection='inner';if(op?.kind==='extrude')selection='floor';
  const selectedFaces=data.faces.map((f,i)=>{
   if(state.mode!=='EDIT'||selection==='none')return false;
+  if(state.selectedVertices)return f.every(j=>state.selectedVertices.includes(j));
   if(state.bevelSegments||(op?.kind==='bevel'&&op.value>0))return data.selectedFaces.includes(i);
   if(selection==='rim')return false;
   if(selection==='all')return true;
   if(selection==='inner'||selection==='floor')return data.selectedFaces.includes(i);
   return selection==='top'&&f.every(j=>Math.abs(vertices[j][2]-18)<1e-5);
  });
- const selectedEdges=data.edges.map(([a,b])=>selection==='rim'&&asset==='cavity'?[a,b].every(i=>Math.abs(vertices[i][2]-18)<1e-5&&(Math.abs(vertices[i][0])>49.99||Math.abs(vertices[i][1])>34.99)):data.faces.some((f,i)=>selectedFaces[i]&&f.includes(a)&&f.includes(b)));
- return {...data,vertices,selectedFaces,selectedEdges,asset};
+ const selectedEdges=data.edges.map(([a,b])=>state.selectedVertices?[a,b].every(i=>state.selectedVertices.includes(i)):selection==='rim'&&asset==='cavity'?[a,b].every(i=>Math.abs(vertices[i][2]-18)<1e-5&&(Math.abs(vertices[i][0])>49.99||Math.abs(vertices[i][1])>34.99)):data.faces.some((f,i)=>selectedFaces[i]&&f.includes(a)&&f.includes(b)));
+ const selectedVertices=vertices.map((_,i)=>state.selectedVertices?state.selectedVertices.includes(i):selection==='all'||data.faces.some((f,j)=>selectedFaces[j]&&f.includes(i)));
+ return {...data,vertices,selectedFaces,selectedEdges,selectedVertices,asset};
 }
 export function viewportRect(state,manifest){
  const record=manifest.states[state?.name]||manifest.states.cube;

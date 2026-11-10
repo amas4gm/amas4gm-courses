@@ -8,7 +8,8 @@ export function normalizeProgress(lesson,saved={}){
   const unlocked=firstIncomplete<0?lesson.steps.length-1:firstIncomplete;
   const requested=lesson.steps.findIndex(s=>s.id===saved?.current);
   const practiced=lesson.steps.filter(s=>s.quiz&&!completed.includes(s.id)&&Array.isArray(saved?.practiced)&&saved.practiced.includes(s.id)).map(s=>s.id);
-  return {current:lesson.steps[Math.max(0,Math.min(requested<0?0:requested,unlocked))].id,completed,practiced};
+  // A retired step resumes at the next unfinished task, preserving prior work.
+  return {current:lesson.steps[Math.max(0,Math.min(requested<0?unlocked:requested,unlocked))].id,completed,practiced};
 }
 export function loadProgress(lesson,storage){
   try{

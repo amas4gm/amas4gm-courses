@@ -20,7 +20,7 @@ export const software=[{
         "Real Blender checkpoints"
       ],
       "number": "01",
-      "steps": 16
+      "steps": 14
     },
     {
       "id": "setup-for-printing",

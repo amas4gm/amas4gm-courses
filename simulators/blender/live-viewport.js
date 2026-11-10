@@ -1,6 +1,6 @@
 import * as THREE from '../../shared/vendor/three.module.js';
 import {precisionDelta,dragZoomDistance} from './native-modal.js?v=input-5';
-import {liveState,meshForState,viewportRect} from './live-state.js?v=input-sequence-1';
+import {liveState,meshForState,viewportRect} from './live-state.js?v=feedback-2';
 
 const baseRotation=new THREE.Quaternion(.425,.176,.340,.820).normalize();
 const svgNS='http://www.w3.org/2000/svg';
@@ -22,7 +22,7 @@ export async function createLiveViewport({stage,frame,manifest,url,onView,onTop,
  const axes=[['X',new THREE.Vector3(1,0,0),'#d95062'],['Y',new THREE.Vector3(0,1,0),'#85ad22'],['Z',new THREE.Vector3(0,0,1),'#388ee4']];
  const raycaster=new THREE.Raycaster(),cursor=new THREE.Vector2();let faceMap=[];
  const clearGroup=g=>{for(const child of [...g.children]){child.geometry?.dispose();if(Array.isArray(child.material))child.material.forEach(m=>m.dispose());else child.material?.dispose();g.remove(child);}};
- function render(){if(disposed||!state||canvas.hidden)return;camera.position.copy(new THREE.Vector3(0,0,distance).applyQuaternion(rotation).add(target));camera.quaternion.copy(rotation);camera.updateMatrixWorld();lightRoot.quaternion.copy(rotation);renderer.render(scene,camera);revision++;canvas.dataset.renderRevision=String(revision);canvas.dataset.camera=JSON.stringify([...camera.position.toArray(),...target.toArray()]);drawGizmo();const p=new THREE.Vector3().project(camera),x=rect.x+(p.x+1)*rect.width/2,y=rect.y+(1-p.y)*rect.height/2;cursorIcon.hidden=x<rect.left+20||x>rect.right-20||y<rect.visibleY+20||y>rect.y+rect.height-20||p.z>1;cursorIcon.style.left=`${x-20}px`;cursorIcon.style.top=`${y-20}px`;if(selectionPoint){const s=selectionPoint.clone().project(camera);selectionTarget.style.left=`${rect.x+(s.x+1)*rect.width/2-40}px`;selectionTarget.style.top=`${rect.y+(1-s.y)*rect.height/2-24}px`;}onRender?.();}
+ function render(){if(disposed||!state||canvas.hidden)return;camera.position.copy(new THREE.Vector3(0,0,distance).applyQuaternion(rotation).add(target));camera.quaternion.copy(rotation);camera.updateMatrixWorld();lightRoot.quaternion.copy(rotation);renderer.render(scene,camera);revision++;canvas.dataset.renderRevision=String(revision);canvas.dataset.camera=JSON.stringify([...camera.position.toArray(),...target.toArray()]);drawGizmo();const p=new THREE.Vector3().project(camera),x=rect.x+(p.x+1)*rect.width/2,y=rect.y+(1-p.y)*rect.height/2;cursorIcon.hidden=state.renamePopup||x<rect.left+20||x>rect.right-20||y<rect.visibleY+20||y>rect.y+rect.height-20||p.z>1;cursorIcon.style.left=`${x-20}px`;cursorIcon.style.top=`${y-20}px`;if(selectionPoint){const s=selectionPoint.clone().project(camera);selectionTarget.style.left=`${rect.x+(s.x+1)*rect.width/2-40}px`;selectionTarget.style.top=`${rect.y+(1-s.y)*rect.height/2-24}px`;}onRender?.();}
  function requestRender(){if(!queued)queued=requestAnimationFrame(()=>{queued=0;render();});}
  function cameraReset(s){rotation.copy(baseRotation);if(s.angle)rotation.premultiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,0,1),s.angle));target.set(s.pan||0,0,s.asset==='cube'?0:9);distance=(s.asset==='cube'&&!['dx','dy','dz'].some(k=>k in s.values)?10:185)*(s.zoom||1);camera=s.top?ortho:perspective;if(s.top)rotation.identity();viewChanged=false;}
  function layout(){if(!rect)return;Object.assign(canvas.style,{left:`${rect.x}px`,top:`${rect.y}px`,width:`${rect.width}px`,height:`${rect.height}px`});const scale=stage.getBoundingClientRect().width/parseFloat(stage.style.width)||1;const w=Math.max(1,Math.round(rect.width*scale)),h=Math.max(1,Math.round(rect.height*scale));if(w!==renderWidth||h!==renderHeight){renderer.setSize(w,h,false);renderWidth=w;renderHeight=h;}
@@ -50,13 +50,26 @@ export async function createLiveViewport({stage,frame,manifest,url,onView,onTop,
   if(state.orientation){mesh.material.onBeforeCompile=shader=>{shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>','#include <color_fragment>\nif (!gl_FrontFacing) diffuseColor.rgb = vec3(1.0,0.0,0.0);');};}
   if(state.mode==='EDIT'){
    const ep=[],ec=[];data.edges.forEach(([a,b],i)=>{ep.push(...data.vertices[a],...data.vertices[b]);const c=new THREE.Color(data.selectedEdges[i]?(state.operation?.kind==='extrude'?0xffffff:0xffa33a):0x242424);ec.push(c.r,c.g,c.b,c.r,c.g,c.b);});const eg=new THREE.BufferGeometry();eg.setAttribute('position',new THREE.Float32BufferAttribute(ep,3));eg.setAttribute('color',new THREE.Float32BufferAttribute(ec,3));model.add(new THREE.LineSegments(eg,new THREE.LineBasicMaterial({vertexColors:true})));
-   if(state.tool==='vertex'){const vg=new THREE.BufferGeometry();vg.setAttribute('position',new THREE.Float32BufferAttribute(data.vertices.flat(),3));model.add(new THREE.Points(vg,new THREE.PointsMaterial({color:state.selection==='all'?0xffa33a:0x161616,size:4,sizeAttenuation:false})));}
+   if(state.tool==='vertex'){const vg=new THREE.BufferGeometry();vg.setAttribute('position',new THREE.Float32BufferAttribute(data.vertices.flat(),3));const vc=data.selectedVertices.flatMap((selected,i)=>new THREE.Color(state.selectedVertices?.at(-1)===i?0xffffff:selected?0xffa33a:0x161616).toArray());vg.setAttribute('color',new THREE.Float32BufferAttribute(vc,3));model.add(new THREE.Points(vg,new THREE.PointsMaterial({vertexColors:true,size:5,sizeAttenuation:false})));}
   }else if(state.selection!=='none'){
    const outline=new THREE.Mesh(geometry.clone(),new THREE.MeshBasicMaterial({color:state.operation&&!state.operation.confirmed?0xffffff:0xffa33a,side:THREE.BackSide}));geometry.computeBoundingBox();const center=geometry.boundingBox.getCenter(new THREE.Vector3());outline.scale.setScalar(1.006);outline.position.copy(center).multiplyScalar(-.006);model.add(outline);
   }
   const origin=new THREE.Mesh(new THREE.SphereGeometry(state.asset==='cube'?.018:.25,8,6),new THREE.MeshBasicMaterial({color:0xffa33a}));origin.position.set((state.values.x||0)+(state.operation?.kind==='move'?(state.operation.axis==='x'?state.operation.value:state.operation.vector?.[0]||0):0),state.operation?.kind==='move'?(state.operation.axis==='y'?state.operation.value:state.operation.vector?.[1]||0):0,(state.asset==='cube'?(state.values.z||0):9)+(state.operation?.kind==='move'?(state.operation.axis==='z'?state.operation.value:state.operation.vector?.[2]||0):0));model.add(origin);
   if(state.operation?.axis&&!state.operation.confirmed){const g=new THREE.BufferGeometry(),isX=state.operation.axis==='x',isY=state.operation.axis==='y';g.setAttribute('position',new THREE.Float32BufferAttribute(isX?[-10000,0,0,10000,0,0]:isY?[0,-10000,0,0,10000,0]:[0,0,-10000,0,0,10000],3));const line=new THREE.LineSegments(g,new THREE.LineBasicMaterial({color:isX?0xb34c58:isY?0x83a44c:0x6b98c7,depthTest:false}));line.renderOrder=20;model.add(line);}
   canvas.dataset.mesh=JSON.stringify({asset:data.asset,vertices:data.vertices.length,faces:data.faces.length,bounds:[0,1,2].map(i=>[Math.min(...data.vertices.map(v=>v[i])),Math.max(...data.vertices.map(v=>v[i]))])});requestRender();
+  canvas.dataset.selectedVertices=JSON.stringify(data.selectedVertices.flatMap((selected,i)=>selected?[i]:[]));
+ }
+ function visibleVertices(){
+  if(!mesh)return [];camera.updateMatrixWorld();mesh.updateMatrixWorld();
+  const data=meshForState(state,assets);
+  return data.vertices.flatMap((v,index)=>{
+   const world=new THREE.Vector3(...v),p=world.clone().project(camera);
+   if(p.z< -1||p.z>1)return [];
+   raycaster.setFromCamera(new THREE.Vector2(p.x,p.y),camera);const hit=raycaster.intersectObject(mesh)[0];
+   if(hit&&hit.distance<raycaster.ray.origin.distanceTo(world)-.01)return [];
+   const x=rect.x+(p.x+1)*rect.width/2,y=rect.y+(1-p.y)*rect.height/2;
+   return x>=rect.left&&x<=rect.right&&y>=rect.visibleY&&y<=rect.y+rect.height?[{index,x,y,world}]:[];
+  });
  }
  function drawGizmo(){gizmo.replaceChildren();const inverse=rotation.clone().invert();const projected=[];
   for(const [name,v,color] of axes)for(const sign of [-1,1]){const point=v.clone().multiplyScalar(sign).applyQuaternion(inverse);projected.push({name,sign,color,point});}
@@ -68,6 +81,10 @@ export async function createLiveViewport({stage,frame,manifest,url,onView,onTop,
  }
  return {
   canvas,topButton,
+  setVertexSelection(ids){state.selectedVertices=[...ids];rebuild();},
+  vertexGuide(exclude=[]){render();const next=visibleVertices().find(v=>!exclude.includes(v.index));if(!next)return null;selectionPoint=next.world;render();selectionTarget.dataset.mouseGesture=exclude.length?'shift-click':'click';return selectionTarget;},
+  visibleVertexIds(){render();return visibleVertices().map(v=>v.index);},
+  hitVertex(clientX,clientY){render();const b=canvas.getBoundingClientRect(),scale=b.width/rect.width,x=rect.x+(clientX-b.left)/scale,y=rect.y+(clientY-b.top)/scale;const candidates=visibleVertices().map(v=>({...v,d:Math.hypot(v.x-x,v.y-y)*scale})).filter(v=>v.d<=10).sort((a,b)=>a.d-b.d);return candidates[0]?.index??null;},
   viewport:()=>rect,
   rotationValues(op){const axis=op.axis?new THREE.Vector3(...[...'xyz'].map(k=>k===op.axis?1:0)):new THREE.Vector3(...(op.viewAxis||[0,0,1]));const e=new THREE.Euler().setFromQuaternion(new THREE.Quaternion().setFromAxisAngle(axis,op.value*Math.PI/180),'XYZ');return {rx:e.x*180/Math.PI,ry:e.y*180/Math.PI,rz:e.z*180/Math.PI};},
   previewOperation(op){state.operation=structuredClone(op);rebuild();},

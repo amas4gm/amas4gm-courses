@@ -1187,12 +1187,6 @@
       "duration": 3.36,
       "generationId": "mHKCIHQgyqOzaD6lo5ii"
     },
-    "076f08176e1b35821bc6": {
-      "text": "Does orbiting change the printed object?",
-      "file": "076f08176e1b35821bc6.mp3",
-      "duration": 2.56,
-      "generationId": "hDhgNRfJ4ORWi6W31MZj"
-    },
     "23cbe6fc71851c8616a0": {
       "text": "The hand below the rotating axes is Blender’s drag control for panning. It works with a mouse, pen, or touch. With a mouse you can also hold Shift and drag the middle button.",
       "file": "23cbe6fc71851c8616a0.mp3",
@@ -1247,11 +1241,11 @@
       "duration": 2.48,
       "generationId": "osGBaEMu6zzLWOu01kcB"
     },
-    "0192c976810c9fd0a627": {
-      "text": "Frame Selected centers and fits the selected object. It is useful when you have lost sight of your model. In real Blender, use numpad period or View , then Frame Selected.",
-      "file": "0192c976810c9fd0a627.mp3",
-      "duration": 12.32,
-      "generationId": "5cKph19uAqufZaC2kF35"
+    "fd799474417406ff561b": {
+      "text": "Frame Selected centers and fits the selected object. It is useful when you have lost sight of your model. Use View , then Frame Selected on any keyboard. If you have a numpad, its period key is an optional shortcut.",
+      "file": "fd799474417406ff561b.mp3",
+      "generationId": "kWirdn34AG4z76llmvS0",
+      "duration": 14.96
     },
     "62c8ba420aa27079d0b8": {
       "text": "Choose View , then Frame Selected, or press Number pad ..",
@@ -1265,18 +1259,6 @@
       "duration": 2.48,
       "generationId": "Qjmlxjmx7luC8mSBkXnJ"
     },
-    "fa0d82e3a83622ca256c": {
-      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Frame Selected centers and fits the selected object. It is useful when you have lost sight of your model. In real Blender, use numpad period or View , then Frame Selected.",
-      "file": "fa0d82e3a83622ca256c.mp3",
-      "duration": 17.12,
-      "generationId": "Eh3V0CI9vtUvpUKnIXcu"
-    },
-    "bfd10a75e9ed0af2b10d": {
-      "text": "Focus the viewport and press Number pad ., then finish the same action.",
-      "file": "bfd10a75e9ed0af2b10d.mp3",
-      "duration": 4.96,
-      "generationId": "jKUx4QWrTbbYzJYIztVL"
-    },
     "b6e7f0e6c8842c4bc52a": {
       "text": "Use File , then Save As for a named checkpoint. The simulated dialog teaches the workflow; it does not save your real Blender project. In real Blender, Control+S saves the current named file; Control+Shift+S creates a separately named version.",
       "file": "b6e7f0e6c8842c4bc52a.mp3",
@@ -1289,23 +1271,11 @@
       "duration": 7.28,
       "generationId": "gfybdW1tGLJ6xezgZ9ue"
     },
-    "1f8231117285b882dade": {
-      "text": "In real Blender, save desk-tray-01-start.blend. Save again after each meaningful change.",
-      "file": "1f8231117285b882dade.mp3",
-      "duration": 8.4,
-      "generationId": "Sz4qaeVTWaNkNcIzchqb"
-    },
-    "ee79dd16d2510da2e1d8": {
-      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Use File , then Save As for a named checkpoint. The simulated dialog teaches the workflow; it does not save your real Blender project. In real Blender, Control+S saves the current named file; Control+Shift+S creates a separately named version.",
-      "file": "ee79dd16d2510da2e1d8.mp3",
-      "duration": 23.12,
-      "generationId": "MYTaHfoR1FYiCxYypJNe"
-    },
-    "f070bfa9090d05a38b33": {
-      "text": "Focus the viewport and press Control + Shift + S, then finish the same action.",
-      "file": "f070bfa9090d05a38b33.mp3",
-      "duration": 6.08,
-      "generationId": "yH4JxHarGvaRJW1Rtnbl"
+    "d44a4059623e3cf7c222": {
+      "text": "In real Blender, save desk-tray-01-start.blend. Save often.",
+      "file": "d44a4059623e3cf7c222.mp3",
+      "generationId": "BciB9YwpcHnqCkp4Z5AP",
+      "duration": 6.96
     },
     "350671f13cf0de86a2c8": {
       "text": "You completed this tutorial. Orbit, pan, and zoom the live model here, then download the checkpoint and continue in real Blender. Save a new version before experimenting.",
@@ -1733,11 +1703,11 @@
       "duration": 12.64,
       "generationId": "wemZKy3mV0Supp9JsOVO"
     },
-    "327a2fdd2edabf364310": {
-      "text": "Choose Object , then Apply , then Scale, or press Control + A and choose Scale.",
-      "file": "327a2fdd2edabf364310.mp3",
-      "duration": 6.8,
-      "generationId": "MbuEmzpz7UrxkzSZmCp7"
+    "a26117c689b8f98b0b37": {
+      "text": "Choose Object , then Apply , then Scale. Use the menu here; you will practice Control+A next.",
+      "file": "a26117c689b8f98b0b37.mp3",
+      "generationId": "k5arGmpn0UWQtMdo7g9Z",
+      "duration": 8.08
     },
     "105bc36b8705024a5c1d": {
       "text": "The blank keeps its dimensions. Scale is now 1 on every axis.",
@@ -1799,11 +1769,11 @@
       "duration": 9.68,
       "generationId": "jbd3FQiysXqIXrtE8DAc"
     },
-    "fbef04f220e37dd3a3d9": {
-      "text": "Choose Edit Mode in the mode selector, or press Tab in the viewport.",
-      "file": "fbef04f220e37dd3a3d9.mp3",
-      "duration": 4.64,
-      "generationId": "chetsLavx5tBAXti9U0j"
+    "494ca66e7cfc95790969": {
+      "text": "Open the mode selector and choose Edit Mode. Use the menu here; you will practice Tab next.",
+      "file": "494ca66e7cfc95790969.mp3",
+      "generationId": "9NfqpIy5tJ1pJyXP5oIA",
+      "duration": 7.2
     },
     "294e298a1bec70dea8aa": {
       "text": "You are now working on the mesh inside the object.",
@@ -1829,29 +1799,29 @@
       "duration": 4.32,
       "generationId": "7ulAmHTN6HMml3J321mg"
     },
-    "cfd2fce1bfd7ed3c4481": {
-      "text": "Vertices are the corner points of a mesh. Moving one changes the connected edges and faces.",
-      "file": "cfd2fce1bfd7ed3c4481.mp3",
-      "duration": 6.16,
-      "generationId": "cr4s9qjucF9IAIynuXwD"
+    "2cba6100ab4292836839": {
+      "text": "Vertex Select is already active: the first of the three selection icons in the header is highlighted. This mode lets you select the mesh’s corner points. A plain click selects one vertex; Shift-click adds another or removes it from the selection.",
+      "file": "2cba6100ab4292836839.mp3",
+      "generationId": "Rq9dySP14gmTQ73aVScL",
+      "duration": 15.68
     },
-    "85069eb8fa7c5a1d20a9": {
-      "text": "Click Vertex Select in the viewport header. Or press 1 on the top row of your keyboard.",
-      "file": "85069eb8fa7c5a1d20a9.mp3",
-      "duration": 5.92,
-      "generationId": "noa73c3pOtMWCUX4Xrgp"
+    "947a16408944915546d2": {
+      "text": "Click one visible corner vertex. Then hold Shift and click a different corner to add it.",
+      "file": "947a16408944915546d2.mp3",
+      "generationId": "WIKWAw1Wfd8kbyAxYF6j",
+      "duration": 6.16
     },
-    "039d9fd0059f0faaf51b": {
-      "text": "The corner points are visible. In real Blender, top-row 1 chooses Vertex Select in Edit Mode.",
-      "file": "039d9fd0059f0faaf51b.mp3",
-      "duration": 6.96,
-      "generationId": "DKlk8hB1yoTmmnY1xKT9"
+    "5c5df09359e85986b6ac": {
+      "text": "You selected one vertex, then added another with Shift-click. Edge Select and Face Select, beside Vertex Select in the header, let you select different parts of the same mesh.",
+      "file": "5c5df09359e85986b6ac.mp3",
+      "generationId": "MdBthgnOub7oKGPlXzBR",
+      "duration": 11.2
     },
-    "543cb3bd62f7d838e09b": {
-      "text": "Edges connect pairs of vertices. Beveling selected edges adds a narrow transition between surfaces.",
-      "file": "543cb3bd62f7d838e09b.mp3",
-      "duration": 7.28,
-      "generationId": "bG2HR3XoXwJtz5JC50DV"
+    "d448ac65a00ecb4c6507": {
+      "text": "Edges are the lines connecting pairs of vertices. The middle selection icon switches to Edge Select so you can select those lines. For this step, just change the selection mode.",
+      "file": "d448ac65a00ecb4c6507.mp3",
+      "generationId": "vpRwqyggQlLaMLbYHn4b",
+      "duration": 11.28
     },
     "95f1954aad595e30781c": {
       "text": "Click Edge Select. Or press 2 on the top row of your keyboard.",
@@ -1859,11 +1829,11 @@
       "duration": 4.72,
       "generationId": "mS7WIkR37OoBqP3Fi03f"
     },
-    "10b3a7e7f5b6edfb9085": {
-      "text": "Edges are the lines of the mesh. Top-row 2 chooses Edge Select.",
-      "file": "10b3a7e7f5b6edfb9085.mp3",
-      "duration": 4.96,
-      "generationId": "FTmZqEnk3WGBioKgEDhs"
+    "79bddc54342c84a2733c": {
+      "text": "Edge Select is active. The third icon beside it switches to Face Select.",
+      "file": "79bddc54342c84a2733c.mp3",
+      "generationId": "jf87eB9ST0l0d4p4Fie3",
+      "duration": 5.12
     },
     "18402ab37c73665828be": {
       "text": "Faces are the surfaces bounded by edges. Our tray begins by editing its top face.",
@@ -2994,10 +2964,6 @@
         "summary": {
           "id": "55d6e9251b24b32b492f",
           "display": "The view changed; the cube did not rotate."
-        },
-        "quiz": {
-          "id": "076f08176e1b35821bc6",
-          "display": "Does orbiting change the printed object?"
         }
       },
       "pan": {
@@ -3044,26 +3010,12 @@
       },
       "frame": {
         "description": {
-          "id": "0192c976810c9fd0a627",
-          "display": "Frame Selected centers and fits the selected object. It is useful when you have lost sight of your model. In real Blender, use numpad period or View → Frame Selected."
+          "id": "fd799474417406ff561b",
+          "display": "Frame Selected centers and fits the selected object. It is useful when you have lost sight of your model. Use View → Frame Selected on any keyboard. If you have a numpad, its period key is an optional shortcut."
         },
         "task": {
           "id": "62c8ba420aa27079d0b8",
           "display": "Choose View → Frame Selected, or press `Numpad .`."
-        },
-        "summary": {
-          "id": "7579387ca5eff617dc6e",
-          "display": "The selected object is centered again."
-        }
-      },
-      "frame-shortcut": {
-        "description": {
-          "id": "fa0d82e3a83622ca256c",
-          "display": "The same starting checkpoint is restored so you can practice the keyboard route. Frame Selected centers and fits the selected object. It is useful when you have lost sight of your model. In real Blender, use numpad period or View → Frame Selected."
-        },
-        "task": {
-          "id": "bfd10a75e9ed0af2b10d",
-          "display": "Focus the viewport and press `Numpad .`, then finish the same action."
         },
         "summary": {
           "id": "7579387ca5eff617dc6e",
@@ -3080,22 +3032,8 @@
           "display": "Choose File → Save As, or press `Ctrl` + `Shift` + `S`, then confirm the filename."
         },
         "summary": {
-          "id": "1f8231117285b882dade",
-          "display": "In real Blender, save desk-tray-01-start.blend. Save again after each meaningful change."
-        }
-      },
-      "save-shortcut": {
-        "description": {
-          "id": "ee79dd16d2510da2e1d8",
-          "display": "The same starting checkpoint is restored so you can practice the keyboard route. Use File → Save As for a named checkpoint. The simulated dialog teaches the workflow; it does not save your real Blender project. In real Blender, Ctrl+S saves the current named file; Ctrl+Shift+S creates a separately named version."
-        },
-        "task": {
-          "id": "f070bfa9090d05a38b33",
-          "display": "Focus the viewport and press `Ctrl` + `Shift` + `S`, then finish the same action."
-        },
-        "summary": {
-          "id": "1f8231117285b882dade",
-          "display": "In real Blender, save desk-tray-01-start.blend. Save again after each meaningful change."
+          "id": "d44a4059623e3cf7c222",
+          "display": "In real Blender, save desk-tray-01-start.blend. Save often."
         }
       },
       "complete": {
@@ -3444,8 +3382,8 @@
           "display": "Changing dimensions in Object Mode changes scale. Apply Scale preserves the visible size while making the scale values 1. This gives dimension-sensitive mesh tools a consistent starting point."
         },
         "task": {
-          "id": "327a2fdd2edabf364310",
-          "display": "Choose Object → Apply → Scale, or press `Ctrl` + `A` and choose Scale."
+          "id": "a26117c689b8f98b0b37",
+          "display": "Choose Object → Apply → Scale. Use the menu here; you will practice Ctrl+A next."
         },
         "summary": {
           "id": "105bc36b8705024a5c1d",
@@ -3520,8 +3458,8 @@
           "display": "Object Mode transforms the whole object. Edit Mode changes its vertices, edges, and faces. The Layout workspace can contain either mode."
         },
         "task": {
-          "id": "fbef04f220e37dd3a3d9",
-          "display": "Choose Edit Mode in the mode selector, or press `Tab` in the viewport."
+          "id": "494ca66e7cfc95790969",
+          "display": "Open the mode selector and choose Edit Mode. Use the menu here; you will practice Tab next."
         },
         "summary": {
           "id": "294e298a1bec70dea8aa",
@@ -3548,30 +3486,30 @@
       },
       "vertices": {
         "description": {
-          "id": "cfd2fce1bfd7ed3c4481",
-          "display": "Vertices are the corner points of a mesh. Moving one changes the connected edges and faces."
+          "id": "2cba6100ab4292836839",
+          "display": "Vertex Select is already active: the first of the three selection icons in the header is highlighted. This mode lets you select the mesh’s corner points. A plain click selects one vertex; Shift-click adds another or removes it from the selection."
         },
         "task": {
-          "id": "85069eb8fa7c5a1d20a9",
-          "display": "Click Vertex Select in the viewport header. Or press `1` on the top row of your keyboard."
+          "id": "947a16408944915546d2",
+          "display": "Click one visible corner vertex. Then hold `Shift` and click a different corner to add it."
         },
         "summary": {
-          "id": "039d9fd0059f0faaf51b",
-          "display": "The corner points are visible. In real Blender, top-row 1 chooses Vertex Select in Edit Mode."
+          "id": "5c5df09359e85986b6ac",
+          "display": "You selected one vertex, then added another with Shift-click. Edge Select and Face Select, beside Vertex Select in the header, let you select different parts of the same mesh."
         }
       },
       "edges": {
         "description": {
-          "id": "543cb3bd62f7d838e09b",
-          "display": "Edges connect pairs of vertices. Beveling selected edges adds a narrow transition between surfaces."
+          "id": "d448ac65a00ecb4c6507",
+          "display": "Edges are the lines connecting pairs of vertices. The middle selection icon switches to Edge Select so you can select those lines. For this step, just change the selection mode."
         },
         "task": {
           "id": "95f1954aad595e30781c",
           "display": "Click Edge Select. Or press `2` on the top row of your keyboard."
         },
         "summary": {
-          "id": "10b3a7e7f5b6edfb9085",
-          "display": "Edges are the lines of the mesh. Top-row 2 chooses Edge Select."
+          "id": "79bddc54342c84a2733c",
+          "display": "Edge Select is active. The third icon beside it switches to Face Select."
         }
       },
       "faces": {

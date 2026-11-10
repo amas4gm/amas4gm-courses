@@ -25,6 +25,10 @@
 .captured-menu hr{height:10px;margin:0;border:0}
 .native-input{position:absolute;z-index:4;pointer-events:auto;font:17px BlenderInter,Arial,sans-serif;color:#fff;border:1px solid #4772b3;border-radius:4px;background:#222;padding:2px 9px;outline:none;text-align:right}
 .native-input.filename{text-align:left;border-color:#303030;background:#1d1d1d}.native-operation{position:absolute;left:4px;top:40px;min-width:850px;height:36px;padding:9px;background:#303030;color:#ddd;font:16px BlenderInter,Arial,sans-serif;pointer-events:none}
+/* The shared target highlight must never reveal captured text under a field. */
+.native-input,.native-input.active-target{background-color:#222!important;z-index:5!important;cursor:text!important}
+.native-input.filename,.native-input.filename.active-target{background-color:#1d1d1d!important}
+.bl-live-top,.bl-live-top.active-target{z-index:4!important}
 .native-popover{position:absolute;z-index:1;pointer-events:none}
 .bl-follow{background:#f6f8f5;border:1px solid #dce4dd;padding:15px 18px;font-size:13px;line-height:1.5}.bl-follow p{margin:5px 0 8px}.downloads{display:flex;flex-wrap:wrap;gap:15px}.downloads a{color:#175c43}.bl-follow summary{cursor:pointer}
 .native-expanded .course-header,.native-expanded .intro-row,.native-expanded .sim-caption,.native-expanded .under-sim,.native-expanded footer,.native-expanded .bl-follow{display:none}

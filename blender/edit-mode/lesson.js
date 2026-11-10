@@ -13,12 +13,13 @@ export default {
       "id": "mode",
       "title": "Enter Edit Mode",
       "text": "Object Mode transforms the whole object. Edit Mode changes its vertices, edges, and faces. The Layout workspace can contain either mode.",
-      "task": "Choose Edit Mode in the mode selector, or press `Tab` in the viewport.",
+      "task": "Open the mode selector and choose Edit Mode. Use the menu here; you will practice Tab next.",
       "done": "You are now working on the mesh inside the object.",
       "simulation": {
         "action": "edit-mode",
         "asset": "blank",
-        "target": "mode"
+        "target": "mode",
+        "menuOnly": true
       },
       "quiz": {
         "prompt": "Is Edit Mode a separate workspace?",
@@ -33,10 +34,8 @@ export default {
       "chapter": "BLENDER / PART 2 · EDIT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
       "follow": "You are now working on the mesh inside the object. Save your own real Blender file before experimenting.",
-      "keys": [
-        "Tab"
-      ],
-      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
+      "keys": [],
+      "inputHint": "Open the mode selector, then click Edit Mode. The next step teaches Tab."
     },
     {
       "id": "mode-shortcut",
@@ -60,29 +59,29 @@ export default {
     },
     {
       "id": "vertices",
-      "title": "Identify vertices",
-      "text": "Vertices are the corner points of a mesh. Moving one changes the connected edges and faces.",
-      "task": "Click Vertex Select in the viewport header. Or press `1` on the top row of your keyboard.",
-      "done": "The corner points are visible. In real Blender, top-row 1 chooses Vertex Select in Edit Mode.",
+      "title": "Select vertices",
+      "text": "Vertex Select is already active: the first of the three selection icons in the header is highlighted. This mode lets you select the mesh’s corner points. A plain click selects one vertex; Shift-click adds another or removes it from the selection.",
+      "task": "Click one visible corner vertex. Then hold `Shift` and click a different corner to add it.",
+      "done": "You selected one vertex, then added another with Shift-click. Edge Select and Face Select, beside Vertex Select in the header, let you select different parts of the same mesh.",
       "simulation": {
-        "action": "vertex",
+        "action": "select-vertices",
         "asset": "blank",
         "mode": "edit"
       },
       "chapter": "BLENDER / PART 2 · EDIT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The corner points are visible. In real Blender, top-row 1 chooses Vertex Select in Edit Mode. Save your own real Blender file before experimenting.",
+      "follow": "In real Blender, try selecting one vertex and adding more with Shift-click. Top-row 1 returns to Vertex Select. Save often.",
       "keys": [
-        "1"
+        "Shift"
       ],
-      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
+      "inputHint": "First click one visible vertex. Then hold Shift while clicking a different vertex."
     },
     {
       "id": "edges",
       "title": "Identify edges",
-      "text": "Edges connect pairs of vertices. Beveling selected edges adds a narrow transition between surfaces.",
+      "text": "Edges are the lines connecting pairs of vertices. The middle selection icon switches to Edge Select so you can select those lines. For this step, just change the selection mode.",
       "task": "Click Edge Select. Or press `2` on the top row of your keyboard.",
-      "done": "Edges are the lines of the mesh. Top-row 2 chooses Edge Select.",
+      "done": "Edge Select is active. The third icon beside it switches to Face Select.",
       "simulation": {
         "action": "edge",
         "asset": "blank",
@@ -91,7 +90,7 @@ export default {
       },
       "chapter": "BLENDER / PART 2 · EDIT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "Edges are the lines of the mesh. Top-row 2 chooses Edge Select. Save your own real Blender file before experimenting.",
+      "follow": "In real Blender, top-row 2 switches to Edge Select. Save often.",
       "keys": [
         "2"
       ],

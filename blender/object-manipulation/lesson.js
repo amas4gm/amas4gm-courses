@@ -255,7 +255,7 @@ export default {
       "id": "apply",
       "title": "Apply scale",
       "text": "Changing dimensions in Object Mode changes scale. Apply Scale preserves the visible size while making the scale values 1. This gives dimension-sensitive mesh tools a consistent starting point.",
-      "task": "Choose Object → Apply → Scale, or press `Ctrl` + `A` and choose Scale.",
+      "task": "Choose Object → Apply → Scale. Use the menu here; you will practice Ctrl+A next.",
       "done": "The blank keeps its dimensions. Scale is now 1 on every axis.",
       "simulation": {
         "action": "apply-scale",
@@ -268,7 +268,8 @@ export default {
           "sy": 35,
           "sz": 9
         },
-        "target": "object"
+        "target": "object",
+        "menuOnly": true
       },
       "quiz": {
         "prompt": "What should Apply Scale preserve?",
@@ -283,10 +284,8 @@ export default {
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
       "follow": "The blank keeps its dimensions. Scale is now 1 on every axis. Save your own real Blender file before experimenting.",
-      "keys": [
-        "Ctrl+A"
-      ],
-      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
+      "keys": [],
+      "inputHint": "Open Object, hover over Apply, then click Scale. The next step teaches Ctrl+A."
     },
     {
       "id": "apply-shortcut",

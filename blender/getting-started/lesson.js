@@ -164,16 +164,6 @@ export default {
         "action": "orbit",
         "asset": "cube"
       },
-      "quiz": {
-        "prompt": "Does orbiting change the printed object?",
-        "answers": [
-          "No. It changes the view.",
-          "Yes. It rotates the mesh."
-        ],
-        "correct": 0,
-        "retry": "Think about what changed in this step. Try again.",
-        "success": "Correct. Carry that distinction into real Blender."
-      },
       "completionMode": "practice",
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
@@ -233,7 +223,7 @@ export default {
     {
       "id": "frame",
       "title": "Find your selection again",
-      "text": "Frame Selected centers and fits the selected object. It is useful when you have lost sight of your model. In real Blender, use numpad period or View → Frame Selected.",
+      "text": "Frame Selected centers and fits the selected object. It is useful when you have lost sight of your model. Use View → Frame Selected on any keyboard. If you have a numpad, its period key is an optional shortcut.",
       "task": "Choose View → Frame Selected, or press `Numpad .`.",
       "done": "The selected object is centered again.",
       "simulation": {
@@ -247,34 +237,14 @@ export default {
       "keys": [
         "Numpad ."
       ],
-      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
-    },
-    {
-      "id": "frame-shortcut",
-      "title": "Practice Frame Selected",
-      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Frame Selected centers and fits the selected object. It is useful when you have lost sight of your model. In real Blender, use numpad period or View → Frame Selected.",
-      "task": "Focus the viewport and press `Numpad .`, then finish the same action.",
-      "done": "The selected object is centered again.",
-      "simulation": {
-        "action": "frame",
-        "asset": "cube",
-        "target": "view",
-        "shortcutOnly": true
-      },
-      "chapter": "BLENDER / PART 1 · OBJECT MODE",
-      "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The selected object is centered again. Save your own real Blender file before experimenting.",
-      "keys": [
-        "Numpad ."
-      ],
-      "inputHint": "Use the shortcut on this second pass. The original menu method remains available in the previous step."
+      "inputHint": "Open View and choose Frame Selected. Numpad period is optional; no numpad is needed."
     },
     {
       "id": "save",
       "title": "Save your starting project",
       "text": "Use File → Save As for a named checkpoint. The simulated dialog teaches the workflow; it does not save your real Blender project. In real Blender, Ctrl+S saves the current named file; Ctrl+Shift+S creates a separately named version.",
       "task": "Choose File → Save As, or press `Ctrl` + `Shift` + `S`, then confirm the filename.",
-      "done": "In real Blender, save desk-tray-01-start.blend. Save again after each meaningful change.",
+      "done": "In real Blender, save desk-tray-01-start.blend. Save often.",
       "simulation": {
         "action": "save",
         "asset": "cube",
@@ -283,32 +253,11 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "In real Blender, save desk-tray-01-start.blend. Save again after each meaningful change. Save your own real Blender file before experimenting.",
+      "follow": "Save your real Blender project as desk-tray-01-start.blend. Save often, and keep a separate copy for experiments.",
       "keys": [
         "Ctrl+Shift+S"
       ],
       "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
-    },
-    {
-      "id": "save-shortcut",
-      "title": "Practice Save As",
-      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Use File → Save As for a named checkpoint. The simulated dialog teaches the workflow; it does not save your real Blender project. In real Blender, Ctrl+S saves the current named file; Ctrl+Shift+S creates a separately named version.",
-      "task": "Focus the viewport and press `Ctrl` + `Shift` + `S`, then finish the same action.",
-      "done": "In real Blender, save desk-tray-01-start.blend. Save again after each meaningful change.",
-      "simulation": {
-        "action": "save",
-        "asset": "cube",
-        "target": "file",
-        "filename": "desk-tray-01-start.blend",
-        "shortcutOnly": true
-      },
-      "chapter": "BLENDER / PART 1 · OBJECT MODE",
-      "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "In real Blender, save desk-tray-01-start.blend. Save again after each meaningful change. Save your own real Blender file before experimenting.",
-      "keys": [
-        "Ctrl+Shift+S"
-      ],
-      "inputHint": "Use the shortcut on this second pass. The original menu method remains available in the previous step."
     },
     {
       "id": "complete",

@@ -30,7 +30,7 @@ test('inserted visual and shortcut lessons retain earlier progress but cannot be
  const old=objects.steps.filter(s=>!s.simulation.visual&&!s.simulation.shortcutOnly&&!s.terminal).map(s=>s.id);
  const saved=normalizeProgress(objects,{current:'complete',completed:old});assert.equal(saved.current,'visual-move');assert.ok(saved.completed.includes('move'));
  assert.equal(objects.steps.filter(s=>s.simulation.visual).length,3);
- assert.equal([intro,objects,edit].flatMap(l=>l.steps).filter(s=>s.simulation.shortcutOnly).length,5);
+ assert.equal([intro,objects,edit].flatMap(l=>l.steps).filter(s=>s.simulation.shortcutOnly).length,3);
  for(const s of intro.steps.filter(s=>['orbit','pan','zoom'].includes(s.simulation.action)))assert.equal(s.tools,undefined);
  for(const s of objects.steps.filter(s=>s.simulation.visual))assert.ok(s.keys.includes('Shift'));
 });

@@ -10,8 +10,8 @@ test('numeric checkpoints accept explicit converted lengths and reject malformed
  for(const raw of ['','3mm junk','Infinity','NaN','3deg','3°'])assert.equal(meetsGoal(raw,3),false);
  assert.equal(meetsGoal('45 mm',45,'angle'),false);assert.equal(meetsGoal('4 mm',3),false);
 });
-test('all 46 modeling and interface steps have valid checkpoints, stable unique IDs and a terminal inspection state',()=>{
- assert.equal([intro,objects,edit].reduce((n,l)=>n+l.steps.filter(s=>!s.terminal).length,0),46);
+test('all 44 modeling and interface steps have valid checkpoints, stable unique IDs and a terminal inspection state',()=>{
+ assert.equal([intro,objects,edit].reduce((n,l)=>n+l.steps.filter(s=>!s.terminal).length,0),44);
  for(const lesson of [intro,objects,edit]){assert.equal(new Set(lesson.steps.map(s=>s.id)).size,lesson.steps.length);assert.ok(lesson.steps.at(-1).terminal);for(const s of lesson.steps){assert.ok(['cube','blank','inset','cavity','finished'].includes(s.simulation.asset));assert.ok(s.text&&s.task&&s.done);}}
 });
 test('retry restores the geometry preceding a topology operation',()=>{

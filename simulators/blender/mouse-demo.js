@@ -31,12 +31,14 @@ export function mouseDemoPlan({action,target,viewport,operator,gesture,shortcutO
   if(action==='zoom'&&!zoomDirections.length){add(4000,at,'Return to the magnifier · button released');add(4300,at,'Hold LMB again','left');add(5650,[at[0],at[1]+130],'Hold LMB · drag down','left');add(5950,[at[0],at[1]+130],'Release LMB');add(6550,[at[0],at[1]+130],'Practice both directions');}
  }else if(action==='header-scroll'){
   if(!target)return null;drag(at,[Math.max(target.x+24,at[0]-180),at[1]],'middle','Hold MMB · drag the header left');
+ }else if(gesture==='shift-click'){
+  arrive(at);add(1100,at,'Hold Shift','', 'Shift');add(1500,at,'Shift + LMB · add this vertex','left','Shift');add(1750,at,'Release LMB · keep Shift held','','Shift');add(2100,at,'Release Shift');add(2550,at,'Vertex added to selection');
  }else if(gesture==='hover'){
   arrive(at);add(1700,at,'Hover here to open the submenu');add(2600,at,'No mouse button needed');
  }else if(shortcutOnly&&!gesture){click(focus);thenKeys=true;}
  else if(target){click(at,gesture==='double-click');thenKeys=gesture==='focus';}
  else return null;
- const description=gesture==='double-click'?'Double-click LMB here':gesture==='hover'?'Hover here · no mouse button':action==='zoom'?'Hold LMB and drag up, release; return and drag down':action==='header-scroll'?'Hold MMB and drag left, then release':['pan','orbit'].includes(action)?'Hold LMB and drag along the path, then release':operator?.visual?'Move without holding a button; use Shift for precision; LMB confirms':operator?.kind==='bevel'?'Scroll the wheel up for more segments':'Click LMB here';
+ const description=gesture==='shift-click'?'Hold Shift, click LMB here, release LMB, then release Shift':gesture==='double-click'?'Double-click LMB here':gesture==='hover'?'Hover here · no mouse button':action==='zoom'?'Hold LMB and drag up, release; return and drag down':action==='header-scroll'?'Hold MMB and drag left, then release':['pan','orbit'].includes(action)?'Hold LMB and drag along the path, then release':operator?.visual?'Move without holding a button; use Shift for precision; LMB confirms':operator?.kind==='bevel'?'Scroll the wheel up for more segments':'Click LMB here';
  return {frames,duration:frames.at(-1).ms,thenKeys,description};
 }
 export function sampleMouseDemo(plan,time){

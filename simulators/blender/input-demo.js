@@ -1,4 +1,4 @@
-import {createMouseDemo,mouseDemoPlan} from './mouse-demo.js?v=input-sequence-1';
+import {createMouseDemo,mouseDemoPlan} from './mouse-demo.js?v=feedback-2';
 import {modalReady} from './native-modal.js?v=input-5';
 
 // A demonstration describes input, but never dispatches it to the simulator.
