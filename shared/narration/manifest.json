@@ -1,0 +1,3401 @@
+{
+  "version": 1,
+  "provider": "ElevenLabs",
+  "voice": "Bella",
+  "voiceId": "hpp4J3VqNfWAUOO0d1Us",
+  "model": "eleven_v4",
+  "clips": {
+    "991147892dd129d6bba9": {
+      "text": "Bambu Studio opens on Home. Prepare is where you bring in a model and get it ready for printing.",
+      "file": "991147892dd129d6bba9.mp3",
+      "duration": 6.24,
+      "generationId": "geppPlsAOHLUzAl4dinZ"
+    },
+    "389ffe8c92e62d24c901": {
+      "text": "Follow the arrow and select Prepare to open the workspace.",
+      "file": "389ffe8c92e62d24c901.mp3",
+      "duration": 3.92,
+      "generationId": "cSU8q0uo4hfBAvrrN6Nj"
+    },
+    "822a2a7762f7766b6683": {
+      "text": "You opened Prepare. The build plate is empty; we will add Benchy after finding the main controls.",
+      "file": "822a2a7762f7766b6683.mp3",
+      "duration": 6.48,
+      "generationId": "RFztYzhv5DOGLV2YNZCh"
+    },
+    "4a122b3be6343042eab0": {
+      "text": "Preview shows the paths and layers the printer will follow after slicing. The layer slider is on the right and the toolpath slider is along the bottom.",
+      "file": "4a122b3be6343042eab0.mp3",
+      "duration": 8.88,
+      "generationId": "18I7AqERMdPqZrRUCE0Z"
+    },
+    "4f1f73906e9fdbfb6400": {
+      "text": "Select Preview to see its workspace.",
+      "file": "4f1f73906e9fdbfb6400.mp3",
+      "duration": 2.48,
+      "generationId": "xG44kn1LPvruYe0KbTTB"
+    },
+    "bbac66dd12744d4d1b28": {
+      "text": "You opened Preview. The plate is empty and the sliders are inactive because we have not imported or sliced a model.",
+      "file": "bbac66dd12744d4d1b28.mp3",
+      "duration": 7.28,
+      "generationId": "BkwwgZHymkiinBCHRFpX"
+    },
+    "4313a93fe47a204a3546": {
+      "text": "Device is where you connect to and monitor a printer. In the shop, check that the selected device is the one you intend to use.",
+      "file": "4313a93fe47a204a3546.mp3",
+      "duration": 8,
+      "generationId": "IbBUkAt7xtd2ZqOeJxau"
+    },
+    "a75fa84211ee578ea5c0": {
+      "text": "Find and select Device. No printer will be connected here.",
+      "file": "a75fa84211ee578ea5c0.mp3",
+      "duration": 4.32,
+      "generationId": "fSde5fajtHATQhfQ9kFR"
+    },
+    "655e77458d2c2d6494b4": {
+      "text": "Device is for the actual printer. This simulation cannot send a print.",
+      "file": "655e77458d2c2d6494b4.mp3",
+      "duration": 5.04,
+      "generationId": "85COyARnd5uZ7VlJiIFC"
+    },
+    "d4a058f38cbf80e43bcf": {
+      "text": "You have seen where to prepare a model, review its sliced layers, and monitor a printer. Now return to the workspace where you will add Benchy.",
+      "file": "d4a058f38cbf80e43bcf.mp3",
+      "duration": 9.04,
+      "generationId": "DbO0whqrdbx2sR6ezQ5M"
+    },
+    "d2d93d6baaa1945ce95a": {
+      "text": "Select Prepare to return to the empty build plate.",
+      "file": "d2d93d6baaa1945ce95a.mp3",
+      "duration": 3.28,
+      "generationId": "gxYUatbv2Hc9Dl8Ie7Zu"
+    },
+    "6fb4e2afe5f225bd8179": {
+      "text": "Back in Prepare. Next, find the printer, material, process, and model controls.",
+      "file": "6fb4e2afe5f225bd8179.mp3",
+      "duration": 6.64,
+      "generationId": "ujNx7QX6BiRUcJQGYzm5"
+    },
+    "6c8a91d455dde8c019c7": {
+      "text": "The Printer panel holds the printer profile, build plate, and nozzle settings. They need to match the equipment you will use.",
+      "file": "6c8a91d455dde8c019c7.mp3",
+      "duration": 7.36,
+      "generationId": "PvTrm3Uw6PVk5agSuSVs"
+    },
+    "45ec1a518d99f03d2bda": {
+      "text": "Select the highlighted Printer panel.",
+      "file": "45ec1a518d99f03d2bda.mp3",
+      "duration": 2.24,
+      "generationId": "RfVGP5gqTbjneBxBMkCZ"
+    },
+    "d8bf13cf7a09a160eef2": {
+      "text": "You found the printer settings. These example values are not instructions for setting up a shop print.",
+      "file": "d8bf13cf7a09a160eef2.mp3",
+      "duration": 5.84,
+      "generationId": "j0yEDHntKzSpPmzGQeiQ"
+    },
+    "3718ff509f5c490ba147": {
+      "text": "Project Filaments describes the material used by your model. Later, you will match the material and color to what is loaded in the printer.",
+      "file": "3718ff509f5c490ba147.mp3",
+      "duration": 8.4,
+      "generationId": "dwuVP9CocYJkCGX3MOWa"
+    },
+    "abeba35438965194d710": {
+      "text": "Select the Project Filaments panel.",
+      "file": "abeba35438965194d710.mp3",
+      "duration": 2.4,
+      "generationId": "G2VMN4XEvfMmXw76JmPT"
+    },
+    "4d4b9ee55ca54fc534cb": {
+      "text": "For this entry course, we will use one material. We will choose it in a later tutorial.",
+      "file": "4d4b9ee55ca54fc534cb.mp3",
+      "duration": 5.36,
+      "generationId": "wzDny0cphqClZKhrdo8m"
+    },
+    "6ecc1fb4b3b8e10dd935": {
+      "text": "Process contains settings such as layer height, strength, speed, and supports. You do not need to adjust these during navigation practice.",
+      "file": "6ecc1fb4b3b8e10dd935.mp3",
+      "duration": 8.96,
+      "generationId": "qLLHe2QCjsDSCXosam05"
+    },
+    "64b3a35ac989c53233e8": {
+      "text": "Select the highlighted Process panel.",
+      "file": "64b3a35ac989c53233e8.mp3",
+      "duration": 2.4,
+      "generationId": "SCqZyS6PNNO2FD2PvTAR"
+    },
+    "7f82747b73c0e87f2782": {
+      "text": "These settings control how the model will be sliced. Leave them alone for this lesson.",
+      "file": "7f82747b73c0e87f2782.mp3",
+      "duration": 4.96,
+      "generationId": "64bTa2HNUI5HKb3VI3Mq"
+    },
+    "bcf9ab4d263183a50227": {
+      "text": "The toolbar includes Move, Rotate, Scale, and Lay on face. Those tools change the model itself.",
+      "file": "bcf9ab4d263183a50227.mp3",
+      "duration": 7.68,
+      "generationId": "juDCwycCqYkcmgI9piWe"
+    },
+    "e5243b450d56c978e9c1": {
+      "text": "Select the highlighted model toolbar.",
+      "file": "e5243b450d56c978e9c1.mp3",
+      "duration": 2.32,
+      "generationId": "2P8SRhDwAfyYpLVkull3"
+    },
+    "64fe9df230e16336e630": {
+      "text": "Remember this difference: the Rotate tool changes the model. Orbiting changes only your view.",
+      "file": "64fe9df230e16336e630.mp3",
+      "duration": 6.88,
+      "generationId": "3IgcWO5p0PNPdOu6nlWV"
+    },
+    "7ac1f7d945919bfd8816": {
+      "text": "The Add model icon opens a file picker. The course includes Benchy.stl for this practice.",
+      "file": "7ac1f7d945919bfd8816.mp3",
+      "duration": 6.64,
+      "generationId": "dCEr7jfQk6F1XcgsfPbm"
+    },
+    "40546990abc39e10908a": {
+      "text": "Click the Add model icon, select Benchy.stl, then choose Open.",
+      "file": "40546990abc39e10908a.mp3",
+      "duration": 5.84,
+      "generationId": "9NwUnI5MdMl0UmrM1YAI"
+    },
+    "3e78e669c67c7bbc4b30": {
+      "text": "Benchy is now on the plate. Importing adds the model; it does not slice or print it.",
+      "file": "3e78e669c67c7bbc4b30.mp3",
+      "duration": 6,
+      "generationId": "T1CKmqZR06vOkberr9kl"
+    },
+    "740d097716b14f10c3ef": {
+      "text": "The large area is the three D viewport. It shows Benchy on the build plate—the surface where a print starts.",
+      "file": "740d097716b14f10c3ef.mp3",
+      "duration": 7.04,
+      "generationId": "bWfSmtlEWmLiMVnHKW2V"
+    },
+    "f751d625c95ee2d698f7": {
+      "text": "Select the highlighted three D viewport.",
+      "file": "f751d625c95ee2d698f7.mp3",
+      "duration": 2.64,
+      "generationId": "q1tQABgDw0gPmK5rSZjF"
+    },
+    "94a811595a02abc207d1": {
+      "text": "Imported models may arrive in an orientation that is unsuitable for printing, like Benchy on its side here. In the next tutorial, you will learn how to orient models for printing.",
+      "file": "94a811595a02abc207d1.mp3",
+      "duration": 10.96,
+      "generationId": "3ixXtSUdmZxq0Jw4poqH"
+    },
+    "31aac8a45d4a774fcb75": {
+      "text": "Orbiting moves your viewpoint around the model. The model stays in exactly the same place and orientation.",
+      "file": "31aac8a45d4a774fcb75.mp3",
+      "duration": 6.64,
+      "generationId": "RAfQyNsMfYIs9wOfj4C8"
+    },
+    "918ce9dcf4e74b139752": {
+      "text": "Orbit around Benchy using the controls for your input device.",
+      "file": "918ce9dcf4e74b139752.mp3",
+      "duration": 3.76,
+      "generationId": "92PcybrvXMY7UQqYiWZA"
+    },
+    "b9c357de29c627912408": {
+      "text": "Mouse. Hold the left button and drag on empty space beside Benchy. Touchpad. Press and hold the primary (left) click while sliding a finger to drag. Start on empty space beside Benchy. Touchscreen. Drag one finger on empty space beside Benchy.",
+      "file": "b9c357de29c627912408.mp3",
+      "duration": 18.8,
+      "generationId": "ubVRwErsG0prolRmxBTe"
+    },
+    "f5bb0bbb18c76d861d81": {
+      "text": "You changed your view—not Benchy’s orientation.",
+      "file": "f5bb0bbb18c76d861d81.mp3",
+      "duration": 3.44,
+      "generationId": "IaHi7Fa71U6yJdJjNa9O"
+    },
+    "7c28ad8a2532564d7e15": {
+      "text": "Panning moves your viewpoint sideways or up and down without turning it. Benchy stays fixed on the plate.",
+      "file": "7c28ad8a2532564d7e15.mp3",
+      "duration": 6.64,
+      "generationId": "ZZ6VKZuVo1Hu0EoTIxMi"
+    },
+    "d81e418dc00ddccd52d2": {
+      "text": "Pan the view sideways using the controls for your input device.",
+      "file": "d81e418dc00ddccd52d2.mp3",
+      "duration": 3.84,
+      "generationId": "fOnsxiM4POqZ50RJcgdq"
+    },
+    "7ad53e38af89b3a4c9cc": {
+      "text": "Mouse. Hold the right button or wheel button and drag. Touchpad. Hold the secondary (right) click while sliding to drag. On a clickpad, hold the lower-right click area with one finger and move another. A two-finger tap alone does not drag. Touchscreen. Slide two fingers together across the viewport, keeping their spacing steady.",
+      "file": "7ad53e38af89b3a4c9cc.mp3",
+      "duration": 23.68,
+      "generationId": "CJFRYToAnzxhGFKENn8Q"
+    },
+    "9fa7b661902d3c2c066f": {
+      "text": "Your view shifted. Benchy did not move on the build plate.",
+      "file": "9fa7b661902d3c2c066f.mp3",
+      "duration": 3.92,
+      "generationId": "DSVnAqLoCrcXatRzKbBj"
+    },
+    "33e4e06b8d8523720fe8": {
+      "text": "Zooming changes how close the model looks. It does not change the model’s physical size.",
+      "file": "33e4e06b8d8523720fe8.mp3",
+      "duration": 5.52,
+      "generationId": "1DjyvAaBuacx5CuQtYBo"
+    },
+    "32b4653c8d76bed08351": {
+      "text": "Zoom in and zoom out using the controls for your input device. Complete both directions.",
+      "file": "32b4653c8d76bed08351.mp3",
+      "duration": 5.92,
+      "generationId": "3buQZ89QA6W6W8XLxZpr"
+    },
+    "4b2204a2f84aa8cac911": {
+      "text": "Mouse. Roll the wheel up to zoom in and down to zoom out. Touchpad. Use two fingers to scroll over the viewport, first one way and then the other. Direction follows your scroll settings; reverse the gesture if needed. Touchscreen. Spread two fingers apart to zoom in; pinch them together to zoom out.",
+      "file": "4b2204a2f84aa8cac911.mp3",
+      "duration": 20.8,
+      "generationId": "CzQ4tUXzOOG8VJw8FdSL"
+    },
+    "19e664f4dc6ad6e2655e": {
+      "text": "Both directions done. Benchy stayed the same size.",
+      "file": "19e664f4dc6ad6e2655e.mp3",
+      "duration": 3.6,
+      "generationId": "93yUA7uNJI4GWsYdJzNQ"
+    },
+    "d98bbfb0abf5d672b249": {
+      "text": "The view cube follows your camera as you orbit. Click a face to look directly at that side of the model. This changes your viewpoint, not the model’s orientation.",
+      "file": "d98bbfb0abf5d672b249.mp3",
+      "duration": 9.84,
+      "generationId": "UWBlRZUPPM4U5xKfeUfx"
+    },
+    "c975b7fe2fc239433508": {
+      "text": "Click the Top face of the view cube in the lower-left corner of the viewport.",
+      "file": "c975b7fe2fc239433508.mp3",
+      "duration": 4.4,
+      "generationId": "D7LR6WQfSCULorLiye8T"
+    },
+    "39b773126aad6e5c1257": {
+      "text": "You are looking straight down at the build plate. Benchy has not moved or rotated. The cube gives you a repeatable view without dragging.",
+      "file": "39b773126aad6e5c1257.mp3",
+      "duration": 8.48,
+      "generationId": "M0k3D0k2n10BoSPNIfqK"
+    },
+    "b73c58dfdbe1feda46da": {
+      "text": "You orbit, pan, and zoom around Benchy. What changed?",
+      "file": "b73c58dfdbe1feda46da.mp3",
+      "duration": 4.56,
+      "generationId": "AFlg5gBjkkQxdZdJ1edu"
+    },
+    "c2a59a901c4d7bf965de": {
+      "text": "You found the main sections of Bambu Studio and practiced orbit, pan, and zoom.",
+      "file": "c2a59a901c4d7bf965de.mp3",
+      "duration": 5.44,
+      "generationId": "BEoxNtuyBKIdUlOWND2T"
+    },
+    "01438a1301250705c0c6": {
+      "text": "Try orbit, pan, and zoom with your input device, here and in Bambu Studio.",
+      "file": "01438a1301250705c0c6.mp3",
+      "duration": 5.84,
+      "generationId": "swlzwP4INrLPz4ne37ZE"
+    },
+    "703c7dfffcbce13305aa": {
+      "text": "Mouse. Left-drag empty space to orbit; right-drag to pan; scroll to zoom. Touchpad. Hold primary click and drag to orbit; hold secondary click and drag to pan; two-finger scroll to zoom. Touchscreen. One-finger drag on empty space to orbit; two-finger slide to pan; pinch or spread to zoom.",
+      "file": "703c7dfffcbce13305aa.mp3",
+      "duration": 22.8,
+      "generationId": "d0dh5PNQVdZqUmwY9Ras"
+    },
+    "dc8766ae6f01582332d0": {
+      "text": "This completes Tutorial 01 only. It does not qualify you to print independently yet.",
+      "file": "dc8766ae6f01582332d0.mp3",
+      "duration": 6,
+      "generationId": "LXth3WG5eMRefEcXQ9Lp"
+    },
+    "823203f1792e81a63f5b": {
+      "text": "This lesson starts in Prepare with the same imported Benchy. A model may arrive in an unsuitable orientation for printing. First select it: object tools act on the selected model, while orbit, pan, and zoom only change your view.",
+      "file": "823203f1792e81a63f5b.mp3",
+      "duration": 16.64,
+      "generationId": "RaYIRwmvwStFB7gyIMpz"
+    },
+    "b31388e6100e60ed4de7": {
+      "text": "Click Benchy itself to select it. Keyboard: focus the three D viewport and press Enter.",
+      "file": "b31388e6100e60ed4de7.mp3",
+      "duration": 6.56,
+      "generationId": "UqcCqbiM1iiDyQm07brl"
+    },
+    "433f5fd20b3f6562faf9": {
+      "text": "The white selection outline identifies the object you will edit. We will keep using this one Benchy throughout the lesson.",
+      "file": "433f5fd20b3f6562faf9.mp3",
+      "duration": 6.88,
+      "generationId": "RRphdXgE9gqivgzaADyq"
+    },
+    "5021b2e3a6228b2cd69c": {
+      "text": "Move changes an object’s position. The red X and green Y axes run across the build plate. Blue Z is vertical. The Position fields show the object’s center in millimeters, so a model resting on the plate can have a positive Z value.",
+      "file": "5021b2e3a6228b2cd69c.mp3",
+      "duration": 15.92,
+      "generationId": "vbO3i8fPjq0mhzaelCze"
+    },
+    "6dd79e6b3ea1d89247a8": {
+      "text": "Click the Move toolbar icon (four arrows).",
+      "file": "6dd79e6b3ea1d89247a8.mp3",
+      "duration": 3.36,
+      "generationId": "KJVrp90tcD4lvSsus4N2"
+    },
+    "52924222270f5228fe75": {
+      "text": "The colored arrows attached to the selected model are its axis handles. Drag an arrowhead to move only along that axis: red X, green Y, or blue Z. The Position fields set exact coordinates. A single object stays seated on the plate in this practice; Z is shown for reference.",
+      "file": "52924222270f5228fe75.mp3",
+      "duration": 19.92,
+      "generationId": "HKO77SWaFGRGafwTMHan"
+    },
+    "e65b195aeeae9b2472ec": {
+      "text": "An axis handle is a colored arrow attached to the selected object. Grab its arrowhead and drag along the line: red is X, green is Y, and blue is Z. You can also enter an exact coordinate. Moving an object changes where it will print, without changing its size or shape.",
+      "file": "e65b195aeeae9b2472ec.mp3",
+      "duration": 19.52,
+      "generationId": "7N3fU1iXYuTeHpHjFEKL"
+    },
+    "9559b7948c8e6ec1e611": {
+      "text": "Move X from 128 to 148 mm. Drag the red X arrow or enter 148 in Position X and press Enter.",
+      "file": "9559b7948c8e6ec1e611.mp3",
+      "duration": 10.56,
+      "generationId": "abEDpO4SP04SxEinKonC"
+    },
+    "23fad9b70f2fb0f1927d": {
+      "text": "Benchy moved 20 mm along X. Its dimensions and orientation stayed the same.",
+      "file": "23fad9b70f2fb0f1927d.mp3",
+      "duration": 6,
+      "generationId": "qdqyuCo68CyWNFqYglAY"
+    },
+    "69b249b18057893ac038": {
+      "text": "X and Y locate the object on the bed. Watch the model, the colored handles, and the position numbers together. Keep the whole model inside the build area.",
+      "file": "69b249b18057893ac038.mp3",
+      "duration": 9.84,
+      "generationId": "Gygx3L9QmuhPbULNSoku"
+    },
+    "663f8470fe258701b0ce": {
+      "text": "Set Position Y to 108 mm, then press Enter.",
+      "file": "663f8470fe258701b0ce.mp3",
+      "duration": 4.48,
+      "generationId": "KIbPCCnkQuOfjdkouT4V"
+    },
+    "a2b6fbe4ca4cf071106a": {
+      "text": "Benchy is now at X 148, Y 108 mm. Moving the model affects its placement on the plate; panning the camera does not.",
+      "file": "a2b6fbe4ca4cf071106a.mp3",
+      "duration": 10.16,
+      "generationId": "1IxDKXmw8ZWgVniyim2e"
+    },
+    "135cf82fac3422248aae": {
+      "text": "Which action changes where Benchy will print?",
+      "file": "135cf82fac3422248aae.mp3",
+      "duration": 2.96,
+      "generationId": "aKk736foNB7Cf5XWcKXe"
+    },
+    "133096696e1a72ef6687": {
+      "text": "Scale changes the model’s physical size. Percentage fields resize relative to the imported model; Size fields specify the dimensions of the model’s bounding box in millimeters: the smallest box enclosing the whole model, including its protruding features. This practice uses object coordinates, so its dimensions follow the model’s own axes.",
+      "file": "133096696e1a72ef6687.mp3",
+      "duration": 22.8,
+      "generationId": "6bOPVZFUUC9UQgciXuM6"
+    },
+    "8cbe64aa7212cce3a121": {
+      "text": "Click the Scale icon (a square inside a larger square).",
+      "file": "8cbe64aa7212cce3a121.mp3",
+      "duration": 4,
+      "generationId": "q4DYCDmZukHZ9nEsBn4C"
+    },
+    "94d38f54df56b3819895": {
+      "text": "The scale panel shows 100% on each axis. Uniform scale is checked to preserve the original proportions.",
+      "file": "94d38f54df56b3819895.mp3",
+      "duration": 7.84,
+      "generationId": "G7lvcg8L2lrDfZrhoDpx"
+    },
+    "c245451740933f0128ed": {
+      "text": "With uniform scale checked, changing one axis changes all three by the same factor. This keeps Benchy’s shape instead of stretching it. Scale changes the printed dimensions; zoom does not.",
+      "file": "c245451740933f0128ed.mp3",
+      "duration": 12.88,
+      "generationId": "3N1ydeO3bzTmPFyGjedf"
+    },
+    "65168ad3abe1ab974f6b": {
+      "text": "Enter 150 in Scale X and press Enter. Watch Y and Z follow.",
+      "file": "65168ad3abe1ab974f6b.mp3",
+      "duration": 6,
+      "generationId": "1vBVh7DAm8T7lm7ix2tu"
+    },
+    "97446e06bcc4b1e8dd01": {
+      "text": "All three axes are now 150%. Every linear dimension is one and a half times its original size.",
+      "file": "97446e06bcc4b1e8dd01.mp3",
+      "duration": 8,
+      "generationId": "yxcNrG7Ba2jvxVfsN2qj"
+    },
+    "63ec1a0598ccf59c8af6": {
+      "text": "Size measures the model’s bounding box, not an individual feature such as a hole or the cabin. Think of a snug box enclosing all of Benchy: Size X is that box’s extent along X. Changing it scales the model to fit the new box dimension. Bambu Studio works in millimeters. With uniform scale on, entering one dimension adjusts the other two proportionally.",
+      "file": "63ec1a0598ccf59c8af6.mp3",
+      "duration": 25.76,
+      "generationId": "PH1hy4MpQ6l9eRTFRmdz"
+    },
+    "ce9ea5bb837ae6a745b0": {
+      "text": "Set Size X to 60 mm and press Enter.",
+      "file": "ce9ea5bb837ae6a745b0.mp3",
+      "duration": 3.68,
+      "generationId": "HlGS9vfoa5XLdkcHrO6z"
+    },
+    "e2d9c9aa0b780da742b7": {
+      "text": "Benchy is back to approximately its original size. Always check dimensions after import, especially if a model appears unexpectedly tiny or huge.",
+      "file": "e2d9c9aa0b780da742b7.mp3",
+      "duration": 10.16,
+      "generationId": "Cdj0d9lKDiXfkPww4fMx"
+    },
+    "c3f16217f54e304b55b6": {
+      "text": "Turning off uniform scale lets you change one dimension without changing the others. This deliberately distorts the shape and may spoil the fit of functional parts.",
+      "file": "c3f16217f54e304b55b6.mp3",
+      "duration": 10.08,
+      "generationId": "L7O5HZLymwZHoOWl0ZWk"
+    },
+    "65b55b9c94c99ec39ddb": {
+      "text": "Uncheck uniform scale.",
+      "file": "65b55b9c94c99ec39ddb.mp3",
+      "duration": 1.92,
+      "generationId": "quH8jDelho8GQ2UwbU38"
+    },
+    "6f5fd49a581c294b4f25": {
+      "text": "The axes can now scale independently. Next, try a visible stretch so you can see the difference.",
+      "file": "6f5fd49a581c294b4f25.mp3",
+      "duration": 6.48,
+      "generationId": "wC7gVWZnQSf90BXwRv29"
+    },
+    "f6f4ce1e1a45df199d39": {
+      "text": "With the proportions unlocked, only the axis you change will scale. This is useful when intentional, but it is usually unsuitable for a part whose shape and fit must be preserved.",
+      "file": "f6f4ce1e1a45df199d39.mp3",
+      "duration": 11.44,
+      "generationId": "rvcQEAApCeO3LjZLvziD"
+    },
+    "eb3e93a6db690caa8927": {
+      "text": "Set Scale X to 150% and press Enter. Leave Y and Z at 100%.",
+      "file": "eb3e93a6db690caa8927.mp3",
+      "duration": 7.12,
+      "generationId": "qKmK64Hnh8zLwzw0RyIQ"
+    },
+    "94b466629aa2dc886bda": {
+      "text": "Only X grew. Y and Z stayed at 100%, so the proportions changed.",
+      "file": "94b466629aa2dc886bda.mp3",
+      "duration": 6.4,
+      "generationId": "7zY8V8gNtc0BzZEU0TfV"
+    },
+    "784d0826416a78710292": {
+      "text": "How would you make a part larger while preserving its proportions?",
+      "file": "784d0826416a78710292.mp3",
+      "duration": 3.76,
+      "generationId": "BaOBd3Lf34TKdW5teKc3"
+    },
+    "a94678f1b55d17c2de07": {
+      "text": "We only stretched X, so we can undo that distortion by returning X to 100% while the axes are still independent.",
+      "file": "a94678f1b55d17c2de07.mp3",
+      "duration": 8.56,
+      "generationId": "n301Xmm4X1XShHEZe8MW"
+    },
+    "fa02b6c46b8229402641": {
+      "text": "Set Scale X back to 100% and press Enter.",
+      "file": "fa02b6c46b8229402641.mp3",
+      "duration": 3.92,
+      "generationId": "vRPkgzloxHmrTssHzLei"
+    },
+    "22dd9b01cbec84cdd7fc": {
+      "text": "Benchy has its original proportions again. We will keep this size for the orientation exercises.",
+      "file": "22dd9b01cbec84cdd7fc.mp3",
+      "duration": 6,
+      "generationId": "bGX4UT5lkjxklIXhzG1R"
+    },
+    "3eaa3e3456fb957930d7": {
+      "text": "Rotate changes the model’s orientation, unlike orbiting the camera. Colored rings rotate around X, Y, or Z. Rotate (absolute) sets an angle; Rotate (relative) adds an angle to the current orientation.",
+      "file": "3eaa3e3456fb957930d7.mp3",
+      "duration": 16.32,
+      "generationId": "biFq5fMMGKmw9xWyEaP6"
+    },
+    "948d8ff530875853d021": {
+      "text": "Click the Rotate icon.",
+      "file": "948d8ff530875853d021.mp3",
+      "duration": 1.68,
+      "generationId": "P7lbphz2XVe68XF0gCzG"
+    },
+    "38fe45e6aedf05b0f417": {
+      "text": "The rotation rings surround the object. Z turns it across the plate; X or Y can tip it onto another side.",
+      "file": "38fe45e6aedf05b0f417.mp3",
+      "duration": 7.92,
+      "generationId": "LOszizGePj72xoMCbjzE"
+    },
+    "3b1a53b352c2f9c18375": {
+      "text": "Drag the colored handle with two arrow tips, rather than the circle itself. Hovering the handle reveals that axis and its snap marks. While dragging, move the pointer into the short ticks just outside the circle to snap in 5° increments.",
+      "file": "3b1a53b352c2f9c18375.mp3",
+      "duration": 16,
+      "generationId": "jgnYBaXqRnRo455jvkw1"
+    },
+    "0e7c8ad483c62dd4fa67": {
+      "text": "Drag the blue Z handle. Keep the pointer in the outer tick band, rotate to 45.00°, and release.",
+      "file": "0e7c8ad483c62dd4fa67.mp3",
+      "duration": 8.72,
+      "generationId": "MVt0ix1lmvtlc61BPvng"
+    },
+    "b283ec33b6342c0e4d78": {
+      "text": "You used the outer ticks to rotate 45° in 5° increments. Snapping depends on the pointer’s distance from the center; you do not need to hold Shift.",
+      "file": "b283ec33b6342c0e4d78.mp3",
+      "duration": 10.32,
+      "generationId": "25sFxUVtf1fVjkf5Ghdu"
+    },
+    "db211f79df17848c4216": {
+      "text": "The eight longer guides inside the circle snap in 45° increments. Drag inward, into the band between one-third and two-thirds of the circle’s radius. Outside both snap bands, rotation is continuous.",
+      "file": "db211f79df17848c4216.mp3",
+      "duration": 14.96,
+      "generationId": "a8PkdiU0n0DlNlS4c4xL"
+    },
+    "63a06b07b3a1b51c196b": {
+      "text": "Drag the blue Z handle inward to the inner guides. Rotate another 45.00° and release; the absolute Z angle will become 90°.",
+      "file": "63a06b07b3a1b51c196b.mp3",
+      "duration": 11.04,
+      "generationId": "Pbyby0sYBCFsEYRYGYqc"
+    },
+    "1ea847567a221bf8bd52": {
+      "text": "The inner guides added a 45° turn. Benchy is now at 90° in Rotate (absolute). The readout beside a dragged handle reports that drag’s rotation, which is why it showed 45°.",
+      "file": "1ea847567a221bf8bd52.mp3",
+      "duration": 13.92,
+      "generationId": "dWUY1f1vHgEdmwWa1eZc"
+    },
+    "942988afd6978dc83a79": {
+      "text": "How do you switch between 5° and 45° rotation snapping?",
+      "file": "942988afd6978dc83a79.mp3",
+      "duration": 4.8,
+      "generationId": "vElbcN6cXRVROrELYLqt"
+    },
+    "8b8ca10a0fb767b831f6": {
+      "text": "The numeric fields are useful when you already know the angle you need. Rotate (absolute) sets the orientation value; Rotate (relative) adds a turn to the current orientation.",
+      "file": "8b8ca10a0fb767b831f6.mp3",
+      "duration": 12.56,
+      "generationId": "7GjHCYOaWIgHb5dyOmRX"
+    },
+    "e8b3675754c65fd52429": {
+      "text": "Set Rotate (absolute) Z to 0° and press Enter.",
+      "file": "e8b3675754c65fd52429.mp3",
+      "duration": 4.96,
+      "generationId": "0EBoaX4LwPy0KKxHTs95"
+    },
+    "d3b598a107df0ccb7672": {
+      "text": "The absolute value returned Benchy to its original heading. Next, add a small tilt using the relative field.",
+      "file": "d3b598a107df0ccb7672.mp3",
+      "duration": 7.36,
+      "generationId": "zKy4JXJnErUSb2IVmVfZ"
+    },
+    "231508ad49842429dba1": {
+      "text": "Rotating around X or Y changes which surfaces face the bed. This affects contact, overhangs, and possible support needs. A visually convenient angle is not necessarily a good printing orientation.",
+      "file": "231508ad49842429dba1.mp3",
+      "duration": 13.92,
+      "generationId": "ls5prdDfVM9NncuIPweY"
+    },
+    "1a991b53565ed262f8e0": {
+      "text": "Enter 30° in Rotate (relative) X and press Enter.",
+      "file": "1a991b53565ed262f8e0.mp3",
+      "duration": 5.2,
+      "generationId": "c78slMhzw1COGPMBiimO"
+    },
+    "de90ff7a3dc7b436d625": {
+      "text": "You added a 30° tilt around X. For a flat base, Lay on face is more direct than guessing rotation angles.",
+      "file": "de90ff7a3dc7b436d625.mp3",
+      "duration": 8.08,
+      "generationId": "UPhiuGyFeRgVtRrRRPvi"
+    },
+    "4df20ce4195f42f30c38": {
+      "text": "Lay on face rotates the object so the surface you choose rests against the plate. It is especially useful when an imported model arrives on its side. Choose the intended flat base, rather than an arbitrary side.",
+      "file": "4df20ce4195f42f30c38.mp3",
+      "duration": 13.68,
+      "generationId": "JTlBFzMoGP0v9NR3R4Uc"
+    },
+    "d9d53046ed0cb725a8c0": {
+      "text": "Click Lay on face (the tilted object above a plate).",
+      "file": "d9d53046ed0cb725a8c0.mp3",
+      "duration": 3.92,
+      "generationId": "wg9NQvbHM3i75ixR6IFS"
+    },
+    "4c75d24ce7ef8d7e2811": {
+      "text": "Pale surfaces show available flat faces. You can orbit on empty space if you need a better view of the intended face.",
+      "file": "4c75d24ce7ef8d7e2811.mp3",
+      "duration": 7.76,
+      "generationId": "lAnotuupGFsOkpkvzEsA"
+    },
+    "20cc99c98985e003e0f1": {
+      "text": "For this Benchy, choose the broad flat underside of the hull. Lay on face turns that selected surface toward the bed and seats the model. This controls orientation, not print quality settings.",
+      "file": "20cc99c98985e003e0f1.mp3",
+      "duration": 13.04,
+      "generationId": "hJpYXuWS1tsfh1QMstza"
+    },
+    "5092d2a2260ae358cb5a": {
+      "text": "Click the highlighted flat underside of Benchy’s hull. You may orbit on empty space to inspect it.",
+      "file": "5092d2a2260ae358cb5a.mp3",
+      "duration": 6.32,
+      "generationId": "RfyLIXh8eePQRAbMkRbY"
+    },
+    "3a87d00d98b9a9073324": {
+      "text": "Benchy is upright with its flat underside on the plate. You have practiced selection, Move, uniform and independent Scale, absolute and relative Rotate, and Lay on face. Printer, material, process, supports, and the sliced preview still need checking before a real print.",
+      "file": "3a87d00d98b9a9073324.mp3",
+      "duration": 19.04,
+      "generationId": "hDMuPZ8Ed8aRdTA03GMV"
+    },
+    "42d39664175c3eee2120": {
+      "text": "What does Lay on face do?",
+      "file": "42d39664175c3eee2120.mp3",
+      "duration": 2.08,
+      "generationId": "zSHturfEvl6qHvdL1xhx"
+    },
+    "dc07860fe4fcc25e4f7d": {
+      "text": "All four object tools and camera navigation are available. Try the handles, numeric fields, and different flat faces. These edits stay in this practice session.",
+      "file": "dc07860fe4fcc25e4f7d.mp3",
+      "duration": 10.48,
+      "generationId": "bLBfoDonjdvoc5b8TJiS"
+    },
+    "aebd112d2959f235ca63": {
+      "text": "Choose Move, Scale, Rotate, or Lay on face. Orbit on empty space, pan with right-drag, and scroll to zoom.",
+      "file": "aebd112d2959f235ca63.mp3",
+      "duration": 9.04,
+      "generationId": "iojhA8uGNzCaCVeiGTuU"
+    },
+    "441a323b42afe6182f5a": {
+      "text": "Use Restart tutorial to repeat the guided exercises, or Back to course when you are ready.",
+      "file": "441a323b42afe6182f5a.mp3",
+      "duration": 6.24,
+      "generationId": "4QSvHSDqWPiixigByNCE"
+    },
+    "29ba31cecbc1c2905259": {
+      "text": "Two X2D printers share this workspace: Steve and Candus. Read the white-and-green name tag on the actual machine. The nearby computer is the workstation; here, you are choosing the physical printer whose A M S you will load.",
+      "file": "29ba31cecbc1c2905259.mp3",
+      "duration": 14.8,
+      "generationId": "qsrJwpGfMajCAtMrBGyU"
+    },
+    "dfb3fbd87f08bd224c9c": {
+      "text": "Click Steve or Candus in the lab. Either printer is available for this practice.",
+      "file": "dfb3fbd87f08bd224c9c.mp3",
+      "duration": 5.04,
+      "generationId": "RBuOt3nhDtcRPhWODI9s"
+    },
+    "13736ed6f8ca1f28594b": {
+      "text": "Your chosen printer stays selected for the rest of this tutorial. Always match the physical name tag to the device you intend to use.",
+      "file": "13736ed6f8ca1f28594b.mp3",
+      "duration": 7.84,
+      "generationId": "hfBNjUrxZjoh6Ub9IxqI"
+    },
+    "c34cbbc4e63684c933c4": {
+      "text": "The A M S sits on top of the printer. Two locking tabs secure the front corners of its lid. Release both tabs before lifting the cover.",
+      "file": "c34cbbc4e63684c933c4.mp3",
+      "duration": 8.96,
+      "generationId": "oQ3jr211b7N55KBou5bE"
+    },
+    "761c9f672824f3079569": {
+      "text": "Click the left and right A M S locking tabs. Once both are released, the lid opens in this simulation.",
+      "file": "761c9f672824f3079569.mp3",
+      "duration": 7.04,
+      "generationId": "Gk8cvucb5OmcEcSDWpnH"
+    },
+    "bfbf43c1aa0b001236c0": {
+      "text": "Both tabs are unlocked and the lid is open. In the lab, lift the cover after releasing the tabs.",
+      "file": "bfbf43c1aa0b001236c0.mp3",
+      "duration": 6.64,
+      "generationId": "s6xEpC4ruALfxAmYFlT7"
+    },
+    "ab8bbf48708a4e5e3200": {
+      "text": "The green filament roll has white spool sides. Seat it upright on the rollers in the leftmost bay, with the loose end toward the intake at the front.",
+      "file": "ab8bbf48708a4e5e3200.mp3",
+      "duration": 9.12,
+      "generationId": "xNmJ415APUggTt7S2W4V"
+    },
+    "582a75d796fbba4a7f93": {
+      "text": "Click the green roll beside the A M S. It will move onto the rollers in bay 1.",
+      "file": "582a75d796fbba4a7f93.mp3",
+      "duration": 5.04,
+      "generationId": "GpDH4iWGvgtSSHgJNaVn"
+    },
+    "8ff9c45d0cc974ac43e4": {
+      "text": "The spool is seated in bay 1 and can turn on its rollers. Its loose filament end is kept accessible near the intake.",
+      "file": "8ff9c45d0cc974ac43e4.mp3",
+      "duration": 7.36,
+      "generationId": "h5D4paS4NbdDDLR5BFpB"
+    },
+    "a846da254d2ea2a907e3": {
+      "text": "Find the small white intake control in front of the installed roll. Press it backward, toward the roll, to prepare the filament entrance.",
+      "file": "a846da254d2ea2a907e3.mp3",
+      "duration": 8.4,
+      "generationId": "wdfpFVICbZpt0ULtBvuB"
+    },
+    "7523685a9f6e3891e1cd": {
+      "text": "Click the white intake control. The simulation holds it backward while you guide the filament.",
+      "file": "7523685a9f6e3891e1cd.mp3",
+      "duration": 5.52,
+      "generationId": "jVzX3b0TPMR68roFtz9f"
+    },
+    "96d3eaca82da0255ebc0": {
+      "text": "The intake is pressed backward. Keep control of the loose filament end as you bring it to the opening.",
+      "file": "96d3eaca82da0255ebc0.mp3",
+      "duration": 6,
+      "generationId": "zufucYB7YIhC6DZK4ngz"
+    },
+    "dbe5b7326bbea8711d47": {
+      "text": "Guide the loose end of the green filament into the intake opening. The A M S then takes hold and pulls filament inward; the spool rotates as material feeds.",
+      "file": "dbe5b7326bbea8711d47.mp3",
+      "duration": 10.4,
+      "generationId": "FvT4zk7CVQ4OJZ1Y2SeX"
+    },
+    "7b06da049706d2996409": {
+      "text": "Click the highlighted loose filament end to insert it. Watch the spool turn as the A M S pulls it in.",
+      "file": "7b06da049706d2996409.mp3",
+      "duration": 6.64,
+      "generationId": "iS0sAeRCavyvdvsMpSzd"
+    },
+    "3de4746264d2ac9125f9": {
+      "text": "The A M S has taken up the filament. You have practiced identifying a physical printer, opening its A M S, seating a roll, pressing the intake, and inserting filament. This tutorial ends at material intake.",
+      "file": "3de4746264d2ac9125f9.mp3",
+      "duration": 14.16,
+      "generationId": "IB97eJqd7bWPPgS4fEbQ"
+    },
+    "f75d66e90c5440256f27": {
+      "text": "The green roll is installed in the selected printer’s A M S. You have completed the material-loading practice.",
+      "file": "f75d66e90c5440256f27.mp3",
+      "duration": 6.64,
+      "generationId": "nfFN1yyLh1mAuY7BxRML"
+    },
+    "d3add1912c432d524dc5": {
+      "text": "Inspect the loaded A M S, replay the intake animation, or return to the course.",
+      "file": "d3add1912c432d524dc5.mp3",
+      "duration": 5.52,
+      "generationId": "wSxbg2fY0rQkyfFxGErs"
+    },
+    "ef17d3b60b847442f798": {
+      "text": "Use Restart tutorial to practice with either machine again.",
+      "file": "ef17d3b60b847442f798.mp3",
+      "duration": 3.76,
+      "generationId": "irDiKNPc5jAvQXZNHG5c"
+    },
+    "aa1efc4fa12d2f505492": {
+      "text": "Benchy is upright and ready to slice. The Device tab selects the physical printer you want to use. This is separate from the X2D printer profile in Prepare.",
+      "file": "aa1efc4fa12d2f505492.mp3",
+      "duration": 10.24,
+      "generationId": "lQ44XeqIZF1GFdxrboZj"
+    },
+    "07b2c365aacdbed2b220": {
+      "text": "Click Device.",
+      "file": "07b2c365aacdbed2b220.mp3",
+      "duration": 1.12,
+      "generationId": "KLBOkLsGi4hlHfQ48zUl"
+    },
+    "c0b8f2ae27d68e684874": {
+      "text": "The Device workspace shows the selected printer, camera area, controls, and A M S status.",
+      "file": "c0b8f2ae27d68e684874.mp3",
+      "duration": 6.4,
+      "generationId": "zONsk7xgeda0Oh52dJjL"
+    },
+    "2072820af7ae2d413fed": {
+      "text": "Choose the machine you loaded in the previous tutorial. Read its name in the printer selector at the upper left. Steve and Candus are both X2D printers; either choice is accepted in this practice.",
+      "file": "2072820af7ae2d413fed.mp3",
+      "duration": 12.32,
+      "generationId": "T2rpYnrmnGYjTQrWqlAc"
+    },
+    "792e8ef8c835ef6547de": {
+      "text": "Open the printer selector, then choose Steve (LAN) or Candus (LAN).",
+      "file": "792e8ef8c835ef6547de.mp3",
+      "duration": 6,
+      "generationId": "EreTCI4GSzZdaMKPPJZm"
+    },
+    "03e050c8e1b93fee636f": {
+      "text": "Your selected device will be used for the simulated print. The reminder helps connect the physical machine to the software selection.",
+      "file": "03e050c8e1b93fee636f.mp3",
+      "duration": 7.52,
+      "generationId": "oLqoMF3IdwHISxOOYlPW"
+    },
+    "a3698c7ecdfec9fd8c32": {
+      "text": "Prepare holds the model and its slicing settings. Benchy and the X2D printer profile are already set up. After choosing the device, check that the project filament matches the material installed in its A M S.",
+      "file": "a3698c7ecdfec9fd8c32.mp3",
+      "duration": 13.28,
+      "generationId": "0AY4ZMWdmpYhRDNBgrsB"
+    },
+    "d20dde7a8763ac97e3bb": {
+      "text": "Click Prepare.",
+      "file": "d20dde7a8763ac97e3bb.mp3",
+      "duration": 1.28,
+      "generationId": "HE9OeKliYbxLWyyDiZFS"
+    },
+    "3b344dba27fcca99f838": {
+      "text": "Now use the dropdown on project filament 1 to select the material actually installed in the chosen printer. Choosing a device does not replace this material check.",
+      "file": "3b344dba27fcca99f838.mp3",
+      "duration": 10.16,
+      "generationId": "Cng3r8TesJoBfI24Gr0q"
+    },
+    "754132ea013eb488e8e5": {
+      "text": "Left filaments and Right filaments group the installed spools by the left or right feeder mechanism. Each A M S connects to just one feeder mechanism, so its spools belong to that feeder’s group. They are not the left and right halves of one A M S. In this simulation, the A M S you loaded feeds the left mechanism. Its green Bambu P L A Basic is in slot A1. Open the material-name dropdown in project filament 1 and select that installed roll.",
+      "file": "754132ea013eb488e8e5.mp3",
+      "duration": 30.8,
+      "generationId": "9ceOP4SthbiyCR5BYalJ"
+    },
+    "5374a21028dcdb95b070": {
+      "text": "Open the dropdown on project filament 1, then select green A1 · Bambu P L A Basic under Left filaments.",
+      "file": "5374a21028dcdb95b070.mp3",
+      "duration": 8.72,
+      "generationId": "AaxAjzXrX2CxGnjvTMC3"
+    },
+    "a4004cfcc389eca6fb2e": {
+      "text": "Project filament 1 now uses green Bambu P L A Basic from A1 in the A M S connected to the left feeder. A1 identifies the spool slot within that A M S; Left filaments identifies the feeder it supplies. Right filaments lists spools on the right feeder mechanism; none are installed there in this simulation. System presets describe material profiles, not installed rolls. Benchy is green and ready to slice.",
+      "file": "a4004cfcc389eca6fb2e.mp3",
+      "duration": 28.8,
+      "generationId": "FqnkLLnKipjo7hwsRJ2n"
+    },
+    "7a643a6b62cd56584021": {
+      "text": "Support is off for this first pass. Slice plate converts the model into paths the printer can follow. Wait for the progress indicator to finish before reading the results.",
+      "file": "7a643a6b62cd56584021.mp3",
+      "duration": 10.24,
+      "generationId": "Rwd5aU9WmW4eyN96ZT4k"
+    },
+    "312a0d78fc5ecfebe99d": {
+      "text": "Click Slice plate, then wait for slicing to complete.",
+      "file": "312a0d78fc5ecfebe99d.mp3",
+      "duration": 3.36,
+      "generationId": "RoSsuPB4rDRIE4NEXZdU"
+    },
+    "0376fb710f49b8b7bd46": {
+      "text": "Slicing is complete. Preview now shows the layers, estimated material use, material cost, and total time.",
+      "file": "0376fb710f49b8b7bd46.mp3",
+      "duration": 7.52,
+      "generationId": "MgZobNvAqfRVl4jONalu"
+    },
+    "6162e712a1f09c0c419c": {
+      "text": "The vertical slider on the right limits which layers are shown. Move its upper handle down to inspect Benchy’s actual sliced walls and infill, then return it to the top. This changes the preview, not the model or its print settings.",
+      "file": "6162e712a1f09c0c419c.mp3",
+      "duration": 14.96,
+      "generationId": "mkyRuO8kII3sFu1gf1C2"
+    },
+    "4d231bf72f5e7ac1919a": {
+      "text": "Drag the upper layer handle down to layer 300 or lower. Then return it to layer 599. Keyboard: focus the slider and use Down/Up, or Home (bottom) / End (top).",
+      "file": "4d231bf72f5e7ac1919a.mp3",
+      "duration": 16,
+      "generationId": "kImJ1r9whof0cDui9BNY"
+    },
+    "448387dd231d7d44ff25": {
+      "text": "You inspected the real printed paths: walls form the shell, and infill provides structure inside it. Solid layers close the bottom and top surfaces. You then restored the full preview. The numbers beside the slider show the layer and its height. Check the preview before printing.",
+      "file": "448387dd231d7d44ff25.mp3",
+      "duration": 18.4,
+      "generationId": "BzNHyxibn7XwUMAqyiEC"
+    },
+    "dcd15c4396fd1ef6337f": {
+      "text": "The cabin roof spans the hollow cabin, with no material directly underneath parts of it. For this exercise, we will add tree supports that pass through the doorway and support the underside of the roof.",
+      "file": "dcd15c4396fd1ef6337f.mp3",
+      "duration": 12.08,
+      "generationId": "reBHbTNnCktB7to8oeea"
+    },
+    "df765e01c29926d43ce2": {
+      "text": "Select the highlighted roof overhang.",
+      "file": "df765e01c29926d43ce2.mp3",
+      "duration": 2.48,
+      "generationId": "DgJMeTn34A61GrphxaQ7"
+    },
+    "98b01b92172de15411f2": {
+      "text": "Supports provide temporary material beneath overhangs. They can improve the underside, but use more filament, take longer, and must be removed. Benchy is often printed without supports as a test; here we are practicing how to add and compare them.",
+      "file": "98b01b92172de15411f2.mp3",
+      "duration": 16.64,
+      "generationId": "9z514F1CuIfqEi3bfSMr"
+    },
+    "d86b900749e608e1c467": {
+      "text": "The first slice has no supports. Go back to Prepare to change the process settings; changing a setting means the plate must be sliced again.",
+      "file": "d86b900749e608e1c467.mp3",
+      "duration": 9.28,
+      "generationId": "N2NYL8JrRunSXleEoAko"
+    },
+    "9f88c6bd813fd1cae259": {
+      "text": "Open the Support category in the Process settings next.",
+      "file": "9f88c6bd813fd1cae259.mp3",
+      "duration": 3.44,
+      "generationId": "02ROyb3VsAHuKUKGBg8G"
+    },
+    "cb9ecfe9422ef118039a": {
+      "text": "The Process panel groups settings into Quality, Strength, Speed, Support, and Others. Support controls the temporary structures beneath overhangs.",
+      "file": "cb9ecfe9422ef118039a.mp3",
+      "duration": 9.92,
+      "generationId": "7oKbPDU62dKPLT2IyoVs"
+    },
+    "81c26c8ea09c498da1d3": {
+      "text": "Click Support in the Process panel.",
+      "file": "81c26c8ea09c498da1d3.mp3",
+      "duration": 2.4,
+      "generationId": "7nm3BhRR5LWFi7eeT1kw"
+    },
+    "bd090433efe957e48436": {
+      "text": "Enable support is currently unchecked. The Type is tree(auto), which creates branching supports automatically.",
+      "file": "bd090433efe957e48436.mp3",
+      "duration": 7.6,
+      "generationId": "jjDatEuAkdpLFrQywzO6"
+    },
+    "f5e6948441c7025e24ea": {
+      "text": "Turn on Enable support. Keep Type set to tree(auto), Style Default, and the other settings as shown for this practice.",
+      "file": "f5e6948441c7025e24ea.mp3",
+      "duration": 8.8,
+      "generationId": "vXw5IWIvVqFpI9sCz4mD"
+    },
+    "0eb8a1da0b440a60a549": {
+      "text": "Check Enable support.",
+      "file": "0eb8a1da0b440a60a549.mp3",
+      "duration": 1.68,
+      "generationId": "vm4lwjXroXYbI9qIpamN"
+    },
+    "ee5923a679555c970589": {
+      "text": "Support is now enabled, but the previous preview and estimates are out of date. Re-slice to generate the support paths and updated totals.",
+      "file": "ee5923a679555c970589.mp3",
+      "duration": 8.8,
+      "generationId": "tklapEjxUyRXKRdKPYcj"
+    },
+    "73f26404338611309632": {
+      "text": "Slice the plate again to generate the tree supports. Wait for the new result before using its cost and time estimates.",
+      "file": "73f26404338611309632.mp3",
+      "duration": 7.28,
+      "generationId": "hFV0v6FNPKECp5qQ4XEr"
+    },
+    "936a4d60a91e9b73ebd0": {
+      "text": "Click Slice plate and wait.",
+      "file": "936a4d60a91e9b73ebd0.mp3",
+      "duration": 2.08,
+      "generationId": "Nl3WU9VUpbpEmAq6PZDs"
+    },
+    "ca6846d782a737b21d06": {
+      "text": "The supported result uses 12.72 g and takes 1h50m, compared with 11.80 g and 1h40m without supports. Material cost increased from $0.24 to $0.25. Notice how the tree supports enter through the doorway and reach the underside of the cabin roof.",
+      "file": "ca6846d782a737b21d06.mp3",
+      "duration": 21.44,
+      "generationId": "14V44f4idL5LH3vjM0Jl"
+    },
+    "09b962e5cde5c6478955": {
+      "text": "Use the comparison to see the actual sliced support paths through the doorway and beneath the roof. The model stays the same; the extra material is removed after printing.",
+      "file": "09b962e5cde5c6478955.mp3",
+      "duration": 10.64,
+      "generationId": "J29b15T0mnZws8gIKcXY"
+    },
+    "2dac9fd017ad19056d8b": {
+      "text": "Show Without supports once, then return to With supports.",
+      "file": "2dac9fd017ad19056d8b.mp3",
+      "duration": 4.08,
+      "generationId": "Cw7wcxUIUCMjZIS9WYQc"
+    },
+    "23a248f9cc33d000deb8": {
+      "text": "Use the supported version’s updated figures for your AMAS bill: $0.25 material cost and 1 hour 50 minutes. For this practice example, enter 0 staff labor.",
+      "file": "23a248f9cc33d000deb8.mp3",
+      "duration": 11.84,
+      "generationId": "co37bJx4MMuvjkjkN9UW"
+    },
+    "0b53e0e132a0981cf27c": {
+      "text": "The Slicing Result panel reports Cost 0.25 and Total time 1h50m for this Benchy. At AMAS, enter the material cost and time into the Print Cost Calculator to get the amount to pay and prepare your bill. The slicer cost alone is not the final price. Use 0 staff labor for this practice example.",
+      "file": "0b53e0e132a0981cf27c.mp3",
+      "duration": 22.4,
+      "generationId": "v7rqPQgsOdGfbypMZAfo"
+    },
+    "f935373f105a43dc9f45": {
+      "text": "Click the Cost and Total time summary. Keep $0.25 and 1 hour 50 minutes handy for the calculator.",
+      "file": "f935373f105a43dc9f45.mp3",
+      "duration": 7.2,
+      "generationId": "aeUiHE6lTH0qcYFu0cWJ"
+    },
+    "4dd15fbb1b056b76f89e": {
+      "text": "Use the AMAS calculator in a new tab. Both Steve and Candus use its X2D machine option. Filling out the calculator does not charge you or take a payment. No bill needs to be printed for this tutorial. Return here with Benchy’s final cost before continuing.",
+      "file": "4dd15fbb1b056b76f89e.mp3",
+      "duration": 17.2,
+      "generationId": "OYm9erizccT6FufDT2b4"
+    },
+    "bfc384e22d8088bad1cd": {
+      "text": "What is the final cost to print this Benchy at AMAS?",
+      "file": "bfc384e22d8088bad1cd.mp3",
+      "duration": 3.84,
+      "generationId": "QfVpf8VipLtEvEaFQbfS"
+    },
+    "765a0df069f3d02cb10d": {
+      "text": "You selected a physical device, sliced Benchy, inspected its layers, and checked the AMAS cost. The selected printer is shown beside Print plate.",
+      "file": "765a0df069f3d02cb10d.mp3",
+      "duration": 10.08,
+      "generationId": "rGd5lIci9SRA1GF147wj"
+    },
+    "236ec122f76464044333": {
+      "text": "Click Print plate to start the simulated print.",
+      "file": "236ec122f76464044333.mp3",
+      "duration": 2.96,
+      "generationId": "TybGplArePMn7IHqxM3k"
+    },
+    "6fd85adcb3b6c12cc638": {
+      "text": "Benchy has finished printing in the simulation. The animation was accelerated; the estimate for this supported job is 1 hour 50 minutes.",
+      "file": "6fd85adcb3b6c12cc638.mp3",
+      "duration": 8.8,
+      "generationId": "8M8u3oHYgJwKq7kXSNmq"
+    },
+    "38f972914a3c0c083fca": {
+      "text": "You have practiced the path from device selection through slicing, preview, cost calculation, and printing.",
+      "file": "38f972914a3c0c083fca.mp3",
+      "duration": 6.8,
+      "generationId": "5dgZr9dKaCoRY804ZyTC"
+    },
+    "affb28a25c924714777a": {
+      "text": "Replay the printing animation or return to the course.",
+      "file": "affb28a25c924714777a.mp3",
+      "duration": 3.44,
+      "generationId": "Zb01fTPdJc74UN92b6lh"
+    },
+    "6998796df71d4d542528": {
+      "text": "Use the same sequence when preparing a print in the lab.",
+      "file": "6998796df71d4d542528.mp3",
+      "duration": 3.28,
+      "generationId": "cN35FaioJnxxQ2n1np26"
+    },
+    "dc005d764f1ab30c9b92": {
+      "text": "This is Blender’s complete Layout workspace. The large three D Viewport is surrounded by the Outliner, Properties editor, Timeline, workspaces, menus, and tools. We will isolate one control at a time, keeping the surrounding interface visible.",
+      "file": "dc005d764f1ab30c9b92.mp3",
+      "duration": 16.24,
+      "generationId": "bG1KJamZIGxIIWEjiPad"
+    },
+    "2d801c05dc2ea8e0fb33": {
+      "text": "Click inside the three D Viewport.",
+      "file": "2d801c05dc2ea8e0fb33.mp3",
+      "duration": 2.32,
+      "generationId": "VVyifhxq8BZJSzKtCipE"
+    },
+    "5dc364997a0f2dccf0b5": {
+      "text": "The viewport shows your scene. The surrounding editors offer different views of the same project.",
+      "file": "5dc364997a0f2dccf0b5.mp3",
+      "duration": 5.76,
+      "generationId": "k7sEozZPT8Ls42rnjFUY"
+    },
+    "04fc54d377cdb4022fc2": {
+      "text": "The Outliner at upper right lists scene objects. A selected object has an orange outline in the viewport.",
+      "file": "04fc54d377cdb4022fc2.mp3",
+      "duration": 7.04,
+      "generationId": "KAHrPdity3BD1VVp7zeq"
+    },
+    "20b0d0379ef7ff01ce30": {
+      "text": "Click Cube in the Outliner.",
+      "file": "20b0d0379ef7ff01ce30.mp3",
+      "duration": 2,
+      "generationId": "yAaN86tYRyZduzB9WlfV"
+    },
+    "d00bfd4182a7aa3aa8be": {
+      "text": "The Outliner selects the same object you see in the viewport.",
+      "file": "d00bfd4182a7aa3aa8be.mp3",
+      "duration": 3.6,
+      "generationId": "B5NNpJ6nTeVv7jwOJ9Sf"
+    },
+    "81c259bb431c2ac02132": {
+      "text": "The Item Sidebar lives inside the three D Viewport. It displays location, rotation, scale, and dimensions. Blender shortcuts act on the editor under your pointer.",
+      "file": "81c259bb431c2ac02132.mp3",
+      "duration": 11.2,
+      "generationId": "eUx9Wmeew4tzT6VjBSEw"
+    },
+    "8c1b2c9b929a53f0effa": {
+      "text": "Move into the viewport and press N, or choose View , then Sidebar.",
+      "file": "8c1b2c9b929a53f0effa.mp3",
+      "duration": 5.04,
+      "generationId": "8HyyJxX2Ek3a1J4mPySh"
+    },
+    "e57241051e26c3fc78b4": {
+      "text": "Dimensions are the size of the object. Location describes its origin, not the bottom surface.",
+      "file": "e57241051e26c3fc78b4.mp3",
+      "duration": 6.32,
+      "generationId": "1TXzewidvKrZIFhK0nJD"
+    },
+    "c7545aae15d39f0f8942": {
+      "text": "The same starting checkpoint is restored so you can practice the keyboard route. The Item Sidebar lives inside the three D Viewport. It displays location, rotation, scale, and dimensions. Blender shortcuts act on the editor under your pointer.",
+      "file": "c7545aae15d39f0f8942.mp3",
+      "duration": 15.36,
+      "generationId": "HNwVD1NU5fTqs1iAFIxw"
+    },
+    "3b39ab90bcfc247542e5": {
+      "text": "Focus the viewport and press N, then finish the same action.",
+      "file": "3b39ab90bcfc247542e5.mp3",
+      "duration": 4.48,
+      "generationId": "2BqsalLUd7ZOVTuSkcBb"
+    },
+    "fc005e1c13056744626e": {
+      "text": "This step deliberately uses a narrow Blender window. When an editor is too narrow, controls remain in its horizontally scrollable header. They have not disappeared. Hover over that header and use the wheel, trackpad horizontal scroll, or middle-mouse drag. Widening the window also helps.",
+      "file": "fc005e1c13056744626e.mp3",
+      "duration": 19.28,
+      "generationId": "ZrXoKWBpItN9LlKNyPRl"
+    },
+    "762a496de16d6cf27d5b": {
+      "text": "Scroll over the viewport header to reveal controls at its right end, or middle-drag the header to the left.",
+      "file": "762a496de16d6cf27d5b.mp3",
+      "duration": 6.48,
+      "generationId": "LvOfJfhVSQ2yoWXKWYrj"
+    },
+    "645c40b0cd83cfccef45": {
+      "text": "You scrolled the header without moving the three D view. In real Blender, this also applies to other crowded editor headers and workspace tabs.",
+      "file": "645c40b0cd83cfccef45.mp3",
+      "duration": 8.56,
+      "generationId": "FRRPuNxmxIuZxWLshujV"
+    },
+    "b9b3fe8bb9b9ceff9327": {
+      "text": "The prepared millimeter checkpoint uses Metric, Unit Scale 0.001, and Length Millimeters. These settings are already set here. Expand the actual Units section to inspect them.",
+      "file": "b9b3fe8bb9b9ceff9327.mp3",
+      "duration": 13.04,
+      "generationId": "RD9vXLNyOI2NYzEi4Wax"
+    },
+    "e0c253c529cc3a059838": {
+      "text": "Expand Units in Scene Properties on the right.",
+      "file": "e0c253c529cc3a059838.mp3",
+      "duration": 3.04,
+      "generationId": "5Lo1ELSeFpGJfl2fjPBy"
+    },
+    "3e68e44332ed583f393b": {
+      "text": "These settings are already prepared in the checkpoint. Explicit entries such as 100 mm avoid ambiguity. Export scale must still be checked.",
+      "file": "3e68e44332ed583f393b.mp3",
+      "duration": 10,
+      "generationId": "ZOj2YnQjAJoLdu5coaTG"
+    },
+    "61cba166bad8d3242a56": {
+      "text": "We now load the prepared Start checkpoint: a single mesh named Desk Tray, with millimeter units. Object Mode acts on whole objects. Delete removes the selected object; Control+Z in real Blender can recover an accidental deletion.",
+      "file": "61cba166bad8d3242a56.mp3",
+      "duration": 16.56,
+      "generationId": "Ivjs5sF3V5EXkOSeT4SU"
+    },
+    "c0bc96886f567ced99c7": {
+      "text": "Focus the viewport and press Delete, or use the practice aid below.",
+      "file": "c0bc96886f567ced99c7.mp3",
+      "duration": 4.72,
+      "generationId": "WBleRkvZpuw77uGha5eS"
+    },
+    "2bc9d6710f3c927c79b7": {
+      "text": "The object was removed. Next you will add your own mesh.",
+      "file": "2bc9d6710f3c927c79b7.mp3",
+      "duration": 4,
+      "generationId": "9gSofLtunLiYiKWlGaL8"
+    },
+    "5800b4122e6538960f8d": {
+      "text": "The Add menu creates objects. A cube is a useful starting shape for our rectangular organizer tray.",
+      "file": "5800b4122e6538960f8d.mp3",
+      "duration": 7.04,
+      "generationId": "jcPAJi0IG0TDCXkNevMy"
+    },
+    "554a36318018d8987e0b": {
+      "text": "Choose Add , then Mesh , then Cube, or press Shift + A, then choose Mesh , then Cube.",
+      "file": "554a36318018d8987e0b.mp3",
+      "duration": 7.52,
+      "generationId": "JwoSPpmWVLlnQf1wQm2t"
+    },
+    "9024a2b95bb8cc92c3bb": {
+      "text": "A new cube appears and becomes selected. In Blender, Shift+A also opens Add.",
+      "file": "9024a2b95bb8cc92c3bb.mp3",
+      "duration": 6.72,
+      "generationId": "DKCJGTrPDKJb9obj2VDQ"
+    },
+    "dc5587d64e9b6e9e02d4": {
+      "text": "Blender names a new mesh Cube. A useful object name makes it easier to find in the Outliner as a project grows. F2 renames the active object.",
+      "file": "dc5587d64e9b6e9e02d4.mp3",
+      "duration": 10.64,
+      "generationId": "s8dpCFpnbEmjF89NBGMN"
+    },
+    "00086ded80c057cd2573": {
+      "text": "Click the viewport. Press F2, type Desk Tray, then Enter.",
+      "file": "00086ded80c057cd2573.mp3",
+      "duration": 5.36,
+      "generationId": "HBt0xUAFhBDH2EI6tda7"
+    },
+    "97a2bc8e804723abde3f": {
+      "text": "The Outliner and viewport identify the same object as Desk Tray. Renaming changes its label, not its geometry.",
+      "file": "97a2bc8e804723abde3f.mp3",
+      "duration": 8.08,
+      "generationId": "avY43VvuQILs6U4gjbtF"
+    },
+    "bdfeb4a200371cc4a1ed": {
+      "text": "Drag the rotating axes at the top right to orbit the scene. With a mouse, dragging the middle button in the viewport does the same thing. This moves your viewpoint, not the object.",
+      "file": "bdfeb4a200371cc4a1ed.mp3",
+      "duration": 11.28,
+      "generationId": "GGcH4FeSMxpHlQ5x1rri"
+    },
+    "9063f726359783936c37": {
+      "text": "Drag the colored axes, or drag with the middle mouse button.",
+      "file": "9063f726359783936c37.mp3",
+      "duration": 4,
+      "generationId": "abz4xsxsXEIg13u5D9YH"
+    },
+    "55d6e9251b24b32b492f": {
+      "text": "The view changed; the cube did not rotate.",
+      "file": "55d6e9251b24b32b492f.mp3",
+      "duration": 3.36,
+      "generationId": "mHKCIHQgyqOzaD6lo5ii"
+    },
+    "076f08176e1b35821bc6": {
+      "text": "Does orbiting change the printed object?",
+      "file": "076f08176e1b35821bc6.mp3",
+      "duration": 2.56,
+      "generationId": "hDhgNRfJ4ORWi6W31MZj"
+    },
+    "23cbe6fc71851c8616a0": {
+      "text": "The hand below the rotating axes is Blender’s drag control for panning. It works with a mouse, pen, or touch. With a mouse you can also hold Shift and drag the middle button.",
+      "file": "23cbe6fc71851c8616a0.mp3",
+      "duration": 11.28,
+      "generationId": "zDJ53bVrCYoq8id9SCHm"
+    },
+    "5ab75811850a47aa658e": {
+      "text": "Drag the hand icon below the axes to slide the view.",
+      "file": "5ab75811850a47aa658e.mp3",
+      "duration": 3.6,
+      "generationId": "vg9brHyy0selZyUAx7LA"
+    },
+    "c264957a4cde20e7ec8f": {
+      "text": "Panning helps you inspect details without changing the model.",
+      "file": "c264957a4cde20e7ec8f.mp3",
+      "duration": 3.6,
+      "generationId": "q1iNEN6SiXFvm3QjpNkF"
+    },
+    "b24f6d6f913bf50ef43e": {
+      "text": "Drag Blender’s magnifier below the axes up to zoom in and down to zoom out. A mouse wheel also zooms. The object’s dimensions do not change.",
+      "file": "b24f6d6f913bf50ef43e.mp3",
+      "duration": 10.24,
+      "generationId": "dhRJbLDGn8Vjiu6BRQCI"
+    },
+    "2f11763de72b4c31d34e": {
+      "text": "Drag the magnifier up, then down. Practice both directions.",
+      "file": "2f11763de72b4c31d34e.mp3",
+      "duration": 4.64,
+      "generationId": "dtjE1fv3e6NFDXQxs0YT"
+    },
+    "02379c857b7f0f1c63b9": {
+      "text": "Your model remains the same size in millimeters.",
+      "file": "02379c857b7f0f1c63b9.mp3",
+      "duration": 3.28,
+      "generationId": "qMNLCbunOF0MNQmdO1sl"
+    },
+    "eca62dbe49a8bade999c": {
+      "text": "The navigation gizmo gives you axis-aligned views. Z is the vertical axis; looking along it shows the top.",
+      "file": "eca62dbe49a8bade999c.mp3",
+      "duration": 7.6,
+      "generationId": "Lq6uL8dIO8KNGhpO9txu"
+    },
+    "0d0e616f5501f3790ede": {
+      "text": "Click Z on the navigation gizmo, or press Number pad 7.",
+      "file": "0d0e616f5501f3790ede.mp3",
+      "duration": 4.48,
+      "generationId": "RO8YJCHA4o2qepbTB5m5"
+    },
+    "2f7021b7b895df955cd9": {
+      "text": "You are looking down at the top of the cube.",
+      "file": "2f7021b7b895df955cd9.mp3",
+      "duration": 2.48,
+      "generationId": "osGBaEMu6zzLWOu01kcB"
+    },
+    "0192c976810c9fd0a627": {
+      "text": "Frame Selected centers and fits the selected object. It is useful when you have lost sight of your model. In real Blender, use numpad period or View , then Frame Selected.",
+      "file": "0192c976810c9fd0a627.mp3",
+      "duration": 12.32,
+      "generationId": "5cKph19uAqufZaC2kF35"
+    },
+    "62c8ba420aa27079d0b8": {
+      "text": "Choose View , then Frame Selected, or press Number pad ..",
+      "file": "62c8ba420aa27079d0b8.mp3",
+      "duration": 4.64,
+      "generationId": "cW1BKYdcdmJU4YsZjMsq"
+    },
+    "7579387ca5eff617dc6e": {
+      "text": "The selected object is centered again.",
+      "file": "7579387ca5eff617dc6e.mp3",
+      "duration": 2.48,
+      "generationId": "Qjmlxjmx7luC8mSBkXnJ"
+    },
+    "fa0d82e3a83622ca256c": {
+      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Frame Selected centers and fits the selected object. It is useful when you have lost sight of your model. In real Blender, use numpad period or View , then Frame Selected.",
+      "file": "fa0d82e3a83622ca256c.mp3",
+      "duration": 17.12,
+      "generationId": "Eh3V0CI9vtUvpUKnIXcu"
+    },
+    "bfd10a75e9ed0af2b10d": {
+      "text": "Focus the viewport and press Number pad ., then finish the same action.",
+      "file": "bfd10a75e9ed0af2b10d.mp3",
+      "duration": 4.96,
+      "generationId": "jKUx4QWrTbbYzJYIztVL"
+    },
+    "b6e7f0e6c8842c4bc52a": {
+      "text": "Use File , then Save As for a named checkpoint. The simulated dialog teaches the workflow; it does not save your real Blender project. In real Blender, Control+S saves the current named file; Control+Shift+S creates a separately named version.",
+      "file": "b6e7f0e6c8842c4bc52a.mp3",
+      "duration": 18.88,
+      "generationId": "rQcVGdPRQO97qf1d2wgJ"
+    },
+    "b89fe833fcdad1771a56": {
+      "text": "Choose File , then Save As, or press Control + Shift + S, then confirm the filename.",
+      "file": "b89fe833fcdad1771a56.mp3",
+      "duration": 7.28,
+      "generationId": "gfybdW1tGLJ6xezgZ9ue"
+    },
+    "1f8231117285b882dade": {
+      "text": "In real Blender, save desk-tray-01-start.blend. Save again after each meaningful change.",
+      "file": "1f8231117285b882dade.mp3",
+      "duration": 8.4,
+      "generationId": "Sz4qaeVTWaNkNcIzchqb"
+    },
+    "ee79dd16d2510da2e1d8": {
+      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Use File , then Save As for a named checkpoint. The simulated dialog teaches the workflow; it does not save your real Blender project. In real Blender, Control+S saves the current named file; Control+Shift+S creates a separately named version.",
+      "file": "ee79dd16d2510da2e1d8.mp3",
+      "duration": 23.12,
+      "generationId": "MYTaHfoR1FYiCxYypJNe"
+    },
+    "f070bfa9090d05a38b33": {
+      "text": "Focus the viewport and press Control + Shift + S, then finish the same action.",
+      "file": "f070bfa9090d05a38b33.mp3",
+      "duration": 6.08,
+      "generationId": "yH4JxHarGvaRJW1Rtnbl"
+    },
+    "350671f13cf0de86a2c8": {
+      "text": "You completed this tutorial. Orbit, pan, and zoom the live model here, then download the checkpoint and continue in real Blender. Save a new version before experimenting.",
+      "file": "350671f13cf0de86a2c8.mp3",
+      "duration": 11.12,
+      "generationId": "euU5Dscqb3EgZfymaXke"
+    },
+    "3d9e9ddda50c86462532": {
+      "text": "Download a checkpoint, or return to the course.",
+      "file": "3d9e9ddda50c86462532.mp3",
+      "duration": 3.04,
+      "generationId": "nd8IQhFY4eaxrmFNLi1Z"
+    },
+    "1b16dbea7aad280f2b7f": {
+      "text": "Save your real Blender project before leaving.",
+      "file": "1b16dbea7aad280f2b7f.mp3",
+      "duration": 2.88,
+      "generationId": "oEHfHGgISqQywkH95KlB"
+    },
+    "6e79f91353631455903d": {
+      "text": "The selected object receives your changes. Click the cube itself, rather than empty space.",
+      "file": "6e79f91353631455903d.mp3",
+      "duration": 5.92,
+      "generationId": "OSdYbLhnUm0qpQ12c2He"
+    },
+    "07a80f8350d15eff96cb": {
+      "text": "Click the cube in the viewport.",
+      "file": "07a80f8350d15eff96cb.mp3",
+      "duration": 2,
+      "generationId": "lzyQ1bD8gEvl94MkvgZk"
+    },
+    "9d549e927016c1f71bab": {
+      "text": "The orange outline identifies the active object.",
+      "file": "9d549e927016c1f71bab.mp3",
+      "duration": 3.28,
+      "generationId": "Tjv3ZizvJL9zVVPNkodg"
+    },
+    "5898acbd1bfbc97eab1c": {
+      "text": "G starts Move. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube.",
+      "file": "5898acbd1bfbc97eab1c.mp3",
+      "duration": 19.84,
+      "generationId": "pwmbyL3QvGvbSHS5MTta"
+    },
+    "b4fc2e8c8417468223d5": {
+      "text": "Press G, move the pointer, then hold Shift and move again. Left-click or press Enter to confirm.",
+      "file": "b4fc2e8c8417468223d5.mp3",
+      "duration": 7.44,
+      "generationId": "5IJDhanTtik3mKpZZbQa"
+    },
+    "2e38e9e4d4efdf0583be": {
+      "text": "You practiced visual transformation and Shift precision. The next checkpoint restores the cube for a new exercise.",
+      "file": "2e38e9e4d4efdf0583be.mp3",
+      "duration": 7.2,
+      "generationId": "okHrUSa973QunCie5nmf"
+    },
+    "afe6e18308f2f55f6583": {
+      "text": "R starts Rotate. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube.",
+      "file": "afe6e18308f2f55f6583.mp3",
+      "duration": 19.84,
+      "generationId": "BRqq3GfxvRjpRR9MdirV"
+    },
+    "56b8dd11b8b244ee4334": {
+      "text": "Press R, move the pointer, then hold Shift and move again. Left-click or press Enter to confirm.",
+      "file": "56b8dd11b8b244ee4334.mp3",
+      "duration": 7.28,
+      "generationId": "EY5scZt3hctkltRgaeX2"
+    },
+    "3cbaefb443085135cf4a": {
+      "text": "S starts Scale. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube.",
+      "file": "3cbaefb443085135cf4a.mp3",
+      "duration": 19.92,
+      "generationId": "16ozTt8r7l8dqAqh2MbF"
+    },
+    "e5e86c8c6f25b07df017": {
+      "text": "Press S, move the pointer, then hold Shift and move again. Left-click or press Enter to confirm.",
+      "file": "e5e86c8c6f25b07df017.mp3",
+      "duration": 7.36,
+      "generationId": "PtsgBHtDrrnTlk37tH15"
+    },
+    "38d80259dc413c16e10d": {
+      "text": "G starts Blender’s Move operation. X constrains it to the X axis. Numeric entry sets the distance, and Enter confirms. Escape or right-click cancels the operation. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm.",
+      "file": "38d80259dc413c16e10d.mp3",
+      "duration": 21.12,
+      "generationId": "dDfUidulKtugEQbz0tO1"
+    },
+    "67080adbc8332275a55a": {
+      "text": "Click the viewport. Press G , then X , then 1 , then Enter. Watch the preview before Enter.",
+      "file": "67080adbc8332275a55a.mp3",
+      "duration": 7.92,
+      "generationId": "Bn1AgJN5Fzo2T9xlSGrx"
+    },
+    "d5ed217a3fdfda775936": {
+      "text": "The object moved 1 mm along X. The view and object dimensions stayed unchanged.",
+      "file": "d5ed217a3fdfda775936.mp3",
+      "duration": 6.48,
+      "generationId": "pclHIPPPPbydM3ZKCaah"
+    },
+    "7ecee72c40908c91b55a": {
+      "text": "An absolute Location value describes where the origin is, not how far to move.",
+      "file": "7ecee72c40908c91b55a.mp3",
+      "duration": 5.44,
+      "generationId": "54344chMSJff5wCwcO4n"
+    },
+    "23252f012f3f96015f5b": {
+      "text": "Double-click Location X to 0 mm, then press Enter.",
+      "file": "23252f012f3f96015f5b.mp3",
+      "duration": 4.4,
+      "generationId": "H23VnNosd0w8aj8gPCxW"
+    },
+    "a5e92b116f8690e398c4": {
+      "text": "The object returned to X = 0.",
+      "file": "a5e92b116f8690e398c4.mp3",
+      "duration": 3.04,
+      "generationId": "yYVgJETK2xpkdf7VbjiN"
+    },
+    "aa96d588a50e0787e6b5": {
+      "text": "Z is vertical. Rotation around Z turns the object in the horizontal plane. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm.",
+      "file": "aa96d588a50e0787e6b5.mp3",
+      "duration": 14.96,
+      "generationId": "FNZiDM9GdGi1QNCpVigV"
+    },
+    "19171e343a049981ab41": {
+      "text": "Click the viewport. Press R , then Z , then 4 , then 5 , then Enter. Watch the preview before Enter.",
+      "file": "19171e343a049981ab41.mp3",
+      "duration": 8.96,
+      "generationId": "j2jOkCWzqm0YDBEQKnfz"
+    },
+    "b17a0cb862d90f45694b": {
+      "text": "The mesh changed orientation; the view stayed fixed.",
+      "file": "b17a0cb862d90f45694b.mp3",
+      "duration": 4,
+      "generationId": "WfkJLXj3ZnegeWtlAwRW"
+    },
+    "a04c8b1b315697a356ae": {
+      "text": "We want axis-aligned dimensions while building the tray.",
+      "file": "a04c8b1b315697a356ae.mp3",
+      "duration": 3.44,
+      "generationId": "DxdnBtNcJb8xiw1XDF1I"
+    },
+    "14c3f237c832d1209adf": {
+      "text": "Double-click Rotation Z to 0, then press Enter.",
+      "file": "14c3f237c832d1209adf.mp3",
+      "duration": 4,
+      "generationId": "oiLHVktiCf0CDfe0jPc5"
+    },
+    "0cb04a6c6e3b0dc086b0": {
+      "text": "The cube is aligned with X and Y again.",
+      "file": "0cb04a6c6e3b0dc086b0.mp3",
+      "duration": 2.96,
+      "generationId": "ShjsAGcb5RE9rNLiRknN"
+    },
+    "57e6907638d39460455d": {
+      "text": "This checkpoint pulls the view back to leave room for a 100 by 70 by 18 mm tray. Dimensions changes the size of the selected object in Object Mode.",
+      "file": "57e6907638d39460455d.mp3",
+      "duration": 11.04,
+      "generationId": "Z1Yqbx0aPeN1CA7vbeko"
+    },
+    "5712af314477c4536c76": {
+      "text": "Double-click Dimensions X to 100 mm, then press Enter.",
+      "file": "5712af314477c4536c76.mp3",
+      "duration": 4.64,
+      "generationId": "eQrv3dJ1PYrOtBgtnacF"
+    },
+    "eea90d16f117b23ae1fe": {
+      "text": "X is now 100 mm. The other dimensions have not changed.",
+      "file": "eea90d16f117b23ae1fe.mp3",
+      "duration": 4.8,
+      "generationId": "XTMg0LHriDF2ZbCl7zMb"
+    },
+    "a464efc5b7b7a573d34b": {
+      "text": "Independent dimensions let us turn the cube into a rectangular blank.",
+      "file": "a464efc5b7b7a573d34b.mp3",
+      "duration": 4.4,
+      "generationId": "SkYIsydD4eyk7wXMqsle"
+    },
+    "34ae7dacf45cecd692cd": {
+      "text": "Double-click Dimensions Y to 70 mm, then press Enter.",
+      "file": "34ae7dacf45cecd692cd.mp3",
+      "duration": 4.64,
+      "generationId": "VzUJaRUSPdhTc8JVxYZu"
+    },
+    "c2413458bf9fd85f49a9": {
+      "text": "The footprint is now 100 by 70 mm.",
+      "file": "c2413458bf9fd85f49a9.mp3",
+      "duration": 3.52,
+      "generationId": "ZyzANvzmMtQWzjqPqQyM"
+    },
+    "0bebadf95f1566de7b6f": {
+      "text": "The outside height is 18 mm. The cavity will be cut into this volume in Edit Mode.",
+      "file": "0bebadf95f1566de7b6f.mp3",
+      "duration": 6.16,
+      "generationId": "ZaD2x3gp9IluEmr35oUN"
+    },
+    "51a4b7cf40b0fbdc1b08": {
+      "text": "Double-click Dimensions Z to 18 mm, then press Enter.",
+      "file": "51a4b7cf40b0fbdc1b08.mp3",
+      "duration": 4.72,
+      "generationId": "s6dmO3RXJgvFsAPZG9cQ"
+    },
+    "3afc360044f89954aee5": {
+      "text": "The tray blank now measures 100 by 70 by 18 mm.",
+      "file": "3afc360044f89954aee5.mp3",
+      "duration": 4.88,
+      "generationId": "73yBu9UQMmglUO8rdsJj"
+    },
+    "dcd83540f9310fa60963": {
+      "text": "Changing dimensions in Object Mode changes scale. Apply Scale preserves the visible size while making the scale values 1. This gives dimension-sensitive mesh tools a consistent starting point.",
+      "file": "dcd83540f9310fa60963.mp3",
+      "duration": 12.64,
+      "generationId": "wemZKy3mV0Supp9JsOVO"
+    },
+    "327a2fdd2edabf364310": {
+      "text": "Choose Object , then Apply , then Scale, or press Control + A and choose Scale.",
+      "file": "327a2fdd2edabf364310.mp3",
+      "duration": 6.8,
+      "generationId": "MbuEmzpz7UrxkzSZmCp7"
+    },
+    "105bc36b8705024a5c1d": {
+      "text": "The blank keeps its dimensions. Scale is now 1 on every axis.",
+      "file": "105bc36b8705024a5c1d.mp3",
+      "duration": 5.2,
+      "generationId": "LGnGRFE33mn15YdXzEcD"
+    },
+    "870ebc07b255d7b6dc2c": {
+      "text": "What should Apply Scale preserve?",
+      "file": "870ebc07b255d7b6dc2c.mp3",
+      "duration": 2.24,
+      "generationId": "JuoreBiWExTnMTuGYwof"
+    },
+    "182e6fd872f001698b0e": {
+      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Changing dimensions in Object Mode changes scale. Apply Scale preserves the visible size while making the scale values 1. This gives dimension-sensitive mesh tools a consistent starting point.",
+      "file": "182e6fd872f001698b0e.mp3",
+      "duration": 17.52,
+      "generationId": "9MFmqtNjEy2GO9ccdGQO"
+    },
+    "604f565009b514708aa6": {
+      "text": "Focus the viewport and press Control + A and choose Scale.",
+      "file": "604f565009b514708aa6.mp3",
+      "duration": 4.64,
+      "generationId": "QVEgn7l4b1lINQjUOZjo"
+    },
+    "f6f89d0d001dbe431624": {
+      "text": "The cube origin is at its center. With an 18 mm height, the center must be at Z = 9 mm for the bottom to sit at Z = 0.",
+      "file": "f6f89d0d001dbe431624.mp3",
+      "duration": 10.56,
+      "generationId": "6QewG4uOICQ6lioH9hCx"
+    },
+    "995874af97bedebf0240": {
+      "text": "Double-click Location Z to 9 mm, then press Enter.",
+      "file": "995874af97bedebf0240.mp3",
+      "duration": 4.4,
+      "generationId": "XY0fQwGR9kqL4Pd9y7nF"
+    },
+    "151ee16e78c661286cb8": {
+      "text": "The bottom is now at zero. The next checkpoint preserves the blank as actual Blender geometry.",
+      "file": "151ee16e78c661286cb8.mp3",
+      "duration": 6.32,
+      "generationId": "oj1on6ek8tJroWpwvRmv"
+    },
+    "fbc8099a788061e2369c": {
+      "text": "Before editing topology, save a separate checkpoint. You can return to it if an experiment goes wrong. In real Blender, Control+S saves the current named file; Control+Shift+S creates a separately named version.",
+      "file": "fbc8099a788061e2369c.mp3",
+      "duration": 15.92,
+      "generationId": "Ye5wQ7yW3PzLxAFXgeNY"
+    },
+    "fb7cf777eb7ede3451f0": {
+      "text": "In real Blender, save desk-tray-02-sized.blend. The Blank download below is available if you need to catch up.",
+      "file": "fb7cf777eb7ede3451f0.mp3",
+      "duration": 9.2,
+      "generationId": "YLAfujcbSs930WE5eoUe"
+    },
+    "5581f419dd8406974932": {
+      "text": "Object Mode transforms the whole object. Edit Mode changes its vertices, edges, and faces. The Layout workspace can contain either mode.",
+      "file": "5581f419dd8406974932.mp3",
+      "duration": 9.68,
+      "generationId": "jbd3FQiysXqIXrtE8DAc"
+    },
+    "fbef04f220e37dd3a3d9": {
+      "text": "Choose Edit Mode in the mode selector, or press Tab in the viewport.",
+      "file": "fbef04f220e37dd3a3d9.mp3",
+      "duration": 4.64,
+      "generationId": "chetsLavx5tBAXti9U0j"
+    },
+    "294e298a1bec70dea8aa": {
+      "text": "You are now working on the mesh inside the object.",
+      "file": "294e298a1bec70dea8aa.mp3",
+      "duration": 3.12,
+      "generationId": "ULOuCob7Vla6OxkKQNbs"
+    },
+    "6d5f60bd2c6847512da1": {
+      "text": "Is Edit Mode a separate workspace?",
+      "file": "6d5f60bd2c6847512da1.mp3",
+      "duration": 2.48,
+      "generationId": "aBDbPhlSOYbsjQ5gUnUR"
+    },
+    "5884986218a3272baaec": {
+      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Object Mode transforms the whole object. Edit Mode changes its vertices, edges, and faces. The Layout workspace can contain either mode.",
+      "file": "5884986218a3272baaec.mp3",
+      "duration": 14.16,
+      "generationId": "bjb89t3r2hbhLhVjJfBd"
+    },
+    "66b04d07bcc2eff377c1": {
+      "text": "Focus the viewport and press Tab, then finish the same action.",
+      "file": "66b04d07bcc2eff377c1.mp3",
+      "duration": 4.32,
+      "generationId": "7ulAmHTN6HMml3J321mg"
+    },
+    "cfd2fce1bfd7ed3c4481": {
+      "text": "Vertices are the corner points of a mesh. Moving one changes the connected edges and faces.",
+      "file": "cfd2fce1bfd7ed3c4481.mp3",
+      "duration": 6.16,
+      "generationId": "cr4s9qjucF9IAIynuXwD"
+    },
+    "85069eb8fa7c5a1d20a9": {
+      "text": "Click Vertex Select in the viewport header. Or press 1 on the top row of your keyboard.",
+      "file": "85069eb8fa7c5a1d20a9.mp3",
+      "duration": 5.92,
+      "generationId": "noa73c3pOtMWCUX4Xrgp"
+    },
+    "039d9fd0059f0faaf51b": {
+      "text": "The corner points are visible. In real Blender, top-row 1 chooses Vertex Select in Edit Mode.",
+      "file": "039d9fd0059f0faaf51b.mp3",
+      "duration": 6.96,
+      "generationId": "DKlk8hB1yoTmmnY1xKT9"
+    },
+    "543cb3bd62f7d838e09b": {
+      "text": "Edges connect pairs of vertices. Beveling selected edges adds a narrow transition between surfaces.",
+      "file": "543cb3bd62f7d838e09b.mp3",
+      "duration": 7.28,
+      "generationId": "bG2HR3XoXwJtz5JC50DV"
+    },
+    "95f1954aad595e30781c": {
+      "text": "Click Edge Select. Or press 2 on the top row of your keyboard.",
+      "file": "95f1954aad595e30781c.mp3",
+      "duration": 4.72,
+      "generationId": "mS7WIkR37OoBqP3Fi03f"
+    },
+    "10b3a7e7f5b6edfb9085": {
+      "text": "Edges are the lines of the mesh. Top-row 2 chooses Edge Select.",
+      "file": "10b3a7e7f5b6edfb9085.mp3",
+      "duration": 4.96,
+      "generationId": "FTmZqEnk3WGBioKgEDhs"
+    },
+    "18402ab37c73665828be": {
+      "text": "Faces are the surfaces bounded by edges. Our tray begins by editing its top face.",
+      "file": "18402ab37c73665828be.mp3",
+      "duration": 6.16,
+      "generationId": "FYBJy59geriGsdQKkFwz"
+    },
+    "ba754e5d024adc789fda": {
+      "text": "Click Face Select. Or press 3 on the top row of your keyboard.",
+      "file": "ba754e5d024adc789fda.mp3",
+      "duration": 4.56,
+      "generationId": "28V1MXAmbPHgAlrLfnN2"
+    },
+    "c9b7371dea78840ae210": {
+      "text": "Top-row 3 chooses Face Select. Number pad keys control views instead.",
+      "file": "c9b7371dea78840ae210.mp3",
+      "duration": 5.52,
+      "generationId": "aNyoTj23QDSKSoOeUL76"
+    },
+    "63671715ab9803b513d9": {
+      "text": "Select only the broad top surface. The inset will operate on this selection. The orange fill shows the chosen face.",
+      "file": "63671715ab9803b513d9.mp3",
+      "duration": 8,
+      "generationId": "WAs1KG57Pfutw0zH1H2E"
+    },
+    "6166ff94bbcda2707c22": {
+      "text": "Click the broad top face of the blank.",
+      "file": "6166ff94bbcda2707c22.mp3",
+      "duration": 2.56,
+      "generationId": "Qrl6TdxFpHRpRp5QQZpR"
+    },
+    "680c89911f4c432d8c18": {
+      "text": "The selected top face is ready for the wall inset.",
+      "file": "680c89911f4c432d8c18.mp3",
+      "duration": 3.2,
+      "generationId": "F7DrW6tvDyINKgjqoNGj"
+    },
+    "9e256b8efa28027b3f55": {
+      "text": "Inset Faces creates a smaller face surrounded by a rim. The rim becomes our wall footprint. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm.",
+      "file": "9e256b8efa28027b3f55.mp3",
+      "duration": 15.44,
+      "generationId": "4K9LtDHO0I9XWz0dAV6k"
+    },
+    "224baaa92c72d5eadb38": {
+      "text": "Click the viewport. Press I , then 3 , then Enter. Watch the preview before Enter.",
+      "file": "224baaa92c72d5eadb38.mp3",
+      "duration": 7.04,
+      "generationId": "FZpvtOSk0rB21h47N1sT"
+    },
+    "2e4af3c17ec7578190a7": {
+      "text": "The inner face measures 94 by 64 mm. The surrounding rim is 3 mm wide.",
+      "file": "2e4af3c17ec7578190a7.mp3",
+      "duration": 7.04,
+      "generationId": "Blkybvq0y5i85Nf1pnun"
+    },
+    "66a3714184a5ec64b4a5": {
+      "text": "Extrusion creates geometry and then moves it. Escape cancels the movement, leaving the new geometry at zero distance. Control+Z removes that extrusion. This is different from simply cancelling Move or Rotate.",
+      "file": "66a3714184a5ec64b4a5.mp3",
+      "duration": 14.96,
+      "generationId": "Ms5hdMESvZ2Hmf4Zx1uD"
+    },
+    "4442b5ee901e636d417b": {
+      "text": "Click the viewport. Press E, then Escape, then Control+Z.",
+      "file": "4442b5ee901e636d417b.mp3",
+      "duration": 5.12,
+      "generationId": "umeDylSp33XT91eNnFrr"
+    },
+    "83ba08778264beaa5baf": {
+      "text": "The extrusion geometry was undone. You are back at the inset checkpoint, ready to make the cavity.",
+      "file": "83ba08778264beaa5baf.mp3",
+      "duration": 6.24,
+      "generationId": "TkDAr8uK70mBKXZg4Mrr"
+    },
+    "0977132d51885a6ed1bc": {
+      "text": "Extrude the selected inner face downward by 15 mm. Starting from a height of 18 mm leaves a 3 mm floor. Enter a negative value to move down Z. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm.",
+      "file": "0977132d51885a6ed1bc.mp3",
+      "duration": 20.8,
+      "generationId": "ksYSIB3wgbxbXdbVBxEs"
+    },
+    "af6fd8942bd76943fd23": {
+      "text": "Click the viewport. Press E , then - , then 1 , then 5 , then Enter. Watch the preview before Enter.",
+      "file": "af6fd8942bd76943fd23.mp3",
+      "duration": 9.04,
+      "generationId": "AaBMzZhJjcikoYmps0zv"
+    },
+    "b16e584f3958ffe2dad5": {
+      "text": "The tray has an open cavity, 3 mm walls, and a 3 mm floor.",
+      "file": "b16e584f3958ffe2dad5.mp3",
+      "duration": 5.28,
+      "generationId": "QF6I0mBdVV3y42S3Mirg"
+    },
+    "5302d91f6afe5edb0887": {
+      "text": "How thick is the floor?",
+      "file": "5302d91f6afe5edb0887.mp3",
+      "duration": 1.6,
+      "generationId": "8XHTz1lYYvWgjoVol3Le"
+    },
+    "4513898731ccefa53edb": {
+      "text": "This is a useful recovery point. Save a version before adding bevel geometry. In real Blender, Control+S saves the current named file; Control+Shift+S creates a separately named version.",
+      "file": "4513898731ccefa53edb.mp3",
+      "duration": 14.4,
+      "generationId": "DBOeoHEaPeKxPokm9Qz0"
+    },
+    "6774f7f74c55c75e5ac1": {
+      "text": "In real Blender, save desk-tray-03-cavity.blend, then experiment on a copy.",
+      "file": "6774f7f74c55c75e5ac1.mp3",
+      "duration": 7.76,
+      "generationId": "5Qk0CDl0WxbBxLKs8E4A"
+    },
+    "ac8a4505ae6616429cbf": {
+      "text": "This checkpoint prepares the four outer top rim edges. In real Blender, use Edge Select and Shift-click those four edges. A 0.6 mm bevel with three segments softens the upper outside rim. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm.",
+      "file": "ac8a4505ae6616429cbf.mp3",
+      "duration": 22.4,
+      "generationId": "E559wkEMnVVc5yT1KEcP"
+    },
+    "602ce906959a42d50ada": {
+      "text": "Click the viewport. Press Control + B, type 0 . 6, scroll up twice for 3 segments, then Enter.",
+      "file": "602ce906959a42d50ada.mp3",
+      "duration": 8.48,
+      "generationId": "H1ocAQpMAtS8AyYj7NoZ"
+    },
+    "6bb0db6bee1ded3ab8d2": {
+      "text": "The outside rim now has real rounded geometry. Smooth shading by itself would not change the printed shape.",
+      "file": "6bb0db6bee1ded3ab8d2.mp3",
+      "duration": 7.44,
+      "generationId": "klIk0OTWu9zHee3kQDj5"
+    },
+    "f71693964c8639d0c9e9": {
+      "text": "This inspection checkpoint starts with the finished mesh deselected. Face Orientation reveals reversed faces. Find the option in Viewport Overlays, under Geometry, then inspect all sides in real Blender.",
+      "file": "f71693964c8639d0c9e9.mp3",
+      "duration": 13.76,
+      "generationId": "fO8KPtWScQ0kTKx2L3OD"
+    },
+    "eb0235a57153c7b7501b": {
+      "text": "Open the Viewport Overlays arrow, enable Face Orientation under Geometry, then click the viewport to close the popover.",
+      "file": "eb0235a57153c7b7501b.mp3",
+      "duration": 8.16,
+      "generationId": "dGQYERHhAjOQXT6scNO2"
+    },
+    "cfe643e9c71f9490ef6f": {
+      "text": "Our generated mesh has no boundary or non-manifold edges. That does not replace checking dimensions, thickness, and sliced layers.",
+      "file": "cfe643e9c71f9490ef6f.mp3",
+      "duration": 8.72,
+      "generationId": "FqDA9AgpDfdoBIzAR6mx"
+    },
+    "b76707d6ff3f4726d5bc": {
+      "text": "Return to Object Mode before exporting the selected tray. Keep the editable Blender project as your source.",
+      "file": "b76707d6ff3f4726d5bc.mp3",
+      "duration": 6.8,
+      "generationId": "DwqwmKvrghDTKxDltWP2"
+    },
+    "cd00659d09e6fbdb7711": {
+      "text": "Choose Object Mode in the mode selector, or press Tab in the viewport.",
+      "file": "cd00659d09e6fbdb7711.mp3",
+      "duration": 4.64,
+      "generationId": "EcpDJLj66hdwNekYUShG"
+    },
+    "64b429083bac4e660667": {
+      "text": "The entire tray is selected for saving and export.",
+      "file": "64b429083bac4e660667.mp3",
+      "duration": 3.52,
+      "generationId": "YKxmOYBzCgy2G6pvENKA"
+    },
+    "09a401ffb8bd6b01a342": {
+      "text": "S T L stores a mesh, not the complete Blender project. Save your .blend first so you can revise the design later. In real Blender, Control+S saves the current named file; Control+Shift+S creates a separately named version.",
+      "file": "09a401ffb8bd6b01a342.mp3",
+      "duration": 17.2,
+      "generationId": "D0r0pchXtVPV5GFWArPq"
+    },
+    "9116414d90fedf2555ae": {
+      "text": "In real Blender, save desk-tray-04-finished.blend.",
+      "file": "9116414d90fedf2555ae.mp3",
+      "duration": 5.6,
+      "generationId": "Y9aj1R2pNQTmFtiTO0fY"
+    },
+    "d0b047b22c191176a48f": {
+      "text": "Our checkpoint stores coordinates in millimeters. Export selected objects with Scale 1 and Scene Unit off. The generated S T L has been reimported and checked at 100 by 70 by 18 mm.",
+      "file": "d0b047b22c191176a48f.mp3",
+      "duration": 14.16,
+      "generationId": "CyUb3xWFTTkBw49aiWwF"
+    },
+    "86b2a923babaed3a547d": {
+      "text": "Choose File , then Export , then S T L (.stl), then Export S T L.",
+      "file": "86b2a923babaed3a547d.mp3",
+      "duration": 7.28,
+      "generationId": "dyYSO3LNMMVjr2fnXCJj"
+    },
+    "f0bc15d66dbce2846582": {
+      "text": "Download the reference S T L from the course page. In Bambu Studio, verify 100 by 70 by 18 mm, bottom down, cavity up. Slice and inspect the floor and walls before printing. This reference has not yet been physically print-tested.",
+      "file": "f0bc15d66dbce2846582.mp3",
+      "duration": 17.44,
+      "generationId": "dRLSKqHjkjt52ZKXBNVF"
+    },
+    "9431e7264118b144e677": {
+      "text": "What must you check after importing into the slicer?",
+      "file": "9431e7264118b144e677.mp3",
+      "duration": 3.04,
+      "generationId": "PLv4GlIynmOXjcRPWIbv"
+    }
+  },
+  "lessons": {
+    "bambu-studio/getting-started": {
+      "prepare": {
+        "description": {
+          "id": "991147892dd129d6bba9",
+          "display": "Bambu Studio opens on Home. Prepare is where you bring in a model and get it ready for printing."
+        },
+        "task": {
+          "id": "389ffe8c92e62d24c901",
+          "display": "Follow the arrow and select Prepare to open the workspace."
+        },
+        "summary": {
+          "id": "822a2a7762f7766b6683",
+          "display": "You opened Prepare. The build plate is empty; we will add Benchy after finding the main controls."
+        }
+      },
+      "preview": {
+        "description": {
+          "id": "4a122b3be6343042eab0",
+          "display": "Preview shows the paths and layers the printer will follow after slicing. The layer slider is on the right and the toolpath slider is along the bottom."
+        },
+        "task": {
+          "id": "4f1f73906e9fdbfb6400",
+          "display": "Select Preview to see its workspace."
+        },
+        "summary": {
+          "id": "bbac66dd12744d4d1b28",
+          "display": "You opened Preview. The plate is empty and the sliders are inactive because we have not imported or sliced a model."
+        }
+      },
+      "device": {
+        "description": {
+          "id": "4313a93fe47a204a3546",
+          "display": "Device is where you connect to and monitor a printer. In the shop, check that the selected device is the one you intend to use."
+        },
+        "task": {
+          "id": "a75fa84211ee578ea5c0",
+          "display": "Find and select Device. No printer will be connected here."
+        },
+        "summary": {
+          "id": "655e77458d2c2d6494b4",
+          "display": "Device is for the actual printer. This simulation cannot send a print."
+        }
+      },
+      "return-prepare": {
+        "description": {
+          "id": "d4a058f38cbf80e43bcf",
+          "display": "You have seen where to prepare a model, review its sliced layers, and monitor a printer. Now return to the workspace where you will add Benchy."
+        },
+        "task": {
+          "id": "d2d93d6baaa1945ce95a",
+          "display": "Select Prepare to return to the empty build plate."
+        },
+        "summary": {
+          "id": "6fb4e2afe5f225bd8179",
+          "display": "Back in Prepare. Next, find the printer, material, process, and model controls."
+        }
+      },
+      "printer": {
+        "description": {
+          "id": "6c8a91d455dde8c019c7",
+          "display": "The Printer panel holds the printer profile, build plate, and nozzle settings. They need to match the equipment you will use."
+        },
+        "task": {
+          "id": "45ec1a518d99f03d2bda",
+          "display": "Select the highlighted Printer panel."
+        },
+        "summary": {
+          "id": "d8bf13cf7a09a160eef2",
+          "display": "You found the printer settings. These example values are not instructions for setting up a shop print."
+        }
+      },
+      "filament": {
+        "description": {
+          "id": "3718ff509f5c490ba147",
+          "display": "Project Filaments describes the material used by your model. Later, you will match the material and color to what is loaded in the printer."
+        },
+        "task": {
+          "id": "abeba35438965194d710",
+          "display": "Select the Project Filaments panel."
+        },
+        "summary": {
+          "id": "4d4b9ee55ca54fc534cb",
+          "display": "For this entry course, we will use one material. We will choose it in a later tutorial."
+        }
+      },
+      "process": {
+        "description": {
+          "id": "6ecc1fb4b3b8e10dd935",
+          "display": "Process contains settings such as layer height, strength, speed, and supports. You do not need to adjust these during navigation practice."
+        },
+        "task": {
+          "id": "64b3a35ac989c53233e8",
+          "display": "Select the highlighted Process panel."
+        },
+        "summary": {
+          "id": "7f82747b73c0e87f2782",
+          "display": "These settings control how the model will be sliced. Leave them alone for this lesson."
+        }
+      },
+      "toolbar": {
+        "description": {
+          "id": "bcf9ab4d263183a50227",
+          "display": "The toolbar includes Move, Rotate, Scale, and Lay on face. Those tools change the model itself."
+        },
+        "task": {
+          "id": "e5243b450d56c978e9c1",
+          "display": "Select the highlighted model toolbar."
+        },
+        "summary": {
+          "id": "64fe9df230e16336e630",
+          "display": "Remember this difference: the Rotate tool changes the model. Orbiting changes only your view."
+        }
+      },
+      "import-model": {
+        "description": {
+          "id": "7ac1f7d945919bfd8816",
+          "display": "The Add model icon opens a file picker. The course includes Benchy.stl for this practice."
+        },
+        "task": {
+          "id": "40546990abc39e10908a",
+          "display": "Click the Add model icon, select Benchy.stl, then choose Open."
+        },
+        "summary": {
+          "id": "3e78e669c67c7bbc4b30",
+          "display": "Benchy is now on the plate. Importing adds the model; it does not slice or print it."
+        }
+      },
+      "plate-hotspot": {
+        "description": {
+          "id": "740d097716b14f10c3ef",
+          "display": "The large area is the 3D viewport. It shows Benchy on the build plate—the surface where a print starts."
+        },
+        "task": {
+          "id": "f751d625c95ee2d698f7",
+          "display": "Select the highlighted 3D viewport."
+        },
+        "summary": {
+          "id": "94a811595a02abc207d1",
+          "display": "Imported models may arrive in an orientation that is unsuitable for printing, like Benchy on its side here. In the next tutorial, you will learn how to orient models for printing."
+        }
+      },
+      "orbit": {
+        "description": {
+          "id": "31aac8a45d4a774fcb75",
+          "display": "Orbiting moves your viewpoint around the model. The model stays in exactly the same place and orientation."
+        },
+        "task": {
+          "id": "918ce9dcf4e74b139752",
+          "display": "Orbit around Benchy using the controls for your input device."
+        },
+        "controls": {
+          "id": "b9c357de29c627912408",
+          "display": "Mouse. Hold the left button and drag on empty space beside Benchy. Touchpad. Press and hold the primary (left) click while sliding a finger to drag. Start on empty space beside Benchy. Touchscreen. Drag one finger on empty space beside Benchy."
+        },
+        "summary": {
+          "id": "f5bb0bbb18c76d861d81",
+          "display": "You changed your view—not Benchy’s orientation."
+        }
+      },
+      "pan": {
+        "description": {
+          "id": "7c28ad8a2532564d7e15",
+          "display": "Panning moves your viewpoint sideways or up and down without turning it. Benchy stays fixed on the plate."
+        },
+        "task": {
+          "id": "d81e418dc00ddccd52d2",
+          "display": "Pan the view sideways using the controls for your input device."
+        },
+        "controls": {
+          "id": "7ad53e38af89b3a4c9cc",
+          "display": "Mouse. Hold the right button or wheel button and drag. Touchpad. Hold the secondary (right) click while sliding to drag. On a clickpad, hold the lower-right click area with one finger and move another. A two-finger tap alone does not drag. Touchscreen. Slide two fingers together across the viewport, keeping their spacing steady."
+        },
+        "summary": {
+          "id": "9fa7b661902d3c2c066f",
+          "display": "Your view shifted. Benchy did not move on the build plate."
+        }
+      },
+      "zoom": {
+        "description": {
+          "id": "33e4e06b8d8523720fe8",
+          "display": "Zooming changes how close the model looks. It does not change the model’s physical size."
+        },
+        "task": {
+          "id": "32b4653c8d76bed08351",
+          "display": "Zoom in and zoom out using the controls for your input device. Complete both directions."
+        },
+        "controls": {
+          "id": "4b2204a2f84aa8cac911",
+          "display": "Mouse. Roll the wheel up to zoom in and down to zoom out. Touchpad. Use two fingers to scroll over the viewport, first one way and then the other. Direction follows your scroll settings; reverse the gesture if needed. Touchscreen. Spread two fingers apart to zoom in; pinch them together to zoom out."
+        },
+        "summary": {
+          "id": "19e664f4dc6ad6e2655e",
+          "display": "Both directions done. Benchy stayed the same size."
+        }
+      },
+      "top-view": {
+        "description": {
+          "id": "d98bbfb0abf5d672b249",
+          "display": "The view cube follows your camera as you orbit. Click a face to look directly at that side of the model. This changes your viewpoint, not the model’s orientation."
+        },
+        "task": {
+          "id": "c975b7fe2fc239433508",
+          "display": "Click the Top face of the view cube in the lower-left corner of the viewport."
+        },
+        "summary": {
+          "id": "39b773126aad6e5c1257",
+          "display": "You are looking straight down at the build plate. Benchy has not moved or rotated. The cube gives you a repeatable view without dragging."
+        },
+        "quiz": {
+          "id": "b73c58dfdbe1feda46da",
+          "display": "You orbit, pan, and zoom around Benchy. What changed?"
+        }
+      },
+      "complete": {
+        "description": {
+          "id": "c2a59a901c4d7bf965de",
+          "display": "You found the main sections of Bambu Studio and practiced orbit, pan, and zoom."
+        },
+        "task": {
+          "id": "01438a1301250705c0c6",
+          "display": "Try orbit, pan, and zoom with your input device, here and in Bambu Studio."
+        },
+        "controls": {
+          "id": "703c7dfffcbce13305aa",
+          "display": "Mouse. Left-drag empty space to orbit; right-drag to pan; scroll to zoom. Touchpad. Hold primary click and drag to orbit; hold secondary click and drag to pan; two-finger scroll to zoom. Touchscreen. One-finger drag on empty space to orbit; two-finger slide to pan; pinch or spread to zoom."
+        },
+        "summary": {
+          "id": "dc8766ae6f01582332d0",
+          "display": "This completes Tutorial 01 only. It does not qualify you to print independently yet."
+        }
+      }
+    },
+    "bambu-studio/object-manipulation": {
+      "select-object": {
+        "description": {
+          "id": "823203f1792e81a63f5b",
+          "display": "This lesson starts in Prepare with the same imported Benchy. A model may arrive in an unsuitable orientation for printing. First select it: object tools act on the selected model, while orbit, pan, and zoom only change your view."
+        },
+        "task": {
+          "id": "b31388e6100e60ed4de7",
+          "display": "Click Benchy itself to select it. Keyboard: focus the 3D viewport and press Enter."
+        },
+        "summary": {
+          "id": "433f5fd20b3f6562faf9",
+          "display": "The white selection outline identifies the object you will edit. We will keep using this one Benchy throughout the lesson."
+        }
+      },
+      "open-move": {
+        "description": {
+          "id": "5021b2e3a6228b2cd69c",
+          "display": "Move changes an object’s position. The red X and green Y axes run across the build plate. Blue Z is vertical. The Position fields show the object’s center in millimeters, so a model resting on the plate can have a positive Z value."
+        },
+        "task": {
+          "id": "6dd79e6b3ea1d89247a8",
+          "display": "Click the Move toolbar icon (four arrows)."
+        },
+        "summary": {
+          "id": "52924222270f5228fe75",
+          "display": "The colored arrows attached to the selected model are its axis handles. Drag an arrowhead to move only along that axis: red X, green Y, or blue Z. The Position fields set exact coordinates. A single object stays seated on the plate in this practice; Z is shown for reference."
+        }
+      },
+      "move-x": {
+        "description": {
+          "id": "e65b195aeeae9b2472ec",
+          "display": "An axis handle is a colored arrow attached to the selected object. Grab its arrowhead and drag along the line: red is X, green is Y, and blue is Z. You can also enter an exact coordinate. Moving an object changes where it will print, without changing its size or shape."
+        },
+        "task": {
+          "id": "9559b7948c8e6ec1e611",
+          "display": "Move X from 128 to 148 mm. Drag the red X arrow or enter 148 in Position X and press Enter."
+        },
+        "summary": {
+          "id": "23fad9b70f2fb0f1927d",
+          "display": "Benchy moved 20 mm along X. Its dimensions and orientation stayed the same."
+        }
+      },
+      "move-y": {
+        "description": {
+          "id": "69b249b18057893ac038",
+          "display": "X and Y locate the object on the bed. Watch the model, the colored handles, and the position numbers together. Keep the whole model inside the build area."
+        },
+        "task": {
+          "id": "663f8470fe258701b0ce",
+          "display": "Set Position Y to 108 mm, then press Enter."
+        },
+        "summary": {
+          "id": "a2b6fbe4ca4cf071106a",
+          "display": "Benchy is now at X 148, Y 108 mm. Moving the model affects its placement on the plate; panning the camera does not."
+        },
+        "quiz": {
+          "id": "135cf82fac3422248aae",
+          "display": "Which action changes where Benchy will print?"
+        }
+      },
+      "open-scale": {
+        "description": {
+          "id": "133096696e1a72ef6687",
+          "display": "Scale changes the model’s physical size. Percentage fields resize relative to the imported model; Size fields specify the dimensions of the model’s bounding box in millimeters: the smallest box enclosing the whole model, including its protruding features. This practice uses object coordinates, so its dimensions follow the model’s own axes."
+        },
+        "task": {
+          "id": "8cbe64aa7212cce3a121",
+          "display": "Click the Scale icon (a square inside a larger square)."
+        },
+        "summary": {
+          "id": "94d38f54df56b3819895",
+          "display": "The scale panel shows 100% on each axis. Uniform scale is checked to preserve the original proportions."
+        }
+      },
+      "uniform-scale": {
+        "description": {
+          "id": "c245451740933f0128ed",
+          "display": "With uniform scale checked, changing one axis changes all three by the same factor. This keeps Benchy’s shape instead of stretching it. Scale changes the printed dimensions; zoom does not."
+        },
+        "task": {
+          "id": "65168ad3abe1ab974f6b",
+          "display": "Enter 150 in Scale X and press Enter. Watch Y and Z follow."
+        },
+        "summary": {
+          "id": "97446e06bcc4b1e8dd01",
+          "display": "All three axes are now 150%. Every linear dimension is one and a half times its original size."
+        }
+      },
+      "exact-size": {
+        "description": {
+          "id": "63ec1a0598ccf59c8af6",
+          "display": "Size measures the model’s bounding box, not an individual feature such as a hole or the cabin. Think of a snug box enclosing all of Benchy: Size X is that box’s extent along X. Changing it scales the model to fit the new box dimension. Bambu Studio works in millimeters. With uniform scale on, entering one dimension adjusts the other two proportionally."
+        },
+        "task": {
+          "id": "ce9ea5bb837ae6a745b0",
+          "display": "Set Size X to 60 mm and press Enter."
+        },
+        "summary": {
+          "id": "e2d9c9aa0b780da742b7",
+          "display": "Benchy is back to approximately its original size. Always check dimensions after import, especially if a model appears unexpectedly tiny or huge."
+        }
+      },
+      "unlock-scale": {
+        "description": {
+          "id": "c3f16217f54e304b55b6",
+          "display": "Turning off uniform scale lets you change one dimension without changing the others. This deliberately distorts the shape and may spoil the fit of functional parts."
+        },
+        "task": {
+          "id": "65b55b9c94c99ec39ddb",
+          "display": "Uncheck uniform scale."
+        },
+        "summary": {
+          "id": "6f5fd49a581c294b4f25",
+          "display": "The axes can now scale independently. Next, try a visible stretch so you can see the difference."
+        }
+      },
+      "stretch-model": {
+        "description": {
+          "id": "f6f4ce1e1a45df199d39",
+          "display": "With the proportions unlocked, only the axis you change will scale. This is useful when intentional, but it is usually unsuitable for a part whose shape and fit must be preserved."
+        },
+        "task": {
+          "id": "eb3e93a6db690caa8927",
+          "display": "Set Scale X to 150% and press Enter. Leave Y and Z at 100%."
+        },
+        "summary": {
+          "id": "94b466629aa2dc886bda",
+          "display": "Only X grew. Y and Z stayed at 100%, so the proportions changed."
+        },
+        "quiz": {
+          "id": "784d0826416a78710292",
+          "display": "How would you make a part larger while preserving its proportions?"
+        }
+      },
+      "restore-proportions": {
+        "description": {
+          "id": "a94678f1b55d17c2de07",
+          "display": "We only stretched X, so we can undo that distortion by returning X to 100% while the axes are still independent."
+        },
+        "task": {
+          "id": "fa02b6c46b8229402641",
+          "display": "Set Scale X back to 100% and press Enter."
+        },
+        "summary": {
+          "id": "22dd9b01cbec84cdd7fc",
+          "display": "Benchy has its original proportions again. We will keep this size for the orientation exercises."
+        }
+      },
+      "open-rotate": {
+        "description": {
+          "id": "3eaa3e3456fb957930d7",
+          "display": "Rotate changes the model’s orientation, unlike orbiting the camera. Colored rings rotate around X, Y, or Z. Rotate (absolute) sets an angle; Rotate (relative) adds an angle to the current orientation."
+        },
+        "task": {
+          "id": "948d8ff530875853d021",
+          "display": "Click the Rotate icon."
+        },
+        "summary": {
+          "id": "38fe45e6aedf05b0f417",
+          "display": "The rotation rings surround the object. Z turns it across the plate; X or Y can tip it onto another side."
+        }
+      },
+      "rotate-z": {
+        "description": {
+          "id": "3b1a53b352c2f9c18375",
+          "display": "Drag the colored handle with two arrow tips, rather than the circle itself. Hovering the handle reveals that axis and its snap marks. While dragging, move the pointer into the short ticks just outside the circle to snap in 5° increments."
+        },
+        "task": {
+          "id": "0e7c8ad483c62dd4fa67",
+          "display": "Drag the blue Z handle. Keep the pointer in the outer tick band, rotate to 45.00°, and release."
+        },
+        "summary": {
+          "id": "b283ec33b6342c0e4d78",
+          "display": "You used the outer ticks to rotate 45° in 5° increments. Snapping depends on the pointer’s distance from the center; you do not need to hold Shift."
+        }
+      },
+      "rotate-coarse": {
+        "description": {
+          "id": "db211f79df17848c4216",
+          "display": "The eight longer guides inside the circle snap in 45° increments. Drag inward, into the band between one-third and two-thirds of the circle’s radius. Outside both snap bands, rotation is continuous."
+        },
+        "task": {
+          "id": "63a06b07b3a1b51c196b",
+          "display": "Drag the blue Z handle inward to the inner guides. Rotate another 45.00° and release; the absolute Z angle will become 90°."
+        },
+        "summary": {
+          "id": "1ea847567a221bf8bd52",
+          "display": "The inner guides added a 45° turn. Benchy is now at 90° in Rotate (absolute). The readout beside a dragged handle reports that drag’s rotation, which is why it showed 45°."
+        },
+        "quiz": {
+          "id": "942988afd6978dc83a79",
+          "display": "How do you switch between 5° and 45° rotation snapping?"
+        }
+      },
+      "rotate-exact": {
+        "description": {
+          "id": "8b8ca10a0fb767b831f6",
+          "display": "The numeric fields are useful when you already know the angle you need. Rotate (absolute) sets the orientation value; Rotate (relative) adds a turn to the current orientation."
+        },
+        "task": {
+          "id": "e8b3675754c65fd52429",
+          "display": "Set Rotate (absolute) Z to 0° and press Enter."
+        },
+        "summary": {
+          "id": "d3b598a107df0ccb7672",
+          "display": "The absolute value returned Benchy to its original heading. Next, add a small tilt using the relative field."
+        }
+      },
+      "rotate-x": {
+        "description": {
+          "id": "231508ad49842429dba1",
+          "display": "Rotating around X or Y changes which surfaces face the bed. This affects contact, overhangs, and possible support needs. A visually convenient angle is not necessarily a good printing orientation."
+        },
+        "task": {
+          "id": "1a991b53565ed262f8e0",
+          "display": "Enter 30° in Rotate (relative) X and press Enter."
+        },
+        "summary": {
+          "id": "de90ff7a3dc7b436d625",
+          "display": "You added a 30° tilt around X. For a flat base, Lay on face is more direct than guessing rotation angles."
+        }
+      },
+      "open-lay-face": {
+        "description": {
+          "id": "4df20ce4195f42f30c38",
+          "display": "Lay on face rotates the object so the surface you choose rests against the plate. It is especially useful when an imported model arrives on its side. Choose the intended flat base, rather than an arbitrary side."
+        },
+        "task": {
+          "id": "d9d53046ed0cb725a8c0",
+          "display": "Click Lay on face (the tilted object above a plate)."
+        },
+        "summary": {
+          "id": "4c75d24ce7ef8d7e2811",
+          "display": "Pale surfaces show available flat faces. You can orbit on empty space if you need a better view of the intended face."
+        }
+      },
+      "lay-base": {
+        "description": {
+          "id": "20cc99c98985e003e0f1",
+          "display": "For this Benchy, choose the broad flat underside of the hull. Lay on face turns that selected surface toward the bed and seats the model. This controls orientation, not print quality settings."
+        },
+        "task": {
+          "id": "5092d2a2260ae358cb5a",
+          "display": "Click the highlighted flat underside of Benchy’s hull. You may orbit on empty space to inspect it."
+        },
+        "summary": {
+          "id": "3a87d00d98b9a9073324",
+          "display": "Benchy is upright with its flat underside on the plate. You have practiced selection, Move, uniform and independent Scale, absolute and relative Rotate, and Lay on face. Printer, material, process, supports, and the sliced preview still need checking before a real print."
+        },
+        "quiz": {
+          "id": "42d39664175c3eee2120",
+          "display": "What does Lay on face do?"
+        }
+      },
+      "complete": {
+        "description": {
+          "id": "dc07860fe4fcc25e4f7d",
+          "display": "All four object tools and camera navigation are available. Try the handles, numeric fields, and different flat faces. These edits stay in this practice session."
+        },
+        "task": {
+          "id": "aebd112d2959f235ca63",
+          "display": "Choose Move, Scale, Rotate, or Lay on face. Orbit on empty space, pan with right-drag, and scroll to zoom."
+        },
+        "summary": {
+          "id": "441a323b42afe6182f5a",
+          "display": "Use Restart tutorial to repeat the guided exercises, or Back to course when you are ready."
+        }
+      }
+    },
+    "bambu-studio/material-installation": {
+      "choose-device": {
+        "description": {
+          "id": "29ba31cecbc1c2905259",
+          "display": "Two X2D printers share this workspace: Steve and Candus. Read the white-and-green name tag on the actual machine. The nearby computer is the workstation; here, you are choosing the physical printer whose AMS you will load."
+        },
+        "task": {
+          "id": "dfb3fbd87f08bd224c9c",
+          "display": "Click Steve or Candus in the lab. Either printer is available for this practice."
+        },
+        "summary": {
+          "id": "13736ed6f8ca1f28594b",
+          "display": "Your chosen printer stays selected for the rest of this tutorial. Always match the physical name tag to the device you intend to use."
+        }
+      },
+      "unlock-ams": {
+        "description": {
+          "id": "c34cbbc4e63684c933c4",
+          "display": "The AMS sits on top of the printer. Two locking tabs secure the front corners of its lid. Release both tabs before lifting the cover."
+        },
+        "task": {
+          "id": "761c9f672824f3079569",
+          "display": "Click the left and right AMS locking tabs. Once both are released, the lid opens in this simulation."
+        },
+        "summary": {
+          "id": "bfbf43c1aa0b001236c0",
+          "display": "Both tabs are unlocked and the lid is open. In the lab, lift the cover after releasing the tabs."
+        }
+      },
+      "place-roll": {
+        "description": {
+          "id": "ab8bbf48708a4e5e3200",
+          "display": "The green filament roll has white spool sides. Seat it upright on the rollers in the leftmost bay, with the loose end toward the intake at the front."
+        },
+        "task": {
+          "id": "582a75d796fbba4a7f93",
+          "display": "Click the green roll beside the AMS. It will move onto the rollers in bay 1."
+        },
+        "summary": {
+          "id": "8ff9c45d0cc974ac43e4",
+          "display": "The spool is seated in bay 1 and can turn on its rollers. Its loose filament end is kept accessible near the intake."
+        }
+      },
+      "press-intake": {
+        "description": {
+          "id": "a846da254d2ea2a907e3",
+          "display": "Find the small white intake control in front of the installed roll. Press it backward, toward the roll, to prepare the filament entrance."
+        },
+        "task": {
+          "id": "7523685a9f6e3891e1cd",
+          "display": "Click the white intake control. The simulation holds it backward while you guide the filament."
+        },
+        "summary": {
+          "id": "96d3eaca82da0255ebc0",
+          "display": "The intake is pressed backward. Keep control of the loose filament end as you bring it to the opening."
+        }
+      },
+      "insert-filament": {
+        "description": {
+          "id": "dbe5b7326bbea8711d47",
+          "display": "Guide the loose end of the green filament into the intake opening. The AMS then takes hold and pulls filament inward; the spool rotates as material feeds."
+        },
+        "task": {
+          "id": "7b06da049706d2996409",
+          "display": "Click the highlighted loose filament end to insert it. Watch the spool turn as the AMS pulls it in."
+        },
+        "summary": {
+          "id": "3de4746264d2ac9125f9",
+          "display": "The AMS has taken up the filament. You have practiced identifying a physical printer, opening its AMS, seating a roll, pressing the intake, and inserting filament. This tutorial ends at material intake."
+        }
+      },
+      "complete": {
+        "description": {
+          "id": "f75d66e90c5440256f27",
+          "display": "The green roll is installed in the selected printer’s AMS. You have completed the material-loading practice."
+        },
+        "task": {
+          "id": "d3add1912c432d524dc5",
+          "display": "Inspect the loaded AMS, replay the intake animation, or return to the course."
+        },
+        "summary": {
+          "id": "ef17d3b60b847442f798",
+          "display": "Use Restart tutorial to practice with either machine again."
+        }
+      }
+    },
+    "bambu-studio/slicing-and-printing": {
+      "device-tab": {
+        "description": {
+          "id": "aa1efc4fa12d2f505492",
+          "display": "Benchy is upright and ready to slice. The Device tab selects the physical printer you want to use. This is separate from the X2D printer profile in Prepare."
+        },
+        "task": {
+          "id": "07b2c365aacdbed2b220",
+          "display": "Click Device."
+        },
+        "summary": {
+          "id": "c0b8f2ae27d68e684874",
+          "display": "The Device workspace shows the selected printer, camera area, controls, and AMS status."
+        }
+      },
+      "choose-printer": {
+        "description": {
+          "id": "2072820af7ae2d413fed",
+          "display": "Choose the machine you loaded in the previous tutorial. Read its name in the printer selector at the upper left. Steve and Candus are both X2D printers; either choice is accepted in this practice."
+        },
+        "task": {
+          "id": "792e8ef8c835ef6547de",
+          "display": "Open the printer selector, then choose Steve (LAN) or Candus (LAN)."
+        },
+        "summary": {
+          "id": "03e050c8e1b93fee636f",
+          "display": "Your selected device will be used for the simulated print. The reminder helps connect the physical machine to the software selection."
+        }
+      },
+      "return-prepare": {
+        "description": {
+          "id": "a3698c7ecdfec9fd8c32",
+          "display": "Prepare holds the model and its slicing settings. Benchy and the X2D printer profile are already set up. After choosing the device, check that the project filament matches the material installed in its AMS."
+        },
+        "task": {
+          "id": "d20dde7a8763ac97e3bb",
+          "display": "Click Prepare."
+        },
+        "summary": {
+          "id": "3b344dba27fcca99f838",
+          "display": "Now use the dropdown on project filament 1 to select the material actually installed in the chosen printer. Choosing a device does not replace this material check."
+        }
+      },
+      "choose-material": {
+        "description": {
+          "id": "754132ea013eb488e8e5",
+          "display": "Left filaments and Right filaments group the installed spools by the left or right feeder mechanism. Each AMS connects to just one feeder mechanism, so its spools belong to that feeder’s group. They are not the left and right halves of one AMS. In this simulation, the AMS you loaded feeds the left mechanism. Its green Bambu PLA Basic is in slot A1. Open the material-name dropdown in project filament 1 and select that installed roll."
+        },
+        "task": {
+          "id": "5374a21028dcdb95b070",
+          "display": "Open the dropdown on project filament 1, then select green A1 · Bambu PLA Basic under Left filaments."
+        },
+        "summary": {
+          "id": "a4004cfcc389eca6fb2e",
+          "display": "Project filament 1 now uses green Bambu PLA Basic from A1 in the AMS connected to the left feeder. A1 identifies the spool slot within that AMS; Left filaments identifies the feeder it supplies. Right filaments lists spools on the right feeder mechanism; none are installed there in this simulation. System presets describe material profiles, not installed rolls. Benchy is green and ready to slice."
+        }
+      },
+      "slice-plate": {
+        "description": {
+          "id": "7a643a6b62cd56584021",
+          "display": "Support is off for this first pass. Slice plate converts the model into paths the printer can follow. Wait for the progress indicator to finish before reading the results."
+        },
+        "task": {
+          "id": "312a0d78fc5ecfebe99d",
+          "display": "Click Slice plate, then wait for slicing to complete."
+        },
+        "summary": {
+          "id": "0376fb710f49b8b7bd46",
+          "display": "Slicing is complete. Preview now shows the layers, estimated material use, material cost, and total time."
+        }
+      },
+      "layer-slider": {
+        "description": {
+          "id": "6162e712a1f09c0c419c",
+          "display": "The vertical slider on the right limits which layers are shown. Move its upper handle down to inspect Benchy’s actual sliced walls and infill, then return it to the top. This changes the preview, not the model or its print settings."
+        },
+        "task": {
+          "id": "4d231bf72f5e7ac1919a",
+          "display": "Drag the upper layer handle down to layer 300 or lower. Then return it to layer 599. Keyboard: focus the slider and use Down/Up, or Home (bottom) / End (top)."
+        },
+        "summary": {
+          "id": "448387dd231d7d44ff25",
+          "display": "You inspected the real printed paths: walls form the shell, and infill provides structure inside it. Solid layers close the bottom and top surfaces. You then restored the full preview. The numbers beside the slider show the layer and its height. Check the preview before printing."
+        }
+      },
+      "roof-overhang": {
+        "description": {
+          "id": "dcd15c4396fd1ef6337f",
+          "display": "The cabin roof spans the hollow cabin, with no material directly underneath parts of it. For this exercise, we will add tree supports that pass through the doorway and support the underside of the roof."
+        },
+        "task": {
+          "id": "df765e01c29926d43ce2",
+          "display": "Select the highlighted roof overhang."
+        },
+        "summary": {
+          "id": "98b01b92172de15411f2",
+          "display": "Supports provide temporary material beneath overhangs. They can improve the underside, but use more filament, take longer, and must be removed. Benchy is often printed without supports as a test; here we are practicing how to add and compare them."
+        }
+      },
+      "support-prepare": {
+        "description": {
+          "id": "d86b900749e608e1c467",
+          "display": "The first slice has no supports. Go back to Prepare to change the process settings; changing a setting means the plate must be sliced again."
+        },
+        "task": {
+          "id": "d20dde7a8763ac97e3bb",
+          "display": "Click Prepare."
+        },
+        "summary": {
+          "id": "9f88c6bd813fd1cae259",
+          "display": "Open the Support category in the Process settings next."
+        }
+      },
+      "support-tab": {
+        "description": {
+          "id": "cb9ecfe9422ef118039a",
+          "display": "The Process panel groups settings into Quality, Strength, Speed, Support, and Others. Support controls the temporary structures beneath overhangs."
+        },
+        "task": {
+          "id": "81c26c8ea09c498da1d3",
+          "display": "Click Support in the Process panel."
+        },
+        "summary": {
+          "id": "bd090433efe957e48436",
+          "display": "Enable support is currently unchecked. The Type is tree(auto), which creates branching supports automatically."
+        }
+      },
+      "enable-support": {
+        "description": {
+          "id": "f5e6948441c7025e24ea",
+          "display": "Turn on Enable support. Keep Type set to tree(auto), Style Default, and the other settings as shown for this practice."
+        },
+        "task": {
+          "id": "0eb8a1da0b440a60a549",
+          "display": "Check Enable support."
+        },
+        "summary": {
+          "id": "ee5923a679555c970589",
+          "display": "Support is now enabled, but the previous preview and estimates are out of date. Re-slice to generate the support paths and updated totals."
+        }
+      },
+      "reslice": {
+        "description": {
+          "id": "73f26404338611309632",
+          "display": "Slice the plate again to generate the tree supports. Wait for the new result before using its cost and time estimates."
+        },
+        "task": {
+          "id": "936a4d60a91e9b73ebd0",
+          "display": "Click Slice plate and wait."
+        },
+        "summary": {
+          "id": "ca6846d782a737b21d06",
+          "display": "The supported result uses 12.72 g and takes 1h50m, compared with 11.80 g and 1h40m without supports. Material cost increased from $0.24 to $0.25. Notice how the tree supports enter through the doorway and reach the underside of the cabin roof."
+        }
+      },
+      "compare-supports": {
+        "description": {
+          "id": "09b962e5cde5c6478955",
+          "display": "Use the comparison to see the actual sliced support paths through the doorway and beneath the roof. The model stays the same; the extra material is removed after printing."
+        },
+        "task": {
+          "id": "2dac9fd017ad19056d8b",
+          "display": "Show Without supports once, then return to With supports."
+        },
+        "summary": {
+          "id": "23a248f9cc33d000deb8",
+          "display": "Use the supported version’s updated figures for your AMAS bill: $0.25 material cost and 1 hour 50 minutes. For this practice example, enter 0 staff labor."
+        }
+      },
+      "read-estimates": {
+        "description": {
+          "id": "0b53e0e132a0981cf27c",
+          "display": "The Slicing Result panel reports Cost 0.25 and Total time 1h50m for this Benchy. At AMAS, enter the material cost and time into the Print Cost Calculator to get the amount to pay and prepare your bill. The slicer cost alone is not the final price. Use 0 staff labor for this practice example."
+        },
+        "task": {
+          "id": "f935373f105a43dc9f45",
+          "display": "Click the Cost and Total time summary. Keep $0.25 and 1 hour 50 minutes handy for the calculator."
+        },
+        "summary": {
+          "id": "4dd15fbb1b056b76f89e",
+          "display": "Use the AMAS calculator in a new tab. Both Steve and Candus use its X2D machine option. Filling out the calculator does not charge you or take a payment. No bill needs to be printed for this tutorial. Return here with Benchy’s final cost before continuing."
+        },
+        "quiz": {
+          "id": "bfc384e22d8088bad1cd",
+          "display": "What is the final cost to print this Benchy at AMAS?"
+        }
+      },
+      "print-plate": {
+        "description": {
+          "id": "765a0df069f3d02cb10d",
+          "display": "You selected a physical device, sliced Benchy, inspected its layers, and checked the AMAS cost. The selected printer is shown beside Print plate."
+        },
+        "task": {
+          "id": "236ec122f76464044333",
+          "display": "Click Print plate to start the simulated print."
+        },
+        "summary": {
+          "id": "6fd85adcb3b6c12cc638",
+          "display": "Benchy has finished printing in the simulation. The animation was accelerated; the estimate for this supported job is 1 hour 50 minutes."
+        }
+      },
+      "complete": {
+        "description": {
+          "id": "38f972914a3c0c083fca",
+          "display": "You have practiced the path from device selection through slicing, preview, cost calculation, and printing."
+        },
+        "task": {
+          "id": "affb28a25c924714777a",
+          "display": "Replay the printing animation or return to the course."
+        },
+        "summary": {
+          "id": "6998796df71d4d542528",
+          "display": "Use the same sequence when preparing a print in the lab."
+        }
+      }
+    },
+    "blender/getting-started": {
+      "viewport": {
+        "description": {
+          "id": "dc005d764f1ab30c9b92",
+          "display": "This is Blender’s complete Layout workspace. The large 3D Viewport is surrounded by the Outliner, Properties editor, Timeline, workspaces, menus, and tools. We will isolate one control at a time, keeping the surrounding interface visible."
+        },
+        "task": {
+          "id": "2d801c05dc2ea8e0fb33",
+          "display": "Click inside the 3D Viewport."
+        },
+        "summary": {
+          "id": "5dc364997a0f2dccf0b5",
+          "display": "The viewport shows your scene. The surrounding editors offer different views of the same project."
+        }
+      },
+      "outliner": {
+        "description": {
+          "id": "04fc54d377cdb4022fc2",
+          "display": "The Outliner at upper right lists scene objects. A selected object has an orange outline in the viewport."
+        },
+        "task": {
+          "id": "20b0d0379ef7ff01ce30",
+          "display": "Click Cube in the Outliner."
+        },
+        "summary": {
+          "id": "d00bfd4182a7aa3aa8be",
+          "display": "The Outliner selects the same object you see in the viewport."
+        }
+      },
+      "sidebar": {
+        "description": {
+          "id": "81c259bb431c2ac02132",
+          "display": "The Item Sidebar lives inside the 3D Viewport. It displays location, rotation, scale, and dimensions. Blender shortcuts act on the editor under your pointer."
+        },
+        "task": {
+          "id": "8c1b2c9b929a53f0effa",
+          "display": "Move into the viewport and press N, or choose View → Sidebar."
+        },
+        "summary": {
+          "id": "e57241051e26c3fc78b4",
+          "display": "Dimensions are the size of the object. Location describes its origin, not the bottom surface."
+        }
+      },
+      "sidebar-shortcut": {
+        "description": {
+          "id": "c7545aae15d39f0f8942",
+          "display": "The same starting checkpoint is restored so you can practice the keyboard route. The Item Sidebar lives inside the 3D Viewport. It displays location, rotation, scale, and dimensions. Blender shortcuts act on the editor under your pointer."
+        },
+        "task": {
+          "id": "3b39ab90bcfc247542e5",
+          "display": "Focus the viewport and press `N`, then finish the same action."
+        },
+        "summary": {
+          "id": "e57241051e26c3fc78b4",
+          "display": "Dimensions are the size of the object. Location describes its origin, not the bottom surface."
+        }
+      },
+      "headers": {
+        "description": {
+          "id": "fc005e1c13056744626e",
+          "display": "This step deliberately uses a narrow Blender window. When an editor is too narrow, controls remain in its horizontally scrollable header. They have not disappeared. Hover over that header and use the wheel, trackpad horizontal scroll, or middle-mouse drag. Widening the window also helps."
+        },
+        "task": {
+          "id": "762a496de16d6cf27d5b",
+          "display": "Scroll over the viewport header to reveal controls at its right end, or middle-drag the header to the left."
+        },
+        "summary": {
+          "id": "645c40b0cd83cfccef45",
+          "display": "You scrolled the header without moving the 3D view. In real Blender, this also applies to other crowded editor headers and workspace tabs."
+        }
+      },
+      "units": {
+        "description": {
+          "id": "b9b3fe8bb9b9ceff9327",
+          "display": "The prepared millimeter checkpoint uses Metric, Unit Scale 0.001, and Length Millimeters. These settings are already set here. Expand the actual Units section to inspect them."
+        },
+        "task": {
+          "id": "e0c253c529cc3a059838",
+          "display": "Expand Units in Scene Properties on the right."
+        },
+        "summary": {
+          "id": "3e68e44332ed583f393b",
+          "display": "These settings are already prepared in the checkpoint. Explicit entries such as 100 mm avoid ambiguity. Export scale must still be checked."
+        }
+      },
+      "delete": {
+        "description": {
+          "id": "61cba166bad8d3242a56",
+          "display": "We now load the prepared Start checkpoint: a single mesh named Desk Tray, with millimeter units. Object Mode acts on whole objects. Delete removes the selected object; Ctrl+Z in real Blender can recover an accidental deletion."
+        },
+        "task": {
+          "id": "c0bc96886f567ced99c7",
+          "display": "Focus the viewport and press Delete, or use the practice aid below."
+        },
+        "summary": {
+          "id": "2bc9d6710f3c927c79b7",
+          "display": "The object was removed. Next you will add your own mesh."
+        }
+      },
+      "add": {
+        "description": {
+          "id": "5800b4122e6538960f8d",
+          "display": "The Add menu creates objects. A cube is a useful starting shape for our rectangular organizer tray."
+        },
+        "task": {
+          "id": "554a36318018d8987e0b",
+          "display": "Choose Add → Mesh → Cube, or press `Shift` + `A`, then choose Mesh → Cube."
+        },
+        "summary": {
+          "id": "9024a2b95bb8cc92c3bb",
+          "display": "A new cube appears and becomes selected. In Blender, Shift+A also opens Add."
+        }
+      },
+      "rename": {
+        "description": {
+          "id": "dc5587d64e9b6e9e02d4",
+          "display": "Blender names a new mesh Cube. A useful object name makes it easier to find in the Outliner as a project grows. F2 renames the active object."
+        },
+        "task": {
+          "id": "00086ded80c057cd2573",
+          "display": "Click the viewport. Press F2, type Desk Tray, then Enter."
+        },
+        "summary": {
+          "id": "97a2bc8e804723abde3f",
+          "display": "The Outliner and viewport identify the same object as Desk Tray. Renaming changes its label, not its geometry."
+        }
+      },
+      "orbit": {
+        "description": {
+          "id": "bdfeb4a200371cc4a1ed",
+          "display": "Drag the rotating axes at the top right to orbit the scene. With a mouse, dragging the middle button in the viewport does the same thing. This moves your viewpoint, not the object."
+        },
+        "task": {
+          "id": "9063f726359783936c37",
+          "display": "Drag the colored axes, or drag with the middle mouse button."
+        },
+        "summary": {
+          "id": "55d6e9251b24b32b492f",
+          "display": "The view changed; the cube did not rotate."
+        },
+        "quiz": {
+          "id": "076f08176e1b35821bc6",
+          "display": "Does orbiting change the printed object?"
+        }
+      },
+      "pan": {
+        "description": {
+          "id": "23cbe6fc71851c8616a0",
+          "display": "The hand below the rotating axes is Blender’s drag control for panning. It works with a mouse, pen, or touch. With a mouse you can also hold Shift and drag the middle button."
+        },
+        "task": {
+          "id": "5ab75811850a47aa658e",
+          "display": "Drag the hand icon below the axes to slide the view."
+        },
+        "summary": {
+          "id": "c264957a4cde20e7ec8f",
+          "display": "Panning helps you inspect details without changing the model."
+        }
+      },
+      "zoom": {
+        "description": {
+          "id": "b24f6d6f913bf50ef43e",
+          "display": "Drag Blender’s magnifier below the axes up to zoom in and down to zoom out. A mouse wheel also zooms. The object’s dimensions do not change."
+        },
+        "task": {
+          "id": "2f11763de72b4c31d34e",
+          "display": "Drag the magnifier up, then down. Practice both directions."
+        },
+        "summary": {
+          "id": "02379c857b7f0f1c63b9",
+          "display": "Your model remains the same size in millimeters."
+        }
+      },
+      "top": {
+        "description": {
+          "id": "eca62dbe49a8bade999c",
+          "display": "The navigation gizmo gives you axis-aligned views. Z is the vertical axis; looking along it shows the top."
+        },
+        "task": {
+          "id": "0d0e616f5501f3790ede",
+          "display": "Click Z on the navigation gizmo, or press `Numpad 7`."
+        },
+        "summary": {
+          "id": "2f7021b7b895df955cd9",
+          "display": "You are looking down at the top of the cube."
+        }
+      },
+      "frame": {
+        "description": {
+          "id": "0192c976810c9fd0a627",
+          "display": "Frame Selected centers and fits the selected object. It is useful when you have lost sight of your model. In real Blender, use numpad period or View → Frame Selected."
+        },
+        "task": {
+          "id": "62c8ba420aa27079d0b8",
+          "display": "Choose View → Frame Selected, or press `Numpad .`."
+        },
+        "summary": {
+          "id": "7579387ca5eff617dc6e",
+          "display": "The selected object is centered again."
+        }
+      },
+      "frame-shortcut": {
+        "description": {
+          "id": "fa0d82e3a83622ca256c",
+          "display": "The same starting checkpoint is restored so you can practice the keyboard route. Frame Selected centers and fits the selected object. It is useful when you have lost sight of your model. In real Blender, use numpad period or View → Frame Selected."
+        },
+        "task": {
+          "id": "bfd10a75e9ed0af2b10d",
+          "display": "Focus the viewport and press `Numpad .`, then finish the same action."
+        },
+        "summary": {
+          "id": "7579387ca5eff617dc6e",
+          "display": "The selected object is centered again."
+        }
+      },
+      "save": {
+        "description": {
+          "id": "b6e7f0e6c8842c4bc52a",
+          "display": "Use File → Save As for a named checkpoint. The simulated dialog teaches the workflow; it does not save your real Blender project. In real Blender, Ctrl+S saves the current named file; Ctrl+Shift+S creates a separately named version."
+        },
+        "task": {
+          "id": "b89fe833fcdad1771a56",
+          "display": "Choose File → Save As, or press `Ctrl` + `Shift` + `S`, then confirm the filename."
+        },
+        "summary": {
+          "id": "1f8231117285b882dade",
+          "display": "In real Blender, save desk-tray-01-start.blend. Save again after each meaningful change."
+        }
+      },
+      "save-shortcut": {
+        "description": {
+          "id": "ee79dd16d2510da2e1d8",
+          "display": "The same starting checkpoint is restored so you can practice the keyboard route. Use File → Save As for a named checkpoint. The simulated dialog teaches the workflow; it does not save your real Blender project. In real Blender, Ctrl+S saves the current named file; Ctrl+Shift+S creates a separately named version."
+        },
+        "task": {
+          "id": "f070bfa9090d05a38b33",
+          "display": "Focus the viewport and press `Ctrl` + `Shift` + `S`, then finish the same action."
+        },
+        "summary": {
+          "id": "1f8231117285b882dade",
+          "display": "In real Blender, save desk-tray-01-start.blend. Save again after each meaningful change."
+        }
+      },
+      "complete": {
+        "description": {
+          "id": "350671f13cf0de86a2c8",
+          "display": "You completed this tutorial. Orbit, pan, and zoom the live model here, then download the checkpoint and continue in real Blender. Save a new version before experimenting."
+        },
+        "task": {
+          "id": "3d9e9ddda50c86462532",
+          "display": "Download a checkpoint, or return to the course."
+        },
+        "summary": {
+          "id": "1b16dbea7aad280f2b7f",
+          "display": "Save your real Blender project before leaving."
+        }
+      }
+    },
+    "blender/object-manipulation": {
+      "select": {
+        "description": {
+          "id": "6e79f91353631455903d",
+          "display": "The selected object receives your changes. Click the cube itself, rather than empty space."
+        },
+        "task": {
+          "id": "07a80f8350d15eff96cb",
+          "display": "Click the cube in the viewport."
+        },
+        "summary": {
+          "id": "9d549e927016c1f71bab",
+          "display": "The orange outline identifies the active object."
+        }
+      },
+      "visual-move": {
+        "description": {
+          "id": "5898acbd1bfbc97eab1c",
+          "display": "G starts Move. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube."
+        },
+        "task": {
+          "id": "b4fc2e8c8417468223d5",
+          "display": "Press `G`, move the pointer, then hold `Shift` and move again. Left-click or press `Enter` to confirm."
+        },
+        "summary": {
+          "id": "2e38e9e4d4efdf0583be",
+          "display": "You practiced visual transformation and Shift precision. The next checkpoint restores the cube for a new exercise."
+        }
+      },
+      "visual-rotate": {
+        "description": {
+          "id": "afe6e18308f2f55f6583",
+          "display": "R starts Rotate. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube."
+        },
+        "task": {
+          "id": "56b8dd11b8b244ee4334",
+          "display": "Press `R`, move the pointer, then hold `Shift` and move again. Left-click or press `Enter` to confirm."
+        },
+        "summary": {
+          "id": "2e38e9e4d4efdf0583be",
+          "display": "You practiced visual transformation and Shift precision. The next checkpoint restores the cube for a new exercise."
+        }
+      },
+      "visual-scale": {
+        "description": {
+          "id": "3cbaefb443085135cf4a",
+          "display": "S starts Scale. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube."
+        },
+        "task": {
+          "id": "e5e86c8c6f25b07df017",
+          "display": "Press `S`, move the pointer, then hold `Shift` and move again. Left-click or press `Enter` to confirm."
+        },
+        "summary": {
+          "id": "2e38e9e4d4efdf0583be",
+          "display": "You practiced visual transformation and Shift precision. The next checkpoint restores the cube for a new exercise."
+        }
+      },
+      "move": {
+        "description": {
+          "id": "38d80259dc413c16e10d",
+          "display": "G starts Blender’s Move operation. X constrains it to the X axis. Numeric entry sets the distance, and Enter confirms. Escape or right-click cancels the operation. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm."
+        },
+        "task": {
+          "id": "67080adbc8332275a55a",
+          "display": "Click the viewport. Press `G` → `X` → `1` → `Enter`. Watch the preview before Enter."
+        },
+        "summary": {
+          "id": "d5ed217a3fdfda775936",
+          "display": "The object moved 1 mm along X. The view and object dimensions stayed unchanged."
+        }
+      },
+      "return": {
+        "description": {
+          "id": "7ecee72c40908c91b55a",
+          "display": "An absolute Location value describes where the origin is, not how far to move."
+        },
+        "task": {
+          "id": "23252f012f3f96015f5b",
+          "display": "Double-click Location X to 0 mm, then press Enter."
+        },
+        "summary": {
+          "id": "a5e92b116f8690e398c4",
+          "display": "The object returned to X = 0."
+        }
+      },
+      "rotate": {
+        "description": {
+          "id": "aa96d588a50e0787e6b5",
+          "display": "Z is vertical. Rotation around Z turns the object in the horizontal plane. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm."
+        },
+        "task": {
+          "id": "19171e343a049981ab41",
+          "display": "Click the viewport. Press `R` → `Z` → `4` → `5` → `Enter`. Watch the preview before Enter."
+        },
+        "summary": {
+          "id": "b17a0cb862d90f45694b",
+          "display": "The mesh changed orientation; the view stayed fixed."
+        }
+      },
+      "straighten": {
+        "description": {
+          "id": "a04c8b1b315697a356ae",
+          "display": "We want axis-aligned dimensions while building the tray."
+        },
+        "task": {
+          "id": "14c3f237c832d1209adf",
+          "display": "Double-click Rotation Z to 0, then press Enter."
+        },
+        "summary": {
+          "id": "0cb04a6c6e3b0dc086b0",
+          "display": "The cube is aligned with X and Y again."
+        }
+      },
+      "width": {
+        "description": {
+          "id": "57e6907638d39460455d",
+          "display": "This checkpoint pulls the view back to leave room for a 100 × 70 × 18 mm tray. Dimensions changes the size of the selected object in Object Mode."
+        },
+        "task": {
+          "id": "5712af314477c4536c76",
+          "display": "Double-click Dimensions X to 100 mm, then press Enter."
+        },
+        "summary": {
+          "id": "eea90d16f117b23ae1fe",
+          "display": "X is now 100 mm. The other dimensions have not changed."
+        }
+      },
+      "depth": {
+        "description": {
+          "id": "a464efc5b7b7a573d34b",
+          "display": "Independent dimensions let us turn the cube into a rectangular blank."
+        },
+        "task": {
+          "id": "34ae7dacf45cecd692cd",
+          "display": "Double-click Dimensions Y to 70 mm, then press Enter."
+        },
+        "summary": {
+          "id": "c2413458bf9fd85f49a9",
+          "display": "The footprint is now 100 × 70 mm."
+        }
+      },
+      "height": {
+        "description": {
+          "id": "0bebadf95f1566de7b6f",
+          "display": "The outside height is 18 mm. The cavity will be cut into this volume in Edit Mode."
+        },
+        "task": {
+          "id": "51a4b7cf40b0fbdc1b08",
+          "display": "Double-click Dimensions Z to 18 mm, then press Enter."
+        },
+        "summary": {
+          "id": "3afc360044f89954aee5",
+          "display": "The tray blank now measures 100 × 70 × 18 mm."
+        }
+      },
+      "apply": {
+        "description": {
+          "id": "dcd83540f9310fa60963",
+          "display": "Changing dimensions in Object Mode changes scale. Apply Scale preserves the visible size while making the scale values 1. This gives dimension-sensitive mesh tools a consistent starting point."
+        },
+        "task": {
+          "id": "327a2fdd2edabf364310",
+          "display": "Choose Object → Apply → Scale, or press `Ctrl` + `A` and choose Scale."
+        },
+        "summary": {
+          "id": "105bc36b8705024a5c1d",
+          "display": "The blank keeps its dimensions. Scale is now 1 on every axis."
+        },
+        "quiz": {
+          "id": "870ebc07b255d7b6dc2c",
+          "display": "What should Apply Scale preserve?"
+        }
+      },
+      "apply-shortcut": {
+        "description": {
+          "id": "182e6fd872f001698b0e",
+          "display": "The same starting checkpoint is restored so you can practice the keyboard route. Changing dimensions in Object Mode changes scale. Apply Scale preserves the visible size while making the scale values 1. This gives dimension-sensitive mesh tools a consistent starting point."
+        },
+        "task": {
+          "id": "604f565009b514708aa6",
+          "display": "Focus the viewport and press `Ctrl` + `A` and choose Scale."
+        },
+        "summary": {
+          "id": "105bc36b8705024a5c1d",
+          "display": "The blank keeps its dimensions. Scale is now 1 on every axis."
+        }
+      },
+      "ground": {
+        "description": {
+          "id": "f6f89d0d001dbe431624",
+          "display": "The cube origin is at its center. With an 18 mm height, the center must be at Z = 9 mm for the bottom to sit at Z = 0."
+        },
+        "task": {
+          "id": "995874af97bedebf0240",
+          "display": "Double-click Location Z to 9 mm, then press Enter."
+        },
+        "summary": {
+          "id": "151ee16e78c661286cb8",
+          "display": "The bottom is now at zero. The next checkpoint preserves the blank as actual Blender geometry."
+        }
+      },
+      "save": {
+        "description": {
+          "id": "fbc8099a788061e2369c",
+          "display": "Before editing topology, save a separate checkpoint. You can return to it if an experiment goes wrong. In real Blender, Ctrl+S saves the current named file; Ctrl+Shift+S creates a separately named version."
+        },
+        "task": {
+          "id": "b89fe833fcdad1771a56",
+          "display": "Choose File → Save As, or press `Ctrl` + `Shift` + `S`, then confirm the filename."
+        },
+        "summary": {
+          "id": "fb7cf777eb7ede3451f0",
+          "display": "In real Blender, save desk-tray-02-sized.blend. The Blank download below is available if you need to catch up."
+        }
+      },
+      "complete": {
+        "description": {
+          "id": "350671f13cf0de86a2c8",
+          "display": "You completed this tutorial. Orbit, pan, and zoom the live model here, then download the checkpoint and continue in real Blender. Save a new version before experimenting."
+        },
+        "task": {
+          "id": "3d9e9ddda50c86462532",
+          "display": "Download a checkpoint, or return to the course."
+        },
+        "summary": {
+          "id": "1b16dbea7aad280f2b7f",
+          "display": "Save your real Blender project before leaving."
+        }
+      }
+    },
+    "blender/edit-mode": {
+      "mode": {
+        "description": {
+          "id": "5581f419dd8406974932",
+          "display": "Object Mode transforms the whole object. Edit Mode changes its vertices, edges, and faces. The Layout workspace can contain either mode."
+        },
+        "task": {
+          "id": "fbef04f220e37dd3a3d9",
+          "display": "Choose Edit Mode in the mode selector, or press `Tab` in the viewport."
+        },
+        "summary": {
+          "id": "294e298a1bec70dea8aa",
+          "display": "You are now working on the mesh inside the object."
+        },
+        "quiz": {
+          "id": "6d5f60bd2c6847512da1",
+          "display": "Is Edit Mode a separate workspace?"
+        }
+      },
+      "mode-shortcut": {
+        "description": {
+          "id": "5884986218a3272baaec",
+          "display": "The same starting checkpoint is restored so you can practice the keyboard route. Object Mode transforms the whole object. Edit Mode changes its vertices, edges, and faces. The Layout workspace can contain either mode."
+        },
+        "task": {
+          "id": "66b04d07bcc2eff377c1",
+          "display": "Focus the viewport and press `Tab`, then finish the same action."
+        },
+        "summary": {
+          "id": "294e298a1bec70dea8aa",
+          "display": "You are now working on the mesh inside the object."
+        }
+      },
+      "vertices": {
+        "description": {
+          "id": "cfd2fce1bfd7ed3c4481",
+          "display": "Vertices are the corner points of a mesh. Moving one changes the connected edges and faces."
+        },
+        "task": {
+          "id": "85069eb8fa7c5a1d20a9",
+          "display": "Click Vertex Select in the viewport header. Or press `1` on the top row of your keyboard."
+        },
+        "summary": {
+          "id": "039d9fd0059f0faaf51b",
+          "display": "The corner points are visible. In real Blender, top-row 1 chooses Vertex Select in Edit Mode."
+        }
+      },
+      "edges": {
+        "description": {
+          "id": "543cb3bd62f7d838e09b",
+          "display": "Edges connect pairs of vertices. Beveling selected edges adds a narrow transition between surfaces."
+        },
+        "task": {
+          "id": "95f1954aad595e30781c",
+          "display": "Click Edge Select. Or press `2` on the top row of your keyboard."
+        },
+        "summary": {
+          "id": "10b3a7e7f5b6edfb9085",
+          "display": "Edges are the lines of the mesh. Top-row 2 chooses Edge Select."
+        }
+      },
+      "faces": {
+        "description": {
+          "id": "18402ab37c73665828be",
+          "display": "Faces are the surfaces bounded by edges. Our tray begins by editing its top face."
+        },
+        "task": {
+          "id": "ba754e5d024adc789fda",
+          "display": "Click Face Select. Or press `3` on the top row of your keyboard."
+        },
+        "summary": {
+          "id": "c9b7371dea78840ae210",
+          "display": "Top-row 3 chooses Face Select. Numpad keys control views instead."
+        }
+      },
+      "top-face": {
+        "description": {
+          "id": "63671715ab9803b513d9",
+          "display": "Select only the broad top surface. The inset will operate on this selection. The orange fill shows the chosen face."
+        },
+        "task": {
+          "id": "6166ff94bbcda2707c22",
+          "display": "Click the broad top face of the blank."
+        },
+        "summary": {
+          "id": "680c89911f4c432d8c18",
+          "display": "The selected top face is ready for the wall inset."
+        }
+      },
+      "inset": {
+        "description": {
+          "id": "9e256b8efa28027b3f55",
+          "display": "Inset Faces creates a smaller face surrounded by a rim. The rim becomes our wall footprint. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm."
+        },
+        "task": {
+          "id": "224baaa92c72d5eadb38",
+          "display": "Click the viewport. Press `I` → `3` → `Enter`. Watch the preview before Enter."
+        },
+        "summary": {
+          "id": "2e4af3c17ec7578190a7",
+          "display": "The inner face measures 94 × 64 mm. The surrounding rim is 3 mm wide."
+        }
+      },
+      "cancel-extrude": {
+        "description": {
+          "id": "66a3714184a5ec64b4a5",
+          "display": "Extrusion creates geometry and then moves it. Escape cancels the movement, leaving the new geometry at zero distance. Ctrl+Z removes that extrusion. This is different from simply cancelling Move or Rotate."
+        },
+        "task": {
+          "id": "4442b5ee901e636d417b",
+          "display": "Click the viewport. Press E, then Escape, then Ctrl+Z."
+        },
+        "summary": {
+          "id": "83ba08778264beaa5baf",
+          "display": "The extrusion geometry was undone. You are back at the inset checkpoint, ready to make the cavity."
+        }
+      },
+      "extrude": {
+        "description": {
+          "id": "0977132d51885a6ed1bc",
+          "display": "Extrude the selected inner face downward by 15 mm. Starting from a height of 18 mm leaves a 3 mm floor. Enter a negative value to move down Z. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm."
+        },
+        "task": {
+          "id": "af6fd8942bd76943fd23",
+          "display": "Click the viewport. Press `E` → `-` → `1` → `5` → `Enter`. Watch the preview before Enter."
+        },
+        "summary": {
+          "id": "b16e584f3958ffe2dad5",
+          "display": "The tray has an open cavity, 3 mm walls, and a 3 mm floor."
+        },
+        "quiz": {
+          "id": "5302d91f6afe5edb0887",
+          "display": "How thick is the floor?"
+        }
+      },
+      "save-cavity": {
+        "description": {
+          "id": "4513898731ccefa53edb",
+          "display": "This is a useful recovery point. Save a version before adding bevel geometry. In real Blender, Ctrl+S saves the current named file; Ctrl+Shift+S creates a separately named version."
+        },
+        "task": {
+          "id": "b89fe833fcdad1771a56",
+          "display": "Choose File → Save As, or press `Ctrl` + `Shift` + `S`, then confirm the filename."
+        },
+        "summary": {
+          "id": "6774f7f74c55c75e5ac1",
+          "display": "In real Blender, save desk-tray-03-cavity.blend, then experiment on a copy."
+        }
+      },
+      "bevel": {
+        "description": {
+          "id": "ac8a4505ae6616429cbf",
+          "display": "This checkpoint prepares the four outer top rim edges. In real Blender, use Edge Select and Shift-click those four edges. A 0.6 mm bevel with three segments softens the upper outside rim. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm."
+        },
+        "task": {
+          "id": "602ce906959a42d50ada",
+          "display": "Click the viewport. Press `Ctrl` + `B`, type `0` `.` `6`, scroll up twice for 3 segments, then `Enter`."
+        },
+        "summary": {
+          "id": "6bb0db6bee1ded3ab8d2",
+          "display": "The outside rim now has real rounded geometry. Smooth shading by itself would not change the printed shape."
+        }
+      },
+      "orientation": {
+        "description": {
+          "id": "f71693964c8639d0c9e9",
+          "display": "This inspection checkpoint starts with the finished mesh deselected. Face Orientation reveals reversed faces. Find the option in Viewport Overlays, under Geometry, then inspect all sides in real Blender."
+        },
+        "task": {
+          "id": "eb0235a57153c7b7501b",
+          "display": "Open the Viewport Overlays arrow, enable Face Orientation under Geometry, then click the viewport to close the popover."
+        },
+        "summary": {
+          "id": "cfe643e9c71f9490ef6f",
+          "display": "Our generated mesh has no boundary or non-manifold edges. That does not replace checking dimensions, thickness, and sliced layers."
+        }
+      },
+      "object": {
+        "description": {
+          "id": "b76707d6ff3f4726d5bc",
+          "display": "Return to Object Mode before exporting the selected tray. Keep the editable Blender project as your source."
+        },
+        "task": {
+          "id": "cd00659d09e6fbdb7711",
+          "display": "Choose Object Mode in the mode selector, or press `Tab` in the viewport."
+        },
+        "summary": {
+          "id": "64b429083bac4e660667",
+          "display": "The entire tray is selected for saving and export."
+        }
+      },
+      "save-final": {
+        "description": {
+          "id": "09a401ffb8bd6b01a342",
+          "display": "STL stores a mesh, not the complete Blender project. Save your .blend first so you can revise the design later. In real Blender, Ctrl+S saves the current named file; Ctrl+Shift+S creates a separately named version."
+        },
+        "task": {
+          "id": "b89fe833fcdad1771a56",
+          "display": "Choose File → Save As, or press `Ctrl` + `Shift` + `S`, then confirm the filename."
+        },
+        "summary": {
+          "id": "9116414d90fedf2555ae",
+          "display": "In real Blender, save desk-tray-04-finished.blend."
+        }
+      },
+      "export": {
+        "description": {
+          "id": "d0b047b22c191176a48f",
+          "display": "Our checkpoint stores coordinates in millimeters. Export selected objects with Scale 1 and Scene Unit off. The generated STL has been reimported and checked at 100 × 70 × 18 mm."
+        },
+        "task": {
+          "id": "86b2a923babaed3a547d",
+          "display": "Choose File → Export → STL (.stl), then Export STL."
+        },
+        "summary": {
+          "id": "f0bc15d66dbce2846582",
+          "display": "Download the reference STL from the course page. In Bambu Studio, verify 100 × 70 × 18 mm, bottom down, cavity up. Slice and inspect the floor and walls before printing. This reference has not yet been physically print-tested."
+        },
+        "quiz": {
+          "id": "9431e7264118b144e677",
+          "display": "What must you check after importing into the slicer?"
+        }
+      },
+      "complete": {
+        "description": {
+          "id": "350671f13cf0de86a2c8",
+          "display": "You completed this tutorial. Orbit, pan, and zoom the live model here, then download the checkpoint and continue in real Blender. Save a new version before experimenting."
+        },
+        "task": {
+          "id": "3d9e9ddda50c86462532",
+          "display": "Download a checkpoint, or return to the course."
+        },
+        "summary": {
+          "id": "1b16dbea7aad280f2b7f",
+          "display": "Save your real Blender project before leaving."
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import {loadProgress,saveProgress,retryStepProgress,completedThroughStep} from './progress.js?v=usability-2';
+import {createNarration} from './narration.js?v=narration-1';
 import {createSound} from './sound.js';
 import {createGuidance} from './guidance.js';
 import {createCountdown,completionPause} from './countdown.js?v=completion-pause-2';
@@ -7,7 +8,7 @@ import {captureReturnToCourse} from './return-to-course.js';
 export async function startTutorial({lesson,createSimulator,root}){
  const $=selector=>root.querySelector(selector);
  const returnToCourse=captureReturnToCourse(lesson);
- let adapter,sound,guidance,frame=0,lastMistake=-Infinity,index=0,completed=new Set(),practiced=new Set(),ready=false;
+ let adapter,sound,guidance,narration,frame=0,lastMistake=-Infinity,index=0,completed=new Set(),practiced=new Set(),ready=false;
  const listeners=new AbortController(),on=(el,event,fn)=>el.addEventListener(event,fn,{signal:listeners.signal});
  const step=()=>lesson.steps[index],isCompleted=()=>completed.has(step().id);
  const actionDone=()=>isCompleted()||practiced.has(step().id);
@@ -43,7 +44,7 @@ export async function startTutorial({lesson,createSimulator,root}){
    $('#next').textContent=finalTask?'Back to course':'Continue →';
    $('#next').disabled=!isCompleted();$('#restart-from-completion').hidden=!finalTask||!isCompleted();
    $('#previous-step').disabled=index===0;$('#keep-interacting').hidden=!finalTask||!isCompleted();
-   renderQuiz();adapter.setPaused(true);if(!$('#completion-dialog').open)$('#completion-dialog').showModal();
+   const opening=!$('#completion-dialog').open;renderQuiz();adapter.setPaused(true);if(opening){$('#completion-dialog').showModal();narration?.openSummary();}
    if(step().quiz?.type==='external-cost'&&!isCompleted()){$('#completion-title').tabIndex=-1;$('#completion-title').focus({preventScroll:true});$('#completion-dialog').scrollTop=0;}else (isCompleted()?$('#next'):$('#quiz button'))?.focus({preventScroll:true});
  }
  function renderQuiz(){
@@ -105,19 +106,19 @@ export async function startTutorial({lesson,createSimulator,root}){
    for(const [action,label] of s.tools||[]){const b=document.createElement('button');b.textContent=label;b.addEventListener('click',()=>adapter.perform(action));$('#practice-buttons').append(b);}
    if(s.keyboard){const p=document.createElement('p');p.className='small-note';p.textContent=s.keyboard;$('#practice-buttons').append(p);}
    $('#input-controls').hidden=!s.controls;$('#input-controls').replaceChildren();for(const [device,instruction] of s.controls||[]){const label=document.createElement('dt'),description=document.createElement('dd');label.textContent=device;description.textContent=instruction;$('#input-controls').append(label,description);}
-   adapter.setStep(s,context);adapter.setPaused(false);updateProgress();updateGuidance();
+   adapter.setStep(s,context);adapter.setPaused(false);narration?.setStep(s,{summary:actionDone()&&!s.terminal});updateProgress();updateGuidance();
    if(s.terminal)feedback(s.done);
    requestAnimationFrame(()=>{updateGuidance();if(actionDone())showCompletion();});
  }
- function go(next){cancelPause();$('#completion-dialog').close();index=Math.max(0,Math.min(lesson.steps.length-1,next,unlocked()));render();persist();$('#lesson-title').focus({preventScroll:true});}
+ function go(next){narration?.stop();cancelPause();$('#completion-dialog').close();index=Math.max(0,Math.min(lesson.steps.length-1,next,unlocked()));render();persist();$('#lesson-title').focus({preventScroll:true});}
  function retryStep(){const next=retryStepProgress(lesson,{completed:[...completed],practiced:[...practiced]},step().id);completed=new Set(next.completed);practiced=new Set(next.practiced);lastMistake=-Infinity;go(index);}
  function restart(){completed.clear();practiced.clear();adapter.reset();go(0);}
  try{
-   const response=await fetch(new URL('./shell.html?v=completion-pause-2',import.meta.url));if(!response.ok)throw new Error('Lesson shell unavailable');root.innerHTML=await response.text();
+   const response=await fetch(new URL('./shell.html?v=narration-1',import.meta.url));if(!response.ok)throw new Error('Lesson shell unavailable');root.innerHTML=await response.text();
    document.body.classList.toggle('embed-mode',new URLSearchParams(location.search).get('embed')==='1');
    $('#catalog-link').href=new URL('../../',import.meta.url);$('#credits-link').href=new URL('../../credits.html',import.meta.url);
    for(const [id,value] of [['course-title',lesson.title],['course-subtitle',lesson.subtitle],['course-eyebrow',lesson.eyebrow],['simulator-label',lesson.simulatorLabel],['simulation-note',lesson.simulationNote||'Practice simulation']])$('#'+id).textContent=value;
-   sound=createSound($('#sound-toggle'));guidance=createGuidance(root);
+   sound=createSound($('#sound-toggle'));guidance=createGuidance(root);narration=createNarration({root,lesson,storage});
    $('#restart').disabled=true;$('#back').disabled=true;
    $('#lesson-title').textContent='Loading your practice workspace…';
    adapter=await createSimulator({container:$('#simulator-mount'),lesson,api:{complete:finish,retry,feedback,partial,guideChanged:()=>requestAnimationFrame(updateGuidance)}});
@@ -125,15 +126,15 @@ export async function startTutorial({lesson,createSimulator,root}){
    on($('#next'),'click',()=>{if(isCompleted()){if(lesson.steps[index+1]?.terminal)returnToCourse();else go(index+1);}});on($('#back'),'click',()=>go(index-1));
    on($('#back-to-course'),'click',returnToCourse);
    on($('#review-step'),'click',showCompletion);on($('#previous-step'),'click',()=>go(index-1));on($('#retry-step'),'click',retryStep);on($('#keep-interacting'),'click',()=>{if(lesson.steps[index+1]?.terminal&&isCompleted())go(index+1);});
-   on($('#completion-dialog'),'close',()=>adapter.setPaused($('#completion-dialog').open));
+   on($('#completion-dialog'),'close',()=>{adapter.setPaused($('#completion-dialog').open);if(!$('#completion-dialog').open)narration?.closeSummary();});
    on($('#completion-dialog'),'cancel',event=>{if(lesson.steps[index+1]?.terminal&&isCompleted()){event.preventDefault();go(index+1);}});
    on($('#restart'),'click',restart);on($('#restart-from-completion'),'click',restart);
    render();
  }catch(error){
-   console.error(error);adapter?.dispose();
+   console.error(error);narration?.dispose();adapter?.dispose();
    const panel=document.createElement('div');panel.className='load-error';panel.setAttribute('role','alert');
    const p=document.createElement('p');p.textContent='The practice workspace could not load. Check your connection and reload, or try another browser. Your saved progress is safe.';
    const b=document.createElement('button');b.className='primary';b.textContent='Retry loading';b.onclick=()=>location.reload();panel.append(p,b);root.replaceChildren(panel);
  }
- return {dispose(){cancelAnimationFrame(frame);listeners.abort();guidance?.dispose();adapter?.dispose();sound?.dispose();root.replaceChildren();}};
+ return {dispose(){cancelAnimationFrame(frame);listeners.abort();narration?.dispose();guidance?.dispose();adapter?.dispose();sound?.dispose();root.replaceChildren();}};
 }
