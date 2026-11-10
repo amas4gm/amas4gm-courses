@@ -1,6 +1,7 @@
 import {meetsGoal} from './state.js';
 import {statePair,fieldRects,boundedFrame} from './native-state.js';
 import {startModal,modalKey,modalReady,modalFrame} from './native-modal.js';
+import {createLiveViewport} from './live-viewport.js';
 
 // Each frame contains Blender's complete, unmodified native interface. Only
 // the current checkpoint's controls receive a transparent interaction layer.
@@ -12,11 +13,18 @@ export async function createBlenderSimulator({container,lesson,api}) {
  const $=s=>container.querySelector(s),host=$('.native-host'),stage=$('.native-stage'),frame=$('.native-frame'),spots=$('.native-hotspots'),menus=$('.native-menus');
  const abort=new AbortController(),on=(el,event,fn,extra={})=>el.addEventListener(event,fn,{signal:abort.signal,...extra});
  let step,pair,paused=false,finished=false,current='',scale=1,guide=null,drag=null,navIndex=8,operator=null,dialog=false,popup=false,loadToken=0;
- let zoomDirections=new Set(),extrusionUndo=false,orientationEnabled=false;const loaded=new Map();
+ let zoomDirections=new Set(),extrusionUndo=false,orientationEnabled=false,travel=0;const loaded=new Map();
+ const live=await createLiveViewport({stage,frame,manifest,url,onView(kind,dx,dy){
+  if(paused||finished||step?.simulation.action!==kind)return;
+  if(kind==='zoom'){zoomDirections.add(Math.sign(dx));if(zoomDirections.size===2)practiceComplete();}
+  else {travel+=Math.hypot(dx,dy);if(travel>60)practiceComplete();}
+ },onTop(){if(!paused&&!finished&&step.simulation.action==='top')finish();},onRender:()=>api.guideChanged()});
  function preload(name){if(!manifest.states[name])throw Error(`Missing captured UI state ${name}`);if(!loaded.has(name)){const im=new Image();im.src=url(`assets/ui/${manifest.states[name].file}`);loaded.set(name,im.decode().then(()=>im));}return loaded.get(name);}
- async function show(name){const token=++loadToken,im=await preload(name);if(token!==loadToken)return false;current=name;frame.src=im.src;stage.dataset.state=name;const r=manifest.states[name];stage.style.width=`${r.width}px`;stage.style.height=`${r.height}px`;resize();return true;}
- function resize(){if(!current)return;const r=manifest.states[current];scale=host.clientWidth/2400;stage.style.left=`${(host.clientWidth-r.width*scale)/2}px`;stage.style.transform=`scale(${scale})`;host.style.height=`${r.height*scale}px`;api.guideChanged();}
- const observer=new ResizeObserver(resize);observer.observe(host);
+ async function show(name,{resetCamera=false}={}){const token=++loadToken,im=await preload(name);if(token!==loadToken)return false;current=name;frame.src=im.src;stage.dataset.state=name;const r=manifest.states[name];stage.style.width=`${r.width}px`;stage.style.height=`${r.height}px`;live.setFrame(name,{resetCamera});resize();return true;}
+ function resize(){if(!current)return;const r=manifest.states[current];scale=host.clientWidth/2400;
+  if(document.body.classList.contains('native-expanded')){const instructions=document.querySelector('.lesson-panel');const available=window.innerHeight-(instructions?.getBoundingClientRect().height||0)-$('.native-controls').offsetHeight-4;scale=Math.min(scale,Math.max(180,available)/r.height);}
+  stage.style.left=`${(host.clientWidth-r.width*scale)/2}px`;stage.style.transform=`scale(${scale})`;host.style.height=`${r.height*scale}px`;live.resize();api.guideChanged();}
+ const observer=new ResizeObserver(resize);observer.observe(host);if(document.querySelector('.lesson-panel'))observer.observe(document.querySelector('.lesson-panel'));on(window,'resize',resize);
  const unavailable=()=>api.retry('That control is outside this step. Your checkpoint is unchanged.',host);
  function rect(el,[x,y,w,h]){Object.assign(el.style,{left:`${x}px`,top:`${y}px`,width:`${w}px`,height:`${h}px`});return el;}
  function hotspot(label,box,fn,{target=false,dbl=false}={}){
@@ -26,14 +34,14 @@ export async function createBlenderSimulator({container,lesson,api}) {
   spots.append(b);if(target)guide=b;return b;
  }
  function clear(){menus.replaceChildren();operator=null;dialog=false;popup=false;orientationEnabled=false;}
- async function finish(name=pair[1]){if(finished||paused)return;finished=true;clear();spots.replaceChildren();guide=null;if(await show(name))api.complete();}
+ async function finish(name=pair[1]){if(finished||paused)return;finished=true;clear();spots.replaceChildren();guide=null;if(await show(name,{resetCamera:step.simulation.action==='frame'}))api.complete();}
  function cancel(){
   if(orientationEnabled)return finish();
   if(operator?.kind==='extrude'){clear();extrusionUndo=true;show('extrude-cancelled');api.feedback('Escape cancelled the movement, but the extrusion remains. Press Ctrl+Z to remove the new geometry.');stage.focus({preventScroll:true});return;}
   clear();show(pair[0]);buildControls();stage.focus({preventScroll:true});api.feedback('Cancelled. The starting checkpoint is restored.');
  }
  for(const name of ['cube','blank','inset','cavity','finished']){const a=document.createElement('a');a.href=url(`assets/${name}.blend`);a.download=`desk-tray-${name}.blend`;a.textContent=name==='cube'?'Start':name[0].toUpperCase()+name.slice(1);$('.downloads').append(a);}
- on($('.expand-native'),'click',()=>{const expanded=document.body.classList.toggle('native-expanded');$('.expand-native').textContent=expanded?'Return to lesson layout':'Expand workspace';container.scrollIntoView({block:'start'});resize();});
+ on($('.expand-native'),'click',()=>{const expanded=document.body.classList.toggle('native-expanded');$('.expand-native').textContent=expanded?'Return to lesson layout':'Expand workspace';(document.querySelector('.learning-layout')||container).scrollIntoView({block:'start'});resize();});
  function selectedMenuRow(row){const a=step.simulation.action;
   if(a==='add-cube'&&row.operator==='mesh.primitive_cube_add')return ()=>finish();
   if(a==='frame'&&row.operator==='view3d.view_selected')return ()=>finish();
@@ -95,10 +103,10 @@ export async function createBlenderSimulator({container,lesson,api}) {
   if(['viewport','orbit','pan','zoom','delete','rename','move','rotate','inset','extrude','extrude-cancel','bevel','free'].includes(a))hotspot('3D Viewport',[88,115,1450,1200],()=>{stage.focus({preventScroll:true});if(a==='viewport')finish();else if(operator)confirmOperation();},{target:true});
   if(a==='outliner')hotspot('Cube in Outliner',[2040,162,340,27],()=>finish(),{target:true});
   if(a==='units')hotspot('Units in Scene Properties',[2030,615,355,35],()=>finish(),{target:true});
-  if(a==='select-object')hotspot('Cube mesh',[782,485,410,445],()=>finish(),{target:true});
-  if(a==='select-top'){const b=hotspot('Top face',[550,446,913,535],()=>finish(),{target:true});b.style.clipPath='polygon(0 28.5%,41% 0,100% 45%,59.8% 100%)';}
+  if(a==='select-object'){hotspot('Cube mesh',[88,115,1450,1200],e=>live.hit(e.clientX,e.clientY)?finish():api.retry('Click the cube itself to select it.',host));guide=live.selectionGuide();}
+  if(a==='select-top'){hotspot('Top face',[88,115,1450,1200],e=>live.hit(e.clientX,e.clientY,{topOnly:true})?finish():api.retry('Select the broad top face, not a side or empty space.',host));guide=live.selectionGuide(true);}
   for(const [i,key] of ['vertex','edge','face'].entries())if(edit)hotspot(`${key[0].toUpperCase()+key.slice(1)} Select`,[219+i*29,39,28,38],()=>a===key?finish():unavailable(),{target:a===key});
-  if(a==='top')hotspot('Z axis — Top view',[1875,129,36,36],()=>finish(),{target:true});
+  if(a==='top')guide=live.topButton;
   if(a==='field')hotspot(fieldLabel(step.simulation.field),fieldRects[step.simulation.field],()=>editField(step.simulation.field),{target:true,dbl:true});
   if(a==='orientation')hotspot('Viewport Overlays popover',[1698,39,32,38],()=>orientationPopover(false),{target:true});
  }
@@ -110,10 +118,7 @@ export async function createBlenderSimulator({container,lesson,api}) {
   api.guideChanged();
  }
  function practiceComplete(){finished=true;guide=null;api.complete();}
- async function navigate(kind,delta){if(paused||finished)return;navIndex=Math.max(0,Math.min(kind==='orbit'?48:16,navIndex+delta));if(!await show(boundedFrame(kind,navIndex)))return;
-  if(kind==='zoom'){zoomDirections.add(Math.sign(delta));if(zoomDirections.size===2)practiceComplete();}
-  else if((kind==='orbit'&&Math.abs(navIndex-24)>=6)||(kind==='pan'&&Math.abs(navIndex-8)>=3))practiceComplete();
- }
+ function navigate(kind,dx,dy=0){if(paused||dialog||popup||operator||extrusionUndo)return;live.navigate(kind,dx,dy);}
  async function scrollHeader(delta){navIndex=Math.min(16,Math.max(0,navIndex+delta));if(await show(boundedFrame('header-narrow',navIndex))&&navIndex>=8)practiceComplete();}
  on(stage,'keydown',e=>{
   if(paused||finished)return;const a=step.simulation.action,k=e.key.toLowerCase();
@@ -129,15 +134,17 @@ export async function createBlenderSimulator({container,lesson,api}) {
   else if(['vertex','edge','face'].includes(a)&&e.code===`Digit${['vertex','edge','face'].indexOf(a)+1}`){e.preventDefault();finish();}
   else if((a==='move'&&k==='g')||(a==='rotate'&&k==='r')||(a==='inset'&&k==='i')||(['extrude','extrude-cancel'].includes(a)&&k==='e')||(a==='bevel'&&k==='b'&&e.ctrlKey)){e.preventDefault();beginOperation(a==='extrude-cancel'?'extrude':a);}
  });
- on(stage,'pointerdown',e=>{if(paused||finished||dialog)return;if(operator&&e.button===2){e.preventDefault();cancel();return;}const a=step.simulation.action;if(e.button!==1)return;e.preventDefault();const y=(e.clientY-stage.getBoundingClientRect().top)/scale;if((a==='header-scroll'&&y>=39&&y<=77)||(a==='orbit'&&!e.shiftKey)||(a==='pan'&&e.shiftKey)){drag={x:e.clientX,action:a};stage.setPointerCapture(e.pointerId);stage.focus({preventScroll:true});}});
- on(stage,'pointermove',e=>{if(!drag||finished)return;const dx=(e.clientX-drag.x)/scale;if(Math.abs(dx)>12){drag.x=e.clientX;if(drag.action==='header-scroll')scrollHeader(dx<0?1:-1);else navigate(drag.action,Math.sign(dx));}});
- on(stage,'pointerup',()=>{drag=null;});on(stage,'pointercancel',()=>{drag=null;});
- on(stage,'wheel',e=>{if(paused||finished)return;const a=step.simulation.action;if(operator?.kind==='bevel'){e.preventDefault();if(operator.raw!=='0.6')return api.feedback('Enter 0.6 first, then adjust the bevel segments.');operator.segments=Math.max(1,Math.min(3,operator.segments+(e.deltaY<0?1:-1)));updateOperation();}else if(a==='zoom'){e.preventDefault();navigate('zoom',Math.sign(e.deltaY));}else if(a==='header-scroll'){const y=(e.clientY-stage.getBoundingClientRect().top)/scale;if(y>=39&&y<=77){e.preventDefault();scrollHeader(Math.sign(e.deltaX||e.deltaY));}}},{passive:false});
+ const point=e=>{const b=stage.getBoundingClientRect();return [(e.clientX-b.left)/scale,(e.clientY-b.top)/scale];};
+ on(stage,'pointerdown',e=>{if(paused||dialog)return;if(operator&&e.button===2){e.preventDefault();cancel();return;}if(e.button!==1||popup||operator||extrusionUndo)return;const [x,y]=point(e),a=step.simulation.action;
+  if((a==='header-scroll'&&!finished&&y>=39&&y<=77)||live.isViewport(x,y)){e.preventDefault();live.beginNavigation();drag={x:e.clientX,y:e.clientY,action:a==='header-scroll'&&y<=77?'header-scroll':e.shiftKey?'pan':'orbit'};stage.setPointerCapture(e.pointerId);stage.focus({preventScroll:true});}});
+ on(stage,'pointermove',e=>{if(!drag)return;const dx=(e.clientX-drag.x)/scale,dy=(e.clientY-drag.y)/scale;if(drag.action==='header-scroll'){if(Math.abs(dx)>12){drag.x=e.clientX;scrollHeader(dx<0?1:-1);}}else{drag.x=e.clientX;drag.y=e.clientY;navigate(drag.action,dx,dy);}});
+ on(stage,'pointerup',()=>{drag=null;live.endNavigation();});on(stage,'pointercancel',()=>{drag=null;live.endNavigation();});
+ on(stage,'wheel',e=>{if(paused)return;const a=step.simulation.action,[x,y]=point(e);if(operator?.kind==='bevel'){e.preventDefault();if(operator.raw!=='0.6')return api.feedback('Enter 0.6 first, then adjust the bevel segments.');operator.segments=Math.max(1,Math.min(3,operator.segments+(e.deltaY<0?1:-1)));updateOperation();}else if(a==='header-scroll'&&!finished&&y>=39&&y<=77){e.preventDefault();scrollHeader(Math.sign(e.deltaX||e.deltaY));}else if(live.isViewport(x,y)&&!popup&&!operator){e.preventDefault();navigate('zoom',e.deltaY);}},{passive:false});
  on(stage,'contextmenu',e=>{e.preventDefault();if(operator)cancel();});on(stage,'click',e=>{if(e.target===stage||e.target===frame){if(popup)cancel();else if(!paused&&!finished)unavailable();}});
  return {
-  async setStep(s,c){step=s;pair=statePair(lesson.id.replace(/-qa$/,''),s.id);finished=c.isCompleted();paused=false;drag=null;extrusionUndo=false;zoomDirections=new Set();navIndex=s.simulation.action==='orbit'?24:s.simulation.action==='header-scroll'?0:8;clear();$('.follow-copy').textContent=s.follow||lesson.follow;if(!await show(pair[finished?1:0]))return;buildControls();api.guideChanged();preload(pair[1]);const action=s.simulation.action;if(['orbit','pan','zoom','header-scroll'].includes(action)){const kind=action==='header-scroll'?'header-narrow':action;for(let i=0;i<=(kind==='orbit'?48:16);i++)preload(boundedFrame(kind,i));}const kind=action==='extrude-cancel'?'extrude':action;for(const name of Object.keys(manifest.states))if(name.startsWith(kind+'-modal-'))preload(name);},
+  async setStep(s,c){step=s;pair=statePair(lesson.id.replace(/-qa$/,''),s.id);finished=c.isCompleted();paused=false;drag=null;extrusionUndo=false;travel=0;zoomDirections=new Set();navIndex=0;clear();$('.follow-copy').textContent=s.follow||lesson.follow;if(!await show(pair[finished?1:0],{resetCamera:true}))return;buildControls();api.guideChanged();preload(pair[1]);const action=s.simulation.action;if(action==='header-scroll')for(let i=0;i<=16;i++)preload(boundedFrame('header-narrow',i));const kind=action==='extrude-cancel'?'extrude':action;for(const name of Object.keys(manifest.states))if(name.startsWith(kind+'-modal-'))preload(name);},
   refreshState(){},setPaused(v){paused=v;},setGuidance(){},getGuide(){return guide?{target:guide,parent:host,scale:1}:null;},getRegion(){return host;},
-  perform(action){if(paused||finished)return;const a=step.simulation.action;if(action==='delete'&&a==='delete')finish();else if(action==='orbit-aid'&&a==='orbit')navigate('orbit',8);else if(action==='pan-aid'&&a==='pan')navigate('pan',4);else if(action==='zoom-in'&&a==='zoom')navigate('zoom',-2);else if(action==='zoom-out'&&a==='zoom')navigate('zoom',2);},
-  reset(){cancel();},dispose(){abort.abort();observer.disconnect();document.body.classList.remove('blender-course','native-expanded');container.replaceChildren();}
+  perform(action){if(paused)return;const a=step.simulation.action;if(action==='delete'&&a==='delete'&&!finished)finish();else if(action==='orbit-aid'&&a==='orbit')navigate('orbit',70,0);else if(action==='pan-aid'&&a==='pan')navigate('pan',70,0);else if(action==='zoom-in'&&a==='zoom')navigate('zoom',-120);else if(action==='zoom-out'&&a==='zoom')navigate('zoom',120);},
+  reset(){cancel();},dispose(){abort.abort();observer.disconnect();live.dispose();document.body.classList.remove('blender-course','native-expanded');container.replaceChildren();}
  };
 }

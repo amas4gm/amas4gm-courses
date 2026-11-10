@@ -131,6 +131,10 @@ def tick():
         if request.exists():
             command=json.loads(request.read_text());request.unlink()
             if command.get('scene'):set_scene(**command['scene'])
+            if command.get('exportView'):
+                area=next(a for a in bpy.context.window.screen.areas if a.type=='VIEW_3D');sp=area.spaces.active;rv=sp.region_3d
+                data={'layout':layout(),'viewMatrix':[list(row) for row in rv.view_matrix],'projectionMatrix':[list(row) for row in rv.window_matrix],'rotation':list(rv.view_rotation),'distance':rv.view_distance,'target':list(rv.view_location),'lens':sp.lens,'rotationMethod':bpy.context.preferences.inputs.view_rotate_method,'rotationSensitivity':bpy.context.preferences.inputs.view_rotate_sensitivity_turntable,'zoomMethod':bpy.context.preferences.inputs.view_zoom_method,'solidLights':[{'direction':list(l.direction),'diffuse':list(l.diffuse_color),'specular':list(l.specular_color),'smooth':l.smooth,'enabled':l.use} for l in bpy.context.preferences.system.solid_lights]}
+                (OUT/'live-view-reference.json').write_text(json.dumps(data,indent=2))
             if command.get('operator'):
                 module,op=command['operator'].split('.')
                 getattr(getattr(bpy.ops,module),op)('INVOKE_DEFAULT',**command.get('properties',{}))

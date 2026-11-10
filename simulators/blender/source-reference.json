@@ -757,6 +757,24 @@
       "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/source/blender/editors/space_topbar/space_topbar.cc",
       "sha256": "00c2838acfaf1a18b807656099489d7be887b16330e5433b4dd87df7264e75e5",
       "modified": false
+    },
+    {
+      "file": "native-assets/source/view3d_navigate.cc",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/source/blender/editors/space_view3d/view3d_navigate.cc",
+      "sha256": "04458cfdb7e97d972d81efe88c964b84e09d3ff0b0f4115f195368e5a81dba3d",
+      "modified": false
+    },
+    {
+      "file": "native-assets/source/view3d_navigate_view_rotate.cc",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/source/blender/editors/space_view3d/view3d_navigate_view_rotate.cc",
+      "sha256": "030cec88992c3c3b8e4edccba285d4bdb8737094768516c829aa21b33dc02c52",
+      "modified": false
+    },
+    {
+      "file": "native-assets/source/view3d_navigate_view_zoom.cc",
+      "source": "https://raw.githubusercontent.com/blender/blender/v5.2.2/source/blender/editors/space_view3d/view3d_navigate_view_zoom.cc",
+      "sha256": "bbff67f84306354d64853fbc4bf27d89f992bfeb36db1cdaab2058e27a82ebfb",
+      "modified": false
     }
   ],
   "notes": [
@@ -781,6 +799,9 @@
     "overlayGeometry": "space_view3d.py:7184",
     "faceOrientation": "space_view3d.py:7224",
     "horizontalHeaderScroll": "blender_default.py:952; view2d_ops.cc:461",
-    "transformModal": "blender_default.py:6153"
+    "transformModal": "blender_default.py:6153",
+    "turntable": "view3d_navigate_view_rotate.cc:205-282; view3d_navigate.cc:379-382",
+    "wheelZoom": "view3d_navigate_view_zoom.cc:388-423",
+    "nativeProjection": "assets/live/viewport-reference.json"
   }
 }

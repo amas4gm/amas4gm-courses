@@ -1,0 +1,18 @@
+{
+  "blender": "5.2.2 LTS",
+  "build": "d13f752e3b9c",
+  "meshes": {
+    "bevel-1.json": {
+      "sha256": "a958a8621f442739ae65c2ef9f317d8f99b548431ae71da774128ca707fed635",
+      "bytes": 1052
+    },
+    "bevel-2.json": {
+      "sha256": "4e335abbfc744b24e05a73d8757a0cd085dbc2a9680d22508c2857cb6f16953c",
+      "bytes": 1424
+    },
+    "bevel-3.json": {
+      "sha256": "6c1207ff38b9507421fb57b76e742267dafa7f4eb3e533cfe516f0bf1a4c0b5f",
+      "bytes": 1796
+    }
+  }
+}

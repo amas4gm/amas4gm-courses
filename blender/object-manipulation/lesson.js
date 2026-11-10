@@ -6,7 +6,7 @@ export default {
   "subtitle": "Move, rotate, dimension, and save an object for printing.",
   "eyebrow": "INTRODUCTION TO BLENDER FOR 3D PRINTING",
   "simulatorLabel": "SIMULATED BLENDER",
-  "simulationNote": "Native Blender 5.2.2 interface · bounded checkpoint practice",
+  "simulationNote": "Native Blender 5.2.2 UI · live 3D practice",
   "follow": "Open real Blender alongside this lesson. Download a checkpoint to catch up. Save often.",
   "steps": [
     {
@@ -222,7 +222,7 @@ export default {
       "id": "complete",
       "title": "Continue in real Blender",
       "chapter": "TUTORIAL COMPLETE",
-      "text": "You completed this tutorial. Download the checkpoint and inspect it in real Blender. Save a new version before experimenting.",
+      "text": "You completed this tutorial. Orbit, pan, and zoom the live model here, then download the checkpoint and continue in real Blender. Save a new version before experimenting.",
       "task": "Download a checkpoint, or return to the course.",
       "done": "Save your real Blender project before leaving.",
       "terminal": true,
