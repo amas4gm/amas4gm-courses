@@ -1,8 +1,9 @@
 import {meetsGoal,numericValue} from './state.js';
 import {statePair,fieldRects,boundedFrame} from './native-state.js?v=input-5';
 import {startModal,modalKey,modalReady,modalValue,modalCaption,visualReady} from './native-modal.js?v=input-5';
-import {createLiveViewport} from './live-viewport.js?v=input-5';
-import {createInputCoach} from './input-coach.js?v=input-5';
+import {createLiveViewport} from './live-viewport.js?v=mouse-demo-1';
+import {createInputCoach} from './input-coach.js?v=mouse-demo-1';
+import {createMouseDemo,mouseDemoPlan} from './mouse-demo.js?v=mouse-demo-1';
 
 // Each frame contains Blender's complete, unmodified native interface. Only
 // the current checkpoint's controls receive a transparent interaction layer.
@@ -14,8 +15,9 @@ export async function createBlenderSimulator({container,lesson,api}) {
  const $=s=>container.querySelector(s),host=$('.native-host'),stage=$('.native-stage'),frame=$('.native-frame'),spots=$('.native-hotspots'),menus=$('.native-menus');
  const abort=new AbortController(),on=(el,event,fn,extra={})=>el.addEventListener(event,fn,{signal:abort.signal,...extra});
  let step,pair,paused=false,finished=false,current='',scale=1,guide=null,drag=null,navIndex=8,operator=null,dialog=false,popup=false,loadToken=0;
- let zoomDirections=new Set(),extrusionUndo=false,orientationEnabled=false,travel=0;const loaded=new Map();let pointer=[900,600],demoTimer=0,lastInput=performance.now(),readout=null,visualResult=null,shortcutInvoked=false,suppressClick=false;const valuesLayer=document.createElement('div');stage.append(valuesLayer);
+ let zoomDirections=new Set(),extrusionUndo=false,orientationEnabled=false,travel=0;const loaded=new Map();let pointer=[900,600],lastInput=performance.now(),readout=null,visualResult=null,shortcutInvoked=false,suppressClick=false;const valuesLayer=document.createElement('div');stage.append(valuesLayer);
  const coach=createInputCoach({stage,container,onDemonstrate:()=>demonstrate()});
+ const mouseDemo=createMouseDemo({stage,onComplete:()=>coach.animateKeys()});
  const live=await createLiveViewport({stage,frame,manifest,url,onView(kind,dx,dy){
   if(paused||finished||step?.simulation.action!==kind)return;
   if(kind==='zoom'){zoomDirections.add(Math.sign(dx));if(zoomDirections.size===2)practiceComplete();}
@@ -23,21 +25,31 @@ export async function createBlenderSimulator({container,lesson,api}) {
  },onTop(){if(!paused&&!finished&&step.simulation.action==='top')finish();},onRender:()=>api.guideChanged()});
  function preload(name){if(!manifest.states[name])throw Error(`Missing captured UI state ${name}`);if(!loaded.has(name)){const im=new Image();im.src=url(`assets/ui/${manifest.states[name].file}`);loaded.set(name,im.decode().then(()=>im));}return loaded.get(name);}
  async function show(name,{resetCamera=false}={}){const token=++loadToken,im=await preload(name);if(token!==loadToken)return false;current=name;frame.src=im.src;stage.dataset.state=name;const r=manifest.states[name];stage.style.width=`${r.width}px`;stage.style.height=`${r.height}px`;live.setFrame(name,{resetCamera});resize();return true;}
- function resize(){if(!current)return;const r=manifest.states[current];scale=host.clientWidth/2400;
+ function resize(){if(!current)return;const previousScale=scale,r=manifest.states[current];scale=host.clientWidth/2400;
   if(document.body.classList.contains('native-expanded')){const main=document.querySelector('main'),inset=main?parseFloat(getComputedStyle(main).paddingTop):0;const available=window.innerHeight-inset*2-$('.native-controls').offsetHeight-4;scale=Math.min(scale,Math.max(180,available)/r.height);}
+  if(Math.abs(previousScale-scale)>.0001)mouseDemo.stop();
   stage.style.left=`${(host.clientWidth-r.width*scale)/2}px`;stage.style.transform=`scale(${scale})`;host.style.height=`${r.height*scale}px`;live.resize();api.guideChanged();}
  const observer=new ResizeObserver(resize);observer.observe(host);if(document.querySelector('.lesson-panel'))observer.observe(document.querySelector('.lesson-panel'));on(window,'resize',resize);
  const unavailable=()=>{api.retry('That control is outside this step. Follow the highlighted control or the key sequence.',host);demonstrate();};
- function demonstrate(message){if(paused||finished)return;const correction=operator?(step.simulation.visual?['Shift','Move pointer','Enter']:step.simulation.action==='extrude-cancel'?['Escape','Ctrl+Z']:modalReady(operator,step.simulation.value)?['Enter']:[...Array(operator.raw.length).fill('Backspace'),...(['move','rotate'].includes(operator.kind)?[operator.kind==='move'?'X':'Z'].filter(k=>operator.axis!==k.toLowerCase()):[]),...String(step.simulation.value),...(operator.kind==='bevel'?Array(3-operator.segments).fill('Wheel ↑'):[]),'Enter']):step.simulation.action==='field'?['Ctrl+A',...String(step.simulation.value),'Enter']:null;coach.help(message||step.inputHint||'Follow this key sequence, or drag the highlighted control.',correction);stage.querySelector('.bl-demo-pointer')?.remove();const g=step.simulation.visual?null:guide?.getBoundingClientRect(),b=stage.getBoundingClientRect(),r=live.viewport();if(!r)return;const ghost=document.createElement('div');ghost.className='bl-demo-pointer';ghost.innerHTML='<svg viewBox="0 0 44 58"><path d="M5 3L36 30L23 32L30 49L22 53L15 36L5 45Z" fill="white" stroke="#176442" stroke-width="3"/></svg>';ghost.style.left=`${g?(g.left-b.left)/scale+g.width/scale/2:(r.left+r.right)/2}px`;ghost.style.top=`${g?(g.top-b.top)/scale+g.height/scale/2:r.visibleY+250}px`;if(step.simulation.action==='zoom')ghost.style.setProperty('--demo-x','0px');stage.append(ghost);clearTimeout(demoTimer);demoTimer=setTimeout(()=>ghost.remove(),5000);}
+ function demonstrate(message){
+  if(paused||finished||drag)return;lastInput=performance.now();
+  const editing=guide?.tagName==='INPUT',action=step.simulation.action;
+  const correction=extrusionUndo?['Ctrl+Z']:operator?(step.simulation.visual?(operator.raw?[...Array(operator.raw.length).fill('Backspace')]:['Shift','Move pointer','Enter']):action==='extrude-cancel'?['Escape','Ctrl+Z']:modalReady(operator,step.simulation.value)?['Enter']:[...Array(operator.raw.length).fill('Backspace'),...(['move','rotate'].includes(operator.kind)?[operator.kind==='move'?'X':'Z'].filter(k=>operator.axis!==k.toLowerCase()):[]),...String(step.simulation.value),...(operator.kind==='bevel'?Array(Math.max(0,3-operator.segments)).fill('Wheel ↑'):[]),'Enter']):editing?(action==='field'?['Ctrl+A',...String(step.simulation.value),'Enter']:['Ctrl+A','Desk Tray','Enter']):null;
+  const g=guide?.isConnected?guide.getBoundingClientRect():null,b=stage.getBoundingClientRect(),r=live.viewport()||{left:0,right:stage.clientWidth,visibleY:0,y:0,height:stage.clientHeight};
+  const target=g?{x:(g.left-b.left)/scale,y:(g.top-b.top)/scale,width:g.width/scale,height:g.height/scale}:null;
+  const plan=mouseDemoPlan({action,target,viewport:r,operator:operator?{...operator,visual:step.simulation.visual}:null,gesture:guide?.dataset.mouseGesture,shortcutOnly:step.simulation.shortcutOnly&&!popup&&!dialog,keyboardInput:editing,undo:extrusionUndo,zoomDirections:[...zoomDirections]});
+  coach.help(message||step.inputHint||(plan?'Watch the mouse: its pointer tip lands on the control, and the lit button shows what to press.':'Follow the highlighted keyboard sequence.'),correction,{animate:!plan});
+  mouseDemo.play(plan);
+ }
  const idleTimer=setInterval(()=>{if(step&&!finished&&!paused&&!document.hidden&&performance.now()-lastInput>16000){lastInput=performance.now();demonstrate();}},4000);
  function rect(el,[x,y,w,h]){Object.assign(el.style,{left:`${x}px`,top:`${y}px`,width:`${w}px`,height:`${h}px`});return el;}
  function hotspot(label,box,fn,{target=false,dbl=false}={}){
-  const b=rect(document.createElement('button'),box);b.className='native-hit';b.type='button';b.setAttribute('aria-label',label);b.title=label;
+  const b=rect(document.createElement('button'),box);b.className='native-hit';b.type='button';b.setAttribute('aria-label',label);b.title=label;b.dataset.mouseGesture=dbl?'double-click':'click';
   on(b,dbl?'dblclick':'click',e=>{e.stopPropagation();if(!paused&&!finished)fn(e);});
   if(dbl)on(b,'click',e=>{e.stopPropagation();stage.focus({preventScroll:true});api.feedback('Double-click the number to enter an exact value.');});
   spots.append(b);if(target)guide=b;return b;
  }
- function clear(){menus.replaceChildren();valuesLayer.replaceChildren();readout?.remove();readout=null;operator=null;dialog=false;popup=false;orientationEnabled=false;}
+ function clear(){mouseDemo.stop();menus.replaceChildren();valuesLayer.replaceChildren();readout?.remove();readout=null;operator=null;dialog=false;popup=false;orientationEnabled=false;}
  async function finish(name=pair[1]){if(finished||paused)return;finished=true;clear();spots.replaceChildren();guide=null;if(await show(name,{resetCamera:step.simulation.action==='frame'}))api.complete();}
  function cancel(){
   coach.hint('Cancelled. The checkpoint is restored. You can try the keys or mouse again.');
@@ -60,7 +72,7 @@ export async function createBlenderSimulator({container,lesson,api}) {
  }
  function allowedSubmenu(name){return (step.simulation.action==='add-cube'&&name==='VIEW3D_MT_mesh_add')||(step.simulation.action==='apply-scale'&&name==='VIEW3D_MT_object_apply')||(step.simulation.action==='export'&&name==='TOPBAR_MT_file_export');}
  function openMenu(name,x,y,level=0){
-  if(!reference.menus[name])return unavailable();
+  mouseDemo.stop();if(!reference.menus[name])return unavailable();
   if(level===0){clear();popup=true;[x,y]=({TOPBAR_MT_file:[36,33],VIEW3D_MT_add:[372,71],VIEW3D_MT_object:[425,71],VIEW3D_MT_view:[240,71],'object.mode_set':[70,71]})[name]||[x,y];}else [...menus.children].filter(el=>Number(el.dataset.level)>=level).forEach(el=>el.remove());
   const list=document.createElement('div');list.className='native-menu';list.setAttribute('role','menu');list.dataset.level=level;list.setAttribute('aria-label',name);const rows=reference.menus[name];
   const pixels=manifest.menus[name==='object.mode_set'&&step.simulation.action==='object-mode'?'object.mode_set.edit':name],width=pixels.width,height=pixels.height,state=manifest.states[current];
@@ -71,10 +83,10 @@ export async function createBlenderSimulator({container,lesson,api}) {
    const b=document.createElement('button');b.type='button';b.className='native-menu-row';b.style.height=`${pixels.rowHeight}px`;b.setAttribute('role','menuitem');b.setAttribute('aria-label',row.label);if(row.kind==='submenu')b.setAttribute('aria-haspopup','menu');
    const icon=document.createElement('span');icon.className='native-menu-icon';if(row.icon){const img=document.createElement('img');img.src=url(`native-assets/icons/${row.icon.toLowerCase()}.svg`);img.alt='';icon.append(img);}b.append(icon);
    const label=document.createElement('span');label.textContent=row.label;b.append(label);const tail=document.createElement('span');tail.className='native-menu-tail';tail.textContent=row.kind==='submenu'?'›':row.shortcut||'';b.append(tail);
-   const fn=selectedMenuRow(row),sub=allowedSubmenu(row.menu);if(fn||sub)guide=b;
+   const fn=selectedMenuRow(row),sub=allowedSubmenu(row.menu);if(fn||sub){guide=b;b.dataset.mouseTarget='true';}b.dataset.mouseGesture=sub?'hover':'click';
    const invoke=()=>{if(paused||finished)return;if(row.kind==='submenu'){if(!sub)return unavailable();openMenu(row.menu,parseFloat(list.style.left)+width,parseFloat(list.style.top)+b.offsetTop-5,level+1);}else if(fn)fn();else unavailable();};
-   on(b,'click',e=>{e.stopPropagation();invoke();});on(b,'pointerenter',()=>{if(sub)invoke();else [...menus.children].filter(el=>Number(el.dataset.level)>level).forEach(el=>el.remove());});
-   on(b,'keydown',e=>{const buttons=[...list.querySelectorAll('button')],i=buttons.indexOf(b);if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();buttons[(i+(e.key==='ArrowDown'?1:buttons.length-1))%buttons.length].focus();}else if(e.key==='ArrowRight'&&sub){e.preventDefault();invoke();menus.lastElementChild.querySelector('button')?.focus();}else if(e.key==='ArrowLeft'&&level){e.preventDefault();list.remove();menus.lastElementChild.querySelector('button')?.focus();}});
+   on(b,'click',e=>{e.stopPropagation();invoke();});on(b,'pointerenter',()=>{if(sub)invoke();else{[...menus.children].filter(el=>Number(el.dataset.level)>level).forEach(el=>el.remove());guide=[...menus.querySelectorAll('[data-mouse-target]')].at(-1);api.guideChanged();}});
+   on(b,'keydown',e=>{const buttons=[...list.querySelectorAll('button')],i=buttons.indexOf(b);if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();buttons[(i+(e.key==='ArrowDown'?1:buttons.length-1))%buttons.length].focus();}else if(e.key==='ArrowRight'&&sub){e.preventDefault();invoke();menus.lastElementChild.querySelector('button')?.focus();}else if(e.key==='ArrowLeft'&&level){e.preventDefault();list.remove();guide=[...menus.querySelectorAll('[data-mouse-target]')].at(-1);api.guideChanged();menus.lastElementChild.querySelector('button')?.focus();}});
    list.append(b);
   }
   menus.append(list);list.querySelector('button')?.focus({preventScroll:true});api.guideChanged();
@@ -90,7 +102,7 @@ export async function createBlenderSimulator({container,lesson,api}) {
   const input=rect(document.createElement('input'),[828,698,364,30]);input.className='native-input filename';input.setAttribute('aria-label','Object Name');input.value='Cube';menus.append(input);guide=input;input.focus();input.select();
   on(input,'keydown',e=>{if(e.key==='Enter'){e.stopPropagation();e.preventDefault();if(input.value==='Desk Tray')finish();else api.retry('Name the object Desk Tray to match the course checkpoints.',host);}});api.guideChanged();
  }
- function editField(key){const input=rect(document.createElement('input'),fieldRects[key]);input.className='native-input';input.setAttribute('aria-label',fieldLabel(key));input.value=String(step.simulation.values?.[key]??(key[0]==='d'?2:0));menus.replaceChildren(input);guide=input;input.focus();input.select();
+ function editField(key){mouseDemo.stop();const input=rect(document.createElement('input'),fieldRects[key]);input.className='native-input';input.setAttribute('aria-label',fieldLabel(key));input.value=String(step.simulation.values?.[key]??(key[0]==='d'?2:0));menus.replaceChildren(input);guide=input;input.focus();input.select();
   on(input,'input',()=>{lastInput=performance.now();const v=numericValue(input.value);if(Number.isFinite(v))live.previewField(key,v);});
   on(input,'keydown',e=>{e.stopPropagation();coach.pressed(e.key);if(e.key==='Enter'){e.preventDefault();if(meetsGoal(input.value,step.simulation.value,key==='rz'?'angle':'length'))finish();else help(`Select the field contents with Ctrl+A, enter ${step.simulation.value}${key==='rz'?'°':' mm'}, then Enter.`);}else if(e.key==='Escape')cancel();});api.guideChanged();
  }
@@ -127,19 +139,21 @@ export async function createBlenderSimulator({container,lesson,api}) {
   if(a==='top')guide=live.topButton;
   if(a==='field')hotspot(fieldLabel(step.simulation.field),fieldRects[step.simulation.field],()=>editField(step.simulation.field),{target:true,dbl:true});
   if(a==='orientation')hotspot('Viewport Overlays popover',[1698,39,32,38],()=>orientationPopover(false),{target:true});
+  if(step.simulation.shortcutOnly)hotspot('3D Viewport — keyboard focus',[88,115,1450,1200],()=>stage.focus({preventScroll:true}),{target:true});
+  if(guide&&(['delete','rename','move','rotate','scale','inset','extrude','extrude-cancel','bevel'].includes(a)||step.simulation.shortcutOnly))guide.dataset.mouseGesture='focus';
  }
  function orientationPopover(enabled){
-  spots.replaceChildren();menus.replaceChildren();popup=true;orientationEnabled=enabled;
+  mouseDemo.stop();spots.replaceChildren();menus.replaceChildren();popup=true;orientationEnabled=enabled;
   const reference=manifest.menus[enabled?'overlays.enabled':'overlays'],im=rect(document.createElement('img'),[1490,77,reference.width,reference.height]);im.src=url('assets/ui/'+reference.file);im.alt='';im.className='native-popover';menus.append(im);
   if(enabled){hotspot('Close Overlays in viewport',[88,115,1350,1200],()=>finish(),{target:true});api.feedback('Face Orientation is enabled. Click the viewport to close the popover.');}
   else hotspot('Face Orientation',[1501,680,275,31],async()=>{await show(pair[1]);orientationPopover(true);},{target:true});
   api.guideChanged();
  }
- function practiceComplete(){finished=true;guide=null;api.complete();}
+ function practiceComplete(){mouseDemo.stop();finished=true;guide=null;api.complete();}
  function navigate(kind,dx,dy=0){if(paused||dialog||popup||operator||extrusionUndo)return;live.navigate(kind,dx,dy);}
  async function scrollHeader(delta){navIndex=Math.min(16,Math.max(0,navIndex+delta));if(await show(boundedFrame('header-narrow',navIndex))&&navIndex>=8)practiceComplete();}
  on(stage,'keydown',e=>{
-  if(paused||finished)return;lastInput=performance.now();const a=step.simulation.action,k=e.key.toLowerCase();coach.pressed(k==='shift'?'Shift':(e.ctrlKey?'Ctrl+':e.shiftKey?'Shift+':'')+(e.key.length===1?e.key.toUpperCase():e.key));
+  mouseDemo.stop();if(paused||finished)return;lastInput=performance.now();const a=step.simulation.action,k=e.key.toLowerCase();coach.pressed(k==='shift'?'Shift':(e.ctrlKey?'Ctrl+':e.shiftKey?'Shift+':'')+(e.key.length===1?e.key.toUpperCase():e.key));
   if(extrusionUndo){e.preventDefault();if(k==='z'&&e.ctrlKey){extrusionUndo=false;if(a==='extrude-cancel')finish();else cancel();}else api.feedback('Press Ctrl+Z to undo the extrusion geometry before trying again.');return;}
   if(k==='escape'){e.preventDefault();cancel();return;}if(e.target.tagName==='INPUT')return;
   if(operator){if(k==='shift')return;e.preventDefault();if(k==='enter'||k===' '){confirmOperation();return;}const next=modalKey(operator,k==='backspace'?'Backspace':k);if(next){operator=next;updateOperation();}else demonstrate('Use numbers, X/Y/Z, or Backspace. Enter confirms; Escape cancels.');return;}
@@ -156,17 +170,17 @@ export async function createBlenderSimulator({container,lesson,api}) {
   else if((a==='move'&&k==='g')||(a==='rotate'&&k==='r')||(a==='scale'&&k==='s')||(a==='inset'&&k==='i')||(['extrude','extrude-cancel'].includes(a)&&k==='e')||(a==='bevel'&&k==='b'&&e.ctrlKey)){e.preventDefault();beginOperation(a==='extrude-cancel'?'extrude':a);}
  });
  const point=e=>{const b=stage.getBoundingClientRect();return [(e.clientX-b.left)/scale,(e.clientY-b.top)/scale];};
- on(stage,'pointerdown',e=>{lastInput=performance.now();pointer=point(e);if(paused||dialog)return;if(operator&&e.button===2){e.preventDefault();cancel();return;}const nav=e.target.closest('[data-navigation]');if((e.button!==1&&!nav)||popup||operator||extrusionUndo)return;const [x,y]=pointer,a=step.simulation.action;
+ on(stage,'pointerdown',e=>{mouseDemo.stop();lastInput=performance.now();pointer=point(e);if(paused||dialog)return;if(operator&&e.button===2){e.preventDefault();cancel();return;}const nav=e.target.closest('[data-navigation]');if((e.button!==1&&!nav)||popup||operator||extrusionUndo)return;const [x,y]=pointer,a=step.simulation.action;
   if(nav||(a==='header-scroll'&&!finished&&y>=39&&y<=77)||live.isViewport(x,y)){e.preventDefault();live.beginNavigation();const action=nav?.dataset.navigation||(a==='header-scroll'&&y<=77?'header-scroll':e.shiftKey?'pan':'orbit');drag={x:e.clientX,y:e.clientY,button:e.button,travel:0,action,zoom:action==='zoom'?live.beginZoom(y):null};stage.setPointerCapture(e.pointerId);stage.focus({preventScroll:true});}});
  on(stage,'pointermove',e=>{const next=point(e);if(operator&&!paused&&!operator.raw){live.transformPointer(operator,pointer,next,e.shiftKey);updateOperation();}pointer=next;if(!drag)return;lastInput=performance.now();const dx=(e.clientX-drag.x)/scale,dy=(e.clientY-drag.y)/scale;drag.travel+=Math.hypot(dx,dy);if(drag.action==='header-scroll'){if(Math.abs(dx)>12){drag.x=e.clientX;scrollHeader(dx<0?1:-1);}}else{drag.x=e.clientX;drag.y=e.clientY;if(drag.zoom)live.dragZoom(drag.zoom,next[1]);else navigate(drag.action,dx,dy);}});
  on(stage,'pointerup',()=>{suppressClick=drag?.button===0&&drag.travel>3;setTimeout(()=>{suppressClick=false;},100);drag=null;live.endNavigation();});on(stage,'pointercancel',()=>{drag=null;live.endNavigation();});
- on(stage,'wheel',e=>{if(paused)return;const a=step.simulation.action,[x,y]=point(e);if(operator?.kind==='bevel'){e.preventDefault();operator.segments=Math.max(1,Math.min(3,operator.segments+(e.deltaY<0?1:-1)));updateOperation();}else if(a==='header-scroll'&&!finished&&y>=39&&y<=77){e.preventDefault();scrollHeader(Math.sign(e.deltaX||e.deltaY));}else if(live.isViewport(x,y)&&!popup&&!operator){e.preventDefault();navigate('zoom',e.deltaY);}},{passive:false});
+ on(stage,'wheel',e=>{mouseDemo.stop();if(paused)return;const a=step.simulation.action,[x,y]=point(e);if(operator?.kind==='bevel'){e.preventDefault();operator.segments=Math.max(1,Math.min(3,operator.segments+(e.deltaY<0?1:-1)));updateOperation();}else if(a==='header-scroll'&&!finished&&y>=39&&y<=77){e.preventDefault();scrollHeader(Math.sign(e.deltaX||e.deltaY));}else if(live.isViewport(x,y)&&!popup&&!operator){e.preventDefault();navigate('zoom',e.deltaY);}},{passive:false});
  on(stage,'click',e=>{if(suppressClick){suppressClick=false;e.preventDefault();e.stopImmediatePropagation();}},{capture:true});
  on(stage,'contextmenu',e=>{e.preventDefault();if(operator)cancel();});on(stage,'click',e=>{if(e.target===stage||e.target===frame||e.target===live.canvas){if(popup)cancel();else if(operator&&!paused)confirmOperation();else if(!paused&&!finished)unavailable();}});
  return {
-  async setStep(s,c){step=s;coach.setStep(s);lastInput=performance.now();visualResult=null;shortcutInvoked=false;pair=statePair(lesson.id.replace(/-qa$/,''),s.id);finished=c.isCompleted();paused=false;drag=null;extrusionUndo=false;travel=0;zoomDirections=new Set();navIndex=0;clear();stage.dataset.operator='';$('.follow-copy').textContent=s.follow||lesson.follow;if(!await show(pair[finished?1:0],{resetCamera:true}))return;buildControls();api.guideChanged();preload(pair[1]);const action=s.simulation.action;if(action==='header-scroll')for(let i=0;i<=16;i++)preload(boundedFrame('header-narrow',i));const kind=action==='extrude-cancel'?'extrude':action;for(const name of Object.keys(manifest.states))if(name.startsWith(kind+'-modal-'))preload(name);},
-  refreshState(){},setPaused(v){paused=v;},setGuidance(){},getGuide(){return guide?{target:guide,parent:host,scale:1}:null;},getRegion(){return host;},
+  async setStep(s,c){step=s;guide=null;spots.replaceChildren();coach.setStep(s);lastInput=performance.now();visualResult=null;shortcutInvoked=false;pair=statePair(lesson.id.replace(/-qa$/,''),s.id);finished=c.isCompleted();paused=false;drag=null;extrusionUndo=false;travel=0;zoomDirections=new Set();navIndex=0;clear();stage.dataset.operator='';$('.follow-copy').textContent=s.follow||lesson.follow;if(!await show(pair[finished?1:0],{resetCamera:true}))return;buildControls();api.guideChanged();preload(pair[1]);const action=s.simulation.action;if(action==='header-scroll')for(let i=0;i<=16;i++)preload(boundedFrame('header-narrow',i));const kind=action==='extrude-cancel'?'extrude':action;for(const name of Object.keys(manifest.states))if(name.startsWith(kind+'-modal-'))preload(name);},
+  refreshState(){},setPaused(v){paused=v;if(v)mouseDemo.stop();},setGuidance(){},getGuide(){return guide?{target:guide,parent:host,scale:1}:null;},getRegion(){return host;},
   perform(action){if(paused||finished)return;if(action==='delete'&&step.simulation.action==='delete')finish();},
-  reset(){cancel();},dispose(){clearInterval(idleTimer);clearTimeout(demoTimer);coach.dispose();abort.abort();observer.disconnect();live.dispose();document.body.classList.remove('blender-course','native-expanded');container.replaceChildren();}
+  reset(){cancel();},dispose(){clearInterval(idleTimer);mouseDemo.dispose();coach.dispose();abort.abort();observer.disconnect();live.dispose();document.body.classList.remove('blender-course','native-expanded');container.replaceChildren();}
  };
 }
