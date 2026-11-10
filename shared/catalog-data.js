@@ -1,4 +1,5 @@
-// Add software and published lessons here. Each lesson keeps its own stable URL.
+// Each entry is a course level containing tutorials. Follow-on courses get the next level.
+// These first-level course and tutorial URLs remain stable for existing links and progress.
 export const software=[{
  id:'bambu-studio',name:'BambuLab Level 1',category:'3D PRINTING',description:'Practice the slicer, then get familiar with the printers and material loading in the lab.',
  tutorials:[{id:'getting-started',title:'Meet Bambu Studio',description:'Explore the workspace. Import Benchy, then practice orbiting, panning, zooming, and choosing a camera view.',topics:['Workspace tour','3D navigation'],number:'01',steps:14},
