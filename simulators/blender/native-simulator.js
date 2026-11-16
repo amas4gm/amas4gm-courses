@@ -1,17 +1,17 @@
 import {meetsGoal,numericValue} from './state.js';
-import {setupValue,setupReady} from './setup-state.js?v=sidebar-3';
-import {selectVertex,selectEdge} from './selection.js?v=sidebar-3';
-import {statePair,fieldRects,boundedFrame} from './native-state.js?v=sidebar-3';
-import {startModal,modalKey,modalReady,modalValue,modalCaption,visualReady} from './native-modal.js?v=sidebar-3';
-import {createLiveViewport} from './live-viewport.js?v=sidebar-3';
-import {createInputCoach} from './input-coach.js?v=sidebar-3';
-import {createInputDemo,inputDemoPlan} from './input-demo.js?v=sidebar-3';
+import {setupValue,setupReady} from './setup-state.js?v=outliner-rename-1';
+import {selectVertex,selectEdge} from './selection.js?v=outliner-rename-1';
+import {statePair,fieldRects,boundedFrame} from './native-state.js?v=outliner-rename-1';
+import {startModal,modalKey,modalReady,modalValue,modalCaption,visualReady} from './native-modal.js?v=outliner-rename-1';
+import {createLiveViewport} from './live-viewport.js?v=outliner-rename-1';
+import {createInputCoach} from './input-coach.js?v=outliner-rename-1';
+import {createInputDemo,inputDemoPlan} from './input-demo.js?v=outliner-rename-1';
 
 // Each frame contains Blender's complete, unmodified native interface. Only
 // the current checkpoint's controls receive a transparent interaction layer.
 export async function createBlenderSimulator({container,lesson,api}) {
  const base=new URL('./',import.meta.url),url=p=>new URL(p,base).href;
- const [manifest,reference]=await Promise.all(['assets/ui/manifest.json','native-assets/menu-reference.json'].map(async p=>{const r=await fetch(url(p)+'?v=sidebar-3');if(!r.ok)throw Error(`Missing reference: ${p}`);return r.json();}));
+ const [manifest,reference]=await Promise.all(['assets/ui/manifest.json','native-assets/menu-reference.json'].map(async p=>{const r=await fetch(url(p)+'?v=outliner-rename-1');if(!r.ok)throw Error(`Missing reference: ${p}`);return r.json();}));
  document.body.classList.add('blender-course');
  container.innerHTML=`<div class="native-controls"><span>Blender 5.2.2 LTS · native interface</span><button type="button" class="expand-native">Expand workspace</button></div><div class="native-host"><div class="native-stage" tabindex="0" role="application" aria-label="Blender practice workspace"><img class="native-frame" alt="" draggable="false"><div class="native-hotspots"></div><div class="native-menus"></div></div></div><div class="bl-follow"><strong>Follow along in real Blender · save often</strong><p class="follow-copy"></p><details><summary>Blender checkpoints and recovery</summary><p>Save your own copy before experimenting. Browser progress does not save your real Blender project.</p><div class="downloads"></div></details></div>`;
  const $=s=>container.querySelector(s),host=$('.native-host'),stage=$('.native-stage'),frame=$('.native-frame'),spots=$('.native-hotspots'),menus=$('.native-menus');
@@ -49,7 +49,7 @@ export async function createBlenderSimulator({container,lesson,api}) {
  function hotspot(label,box,fn,{target=false,dbl=false}={}){
   const b=rect(document.createElement('button'),box);b.className='native-hit';b.type='button';b.setAttribute('aria-label',label);b.title=label;b.dataset.mouseGesture=dbl?'double-click':'click';
   on(b,dbl?'dblclick':'click',e=>{e.stopPropagation();if(!paused&&!finished){inputDemo.stop();fn(e);}});
-  if(dbl)on(b,'click',e=>{e.stopPropagation();stage.focus({preventScroll:true});api.feedback('Double-click the number to enter an exact value.');});
+  if(dbl)on(b,'click',e=>{e.stopPropagation();stage.focus({preventScroll:true});api.feedback(step.simulation.action==='rename'?'Double-click the object name to edit it.':'Double-click the number to enter an exact value.');});
   spots.append(b);if(target)guide=b;return b;
  }
  function clear(){inputDemo.stop();menus.replaceChildren();valuesLayer.replaceChildren();readout?.remove();readout=null;operator=null;dialog=false;popup=false;orientationEnabled=false;}
@@ -118,8 +118,8 @@ export async function createBlenderSimulator({container,lesson,api}) {
   hotspot('Cancel',[r.width-197,r.height-47,182,35],cancel);api.guideChanged();
  }
  const fieldLabel=key=>({x:'Location X',z:'Location Z',rz:'Rotation Z',dx:'Dimensions X',dy:'Dimensions Y',dz:'Dimensions Z'})[key];
- async function rename(){clear();popup=true;spots.replaceChildren();if(!await show('rename-popup'))return;
-  const input=rect(document.createElement('input'),[828,702,366,31]);input.className='native-input filename';input.setAttribute('aria-label','Object Name');input.value='Cube';menus.append(input);guide=input;input.focus({preventScroll:true});input.select();
+ async function rename(inOutliner=false){clear();popup=true;spots.replaceChildren();if(!await show(inOutliner?pair[0]:'rename-popup'))return;
+  const input=rect(document.createElement('input'),inOutliner?[2090,138,220,28]:[828,702,366,31]);input.className='native-input filename'+(inOutliner?' outliner-name':'');input.setAttribute('aria-label','Object Name');input.value='Cube';menus.append(input);guide=input;input.focus({preventScroll:true});input.select();
   on(input,'keydown',e=>{inputDemo.stop();if(e.key==='Enter'){e.stopPropagation();e.preventDefault();if(input.value==='Desk Tray')finish();else api.retry('Name the object Desk Tray to match the course checkpoints.',host);}});api.guideChanged();
  }
  function editField(key){inputDemo.stop();const input=rect(document.createElement('input'),fieldRects[key]);input.className='native-input';input.setAttribute('aria-label',fieldLabel(key));input.value=String(step.simulation.values?.[key]??(key[0]==='d'?2:0));menus.replaceChildren(input);guide=input;input.focus({preventScroll:true});input.select();
@@ -180,6 +180,7 @@ export async function createBlenderSimulator({container,lesson,api}) {
   if(!edit)hotspot('Object',[431,39,90,38],()=>a==='apply-scale'?openMenu('VIEW3D_MT_object',431,77):unavailable(),{target:a==='apply-scale'});
   if(['viewport','orbit','pan','zoom','delete','setup-delete','rename','move','rotate','scale','inset','extrude','extrude-cancel','bevel','free'].includes(a))hotspot('3D Viewport',[88,115,1450,1200],()=>{stage.focus({preventScroll:true});if(a==='viewport')finish();else if(operator)confirmOperation();},{target:!['orbit','pan','zoom'].includes(a)});
   if(a==='sidebar'){const arrow=hotspot('Open Item Sidebar',[1943,114,26,35],()=>finish());arrow.classList.add('bl-sidebar-arrow');arrow.textContent='‹';}
+  if(a==='rename')hotspot('Rename Cube in Outliner',[2090,138,90,28],()=>rename(true),{target:true,dbl:true});
   if(a==='outliner')hotspot('Cube in Outliner',[2040,162,340,27],()=>finish(),{target:true});
   if(a==='units')hotspot('Units in Scene Properties',[2030,615,355,35],()=>finish(),{target:true});
   if(a==='select-object'){hotspot('Cube mesh',[88,115,1450,1200],e=>live.hit(e.clientX,e.clientY)?finish():api.retry('Click the cube itself to select it.',host));guide=live.selectionGuide();}
@@ -208,7 +209,7 @@ export async function createBlenderSimulator({container,lesson,api}) {
   if(a==='field')hotspot(fieldLabel(step.simulation.field),fieldRects[step.simulation.field],()=>editField(step.simulation.field),{target:true,dbl:true});
   if(a==='orientation')hotspot('Viewport Overlays popover',[1698,39,32,38],()=>orientationPopover(false),{target:true});
   if(step.simulation.shortcutOnly)hotspot('3D Viewport — keyboard focus',[88,115,1450,1200],()=>stage.focus({preventScroll:true}),{target:true});
-  if(guide&&(['delete','setup-delete','rename','move','rotate','scale','inset','extrude','extrude-cancel','bevel'].includes(a)||step.simulation.shortcutOnly))guide.dataset.mouseGesture='focus';
+  if(guide&&(['delete','setup-delete','move','rotate','scale','inset','extrude','extrude-cancel','bevel'].includes(a)||step.simulation.shortcutOnly))guide.dataset.mouseGesture='focus';
  }
  function orientationPopover(enabled){
   inputDemo.stop();spots.replaceChildren();menus.replaceChildren();popup=true;orientationEnabled=enabled;

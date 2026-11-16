@@ -1,11 +1,11 @@
-import {createBlenderSimulator} from './native-simulator.js?v=sidebar-3';
-import {createBambuSimulator} from '../bambu-studio/simulator.js?v=sidebar-3';
+import {createBlenderSimulator} from './native-simulator.js?v=outliner-rename-1';
+import {createBambuSimulator} from '../bambu-studio/simulator.js?v=outliner-rename-1';
 
 // Keep the teaching engine and progress intact while changing simulated apps.
 export async function createBlenderCourseSimulator({container,lesson,api}){
  const host=document.createElement('div'),bar=document.createElement('div');
  bar.className='native-controls handoff-controls';bar.hidden=true;container.append(bar,host);
- const bambuLesson={...lesson,capabilities:['manipulation'],initialState:{modelVisible:false},model:{name:'desk-tray.stl',displayName:'tray',url:new URL('./assets/desk-tray.stl?v=sidebar-3',import.meta.url).href}};
+ const bambuLesson={...lesson,capabilities:['manipulation'],initialState:{modelVisible:false},model:{name:'desk-tray.stl',displayName:'tray',url:new URL('./assets/desk-tray.stl?v=outliner-rename-1',import.meta.url).href}};
  let adapter=await createBlenderSimulator({container:host,lesson,api}),app='blender',step,context,paused=false,disposed=false,generation=0,launch=null;
  function labels(name){
   const label=document.querySelector('#simulator-label'),note=document.querySelector('#simulation-note');

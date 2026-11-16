@@ -122,8 +122,8 @@ export default {
     {
       "id": "rename",
       "title": "Give the object a useful name",
-      "text": "Blender names a new mesh Cube. A useful object name makes it easier to find in the Outliner as a project grows. F2 renames the active object.",
-      "task": "Click the viewport. Press F2, type Desk Tray, then Enter.",
+      "text": "Blender names a new mesh Cube. A useful object name makes it easier to find in the Outliner as a project grows. Double-click its name in the Outliner to rename it, or use F2 with the viewport focused.",
+      "task": "Double-click Cube in the Outliner, type Desk Tray, then press `Enter`. You can also click the viewport and press `F2` to rename it.",
       "done": "The Outliner and viewport identify the same object as Desk Tray. Renaming changes its label, not its geometry. You can also double-click the object in the Outliner to rename it.",
       "simulation": {
         "action": "rename",
@@ -133,9 +133,9 @@ export default {
       "controlStatus": "Only this step’s interaction is enabled",
       "follow": "Name the object Desk Tray in real Blender, then save your project.",
       "keys": [
-        "F2"
+        "Enter"
       ],
-      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
+      "inputHint": "Double-click the name Cube in the Outliner, type Desk Tray, then Enter. F2 in the viewport is an alternative."
     },
     {
       "id": "orbit",

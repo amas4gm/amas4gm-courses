@@ -25,6 +25,7 @@ export function inputDemoPlan(context){
  else{
   mouse(mouseDemoPlan(base));
   if(s.action==='field')keys([...numeric(),'Enter']);
+  else if(s.action==='rename'&&gesture==='double-click')keys(nameKeys);
   else if(gesture==='focus'){
    if(s.visual){keys([step.keys[0]]);visual();}
    else if(s.action==='rename')keys(['F2',...nameKeys]);

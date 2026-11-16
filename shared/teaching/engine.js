@@ -1,5 +1,5 @@
-import {loadProgress,saveProgress,retryStepProgress,completedThroughStep} from './progress.js?v=sidebar-3';
-import {createNarration} from './narration.js?v=sidebar-3';
+import {loadProgress,saveProgress,retryStepProgress,completedThroughStep} from './progress.js?v=outliner-rename-1';
+import {createNarration} from './narration.js?v=outliner-rename-1';
 import {createSound} from './sound.js';
 import {createGuidance} from './guidance.js';
 import {createCountdown,completionPause} from './countdown.js?v=completion-pause-2';

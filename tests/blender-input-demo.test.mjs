@@ -48,3 +48,10 @@ test('mouse fades out before keyboard; stop prevents queued keys and stale callb
  demo.play(plan(intro,'sidebar'));advance(500);demo.stop();advance(5000);assert.equal(stage.children.length,0);
  const reduced=createInputDemo({stage,reducedMotion:()=>true,requestFrame:()=>{throw Error('No reduced-motion animation');},cancelFrame:()=>{}});reduced.play(plan(intro,'sidebar'));assert.equal(stage.querySelectorAll('li').length,2);assert.equal(stage.querySelector('kbd').textContent,'N');reduced.dispose();win.happyDOM.abort();
 });
+
+test('Outliner rename demonstrates a double click followed by typing without F2',()=>{
+ const p=plan(intro,'rename',{gesture:'double-click'});
+ assert.equal(p.parts[0].plan.frames.filter(f=>f.button==='left').length,2);
+ assert.deepEqual(keys(p),['Shift+D','e','s','k','Space','Shift+T','r','a','y','Enter']);
+ assert.ok(!keys(p).includes('F2'));
+});

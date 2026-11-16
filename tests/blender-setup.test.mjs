@@ -41,3 +41,11 @@ test('startup is saved only after removing all default objects',()=>{
  assert.deepEqual(manifest.states['setup-empty'].settings,manifest.states['setup-clip-end'].settings);
  for(const id of ['startup','confirm','complete'])assert.deepEqual(statePair(lesson.id,id),['setup-empty','setup-empty']);
 });
+
+test('setup includes exported default camera and light geometry',async()=>{
+ const objects=JSON.parse(await readFile(new URL('../simulators/blender/assets/live/setup-objects.json',import.meta.url)));
+ assert.deepEqual(objects.objects.slice().sort(),['Camera','Cube','Light']);
+ assert.equal(objects.camera.vertices.length,8);assert.equal(objects.camera.edges.length,11);
+ for(const edge of objects.camera.edges)for(const index of edge)assert.equal(objects.camera.vertices[index].length,3);
+ assert.ok(objects.light.position[2]>5);assert.ok(objects.light.radius>0);
+});

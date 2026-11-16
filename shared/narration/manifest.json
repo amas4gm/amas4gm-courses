@@ -1139,17 +1139,17 @@
       "duration": 6.72,
       "generationId": "DKCJGTrPDKJb9obj2VDQ"
     },
-    "dc5587d64e9b6e9e02d4": {
-      "text": "Blender names a new mesh Cube. A useful object name makes it easier to find in the Outliner as a project grows. F2 renames the active object.",
-      "file": "dc5587d64e9b6e9e02d4.mp3",
-      "duration": 10.64,
-      "generationId": "s8dpCFpnbEmjF89NBGMN"
+    "da7a55dca069651b4e38": {
+      "text": "Blender names a new mesh Cube. A useful object name makes it easier to find in the Outliner as a project grows. Double-click its name in the Outliner to rename it, or use F2 with the viewport focused.",
+      "file": "da7a55dca069651b4e38.mp3",
+      "generationId": "62GOQequod4H0Jydo4JK",
+      "duration": 13.44
     },
-    "00086ded80c057cd2573": {
-      "text": "Click the viewport. Press F2, type Desk Tray, then Enter.",
-      "file": "00086ded80c057cd2573.mp3",
-      "duration": 5.36,
-      "generationId": "HBt0xUAFhBDH2EI6tda7"
+    "8e33162d60a6189b3eb3": {
+      "text": "Double-click Cube in the Outliner, type Desk Tray, then press Enter. You can also click the viewport and press F2 to rename it.",
+      "file": "8e33162d60a6189b3eb3.mp3",
+      "generationId": "caRSJjWQT0kKIn5oJCfI",
+      "duration": 9.12
     },
     "e92b8e29312e5ab756aa": {
       "text": "The Outliner and viewport identify the same object as Desk Tray. Renaming changes its label, not its geometry. You can also double-click the object in the Outliner to rename it.",
@@ -3022,12 +3022,12 @@
       },
       "rename": {
         "description": {
-          "id": "dc5587d64e9b6e9e02d4",
-          "display": "Blender names a new mesh Cube. A useful object name makes it easier to find in the Outliner as a project grows. F2 renames the active object."
+          "id": "da7a55dca069651b4e38",
+          "display": "Blender names a new mesh Cube. A useful object name makes it easier to find in the Outliner as a project grows. Double-click its name in the Outliner to rename it, or use F2 with the viewport focused."
         },
         "task": {
-          "id": "00086ded80c057cd2573",
-          "display": "Click the viewport. Press F2, type Desk Tray, then Enter."
+          "id": "8e33162d60a6189b3eb3",
+          "display": "Double-click Cube in the Outliner, type Desk Tray, then press `Enter`. You can also click the viewport and press `F2` to rename it."
         },
         "summary": {
           "id": "e92b8e29312e5ab756aa",
