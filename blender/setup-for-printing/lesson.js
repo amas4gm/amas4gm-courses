@@ -246,9 +246,27 @@ export default {
       "inputHint": "Double-click the field, type the value, then Enter. Escape restores the checkpoint."
     },
     {
+      "id": "clear-scene",
+      "title": "Start with an empty scene",
+      "text": "The default scene contains a cube, camera, and light. Remove all three before saving your startup file so each new project begins with an empty workspace and your preferred settings. With your pointer over the 3D Viewport, A selects all objects and Delete removes them.",
+      "task": "Click inside the 3D Viewport, press `A` to select all three objects, then press `Delete`.",
+      "done": "The cube, camera, and light are gone. The Outliner now shows an empty Collection. Your units and viewport settings are preserved.",
+      "simulation": {
+        "asset": "cube",
+        "action": "setup-delete"
+      },
+      "chapter": "BLENDER / PRINTING SETUP",
+      "keys": [
+        "A",
+        "Delete"
+      ],
+      "inputHint": "Click the viewport to focus it. Press A to select all objects, then Delete.",
+      "follow": "Follow these steps in a new real Blender scene. Save any current work before starting. Save named project files often."
+    },
+    {
       "id": "startup",
       "title": "Save a startup configuration",
-      "text": "A startup file stores the current scene and workspace, including scene units and this viewport’s settings. Save it before building the tray, so future new files do not start with your finished model. Our practice scene still contains the default Cube, Camera, and Light.",
+      "text": "A startup file stores your scene and workspace, including scene units and viewport settings. Save this empty scene with your preferred settings so Blender starts ready for your next project.",
       "task": "Choose File → Defaults → Save Startup File.",
       "done": "Blender asks before replacing the startup file. Saving a startup file is different from saving a named project with Save As.",
       "simulation": {
@@ -262,9 +280,9 @@ export default {
     {
       "id": "confirm",
       "title": "Confirm the startup file",
-      "text": "In real Blender, this replaces your previous startup scene. In this simulation, only the practice checkpoint changes. If you want to keep a customized startup in real Blender, save a separate scene template instead.",
+      "text": "Save a startup file with your preferred settings. Blender will use this scene and these settings when it starts.",
       "task": "Click Overwrite to save this simulated startup configuration.",
-      "done": "Your setup is saved. In real Blender, test File → New → General after saving any current work. Check Metric, 0.001, Millimeters, and the View tab’s clipping values.",
+      "done": "Your startup file is saved. Blender will start with an empty scene, Metric units, Unit Scale 0.001, lengths in Millimeters, and your chosen viewport clipping settings.",
       "simulation": {
         "asset": "cube",
         "action": "setup-confirm"

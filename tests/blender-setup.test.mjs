@@ -6,7 +6,7 @@ import {setupReady,setupValue} from '../simulators/blender/setup-state.js';
 import {statePair} from '../simulators/blender/native-state.js';
 const manifest=JSON.parse(await readFile(new URL('../simulators/blender/assets/ui/manifest.json',import.meta.url)));
 test('setup begins unconfigured and teaches Scene, units, viewport clipping, then startup confirmation',()=>{
- assert.deepEqual(lesson.steps.map(s=>s.id),['scene','units','system','scale','length','sidebar','view','clip-start','clip-end','startup','confirm','complete']);
+ assert.deepEqual(lesson.steps.map(s=>s.id),['scene','units','system','scale','length','sidebar','view','clip-start','clip-end','clear-scene','startup','confirm','complete']);
  assert.equal(manifest.states['setup-start'].settings.system,'NONE');
  assert.equal(manifest.states['setup-metric'].settings.scale,1);
  assert.equal(manifest.states['setup-view'].settings.clipEnd,1000);
@@ -31,4 +31,13 @@ test('every editable setup field starts at its preceding native value',()=>{
   assert.equal(manifest.states[after].settings[key],s.simulation.value);
   assert.notEqual(s.simulation.initial,s.simulation.value);
  }
+});
+
+test('startup is saved only after removing all default objects',()=>{
+ const ids=lesson.steps.map(s=>s.id);assert.ok(ids.indexOf('clear-scene')<ids.indexOf('startup'));
+ assert.deepEqual(manifest.states['setup-all'].objects,['Camera','Cube','Light']);
+ assert.deepEqual(manifest.states['setup-empty'].objects,[]);
+ assert.equal(manifest.states['setup-empty'].configuration.empty,true);
+ assert.deepEqual(manifest.states['setup-empty'].settings,manifest.states['setup-clip-end'].settings);
+ for(const id of ['startup','confirm','complete'])assert.deepEqual(statePair(lesson.id,id),['setup-empty','setup-empty']);
 });

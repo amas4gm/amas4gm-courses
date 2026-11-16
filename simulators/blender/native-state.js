@@ -4,10 +4,10 @@ export const frames = {
  'setup-for-printing': {
   scene:['setup-start','setup-scene'],units:['setup-scene','setup-units'],system:['setup-units','setup-metric'],scale:['setup-metric','setup-scale'],length:['setup-scale','setup-mm'],
   sidebar:['setup-mm','setup-sidebar'],view:['setup-sidebar','setup-view'],'clip-start':['setup-view','setup-clip-start'],'clip-end':['setup-clip-start','setup-clip-end'],
-  startup:['setup-clip-end','setup-clip-end'],confirm:['setup-clip-end','setup-clip-end'],complete:['setup-clip-end','setup-clip-end']
+  'clear-scene':['setup-clip-end','setup-empty'],startup:['setup-empty','setup-empty'],confirm:['setup-empty','setup-empty'],complete:['setup-empty','setup-empty']
  },
  'getting-started': {
-  viewport:['startup','startup'],outliner:['startup','startup'],sidebar:['startup','startup-sidebar'],
+  viewport:['startup','startup'],outliner:['startup-unselected','startup'],sidebar:['startup','startup-sidebar'],
   units:['units','units-expanded'],headers:['header-narrow-00','header-narrow-16'],
   delete:['cube','empty'],add:['empty','cube-added'],rename:['cube-added','cube'],orbit:['orbit-24','orbit-32'],pan:['pan-08','pan-12'],zoom:['zoom-08','zoom-08'],
   top:['cube','top'],frame:['pan-16','cube'],save:['cube','cube'],complete:['cube','cube']

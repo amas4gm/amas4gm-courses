@@ -27,8 +27,8 @@ export default {
     {
       "id": "outliner",
       "title": "Find your object in the Outliner",
-      "text": "The Outliner at upper right lists scene objects. A selected object has an orange outline in the viewport.",
-      "task": "Click Cube in the Outliner.",
+      "text": "You can select objects in the Outliner, and they will be highlighted blue in the Outliner, while in the 3D Viewport, the selected object will receive an orange outline.",
+      "task": "Click the cube in the Outliner to select it.",
       "done": "The Outliner selects the same object you see in the viewport.",
       "simulation": {
         "action": "outliner",
@@ -43,38 +43,21 @@ export default {
     {
       "id": "sidebar",
       "title": "Read the Item panel",
-      "text": "The Item Sidebar lives inside the 3D Viewport. It displays location, rotation, scale, and dimensions. Blender shortcuts act on the editor under your pointer.",
-      "task": "Choose View, then Sidebar. Use the menu for this step; you will practice N next.",
-      "done": "Dimensions are the size of the object. Location describes its origin, not the bottom surface.",
+      "text": "The Item Sidebar lives inside the 3D Viewport, but it is currently hidden. There are 3 ways to open it. You can press `N`, click this arrow, or use View > Sidebar.",
+      "task": "Use one of these methods to open the Item Sidebar.",
+      "done": "The Item Sidebar panel lets you edit the properties of the item. Dimensions are the size of the object. Location describes the item's origin, not the bottom surface. Note the other tabs in the sidebar: sometimes add-ons create a menu by adding a tab here.",
       "simulation": {
         "action": "sidebar",
         "asset": "cube",
-        "menuOnly": true
+        "demonstrateSidebar": true
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "Dimensions are the size of the object. Location describes its origin, not the bottom surface. Save your own real Blender file before experimenting.",
-      "keys": [],
-      "inputHint": "Open View, then click Sidebar. The next step teaches the N shortcut."
-    },
-    {
-      "id": "sidebar-shortcut",
-      "title": "Practice the Sidebar shortcut",
-      "text": "The same starting checkpoint is restored so you can practice the keyboard route. The Item Sidebar lives inside the 3D Viewport. It displays location, rotation, scale, and dimensions. Blender shortcuts act on the editor under your pointer.",
-      "task": "Focus the viewport and press `N`, then finish the same action.",
-      "done": "Dimensions are the size of the object. Location describes its origin, not the bottom surface.",
-      "simulation": {
-        "action": "sidebar",
-        "asset": "cube",
-        "shortcutOnly": true
-      },
-      "chapter": "BLENDER / PART 1 · OBJECT MODE",
-      "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "Dimensions are the size of the object. Location describes its origin, not the bottom surface. Save your own real Blender file before experimenting.",
+      "follow": "Open real Blender alongside this lesson. Download a checkpoint to catch up. Save often.",
       "keys": [
         "N"
       ],
-      "inputHint": "Use the shortcut on this second pass. The original menu method remains available in the previous step."
+      "inputHint": "Press N with the pointer over the viewport, click the small arrow at its right edge, or choose View > Sidebar."
     },
     {
       "id": "headers",
@@ -141,7 +124,7 @@ export default {
       "title": "Give the object a useful name",
       "text": "Blender names a new mesh Cube. A useful object name makes it easier to find in the Outliner as a project grows. F2 renames the active object.",
       "task": "Click the viewport. Press F2, type Desk Tray, then Enter.",
-      "done": "The Outliner and viewport identify the same object as Desk Tray. Renaming changes its label, not its geometry.",
+      "done": "The Outliner and viewport identify the same object as Desk Tray. Renaming changes its label, not its geometry. You can also double-click the object in the Outliner to rename it.",
       "simulation": {
         "action": "rename",
         "asset": "cube"

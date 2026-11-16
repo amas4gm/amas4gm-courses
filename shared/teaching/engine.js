@@ -1,5 +1,5 @@
-import {loadProgress,saveProgress,retryStepProgress,completedThroughStep} from './progress.js?v=bevel-handoff-1';
-import {createNarration} from './narration.js?v=bevel-handoff-1';
+import {loadProgress,saveProgress,retryStepProgress,completedThroughStep} from './progress.js?v=sidebar-3';
+import {createNarration} from './narration.js?v=sidebar-3';
 import {createSound} from './sound.js';
 import {createGuidance} from './guidance.js';
 import {createCountdown,completionPause} from './countdown.js?v=completion-pause-2';

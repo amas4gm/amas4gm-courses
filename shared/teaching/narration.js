@@ -67,13 +67,14 @@ export function createNarration({root,lesson,storage,media=new Audio(),fetcher=f
   }
  }
  on(media,'timeupdate',update);on(media,'loadedmetadata',update);on(media,'play',update);on(media,'pause',update);
- on(media,'ended',()=>{update();const next=queue.shift();if(next)playKind(next);});
+ on(media,'ended',()=>{update();const next=queue.shift();if(next==='task'&&root.querySelector('.native-stage[data-demonstrating=true]'))queue.unshift(next);else if(next)playKind(next);});
+ on(root,'blender-demonstration-ended',()=>{if(media.ended&&phase==='step'&&autoplay){const next=queue.shift();if(next)playKind(next);}});
  on(media,'error',()=>{queue=[];const p=players.get(active);if(p)p.status.textContent='Audio could not load. Press Play to retry; you can keep learning.';update();});
  // A normal first interaction can unlock autoplay; explicit pause/off always wins.
  function unlock(event){if(blocked&&autoplay&&!event.target.closest('.narration-player, #narration-settings'))playKind(active);}
  on(root,'pointerup',unlock);on(root,'keydown',unlock);
  on(window,'pagehide',stop);
- const ready=fetcher(new URL('manifest.json?v=bevel-handoff-1',base)).then(r=>{if(!r.ok)throw Error('Narration manifest unavailable');return r.json();}).then(value=>{if(disposed)return;manifest=value;if(step){assign();startPhase();}}).catch(()=>{if(disposed)return;settings.querySelector('small').textContent='Narration unavailable. You can continue without audio.';for(const p of players.values())p.host.hidden=true;});
+ const ready=fetcher(new URL('manifest.json?v=sidebar-3',base)).then(r=>{if(!r.ok)throw Error('Narration manifest unavailable');return r.json();}).then(value=>{if(disposed)return;manifest=value;if(step){assign();startPhase();}}).catch(()=>{if(disposed)return;settings.querySelector('small').textContent='Narration unavailable. You can continue without audio.';for(const p of players.values())p.host.hidden=true;});
  return {
   ready,
   setStep(value,{summary=false}={}){stop();step=value;phase=summary?'pending-summary':'step';assign();if(!summary)startPhase();},

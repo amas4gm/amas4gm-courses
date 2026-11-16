@@ -14,5 +14,5 @@ export function spokenText(text){
   .replace(/\bMMB\b/g,'middle mouse button').replace(/\bAMS\b/g,'A M S')
   .replace(/\bPLA\b/g,'P L A').replace(/\bSTL\b/g,'S T L')
   .replace(/\bUI\b/g,'user interface').replace(/\b3D\b/g,'three D')
-  .replace(/→/g,', then ').replace(/×/g,' by ').replace(/\s+/g,' ').trim();
+  .replace(/→|\s>\s/g,', then ').replace(/×/g,' by ').replace(/\s+/g,' ').trim();
 }

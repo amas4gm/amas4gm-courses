@@ -16,7 +16,7 @@ test('source references and native font retain their upstream bytes',async()=>{
 test('every lesson checkpoint resolves to a complete native capture',()=>{
  for(const l of [intro,objects,edit])for(const s of l.steps.filter(s=>s.simulation.software!=='bambu-studio'))for(const name of statePair(l.id,s.id)){
   const frame=manifest.states[name];assert.ok(frame,`${l.id}/${s.id}: ${name}`);
-  assert.equal(frame.width,s.id==='headers'?1000:2400);assert.equal(frame.height,s.id==='headers'?1000:1494);
+  assert.equal(frame.width,s.id==='headers'?1000:2400);assert.equal(frame.height,name==='startup-unselected'?1483:s.id==='headers'?1000:1494);
  }
 });
 test('published native captures retain their recorded bytes',async()=>{

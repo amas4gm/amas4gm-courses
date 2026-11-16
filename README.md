@@ -168,7 +168,7 @@ The two compressed assets total 5.01 MB, decoded with the browser's native Decom
 
 Course: https://amas4gm.github.io/amas4gm-courses/blender/
 
-Four tutorials, 59 actions: getting-started (14), setup-for-printing (11), object-manipulation (15), edit-mode (19). The deliverable is a 100 × 70 × 18 mm desktop tray, with 3 mm walls and floor and a 0.6 mm outer rim bevel. Real `.blend` checkpoints and a dimension-checked STL support following along in Blender and saving separate experiments.
+Four tutorials, 59 actions: getting-started (13), setup-for-printing (12), object-manipulation (15), edit-mode (19). The deliverable is a 100 × 70 × 18 mm desktop tray, with 3 mm walls and floor and a 0.6 mm outer rim bevel. Real `.blend` checkpoints and a dimension-checked STL support following along in Blender and saving separate experiments.
 
 The Blender adapter places a live WebGL viewport behind complete native Blender 5.2.2 LTS captures. A luminance mask makes the viewport transparent while preserving the original surrounding UI pixels. Regular captures are 2400 × 1494 from the maximized application. Lossless WebP preserves their pixels. Full native menus, popovers, file browsers, transform previews, axis constraints, mode indicators, and status bars remain visible. Transparent named controls admit only the current exercise's interaction. The shared Bambu-style lesson card stays in a left sidebar in both regular and expanded mode. Expanded mode removes the page header and fits Blender into the space to the right, keeping the current instructions, feedback, and lesson controls beside it.
 

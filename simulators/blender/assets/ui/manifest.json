@@ -11814,6 +11814,586 @@
       "width": 2400,
       "height": 1483,
       "sha256": "e8d19f3f4e3c1f16471599e417c1e8082bf56b9b301707a2bf463463a287a71a"
+    },
+    "startup-unselected": {
+      "file": "startup-unselected.webp",
+      "configuration": {
+        "startup": true,
+        "units": false,
+        "selection": "none"
+      },
+      "layout": {
+        "width": 2400,
+        "height": 1483,
+        "areas": [
+          {
+            "type": "PROPERTIES",
+            "x": 1974,
+            "y": 35,
+            "width": 423,
+            "height": 1146,
+            "regions": [
+              {
+                "type": "HEADER",
+                "x": 1974,
+                "y": 1143,
+                "width": 423,
+                "height": 38
+              },
+              {
+                "type": "NAVIGATION_BAR",
+                "x": 1974,
+                "y": 35,
+                "width": 44,
+                "height": 1108
+              },
+              {
+                "type": "WINDOW",
+                "x": 2018,
+                "y": 35,
+                "width": 379,
+                "height": 1108
+              }
+            ]
+          },
+          {
+            "type": "OUTLINER",
+            "x": 1974,
+            "y": 1186,
+            "width": 423,
+            "height": 258,
+            "regions": [
+              {
+                "type": "HEADER",
+                "x": 1974,
+                "y": 1406,
+                "width": 423,
+                "height": 38
+              },
+              {
+                "type": "WINDOW",
+                "x": 1974,
+                "y": 1186,
+                "width": 423,
+                "height": 220
+              }
+            ]
+          },
+          {
+            "type": "DOPESHEET_EDITOR",
+            "x": 3,
+            "y": 35,
+            "width": 1966,
+            "height": 100,
+            "regions": [
+              {
+                "type": "HEADER",
+                "x": 3,
+                "y": 97,
+                "width": 1966,
+                "height": 38
+              },
+              {
+                "type": "FOOTER",
+                "x": 3,
+                "y": 35,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "CHANNELS",
+                "x": 3,
+                "y": 35,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "UI",
+                "x": 1968,
+                "y": 35,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "WINDOW",
+                "x": 3,
+                "y": 35,
+                "width": 1966,
+                "height": 62
+              }
+            ]
+          },
+          {
+            "type": "VIEW_3D",
+            "x": 3,
+            "y": 140,
+            "width": 1966,
+            "height": 1304,
+            "regions": [
+              {
+                "type": "HEADER",
+                "x": 3,
+                "y": 1406,
+                "width": 1966,
+                "height": 38
+              },
+              {
+                "type": "TOOL_HEADER",
+                "x": 3,
+                "y": 1368,
+                "width": 1966,
+                "height": 38
+              },
+              {
+                "type": "ASSET_SHELF",
+                "x": 3,
+                "y": 140,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "ASSET_SHELF_HEADER",
+                "x": 3,
+                "y": 140,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "TOOLS",
+                "x": 3,
+                "y": 140,
+                "width": 84,
+                "height": 1228
+              },
+              {
+                "type": "UI",
+                "x": 1968,
+                "y": 140,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "HUD",
+                "x": 87,
+                "y": 140,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "WINDOW",
+                "x": 3,
+                "y": 140,
+                "width": 1966,
+                "height": 1304
+              }
+            ]
+          }
+        ]
+      },
+      "measuredObject": {
+        "dimensions": [
+          2.0,
+          2.0,
+          2.0
+        ],
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "width": 2400,
+      "height": 1483,
+      "sha256": "bda40d52fa6cc50dceceb2c59fea0e7bfde3037c2fe5892231d4777af8f9755c"
+    },
+    "setup-all": {
+      "file": "setup-all.webp",
+      "configuration": {
+        "startup": true,
+        "units": true,
+        "sidebar": true,
+        "prop": "SCENE",
+        "empty": false,
+        "selection": "all"
+      },
+      "settings": {
+        "system": "METRIC",
+        "scale": 0.001,
+        "length": "MILLIMETERS",
+        "clipStart": 0.1,
+        "clipEnd": 10000
+      },
+      "layout": {
+        "width": 2400,
+        "height": 1483,
+        "areas": [
+          {
+            "type": "PROPERTIES",
+            "x": 1974,
+            "y": 35,
+            "width": 423,
+            "height": 1146,
+            "regions": [
+              {
+                "type": "HEADER",
+                "x": 1974,
+                "y": 1143,
+                "width": 423,
+                "height": 38
+              },
+              {
+                "type": "NAVIGATION_BAR",
+                "x": 1974,
+                "y": 35,
+                "width": 44,
+                "height": 1108
+              },
+              {
+                "type": "WINDOW",
+                "x": 2018,
+                "y": 35,
+                "width": 379,
+                "height": 1108
+              }
+            ]
+          },
+          {
+            "type": "OUTLINER",
+            "x": 1974,
+            "y": 1186,
+            "width": 423,
+            "height": 258,
+            "regions": [
+              {
+                "type": "HEADER",
+                "x": 1974,
+                "y": 1406,
+                "width": 423,
+                "height": 38
+              },
+              {
+                "type": "WINDOW",
+                "x": 1974,
+                "y": 1186,
+                "width": 423,
+                "height": 220
+              }
+            ]
+          },
+          {
+            "type": "DOPESHEET_EDITOR",
+            "x": 3,
+            "y": 35,
+            "width": 1966,
+            "height": 100,
+            "regions": [
+              {
+                "type": "HEADER",
+                "x": 3,
+                "y": 97,
+                "width": 1966,
+                "height": 38
+              },
+              {
+                "type": "FOOTER",
+                "x": 3,
+                "y": 35,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "CHANNELS",
+                "x": 3,
+                "y": 35,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "UI",
+                "x": 1968,
+                "y": 35,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "WINDOW",
+                "x": 3,
+                "y": 35,
+                "width": 1966,
+                "height": 62
+              }
+            ]
+          },
+          {
+            "type": "VIEW_3D",
+            "x": 3,
+            "y": 140,
+            "width": 1966,
+            "height": 1304,
+            "regions": [
+              {
+                "type": "HEADER",
+                "x": 3,
+                "y": 1406,
+                "width": 1966,
+                "height": 38
+              },
+              {
+                "type": "TOOL_HEADER",
+                "x": 3,
+                "y": 1368,
+                "width": 1966,
+                "height": 38
+              },
+              {
+                "type": "ASSET_SHELF",
+                "x": 3,
+                "y": 140,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "ASSET_SHELF_HEADER",
+                "x": 3,
+                "y": 140,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "TOOLS",
+                "x": 3,
+                "y": 140,
+                "width": 84,
+                "height": 1228
+              },
+              {
+                "type": "UI",
+                "x": 1549,
+                "y": 140,
+                "width": 420,
+                "height": 1228
+              },
+              {
+                "type": "HUD",
+                "x": 87,
+                "y": 140,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "WINDOW",
+                "x": 3,
+                "y": 140,
+                "width": 1966,
+                "height": 1304
+              }
+            ]
+          }
+        ]
+      },
+      "objects": [
+        "Camera",
+        "Cube",
+        "Light"
+      ],
+      "width": 2400,
+      "height": 1483,
+      "sha256": "9d9f9bbacb9f8a6b852c11fa4a3bffb2c4a91f1e5b9d12a8159c00aabb5b5b2a"
+    },
+    "setup-empty": {
+      "file": "setup-empty.webp",
+      "configuration": {
+        "startup": true,
+        "units": true,
+        "sidebar": true,
+        "prop": "SCENE",
+        "empty": true,
+        "selection": "none"
+      },
+      "settings": {
+        "system": "METRIC",
+        "scale": 0.001,
+        "length": "MILLIMETERS",
+        "clipStart": 0.1,
+        "clipEnd": 10000
+      },
+      "layout": {
+        "width": 2400,
+        "height": 1483,
+        "areas": [
+          {
+            "type": "PROPERTIES",
+            "x": 1974,
+            "y": 35,
+            "width": 423,
+            "height": 1146,
+            "regions": [
+              {
+                "type": "HEADER",
+                "x": 1974,
+                "y": 1143,
+                "width": 423,
+                "height": 38
+              },
+              {
+                "type": "NAVIGATION_BAR",
+                "x": 1974,
+                "y": 35,
+                "width": 44,
+                "height": 1108
+              },
+              {
+                "type": "WINDOW",
+                "x": 2018,
+                "y": 35,
+                "width": 379,
+                "height": 1108
+              }
+            ]
+          },
+          {
+            "type": "OUTLINER",
+            "x": 1974,
+            "y": 1186,
+            "width": 423,
+            "height": 258,
+            "regions": [
+              {
+                "type": "HEADER",
+                "x": 1974,
+                "y": 1406,
+                "width": 423,
+                "height": 38
+              },
+              {
+                "type": "WINDOW",
+                "x": 1974,
+                "y": 1186,
+                "width": 423,
+                "height": 220
+              }
+            ]
+          },
+          {
+            "type": "DOPESHEET_EDITOR",
+            "x": 3,
+            "y": 35,
+            "width": 1966,
+            "height": 100,
+            "regions": [
+              {
+                "type": "HEADER",
+                "x": 3,
+                "y": 97,
+                "width": 1966,
+                "height": 38
+              },
+              {
+                "type": "FOOTER",
+                "x": 3,
+                "y": 35,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "CHANNELS",
+                "x": 3,
+                "y": 35,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "UI",
+                "x": 1968,
+                "y": 35,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "WINDOW",
+                "x": 3,
+                "y": 35,
+                "width": 1966,
+                "height": 62
+              }
+            ]
+          },
+          {
+            "type": "VIEW_3D",
+            "x": 3,
+            "y": 140,
+            "width": 1966,
+            "height": 1304,
+            "regions": [
+              {
+                "type": "HEADER",
+                "x": 3,
+                "y": 1406,
+                "width": 1966,
+                "height": 38
+              },
+              {
+                "type": "TOOL_HEADER",
+                "x": 3,
+                "y": 1368,
+                "width": 1966,
+                "height": 38
+              },
+              {
+                "type": "ASSET_SHELF",
+                "x": 3,
+                "y": 140,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "ASSET_SHELF_HEADER",
+                "x": 3,
+                "y": 140,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "TOOLS",
+                "x": 3,
+                "y": 140,
+                "width": 84,
+                "height": 1228
+              },
+              {
+                "type": "UI",
+                "x": 1549,
+                "y": 140,
+                "width": 420,
+                "height": 1228
+              },
+              {
+                "type": "HUD",
+                "x": 87,
+                "y": 140,
+                "width": 1,
+                "height": 1
+              },
+              {
+                "type": "WINDOW",
+                "x": 3,
+                "y": 140,
+                "width": 1966,
+                "height": 1304
+              }
+            ]
+          }
+        ]
+      },
+      "objects": [],
+      "width": 2400,
+      "height": 1483,
+      "sha256": "1ad3c0b0b37e2ca4e4b95ba8055fe6d6c5ac317cec5b4ae3a89c16ff42a2859d"
     }
   },
   "menus": {

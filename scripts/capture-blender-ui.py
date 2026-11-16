@@ -70,6 +70,7 @@ def set_scene(asset='cube',mode='OBJECT',selection='all',sidebar=False,values=No
 
 def add(name,**kw):queue.append((name,kw))
 add('startup',startup=True,units=False)
+add('startup-unselected',startup=True,units=False,selection='none')
 add('startup-sidebar',startup=True,units=False,sidebar=True)
 add('units',startup=True,sidebar=True,prop='SCENE')
 add('empty',empty=True)
@@ -107,6 +108,9 @@ if '--repair' in sys.argv:
 if '--extra' in sys.argv:
     queue=[q for q in queue if q[0]=='cube-added']
     manifest=json.loads((OUT/'capture-manifest.json').read_text())
+if '--selection-only' in sys.argv:
+    queue=[q for q in queue if q[0]=='startup-unselected']
+    manifest=json.loads((OUT/'capture-manifest.json').read_text())
 index=0;phase=0
 
 def layout():
@@ -127,6 +131,7 @@ def tick():
             (OUT/('narrow-manifest.json' if '--narrow' in sys.argv else 'capture-manifest.json')).write_text(json.dumps(manifest,indent=2))
             print('CAPTURED',name,flush=True)
             return .15
+        if '--selection-only' in sys.argv:bpy.ops.wm.quit_blender();return None
         request=OUT/'capture-request.json'
         if request.exists():
             command=json.loads(request.read_text());request.unlink()

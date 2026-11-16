@@ -21,7 +21,7 @@ export const software=[{
         "Real Blender checkpoints"
       ],
       "number": "01",
-      "steps": 14
+      "steps": 13
     },
     {
       "id": "setup-for-printing",
@@ -32,7 +32,7 @@ export const software=[{
         "Save Startup File"
       ],
       "number": "02",
-      "steps": 11
+      "steps": 12
     },
     {
       "id": "object-manipulation",

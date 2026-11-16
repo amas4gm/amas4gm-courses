@@ -28,6 +28,7 @@ records={};index=0;phase=0
 def tick_setup():
  global index,phase
  if index==len(states):
+  for obj in list(bpy.context.scene.objects):bpy.data.objects.remove(obj,do_unlink=True)
   bpy.ops.wm.save_homefile()
   # This is a portable scene template, not an automatic installer.
   bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'simulators/blender/assets/printing-setup.blend'),copy=True)

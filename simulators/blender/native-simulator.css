@@ -63,3 +63,5 @@
 .bl-mouse-body kbd{font-size:32px!important;padding:7px 12px!important}
 
 .handoff-controls[hidden]{display:none}.handoff-controls a{color:#c9edd8;padding:5px 9px;border:1px solid #668571;border-radius:4px;text-decoration:none}.blender-course .studio{width:1582px;max-width:none}
+
+.bl-sidebar-arrow{color:#aaa!important;font:28px/30px Arial!important;z-index:5!important}

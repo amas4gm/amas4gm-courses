@@ -1,5 +1,5 @@
-import {createMouseDemo,mouseDemoPlan} from './mouse-demo.js?v=bevel-handoff-1';
-import {modalReady} from './native-modal.js?v=bevel-handoff-1';
+import {createMouseDemo,mouseDemoPlan} from './mouse-demo.js?v=sidebar-3';
+import {modalReady} from './native-modal.js?v=sidebar-3';
 
 // A demonstration describes input, but never dispatches it to the simulator.
 // Keep mouse and keyboard in one queue so neither can run ahead of the other.
@@ -42,13 +42,14 @@ export function sampleKeyDemo(keys,time){
 }
 
 export function createInputDemo({stage,onKey=()=>{},requestFrame=requestAnimationFrame,cancelFrame=cancelAnimationFrame,reducedMotion=()=>matchMedia('(prefers-reduced-motion: reduce)').matches}){
+ let completion=null;
  let queue=[],point=[],frame=0,node=null,last=null,elapsed=0,shown=-1,active=false,version=0;
  const mouse=createMouseDemo({stage,requestFrame,cancelFrame,reducedMotion,onComplete:next});
  function removeKeys(){cancelFrame(frame);frame=0;node?.remove();node=null;onKey('');}
- function stop(){version++;queue=[];active=false;mouse.stop();removeKeys();}
+ function stop(){const callback=completion;completion=null;callback?.(false);version++;queue=[];active=false;mouse.stop();removeKeys();}
  function keycaps(parent,key){key.split('+').forEach((part,i)=>{if(i)parent.append(document.createTextNode(' + '));const cap=document.createElement('kbd');cap.textContent=part;parent.append(cap);});}
  function next(){
-  removeKeys();const part=queue.shift();if(!part){active=false;return;}
+  removeKeys();const part=queue.shift();if(!part){active=false;const callback=completion;completion=null;callback?.(true);return;}
   if(part.type==='mouse'){mouse.play(part.plan);return;}
   node=document.createElement('div');node.className='bl-key-demo';node.setAttribute('aria-hidden','true');node.style.left=`${point[0]}px`;node.style.top=`${point[1]}px`;node.style.opacity='0';stage.append(node);
   elapsed=0;last=null;shown=-1;const token=version;
@@ -61,13 +62,13 @@ export function createInputDemo({stage,onKey=()=>{},requestFrame=requestAnimatio
   frame=requestFrame(tick);
  }
  return {
-  play(plan){
-   stop();if(!plan?.parts.length)return;point=plan.point;
+  play(plan,onComplete){
+   stop();completion=onComplete;if(!plan?.parts.length)return;point=plan.point;
    if(reducedMotion()){
     // Respect reduced motion with the whole ordered sequence, without moving,
     // flashing keys, or losing the keyboard half of a mixed demonstration.
     node=document.createElement('ol');node.className='bl-input-demo-static';node.setAttribute('aria-label','Input sequence');
-    for(const p of plan.parts){const item=document.createElement('li');if(p.type==='mouse')item.textContent=p.plan.description;else p.keys.forEach((key,i)=>{if(i)item.append(' → ');keycaps(item,key);});node.append(item);}stage.append(node);return;
+    for(const p of plan.parts){const item=document.createElement('li');if(p.type==='mouse')item.textContent=p.plan.description;else p.keys.forEach((key,i)=>{if(i)item.append(' → ');keycaps(item,key);});node.append(item);}stage.append(node);completion?.(true);completion=null;return;
    }
    queue=[...plan.parts];active=true;next();
   },

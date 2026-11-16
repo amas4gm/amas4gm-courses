@@ -1,13 +1,13 @@
 import * as THREE from '../../shared/vendor/three.module.js';
-import {precisionDelta,dragZoomDistance} from './native-modal.js?v=bevel-handoff-1';
-import {liveState,meshForState,viewportRect} from './live-state.js?v=bevel-handoff-1';
-import {rimEdgeIndices} from './selection.js?v=bevel-handoff-1';
+import {precisionDelta,dragZoomDistance} from './native-modal.js?v=sidebar-3';
+import {liveState,meshForState,viewportRect} from './live-state.js?v=sidebar-3';
+import {rimEdgeIndices} from './selection.js?v=sidebar-3';
 
 const baseRotation=new THREE.Quaternion(.425,.176,.340,.820).normalize();
 const svgNS='http://www.w3.org/2000/svg';
 export async function createLiveViewport({stage,frame,manifest,url,onView,onTop,onRender}){
  const names=['cube','blank','inset','cavity','finished','bevel-1','bevel-2','bevel-3'];
- const assets=Object.fromEntries(await Promise.all(names.map(async name=>{const r=await fetch(url(`assets/${name.startsWith('bevel-')?'live/':''}${name}.json`)+'?v=bevel-handoff-1');if(!r.ok)throw Error(`Mesh unavailable: ${name}`);return [name,await r.json()];})));
+ const assets=Object.fromEntries(await Promise.all(names.map(async name=>{const r=await fetch(url(`assets/${name.startsWith('bevel-')?'live/':''}${name}.json`)+'?v=sidebar-3');if(!r.ok)throw Error(`Mesh unavailable: ${name}`);return [name,await r.json()];})));
  const canvas=document.createElement('canvas');canvas.className='bl-live-canvas';canvas.setAttribute('aria-label','Live Blender 3D viewport');stage.prepend(canvas);
  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false});renderer.setClearColor(0x3f3f3f);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));let renderWidth=0,renderHeight=0;
  const scene=new THREE.Scene(),model=new THREE.Group(),grid=new THREE.Group();scene.add(model,grid);
@@ -89,7 +89,7 @@ export async function createLiveViewport({stage,frame,manifest,url,onView,onTop,
    if(name==='Z'&&sign>0){topButton.style.left=`${rect.right-155+x-14}px`;topButton.style.top=`${rect.visibleY+4+y-14}px`;}
    const circle=document.createElementNS(svgNS,'circle');for(const [k,v] of Object.entries({cx:x,cy:y,r:12,fill:sign>0?color:'#3f3f3f',stroke:color,'stroke-width':2}))circle.setAttribute(k,v);gizmo.append(circle);if(sign>0){const text=document.createElementNS(svgNS,'text');text.setAttribute('x',x);text.setAttribute('y',y+5);text.setAttribute('text-anchor','middle');text.setAttribute('fill','#17212d');text.textContent=name;gizmo.append(text);}
   });
-  label.textContent=`${camera===ortho?'Top Orthographic':'User Perspective'}\n(1) Collection | ${state.startup||state.objectName==='Cube'?'Cube':'Desk Tray'}`;
+  label.textContent=`${camera===ortho?'Top Orthographic':'User Perspective'}\n(1) Collection${state.empty?'':' | '+(state.startup||state.objectName==='Cube'?'Cube':'Desk Tray')}`;
  }
  return {
   canvas,topButton,

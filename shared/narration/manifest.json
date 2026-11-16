@@ -1049,17 +1049,17 @@
       "duration": 5.76,
       "generationId": "k7sEozZPT8Ls42rnjFUY"
     },
-    "04fc54d377cdb4022fc2": {
-      "text": "The Outliner at upper right lists scene objects. A selected object has an orange outline in the viewport.",
-      "file": "04fc54d377cdb4022fc2.mp3",
-      "duration": 7.04,
-      "generationId": "KAHrPdity3BD1VVp7zeq"
+    "ddbb3383f1b2e6a1753c": {
+      "text": "You can select objects in the Outliner, and they will be highlighted blue in the Outliner, while in the three D Viewport, the selected object will receive an orange outline.",
+      "file": "ddbb3383f1b2e6a1753c.mp3",
+      "generationId": "hfyFyGT53UXO6rkXQLZ6",
+      "duration": 9.76
     },
-    "20b0d0379ef7ff01ce30": {
-      "text": "Click Cube in the Outliner.",
-      "file": "20b0d0379ef7ff01ce30.mp3",
-      "duration": 2,
-      "generationId": "yAaN86tYRyZduzB9WlfV"
+    "32390ce826a5bf6d24d5": {
+      "text": "Click the cube in the Outliner to select it.",
+      "file": "32390ce826a5bf6d24d5.mp3",
+      "generationId": "ifg1ylx5qOB4yoyfdgGq",
+      "duration": 2.56
     },
     "d00bfd4182a7aa3aa8be": {
       "text": "The Outliner selects the same object you see in the viewport.",
@@ -1067,35 +1067,23 @@
       "duration": 3.6,
       "generationId": "B5NNpJ6nTeVv7jwOJ9Sf"
     },
-    "81c259bb431c2ac02132": {
-      "text": "The Item Sidebar lives inside the three D Viewport. It displays location, rotation, scale, and dimensions. Blender shortcuts act on the editor under your pointer.",
-      "file": "81c259bb431c2ac02132.mp3",
-      "duration": 11.2,
-      "generationId": "eUx9Wmeew4tzT6VjBSEw"
+    "ecdfe50858596785779d": {
+      "text": "The Item Sidebar lives inside the three D Viewport, but it is currently hidden. There are 3 ways to open it. You can press N, click this arrow, or use View, then Sidebar.",
+      "file": "ecdfe50858596785779d.mp3",
+      "generationId": "ZnAMtVImV8eC4hICOSJR",
+      "duration": 12.08
     },
-    "67a7b97e283b1595b8d9": {
-      "text": "Choose View, then Sidebar. Use the menu for this step; you will practice N next.",
-      "file": "67a7b97e283b1595b8d9.mp3",
-      "duration": 6.64,
-      "generationId": "Jf2a38HhCwXruWjHtvXP"
+    "1651d365c7368863799d": {
+      "text": "Use one of these methods to open the Item Sidebar.",
+      "file": "1651d365c7368863799d.mp3",
+      "generationId": "sJHSD0y8TOOqsrZBBy2R",
+      "duration": 3.12
     },
-    "e57241051e26c3fc78b4": {
-      "text": "Dimensions are the size of the object. Location describes its origin, not the bottom surface.",
-      "file": "e57241051e26c3fc78b4.mp3",
-      "duration": 6.32,
-      "generationId": "1TXzewidvKrZIFhK0nJD"
-    },
-    "c7545aae15d39f0f8942": {
-      "text": "The same starting checkpoint is restored so you can practice the keyboard route. The Item Sidebar lives inside the three D Viewport. It displays location, rotation, scale, and dimensions. Blender shortcuts act on the editor under your pointer.",
-      "file": "c7545aae15d39f0f8942.mp3",
-      "duration": 15.36,
-      "generationId": "HNwVD1NU5fTqs1iAFIxw"
-    },
-    "3b39ab90bcfc247542e5": {
-      "text": "Focus the viewport and press N, then finish the same action.",
-      "file": "3b39ab90bcfc247542e5.mp3",
-      "duration": 4.48,
-      "generationId": "2BqsalLUd7ZOVTuSkcBb"
+    "ea961647fcd1e1298b22": {
+      "text": "The Item Sidebar panel lets you edit the properties of the item. Dimensions are the size of the object. Location describes the item's origin, not the bottom surface. Note the other tabs in the sidebar: sometimes add-ons create a menu by adding a tab here.",
+      "file": "ea961647fcd1e1298b22.mp3",
+      "generationId": "gI4rEduUA2bOHLUcNpRx",
+      "duration": 16.64
     },
     "fc005e1c13056744626e": {
       "text": "This step deliberately uses a narrow Blender window. When an editor is too narrow, controls remain in its horizontally scrollable header. They have not disappeared. Hover over that header and use the wheel, trackpad horizontal scroll, or middle-mouse drag. Widening the window also helps.",
@@ -1163,11 +1151,11 @@
       "duration": 5.36,
       "generationId": "HBt0xUAFhBDH2EI6tda7"
     },
-    "97a2bc8e804723abde3f": {
-      "text": "The Outliner and viewport identify the same object as Desk Tray. Renaming changes its label, not its geometry.",
-      "file": "97a2bc8e804723abde3f.mp3",
-      "duration": 8.08,
-      "generationId": "avY43VvuQILs6U4gjbtF"
+    "e92b8e29312e5ab756aa": {
+      "text": "The Outliner and viewport identify the same object as Desk Tray. Renaming changes its label, not its geometry. You can also double-click the object in the Outliner to rename it.",
+      "file": "e92b8e29312e5ab756aa.mp3",
+      "generationId": "JcLAU7a8RDbBSOeNXCJ4",
+      "duration": 12
     },
     "bdfeb4a200371cc4a1ed": {
       "text": "Drag the rotating axes at the top right to orbit the scene. With a mouse, dragging the middle button in the viewport does the same thing. This moves your viewpoint, not the object.",
@@ -1457,11 +1445,29 @@
       "duration": 10.08,
       "generationId": "1klykhQKVvOUUfCdAQtd"
     },
-    "8aae6f168f0386ce4654": {
-      "text": "A startup file stores the current scene and workspace, including scene units and this viewport’s settings. Save it before building the tray, so future new files do not start with your finished model. Our practice scene still contains the default Cube, Camera, and Light.",
-      "file": "8aae6f168f0386ce4654.mp3",
-      "duration": 17.28,
-      "generationId": "xxNfDvI6bKTUZSP5XnPk"
+    "4341ca7748250f3ab7ad": {
+      "text": "The default scene contains a cube, camera, and light. Remove all three before saving your startup file so each new project begins with an empty workspace and your preferred settings. With your pointer over the three D Viewport, A selects all objects and Delete removes them.",
+      "file": "4341ca7748250f3ab7ad.mp3",
+      "generationId": "EFTr7jQ46fhutp2X3cKC",
+      "duration": 18.08
+    },
+    "a64383471fe4c6481410": {
+      "text": "Click inside the three D Viewport, press A to select all three objects, then press Delete.",
+      "file": "a64383471fe4c6481410.mp3",
+      "generationId": "oboWdBFs40a9yiGnbqeW",
+      "duration": 6.32
+    },
+    "b42f20d9c6aeeb2b0be0": {
+      "text": "The cube, camera, and light are gone. The Outliner now shows an empty Collection. Your units and viewport settings are preserved.",
+      "file": "b42f20d9c6aeeb2b0be0.mp3",
+      "generationId": "JUousxBOWl10K1kZ2cDq",
+      "duration": 8.56
+    },
+    "5384477d35037d33fd7b": {
+      "text": "A startup file stores your scene and workspace, including scene units and viewport settings. Save this empty scene with your preferred settings so Blender starts ready for your next project.",
+      "file": "5384477d35037d33fd7b.mp3",
+      "generationId": "JNSOugLTB5BxnhIntGYe",
+      "duration": 11.12
     },
     "693d5f5b0792a5de78da": {
       "text": "Choose File , then Defaults , then Save Startup File.",
@@ -1475,11 +1481,11 @@
       "duration": 8.08,
       "generationId": "FUMItvw4ZOsNHQ1JeKQm"
     },
-    "6b31b12e16efb4c5ec4e": {
-      "text": "In real Blender, this replaces your previous startup scene. In this simulation, only the practice checkpoint changes. If you want to keep a customized startup in real Blender, save a separate scene template instead.",
-      "file": "6b31b12e16efb4c5ec4e.mp3",
-      "duration": 13.52,
-      "generationId": "wK6HcGn4zxc6iDMtUZVY"
+    "449effebf52b6531684b": {
+      "text": "Save a startup file with your preferred settings. Blender will use this scene and these settings when it starts.",
+      "file": "449effebf52b6531684b.mp3",
+      "generationId": "ghDsPux03U9XybyGGOHp",
+      "duration": 6.48
     },
     "ce958ad0d5411c02bd7e": {
       "text": "Click Overwrite to save this simulated startup configuration.",
@@ -1487,11 +1493,11 @@
       "duration": 3.84,
       "generationId": "ktrWxhsd3o8P5n3B5p5i"
     },
-    "d67bcd95449118e93480": {
-      "text": "Your setup is saved. In real Blender, test File , then New , then General after saving any current work. Check Metric, 0.001, Millimeters, and the View tab’s clipping values.",
-      "file": "d67bcd95449118e93480.mp3",
-      "duration": 14.48,
-      "generationId": "UetSmEHnfNedvKM4AX3L"
+    "c8d7a79c62a7b23e370d": {
+      "text": "Your startup file is saved. Blender will start with an empty scene, Metric units, Unit Scale 0.001, lengths in Millimeters, and your chosen viewport clipping settings.",
+      "file": "c8d7a79c62a7b23e370d.mp3",
+      "generationId": "e3lEW6Ni29Qad5a5xBZk",
+      "duration": 12.64
     },
     "d432cd8ccfc0225c536b": {
       "text": "You configured scene units, viewport clipping, and a startup file. The downloadable setup scene is an optional recovery point. Open a new file in real Blender and verify the settings, then continue to the tray lessons.",
@@ -2946,12 +2952,12 @@
       },
       "outliner": {
         "description": {
-          "id": "04fc54d377cdb4022fc2",
-          "display": "The Outliner at upper right lists scene objects. A selected object has an orange outline in the viewport."
+          "id": "ddbb3383f1b2e6a1753c",
+          "display": "You can select objects in the Outliner, and they will be highlighted blue in the Outliner, while in the 3D Viewport, the selected object will receive an orange outline."
         },
         "task": {
-          "id": "20b0d0379ef7ff01ce30",
-          "display": "Click Cube in the Outliner."
+          "id": "32390ce826a5bf6d24d5",
+          "display": "Click the cube in the Outliner to select it."
         },
         "summary": {
           "id": "d00bfd4182a7aa3aa8be",
@@ -2960,30 +2966,16 @@
       },
       "sidebar": {
         "description": {
-          "id": "81c259bb431c2ac02132",
-          "display": "The Item Sidebar lives inside the 3D Viewport. It displays location, rotation, scale, and dimensions. Blender shortcuts act on the editor under your pointer."
+          "id": "ecdfe50858596785779d",
+          "display": "The Item Sidebar lives inside the 3D Viewport, but it is currently hidden. There are 3 ways to open it. You can press `N`, click this arrow, or use View > Sidebar."
         },
         "task": {
-          "id": "67a7b97e283b1595b8d9",
-          "display": "Choose View, then Sidebar. Use the menu for this step; you will practice N next."
+          "id": "1651d365c7368863799d",
+          "display": "Use one of these methods to open the Item Sidebar."
         },
         "summary": {
-          "id": "e57241051e26c3fc78b4",
-          "display": "Dimensions are the size of the object. Location describes its origin, not the bottom surface."
-        }
-      },
-      "sidebar-shortcut": {
-        "description": {
-          "id": "c7545aae15d39f0f8942",
-          "display": "The same starting checkpoint is restored so you can practice the keyboard route. The Item Sidebar lives inside the 3D Viewport. It displays location, rotation, scale, and dimensions. Blender shortcuts act on the editor under your pointer."
-        },
-        "task": {
-          "id": "3b39ab90bcfc247542e5",
-          "display": "Focus the viewport and press `N`, then finish the same action."
-        },
-        "summary": {
-          "id": "e57241051e26c3fc78b4",
-          "display": "Dimensions are the size of the object. Location describes its origin, not the bottom surface."
+          "id": "ea961647fcd1e1298b22",
+          "display": "The Item Sidebar panel lets you edit the properties of the item. Dimensions are the size of the object. Location describes the item's origin, not the bottom surface. Note the other tabs in the sidebar: sometimes add-ons create a menu by adding a tab here."
         }
       },
       "headers": {
@@ -3038,8 +3030,8 @@
           "display": "Click the viewport. Press F2, type Desk Tray, then Enter."
         },
         "summary": {
-          "id": "97a2bc8e804723abde3f",
-          "display": "The Outliner and viewport identify the same object as Desk Tray. Renaming changes its label, not its geometry."
+          "id": "e92b8e29312e5ab756aa",
+          "display": "The Outliner and viewport identify the same object as Desk Tray. Renaming changes its label, not its geometry. You can also double-click the object in the Outliner to rename it."
         }
       },
       "orbit": {
@@ -3268,10 +3260,24 @@
           "display": "The viewport range is now 0.1 to 10000 millimeters. These settings affect this 3D Viewport, not every editor in every Blender file."
         }
       },
+      "clear-scene": {
+        "description": {
+          "id": "4341ca7748250f3ab7ad",
+          "display": "The default scene contains a cube, camera, and light. Remove all three before saving your startup file so each new project begins with an empty workspace and your preferred settings. With your pointer over the 3D Viewport, A selects all objects and Delete removes them."
+        },
+        "task": {
+          "id": "a64383471fe4c6481410",
+          "display": "Click inside the 3D Viewport, press `A` to select all three objects, then press `Delete`."
+        },
+        "summary": {
+          "id": "b42f20d9c6aeeb2b0be0",
+          "display": "The cube, camera, and light are gone. The Outliner now shows an empty Collection. Your units and viewport settings are preserved."
+        }
+      },
       "startup": {
         "description": {
-          "id": "8aae6f168f0386ce4654",
-          "display": "A startup file stores the current scene and workspace, including scene units and this viewport’s settings. Save it before building the tray, so future new files do not start with your finished model. Our practice scene still contains the default Cube, Camera, and Light."
+          "id": "5384477d35037d33fd7b",
+          "display": "A startup file stores your scene and workspace, including scene units and viewport settings. Save this empty scene with your preferred settings so Blender starts ready for your next project."
         },
         "task": {
           "id": "693d5f5b0792a5de78da",
@@ -3284,16 +3290,16 @@
       },
       "confirm": {
         "description": {
-          "id": "6b31b12e16efb4c5ec4e",
-          "display": "In real Blender, this replaces your previous startup scene. In this simulation, only the practice checkpoint changes. If you want to keep a customized startup in real Blender, save a separate scene template instead."
+          "id": "449effebf52b6531684b",
+          "display": "Save a startup file with your preferred settings. Blender will use this scene and these settings when it starts."
         },
         "task": {
           "id": "ce958ad0d5411c02bd7e",
           "display": "Click Overwrite to save this simulated startup configuration."
         },
         "summary": {
-          "id": "d67bcd95449118e93480",
-          "display": "Your setup is saved. In real Blender, test File → New → General after saving any current work. Check Metric, 0.001, Millimeters, and the View tab’s clipping values."
+          "id": "c8d7a79c62a7b23e370d",
+          "display": "Your startup file is saved. Blender will start with an empty scene, Metric units, Unit Scale 0.001, lengths in Millimeters, and your chosen viewport clipping settings."
         }
       },
       "complete": {

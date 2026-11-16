@@ -76,3 +76,15 @@ test('every narration entry includes a nonempty MP3, duration, and provider prov
   assert.ok(bytes.subarray(0,3).toString()==='ID3'||(bytes[0]===255&&(bytes[1]&224)===224),`${id}: MP3 header`);
  }
 });
+
+test('task narration waits until the sidebar demonstration finishes',async()=>{
+ const q=setup();await q.n.ready;
+ const stage=document.createElement('div');stage.className='native-stage';stage.dataset.demonstrating='true';q.root.append(stage);
+ q.n.setStep(step);q.media.end();const before=q.media.calls.length;q.media.end();assert.equal(q.media.calls.length,before);
+ stage.dataset.demonstrating='false';stage.dispatchEvent(new window.Event('blender-demonstration-ended',{bubbles:true}));assert.match(q.media.src,/task.mp3$/);q.cleanup();
+});
+
+test('menu path symbols are spoken as a sequence, never greater than',()=>{
+ assert.equal(spokenText('View > Sidebar'),'View, then Sidebar');
+ assert.equal(spokenText('File → Defaults → Save Startup File'),'File , then Defaults , then Save Startup File');
+});
