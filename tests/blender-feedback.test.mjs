@@ -22,11 +22,17 @@ test('Shift-click hint holds Shift before mouse press and through release',()=>{
  const p=mouseDemoPlan({action:'select-vertices',gesture:'shift-click',target:{x:600,y:400,width:80,height:48},viewport:{left:88,right:1900,visibleY:115,y:78,height:1240}});
  const press=p.frames.findIndex(f=>f.button==='left');assert.equal(p.frames[press-1].key,'Shift');assert.equal(p.frames[press].key,'Shift');assert.equal(p.frames[press+1].key,'Shift');assert.equal(p.frames.at(-1).key,'');
 });
-test('retired numpad/save drills do not trap returning learners and useful drills enforce distinct routes',()=>{
+test('retired navigation drills preserve progress and each lesson keeps its intended input routes',()=>{
  const ids=intro.steps.filter(s=>!s.terminal).map(s=>s.id);
  const saved=normalizeProgress(intro,{current:'frame-shortcut',completed:[...ids,'frame-shortcut','save-shortcut']});
  assert.equal(saved.current,'complete');assert.ok(!saved.completed.includes('frame-shortcut'));
  assert.equal(intro.steps.find(s=>s.id==='orbit').quiz,undefined);
  assert.ok(!intro.steps.some(s=>s.simulation.shortcutOnly&&s.keys.some(k=>k.includes('Numpad'))));
- for(const [lesson,id] of [[objects,'apply'],[edit,'mode']]){assert.equal(lesson.steps.find(s=>s.id===id).simulation.menuOnly,true);assert.equal(lesson.steps.find(s=>s.id===id+'-shortcut').simulation.shortcutOnly,true);}
+ const apply=objects.steps.find(s=>s.id==='apply');
+ assert.equal(apply.simulation.menuOnly,undefined);
+ assert.equal(apply.simulation.shortcutOnly,undefined);
+ assert.ok(apply.keys.includes('Ctrl+A'));
+ assert.ok(!objects.steps.some(s=>s.id==='apply-shortcut'));
+ assert.equal(edit.steps.find(s=>s.id==='mode').simulation.menuOnly,true);
+ assert.equal(edit.steps.find(s=>s.id==='mode-shortcut').simulation.shortcutOnly,true);
 });

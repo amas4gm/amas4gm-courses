@@ -25,6 +25,10 @@ export function inputDemoPlan(context){
  else{
   mouse(mouseDemoPlan(base));
   if(s.action==='field')keys([...numeric(),'Enter']);
+  else if(s.tool&&gesture==='click'){
+   if(s.action==='extrude-cancel')keys(['Escape','Ctrl+Z']);
+   else{keys(numeric());if(s.tool==='bevel')bevel(1);keys(['Enter']);}
+  }
   else if(s.action==='rename'&&gesture==='double-click')keys(nameKeys);
   else if(gesture==='focus'){
    if(s.visual){keys([step.keys[0]]);visual();}

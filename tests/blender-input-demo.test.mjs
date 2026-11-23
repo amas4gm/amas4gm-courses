@@ -31,9 +31,20 @@ test('bevel orders numeric entry before wheel detents and final confirmation',()
  const correction=plan(edit,'bevel',{operator:{kind:'bevel',raw:'8',segments:2}});assert.deepEqual(correction.parts[0].keys,['Backspace','0','.','6']);assert.equal(correction.parts[1].plan.frames.filter(f=>f.wheel).length,1);
 });
 test('open shortcut menus do not replay the shortcut; rename includes text and confirmation',()=>{
- assert.deepEqual(keys(plan(objects,'apply-shortcut',{gesture:'click'})),[]);
+ assert.deepEqual(keys(plan(objects,'apply',{gesture:'click'})),[]);
  assert.deepEqual(keys(plan(intro,'rename')),['F2','Shift+D','e','s','k','Space','Shift+T','r','a','y','Enter']);
  assert.deepEqual(keys(plan(edit,'cancel-extrude')),['E','Escape','Ctrl+Z']);
+});
+test('native tool demos click the toolbar before numeric input or the undo sequence',()=>{
+ for(const id of ['inset','introduce-extrude','cancel-extrude','extrude','bevel']){
+  const step=edit.steps.find(s=>s.id===id);
+  const p=plan(edit,id,{gesture:'click'});
+  assert.equal(p.parts[0].type,'mouse');
+  assert.equal(p.parts[0].plan.description,'Click LMB here');
+  const expected=id==='cancel-extrude'?['Escape','Ctrl+Z']:[...String(step.simulation.value),'Enter'];
+  assert.deepEqual(keys(p),expected);
+ }
+ assert.equal(plan(edit,'top-face',{gesture:'click'}).parts[0].plan.description,'Click LMB here');
 });
 test('each key appears, presses, releases, and fades before the next key',()=>{
  const k=['Ctrl+Shift+S','Enter'];assert.equal(sampleKeyDemo(k,0).opacity,0);assert.equal(sampleKeyDemo(k,200).pressed,false);assert.equal(sampleKeyDemo(k,400).pressed,true);assert.equal(sampleKeyDemo(k,700).pressed,false);assert.ok(sampleKeyDemo(k,900).opacity<1);assert.equal(sampleKeyDemo(k,keyDuration).key,'Enter');assert.equal(sampleKeyDemo(k,2*keyDuration).done,true);

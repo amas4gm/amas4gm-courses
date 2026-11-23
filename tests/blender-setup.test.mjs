@@ -5,8 +5,8 @@ import lesson from '../blender/setup-for-printing/lesson.js';
 import {setupReady,setupValue} from '../simulators/blender/setup-state.js';
 import {statePair} from '../simulators/blender/native-state.js';
 const manifest=JSON.parse(await readFile(new URL('../simulators/blender/assets/ui/manifest.json',import.meta.url)));
-test('setup begins unconfigured and teaches Scene, units, viewport clipping, then startup confirmation',()=>{
- assert.deepEqual(lesson.steps.map(s=>s.id),['scene','units','system','scale','length','sidebar','view','clip-start','clip-end','clear-scene','startup','confirm','complete']);
+test('setup compares clipping after opening the View tab and before entering the settings',()=>{
+ assert.deepEqual(lesson.steps.map(s=>s.id),['scene','units','system','scale','length','sidebar','view','compare-clipping','clip-start','clip-end','clear-scene','startup','confirm','complete']);
  assert.equal(manifest.states['setup-start'].settings.system,'NONE');
  assert.equal(manifest.states['setup-metric'].settings.scale,1);
  assert.equal(manifest.states['setup-view'].settings.clipEnd,1000);

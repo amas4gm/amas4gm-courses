@@ -1,4 +1,4 @@
-import {createBlenderSimulator} from './native-simulator.js?v=outliner-rename-1';
+import {createBlenderSimulator} from './native-simulator.js?v=mesh-tools-2';
 import {createBambuSimulator} from '../bambu-studio/simulator.js?v=outliner-rename-1';
 
 // Keep the teaching engine and progress intact while changing simulated apps.

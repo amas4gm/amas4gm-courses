@@ -1,7 +1,7 @@
 import {loadProgress,saveProgress,retryStepProgress,completedThroughStep} from './progress.js?v=outliner-rename-1';
-import {createNarration} from './narration.js?v=outliner-rename-1';
+import {createNarration} from './narration.js?v=blender-level1-revision-1';
 import {createSound} from './sound.js';
-import {createGuidance} from './guidance.js';
+import {createGuidance} from './guidance.js?v=blender-levels-2';
 import {createCountdown,completionPause} from './countdown.js?v=completion-pause-2';
 import {captureReturnToCourse} from './return-to-course.js';
 

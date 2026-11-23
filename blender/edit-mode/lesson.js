@@ -12,9 +12,9 @@ export default {
     {
       "id": "mode",
       "title": "Enter Edit Mode",
-      "text": "Object Mode transforms the whole object. Edit Mode changes its vertices, edges, and faces. The Layout workspace can contain either mode.",
+      "text": "Use Object Mode to move, rotate, or scale a whole object. Use Edit Mode to change its shape. In this tutorial, you’ll reshape the solid tray blank into a hollow tray. Both modes are available in the Layout workspace.",
       "task": "Open the mode selector and choose Edit Mode. Use the menu here; you will practice Tab next.",
-      "done": "You are now working on the mesh inside the object.",
+      "done": "You are now editing the tray mesh. In Edit Mode, you can move, add, or delete the vertices, edges, and faces that make up its shape.",
       "simulation": {
         "action": "edit-mode",
         "asset": "blank",
@@ -33,16 +33,16 @@ export default {
       },
       "chapter": "BLENDER / PART 2 · EDIT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "You are now working on the mesh inside the object. Save your own real Blender file before experimenting.",
+      "follow": "In real Blender, select the tray blank before entering Edit Mode. Save your file before experimenting.",
       "keys": [],
       "inputHint": "Open the mode selector, then click Edit Mode. The next step teaches Tab."
     },
     {
       "id": "mode-shortcut",
       "title": "Practice the mode shortcut",
-      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Object Mode transforms the whole object. Edit Mode changes its vertices, edges, and faces. The Layout workspace can contain either mode.",
-      "task": "Focus the viewport and press `Tab`, then finish the same action.",
-      "done": "You are now working on the mesh inside the object.",
+      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Pressing Tab switches between Object Mode and Edit Mode with a single keystroke.",
+      "task": "Focus the viewport and press `Tab` to enter Edit Mode.",
+      "done": "Using Tab is faster than using the mode dropdown.",
       "simulation": {
         "action": "edit-mode",
         "asset": "blank",
@@ -51,7 +51,7 @@ export default {
       },
       "chapter": "BLENDER / PART 2 · EDIT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "You are now working on the mesh inside the object. Save your own real Blender file before experimenting.",
+      "follow": "In real Blender, hover over the viewport before pressing Tab.",
       "keys": [
         "Tab"
       ],
@@ -136,10 +136,11 @@ export default {
       "id": "inset",
       "title": "Define 3 mm walls",
       "text": "Inset Faces creates a smaller face surrounded by a rim. The rim becomes our wall footprint. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm.",
-      "task": "Click the viewport. Press `I` → `3` → `Enter`. Watch the preview before Enter.",
+      "task": "Click the Inset Faces icon in the toolbar, or press `I` in the viewport. Type `3`, watch the preview, then press `Enter`.",
       "done": "The inner face measures 94 × 64 mm. The surrounding rim is 3 mm wide.",
       "simulation": {
         "action": "inset",
+        "tool": "inset",
         "asset": "blank",
         "mode": "edit",
         "value": 3,
@@ -156,13 +157,38 @@ export default {
       "inputHint": "Watch the highlighted numeric record at the top of the viewport. Backspace edits the value; Escape cancels."
     },
     {
+      "id": "introduce-extrude",
+      "title": "Try extruding a face",
+      "text": "Extrude moves the selected face and builds new faces along its border to keep it connected to the mesh. Moving the inner face up makes a raised shape with new side walls. Try it on this practice copy before you make the tray cavity.",
+      "task": "Click the Extrude Region icon in the toolbar, or press `E` in the viewport. Type `8`, watch the face rise, then press `Enter`.",
+      "done": "The inner face moved up 8 mm and new walls connect it to the rim. The next exercise starts at the inset again.",
+      "simulation": {
+        "action": "extrude",
+        "tool": "extrude",
+        "asset": "inset",
+        "mode": "edit",
+        "value": 8,
+        "practiceExtrusion": true
+      },
+      "chapter": "BLENDER / PART 2 · EDIT MODE",
+      "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
+      "follow": "In real Blender, try this on a copy of the inset checkpoint.",
+      "keys": [
+        "E",
+        "8",
+        "Enter"
+      ],
+      "inputHint": "Start Extrude Region, type 8, then press Enter. Watch the new walls appear as the face rises."
+    },
+    {
       "id": "cancel-extrude",
-      "title": "Cancel an extrusion safely",
-      "text": "Extrusion creates geometry and then moves it. Escape cancels the movement, leaving the new geometry at zero distance. Ctrl+Z removes that extrusion. This is different from simply cancelling Move or Rotate.",
-      "task": "Click the viewport. Press E, then Escape, then Ctrl+Z.",
+      "title": "Undo an accidental extrusion",
+      "text": "Blender creates the new edges and faces as soon as extrusion starts. Escape cancels the movement, so those new parts overlap the original surface and can be hard to see. If you started Extrude by accident, press Ctrl+Z after Escape to undo the creation of that geometry.",
+      "task": "Start Extrude Region from the toolbar or press `E` in the viewport. Press `Escape`, then `Ctrl` + `Z` to undo the extrusion.",
       "done": "The extrusion geometry was undone. You are back at the inset checkpoint, ready to make the cavity.",
       "simulation": {
         "action": "extrude-cancel",
+        "tool": "extrude",
         "asset": "inset",
         "mode": "edit"
       },
@@ -174,16 +200,17 @@ export default {
         "Escape",
         "Ctrl+Z"
       ],
-      "inputHint": "The menu or button method and this keyboard shortcut are both supported. Shortcuts act in the focused viewport."
+      "inputHint": "Start Extrude Region, then press Escape to stop the movement and Ctrl+Z to undo the new geometry."
     },
     {
       "id": "extrude",
       "title": "Create the cavity",
-      "text": "Extrude the selected inner face downward by 15 mm. Starting from a height of 18 mm leaves a 3 mm floor. Enter a negative value to move down Z. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm.",
-      "task": "Click the viewport. Press `E` → `-` → `1` → `5` → `Enter`. Watch the preview before Enter.",
+      "text": "Extruding inward creates a recess. Push the selected inner face down inside the blank to hollow out the tray. The inset rim stays at the top, and the new faces form the inside walls. Moving the face down 15 mm in this 18 mm blank leaves a 3 mm floor.",
+      "task": "Click the Extrude Region icon or press `E` in the viewport. Type `-` `1` `5`, watch the face move down, then press `Enter`.",
       "done": "The tray has an open cavity, 3 mm walls, and a 3 mm floor.",
       "simulation": {
         "action": "extrude",
+        "tool": "extrude",
         "asset": "inset",
         "mode": "edit",
         "value": -15,
@@ -256,10 +283,11 @@ export default {
       "id": "bevel",
       "title": "Soften the outside rim",
       "text": "Bevel the four outer rim edges you selected. A 0.6 mm bevel with three segments and Profile 0.5 creates a rounded transition with real geometry. Move the pointer to preview the width, or type a number. Scroll the wheel during the operation to change the number of segments. You can zoom in before starting to inspect the edge shape.",
-      "task": "Click the viewport. Press `Ctrl` + `B`, type `0` `.` `6`, scroll up twice for 3 segments, then `Enter`.",
+      "task": "Click the Bevel icon in the toolbar, or press `Ctrl` + `B` in the viewport. Type `0` `.` `6`, scroll up twice for 3 segments, then press `Enter`.",
       "done": "The outer rim now contains three curved segments across its 0.6 mm bevel. The cavity and floor remain intact. Orbit and zoom to inspect the new geometry in real Blender.",
       "simulation": {
         "action": "bevel",
+        "tool": "bevel",
         "asset": "cavity",
         "mode": "edit",
         "selectMode": "edge",
@@ -277,21 +305,6 @@ export default {
         "Enter"
       ],
       "inputHint": "Watch the highlighted numeric record at the top of the viewport. Backspace edits the value; Escape cancels."
-    },
-    {
-      "id": "orientation",
-      "title": "Inspect outward faces",
-      "text": "This inspection checkpoint starts with the finished mesh deselected. Face Orientation reveals reversed faces. Find the option in Viewport Overlays, under Geometry, then inspect all sides in real Blender.",
-      "task": "Open the Viewport Overlays arrow, enable Face Orientation under Geometry, then click the viewport to close the popover.",
-      "done": "Our generated mesh has no boundary or non-manifold edges. That does not replace checking dimensions, thickness, and sliced layers.",
-      "simulation": {
-        "action": "orientation",
-        "asset": "finished",
-        "mode": "edit"
-      },
-      "chapter": "BLENDER / PART 2 · EDIT MODE",
-      "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "Our generated mesh has no boundary or non-manifold edges. That does not replace checking dimensions, thickness, and sliced layers. Save your own real Blender file before experimenting."
     },
     {
       "id": "object",
@@ -336,7 +349,7 @@ export default {
     {
       "id": "export",
       "title": "Export and verify the size",
-      "text": "Our checkpoint stores coordinates in millimeters. Export selected objects with Scale 1 and Scene Unit off. The generated STL has been reimported and checked at 100 × 70 × 18 mm.",
+      "text": "Our checkpoint stores coordinates in millimeters. Export selected objects with Scale 1 and Scene Unit off.",
       "task": "Choose File → Export → STL (.stl), then Export STL.",
       "done": "The tray is exported as desk-tray.stl. Next, open the simulated Bambu Studio workspace and import this model to verify its dimensions and orientation.",
       "simulation": {

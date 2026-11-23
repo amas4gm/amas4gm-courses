@@ -1,0 +1,76 @@
+.bl-clip-comparison {
+ position: absolute;
+ z-index: 20;
+ top: 0;
+ left: 0;
+ transform-origin: top left;
+ container-type: inline-size;
+ box-sizing: border-box;
+ overflow: auto;
+ padding: clamp(12px, 3%, 28px);
+ background: #202623;
+ color: #e8eeea;
+ font: 14px/1.4 BlenderInter, Arial, sans-serif;
+}
+.bl-clip-heading {
+ display: flex;
+ flex-wrap: wrap;
+ align-items: baseline;
+ justify-content: space-between;
+ gap: 5px 12px;
+ margin-bottom: 16px;
+}
+.bl-clip-heading h3 { margin: 0; font-size: 23px; line-height: 1.2; color: #f5faf7; }
+.bl-clip-progress { color: #c2dccd; font-size: 13px; }
+.bl-clip-content { display: grid; grid-template-columns: minmax(174px, .33fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.bl-clip-settings { display: grid; gap: 12px; }
+.bl-clip-settings fieldset {
+ display: grid;
+ gap: 6px;
+ min-inline-size: 0;
+ margin: 0;
+ padding: 9px;
+ border: 1px solid #475850;
+ border-radius: 8px;
+}
+.bl-clip-settings legend { padding: 0 5px; font-weight: 700; }
+.bl-clip-settings button {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-between;
+ align-items: baseline;
+ gap: 3px 8px;
+ min-width: 0;
+ min-height: 34px;
+ padding: 8px;
+ border: 1px solid #52645c;
+ border-radius: 5px;
+ background: #29342f;
+ color: #e6eeea;
+ font: inherit;
+ text-align: left;
+ cursor: pointer;
+}
+.bl-clip-settings button strong { white-space: nowrap; color: #d2e4d8; }
+.bl-clip-visited { visibility: hidden; color: #b4e5c9; }
+.bl-clip-settings button[data-viewed=true] .bl-clip-visited { visibility: visible; }
+.bl-clip-settings button:hover { background: #32443b; }
+.bl-clip-settings button[aria-pressed=true] { background: #1d4b39; border-color: #92cbb1; }
+.bl-clip-settings button:focus-visible { outline: 2px solid #f0ce99; outline-offset: 2px; }
+.bl-clip-preview {
+ margin: 0;
+ padding: 14px 16px;
+ border: 1px solid #46584e;
+ border-radius: 8px;
+ background: #1b211e;
+}
+.bl-clip-preview figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; }
+.bl-clip-range { color: #c9dece; }
+.bl-clip-preview canvas { display: block; width: 100%; height: auto; margin: 14px 0 8px; }
+.bl-clip-effect { min-height: 2.8em; margin: 0; color: #f2f7f4; }
+.bl-clip-note { margin: 8px 0 0; color: #c3cfc9; font-size: 12px; }
+@container (max-width: 599px) {
+ .bl-clip-content { grid-template-columns: 1fr; gap: 10px; }
+ .bl-clip-settings { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+ .bl-clip-preview { padding: 10px; }
+}

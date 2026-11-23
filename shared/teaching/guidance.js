@@ -4,8 +4,8 @@ export function createGuidance(root){
   function clear(){root.querySelectorAll('.active-target').forEach(el=>{el.classList.remove('active-target');el.removeAttribute('aria-current');});arrow.hidden=true;}
   return {update(spec){
     clear();if(!spec?.target)return;
-    const {target,parent,scale=1,anchorY,above=false}=spec;
-    target.classList.add('active-target');target.setAttribute('aria-current','step');
+    const {target,parent,scale=1,anchorY,above=false,highlight=target}=spec;
+    highlight.classList.add('active-target');highlight.setAttribute('aria-current','step');
     parent.append(arrow);arrow.hidden=false;arrow.classList.toggle('dialog-guide',parent.tagName==='DIALOG');
     const base=parent.getBoundingClientRect(),rect=target.getBoundingClientRect();
     arrow.style.left=`${(rect.left+rect.width/2-base.left)/scale}px`;

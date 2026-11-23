@@ -32,7 +32,7 @@ export const software=[{
         "Save Startup File"
       ],
       "number": "02",
-      "steps": 12
+      "steps": 13
     },
     {
       "id": "object-manipulation",
@@ -43,7 +43,7 @@ export const software=[{
         "Real Blender checkpoints"
       ],
       "number": "03",
-      "steps": 15
+      "steps": 14
     },
     {
       "id": "edit-mode",
@@ -56,5 +56,4 @@ export const software=[{
       "number": "04",
       "steps": 19
     }
-  ]
-}];
+  ]}];

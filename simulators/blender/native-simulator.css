@@ -10,9 +10,13 @@
 .bl-live-canvas{position:absolute;z-index:0;display:block;touch-action:none}.bl-live-canvas[hidden]{display:none}
 .bl-live-label{position:absolute;z-index:2;pointer-events:none;white-space:pre;font:17px/1.6 BlenderInter,Arial,sans-serif;color:#eee;text-shadow:1px 1px #222}
 .bl-live-gizmo{position:absolute;width:144px;height:144px;z-index:2;pointer-events:none;font:16px BlenderInter,Arial,sans-serif}
-.bl-live-top{position:absolute;z-index:2;background:transparent!important;border:0!important;padding:0;width:28px;height:28px;border-radius:50%;cursor:default}
+.bl-live-axis{position:absolute;background:transparent!important;border:0!important;padding:0;width:28px;height:28px;border-radius:50%;cursor:pointer}
+.bl-live-axis:focus-visible{outline:3px solid #90b6e9;outline-offset:2px}
 .bl-live-cursor{position:absolute;width:40px;height:40px;z-index:2;pointer-events:none}
 .bl-live-selection-guide{position:absolute;width:80px;height:48px;z-index:2;pointer-events:none;border-radius:8px}
+.bl-mesh-guide{position:absolute;z-index:3;pointer-events:none;visibility:hidden}
+.bl-mesh-guide.active-target{visibility:visible;outline:none!important;box-shadow:none!important;background:transparent!important;animation:none}
+.bl-mesh-guide path{fill:none;stroke:#00d465;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 7px #00d465)}
 .native-hit{position:absolute;z-index:2;pointer-events:auto;appearance:none;background:transparent!important;border:0!important;border-radius:3px;padding:0;box-shadow:none;color:transparent;cursor:default}
 .native-hit:focus-visible{outline:2px solid #90b6e9!important;outline-offset:-2px}.native-hit.active-target{outline:2px solid #e7bd68!important;outline-offset:1px;box-shadow:0 0 0 4px #ffcd5a1c!important}
 .native-menu{position:absolute;pointer-events:auto;background:#181818f7;border:1px solid #101010;border-radius:5px;padding:5px 0;box-shadow:1px 3px 9px #0008;font:16px BlenderInter,Arial,sans-serif;color:#ddd;overflow:auto;max-height:calc(100% - 80px)}
@@ -28,7 +32,7 @@
 /* The shared target highlight must never reveal captured text under a field. */
 .native-input,.native-input.active-target{background-color:#222!important;z-index:5!important;cursor:text!important}
 .native-input.filename,.native-input.filename.active-target{background-color:#1d1d1d!important}
-.bl-live-top,.bl-live-top.active-target{z-index:4!important}
+.bl-live-axis.active-target{z-index:16!important}
 .native-popover{position:absolute;z-index:1;pointer-events:none}
 .bl-follow{background:#f6f8f5;border:1px solid #dce4dd;padding:15px 18px;font-size:13px;line-height:1.5}.bl-follow p{margin:5px 0 8px}.downloads{display:flex;flex-wrap:wrap;gap:15px}.downloads a{color:#175c43}.bl-follow summary{cursor:pointer}
 .native-expanded .course-header,.native-expanded .intro-row,.native-expanded .sim-caption,.native-expanded .under-sim,.native-expanded footer,.native-expanded .bl-follow{display:none}

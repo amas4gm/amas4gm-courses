@@ -116,9 +116,9 @@ export default {
     {
       "id": "length",
       "title": "Display lengths in millimeters",
-      "text": "Length controls how distances are displayed. Set it to Millimeters so dimensions and viewport clipping distances use the same unit as the tray project.",
+      "text": "Unit Scale tells Blender what each scene unit represents. At 0.001, the two-unit cube represents 2 millimeters. Length controls how Blender displays that measurement. Saying 2 millimeters or 0.002 meters describes the same cube. Choose Millimeters so dimensions and clipping distances match the tray project.",
       "task": "Open Length and choose Millimeters.",
-      "done": "Distances are displayed in millimeters. This does not resize the mesh.",
+      "done": "Blender displays the same distance in millimeters. The cube still spans two scene units, and Unit Scale is still 0.001.",
       "simulation": {
         "asset": "cube",
         "action": "setup-choice",
@@ -182,11 +182,23 @@ export default {
       "follow": "Follow these steps in a new real Blender scene. Save any current work before starting. Save named project files often."
     },
     {
+      "id": "compare-clipping",
+      "title": "Compare clipping distances",
+      "text": "The viewport shows surfaces between Clip Start and Clip End, measured from your viewpoint. A narrow range can hide nearby or distant geometry. An unnecessarily wide range can make it harder for the viewport to tell closely spaced surfaces apart.",
+      "task": "Compare the low, recommended, and high values for both Clip Start and Clip End. Watch which surfaces the viewport can show.",
+      "done": "For this workspace, Clip Start at 0.1 millimeters lets you get close and Clip End at 10000 millimeters keeps the scene in view. Next, enter those values in the View sidebar.",
+      "simulation": {
+        "asset": "cube",
+        "action": "compare-clipping"
+      },
+      "chapter": "BLENDER / PRINTING SETUP"
+    },
+    {
       "id": "clip-start",
       "title": "Set the near clipping distance",
-      "text": "Clip Start hides surfaces closer to the viewpoint than this distance. If a close-up seems sliced open, reduce this value. Use 0.1 millimeters for this course, and reduce it further only when the detail needs it.",
+      "text": "Apply the recommended Clip Start from the comparison. Edit the Clip Start field first and leave End as it is for now.",
       "task": "Double-click Clip Start, enter `0` `.` `1`, then press `Enter`.",
-      "done": "The near clipping distance is 0.1 millimeters. This is a viewport setting; a render camera has separate clipping controls.",
+      "done": "Clip Start is set to 0.1 millimeters. Next, set End to finish the viewport range.",
       "simulation": {
         "asset": "cube",
         "action": "field",
@@ -215,9 +227,9 @@ export default {
     {
       "id": "clip-end",
       "title": "Set the far clipping distance",
-      "text": "End hides surfaces beyond the far clipping distance. Use 10000 millimeters, or 10 meters, for this course workspace. Avoid making the range unnecessarily enormous: an extreme range can reduce depth precision.",
+      "text": "Apply the recommended far limit from the comparison. Enter 10000 millimeters, the same distance as 10 meters, in the End field just below Clip Start.",
       "task": "Double-click End, enter `1` `0` `0` `0` `0`, then press `Enter`.",
-      "done": "The viewport range is now 0.1 to 10000 millimeters. These settings affect this 3D Viewport, not every editor in every Blender file.",
+      "done": "This 3D Viewport is set to the recommended range of 0.1 to 10000 millimeters. Other viewports and render cameras have their own settings.",
       "simulation": {
         "asset": "cube",
         "action": "field",
@@ -268,7 +280,7 @@ export default {
       "title": "Save a startup configuration",
       "text": "A startup file stores your scene and workspace, including scene units and viewport settings. Save this empty scene with your preferred settings so Blender starts ready for your next project.",
       "task": "Choose File → Defaults → Save Startup File.",
-      "done": "Blender asks before replacing the startup file. Saving a startup file is different from saving a named project with Save As.",
+      "done": "Blender prompts a confirmation before replacing the startup file. Saving a startup file is different from saving a named project with Save As - a startup file sets the default settings for new projects.",
       "simulation": {
         "asset": "cube",
         "action": "setup-startup"

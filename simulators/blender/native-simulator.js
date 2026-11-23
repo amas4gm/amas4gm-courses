@@ -1,11 +1,14 @@
 import {meetsGoal,numericValue} from './state.js';
 import {setupValue,setupReady} from './setup-state.js?v=outliner-rename-1';
 import {selectVertex,selectEdge} from './selection.js?v=outliner-rename-1';
-import {statePair,fieldRects,boundedFrame} from './native-state.js?v=outliner-rename-1';
+import {statePair,fieldRects,boundedFrame,meshTools} from './native-state.js?v=mesh-tools-2';
 import {startModal,modalKey,modalReady,modalValue,modalCaption,visualReady} from './native-modal.js?v=outliner-rename-1';
-import {createLiveViewport} from './live-viewport.js?v=outliner-rename-1';
+import {createLiveViewport} from './live-viewport.js?v=geometry-guide-1';
 import {createInputCoach} from './input-coach.js?v=outliner-rename-1';
-import {createInputDemo,inputDemoPlan} from './input-demo.js?v=outliner-rename-1';
+import {createInputDemo,inputDemoPlan} from './input-demo.js?v=geometry-guide-1';
+import {mountClippingComparison} from './clipping-comparison.js';
+
+const numpadViews={Numpad1:['Front','Back'],Numpad3:['Right','Left'],Numpad7:['Top','Bottom']};
 
 // Each frame contains Blender's complete, unmodified native interface. Only
 // the current checkpoint's controls receive a transparent interaction layer.
@@ -16,16 +19,17 @@ export async function createBlenderSimulator({container,lesson,api}) {
  container.innerHTML=`<div class="native-controls"><span>Blender 5.2.2 LTS · native interface</span><button type="button" class="expand-native">Expand workspace</button></div><div class="native-host"><div class="native-stage" tabindex="0" role="application" aria-label="Blender practice workspace"><img class="native-frame" alt="" draggable="false"><div class="native-hotspots"></div><div class="native-menus"></div></div></div><div class="bl-follow"><strong>Follow along in real Blender · save often</strong><p class="follow-copy"></p><details><summary>Blender checkpoints and recovery</summary><p>Save your own copy before experimenting. Browser progress does not save your real Blender project.</p><div class="downloads"></div></details></div>`;
  const $=s=>container.querySelector(s),host=$('.native-host'),stage=$('.native-stage'),frame=$('.native-frame'),spots=$('.native-hotspots'),menus=$('.native-menus');
  const abort=new AbortController(),on=(el,event,fn,extra={})=>el.addEventListener(event,fn,{signal:abort.signal,...extra});
- let walkthrough=false,walkVersion=0,allDefaultsSelected=false;
+ let walkthrough=false,walkVersion=0,allDefaultsSelected=false,removeComparison=null;
  let step,pair,paused=false,finished=false,current='',scale=1,guide=null,drag=null,navIndex=8,operator=null,dialog=false,popup=false,loadToken=0;
- let zoomDirections=new Set(),extrusionUndo=false,orientationEnabled=false,travel=0,vertexSelection=null,edgeSelection=[];const loaded=new Map();let pointer=[900,600],lastInput=performance.now(),readout=null,visualResult=null,shortcutInvoked=false,suppressClick=false;const valuesLayer=document.createElement('div');stage.append(valuesLayer);
+ let zoomDirections=new Set(),extrusionUndo=false,travel=0,vertexSelection=null,edgeSelection=[];const loaded=new Map();let pointer=[900,600],lastInput=performance.now(),readout=null,visualResult=null,shortcutInvoked=false,suppressClick=false;const valuesLayer=document.createElement('div');stage.append(valuesLayer);
  const coach=createInputCoach({stage,container,onDemonstrate:()=>demonstrate()});
  const inputDemo=createInputDemo({stage,onKey:key=>coach.pressed(key)});
  const live=await createLiveViewport({stage,frame,manifest,url,onView(kind,dx,dy){
   if(paused||finished||step?.simulation.action!==kind)return;
   if(kind==='zoom'){zoomDirections.add(Math.sign(dx));if(zoomDirections.size===2)practiceComplete();}
   else {travel+=Math.hypot(dx,dy);if(travel>60)practiceComplete();}
- },onTop(){if(!paused&&!finished&&step.simulation.action==='top')finish();},onRender:()=>api.guideChanged()});
+ },canSnap:()=>!paused&&!walkthrough&&!drag&&!dialog&&!popup&&!operator&&!extrusionUndo&&step?.simulation.action!=='compare-clipping',
+ onAxisView(view){if(view==='Top'&&!finished&&step.simulation.action==='top')finish();},onRender:()=>api.guideChanged()});
  function preload(name){if(!manifest.states[name])throw Error(`Missing captured UI state ${name}`);if(!loaded.has(name)){const im=new Image();im.src=url(`assets/ui/${manifest.states[name].file}`);loaded.set(name,im.decode().then(()=>im));}return loaded.get(name);}
  async function show(name,{resetCamera=false}={}){const token=++loadToken,im=await preload(name);if(token!==loadToken)return false;current=name;frame.src=im.src;stage.dataset.state=name;const r=manifest.states[name];stage.style.width=`${r.width}px`;stage.style.height=`${r.height}px`;live.setFrame(name,{resetCamera});resize();return true;}
  function resize(){if(!current)return;const previousScale=scale,r=manifest.states[current];scale=host.clientWidth/2400;
@@ -35,7 +39,7 @@ export async function createBlenderSimulator({container,lesson,api}) {
  const observer=new ResizeObserver(resize);observer.observe(host);if(document.querySelector('.lesson-panel'))observer.observe(document.querySelector('.lesson-panel'));on(window,'resize',resize);
  const unavailable=()=>{api.retry('That control is outside this step. Follow the highlighted control or the key sequence.',host);demonstrate();};
  function demonstrate(message){
-  if(walkthrough||paused||finished||drag)return;lastInput=performance.now();
+  if(walkthrough||paused||finished||drag||removeComparison)return;lastInput=performance.now();
   const editing=guide?.tagName==='INPUT';
   const g=guide?.isConnected?guide.getBoundingClientRect():null,b=stage.getBoundingClientRect(),r=live.viewport()||{left:0,right:stage.clientWidth,visibleY:0,y:0,height:stage.clientHeight};
   const target=g?{x:(g.left-b.left)/scale,y:(g.top-b.top)/scale,width:g.width/scale,height:g.height/scale}:null;
@@ -52,12 +56,11 @@ export async function createBlenderSimulator({container,lesson,api}) {
   if(dbl)on(b,'click',e=>{e.stopPropagation();stage.focus({preventScroll:true});api.feedback(step.simulation.action==='rename'?'Double-click the object name to edit it.':'Double-click the number to enter an exact value.');});
   spots.append(b);if(target)guide=b;return b;
  }
- function clear(){inputDemo.stop();menus.replaceChildren();valuesLayer.replaceChildren();readout?.remove();readout=null;operator=null;dialog=false;popup=false;orientationEnabled=false;}
- async function finish(name=pair[1]){if(finished||paused)return;finished=true;clear();spots.replaceChildren();guide=null;if(await show(name,{resetCamera:step.simulation.action==='frame'})){if(step.simulation.action==='setup-startup')startupConfirmation(false);api.complete();}}
+ function clear(){inputDemo.stop();menus.replaceChildren();valuesLayer.replaceChildren();readout?.remove();readout=null;operator=null;dialog=false;popup=false;}
+ async function finish(name=pair[1]){if(finished||paused)return;finished=true;clear();spots.replaceChildren();guide=null;if(await show(name,{resetCamera:step.simulation.action==='frame'})){buildControls();api.complete();}}
  function cancel(){
   if(step.simulation.action==='setup-confirm'){dismissStartup();return;}
   coach.hint('Cancelled. The checkpoint is restored. You can try the keys or mouse again.');
-  if(orientationEnabled)return finish();
   if(operator?.kind==='extrude'){clear();extrusionUndo=true;show('extrude-cancelled');api.feedback('Escape cancelled the movement, but the extrusion remains. Press Ctrl+Z to remove the new geometry.');stage.focus({preventScroll:true});return;}
   clear();allDefaultsSelected=false;vertexSelection=null;show(pair[0]);buildControls();stage.focus({preventScroll:true});api.feedback('Cancelled. The starting checkpoint is restored.');
  }
@@ -139,7 +142,7 @@ export async function createBlenderSimulator({container,lesson,api}) {
   if(!modalReady(operator,step.simulation.value))return help(`The preview is live. Adjust the value to ${step.simulation.value}${operator.kind==='rotate'?'°':' mm'}${operator.kind==='bevel'?' and 3 segments':''}, then Enter. Use Backspace to edit, or Escape to restart.`);finish();
  }
  function help(message){lastInput=performance.now();api.retry(message,host);demonstrate(message);}
- function navigationControls(){const r=live.viewport();if(!r)return;for(const [kind,y,label] of [['zoom',r.visibleY+130,'Zoom view — drag magnifier'],['pan',r.visibleY+175,'Pan view — drag hand'],['orbit',r.visibleY+5,'Orbit view — drag axes']]){const box=kind==='orbit'?[r.right-155,y,144,144]:[r.right-50,y,45,44];const b=hotspot(label,box,()=>{},{target:step.simulation.action===kind});b.classList.add('bl-native-drag');b.dataset.navigation=kind;b.style.zIndex='3';live.topButton.style.zIndex='4';live.topButton.dataset.navigation='orbit';}
+ function navigationControls(){const r=live.viewport();if(!r)return;for(const [kind,y,label] of [['zoom',r.visibleY+130,'Zoom view — drag magnifier'],['pan',r.visibleY+175,'Pan view — drag hand'],['orbit',r.visibleY+5,'Orbit view — drag axes']]){const box=kind==='orbit'?[r.right-155,y,144,144]:[r.right-50,y,45,44];const b=hotspot(label,box,()=>{},{target:!finished&&step.simulation.action===kind});b.classList.add('bl-native-drag');b.dataset.navigation=kind;b.style.zIndex='3';}
  }
  function startupConfirmation(active=true){
   inputDemo.stop();spots.replaceChildren();menus.replaceChildren();popup=true;
@@ -169,9 +172,21 @@ export async function createBlenderSimulator({container,lesson,api}) {
   return false;
  }
  function buildControls(){
-  spots.replaceChildren();guide=null;navigationControls();if(finished){if(step.simulation.action==='setup-startup')startupConfirmation(false);if(step.simulation.action==='select-vertices')live.setVertexSelection(live.visibleVertexIds().slice(0,2));if(step.simulation.action==='select-rim')live.setEdgeSelection(live.rimEdges());return;}
+  spots.replaceChildren();guide=null;
+  const s=step.simulation,a=s.action;
+  if(a==='compare-clipping'){
+   removeComparison?.();removeComparison=mountClippingComparison(stage,{complete:practiceComplete,completed:finished});return;
+  }
+  navigationControls();
+  if(finished){
+   if(a==='setup-startup')startupConfirmation(false);
+   if(a==='select-vertices')live.setVertexSelection(live.visibleVertexIds().slice(0,2));
+   if(a==='select-rim')live.setEdgeSelection(live.rimEdges());
+   if(s.practiceExtrusion)live.previewOperation({kind:'extrude',value:s.value,axis:'z',confirmed:true});
+   return;
+  }
   if(setupControls())return;
-  const a=step.simulation.action,edit=step.simulation.mode==='edit'||['vertex','edge','face','select-top','select-vertices','inset','extrude','bevel','orientation','object-mode'].includes(a);
+  const edit=s.mode==='edit'||['vertex','edge','face','select-top','select-vertices','inset','extrude','bevel','object-mode'].includes(a);
   if(a==='header-scroll'){const r=manifest.states[pair[0]];hotspot('Scrollable viewport header',[3,39,r.layout.areas.find(a=>a.type==='VIEW_3D').width,38],()=>api.feedback('Scroll over the header, or drag it with the middle mouse button.'),{target:true});return;}
   hotspot('File',[42,1,50,36],()=>['save','export','setup-startup'].includes(a)?openMenu('TOPBAR_MT_file',42,37):unavailable(),{target:['save','export','setup-startup'].includes(a)});
   hotspot('Mode selector',[72,39,edit?137:162,38],()=>['edit-mode','object-mode'].includes(a)?openMenu('object.mode_set',72,77):unavailable(),{target:['edit-mode','object-mode'].includes(a)});
@@ -183,20 +198,24 @@ export async function createBlenderSimulator({container,lesson,api}) {
   if(a==='rename')hotspot('Rename Cube in Outliner',[2090,138,90,28],()=>rename(true),{target:true,dbl:true});
   if(a==='outliner')hotspot('Cube in Outliner',[2040,162,340,27],()=>finish(),{target:true});
   if(a==='units')hotspot('Units in Scene Properties',[2030,615,355,35],()=>finish(),{target:true});
-  if(a==='select-object'){hotspot('Cube mesh',[88,115,1450,1200],e=>live.hit(e.clientX,e.clientY)?finish():api.retry('Click the cube itself to select it.',host));guide=live.selectionGuide();}
-  if(a==='select-top'){hotspot('Top face',[88,115,1450,1200],e=>live.hit(e.clientX,e.clientY,{topOnly:true})?finish():api.retry('Select the broad top face, not a side or empty space.',host));guide=live.selectionGuide(true);}
+  const viewport=live.viewport(),meshArea=[viewport.left,viewport.visibleY,viewport.right-viewport.left,viewport.y+viewport.height-viewport.visibleY];
+  if(a==='select-object'){hotspot('Cube mesh',meshArea,e=>live.hit(e.clientX,e.clientY)?finish():api.retry('Click the cube itself to select it.',host));guide=live.selectionGuide();}
+  if(a==='select-top'){hotspot('Top face',meshArea,e=>live.hit(e.clientX,e.clientY,{topOnly:true})?finish():api.retry('Select the broad top face, not a side or empty space.',host));guide=live.selectionGuide(true);}
   if(a==='select-vertices'){
-   hotspot('Mesh vertices',[88,115,1450,1200],e=>{
+   hotspot('Mesh vertices',meshArea,e=>{
     const index=live.hitVertex(e.clientX,e.clientY);if(index===null)return help('Click a visible corner point of the mesh.');
     if(vertexSelection===null&&e.shiftKey)return help('First click one corner without Shift to replace the current selection.');
+    const expectedShift=vertexSelection?.length>0&&!e.shiftKey;
     vertexSelection=selectVertex(vertexSelection||[],index,e.shiftKey);live.setVertexSelection(vertexSelection);
     if(e.shiftKey&&vertexSelection.length>=2){practiceComplete();return;}
-    guide=live.vertexGuide(vertexSelection);api.guideChanged();coach.hint(vertexSelection.length?'Now hold Shift and click a different vertex to add it.':'Click one vertex, then Shift-click another.');api.feedback(vertexSelection.length?'One vertex selected. Hold Shift and click another corner.':'Selection cleared. Click one vertex to start again.');
+    guide=live.vertexGuide(vertexSelection);api.guideChanged();
+    if(expectedShift)return help('A plain click replaces the selection. Hold Shift and click a different vertex to add it.');
+    coach.hint(vertexSelection.length?'Now hold Shift and click a different vertex to add it.':'Click one vertex, then Shift-click another.');api.feedback(vertexSelection.length?'One vertex selected. Hold Shift and click another corner.':'Selection cleared. Click one vertex to start again.');
    });guide=live.vertexGuide();
   }
   if(a==='select-rim'){
    edgeSelection=[];live.setEdgeSelection([]);
-   hotspot('Tray rim edges',[88,115,1450,1200],e=>{
+   hotspot('Tray rim edges',meshArea,e=>{
     const index=live.hitEdge(e.clientX,e.clientY),required=live.rimEdges();
     if(index===null||!required.includes(index))return help('Select an outside top rim edge, not an inside, vertical, or bottom edge.');
     edgeSelection=selectEdge(edgeSelection,index,e.shiftKey);live.setEdgeSelection(edgeSelection);
@@ -207,22 +226,17 @@ export async function createBlenderSimulator({container,lesson,api}) {
   for(const [i,key] of ['vertex','edge','face'].entries())if(edit)hotspot(`${key[0].toUpperCase()+key.slice(1)} Select`,[219+i*29,39,28,38],()=>a===key?finish():unavailable(),{target:a===key});
   if(a==='top')guide=live.topButton;
   if(a==='field')hotspot(fieldLabel(step.simulation.field),fieldRects[step.simulation.field],()=>editField(step.simulation.field),{target:true,dbl:true});
-  if(a==='orientation')hotspot('Viewport Overlays popover',[1698,39,32,38],()=>orientationPopover(false),{target:true});
   if(step.simulation.shortcutOnly)hotspot('3D Viewport — keyboard focus',[88,115,1450,1200],()=>stage.focus({preventScroll:true}),{target:true});
-  if(guide&&(['delete','setup-delete','move','rotate','scale','inset','extrude','extrude-cancel','bevel'].includes(a)||step.simulation.shortcutOnly))guide.dataset.mouseGesture='focus';
- }
- function orientationPopover(enabled){
-  inputDemo.stop();spots.replaceChildren();menus.replaceChildren();popup=true;orientationEnabled=enabled;
-  const reference=manifest.menus[enabled?'overlays.enabled':'overlays'],im=rect(document.createElement('img'),[1490,77,reference.width,reference.height]);im.src=url('assets/ui/'+reference.file);im.alt='';im.className='native-popover';menus.append(im);
-  if(enabled){hotspot('Close Overlays in viewport',[88,115,1350,1200],()=>finish(),{target:true});api.feedback('Face Orientation is enabled. Click the viewport to close the popover.');}
-  else hotspot('Face Orientation',[1501,680,275,31],async()=>{await show(pair[1]);orientationPopover(true);},{target:true});
-  api.guideChanged();
+  if(s.tool){const {label,box}=meshTools[s.tool];hotspot(label,box,()=>beginOperation(s.tool),{target:true});}
+  else if(guide&&(['delete','setup-delete','move','rotate','scale','inset','extrude','extrude-cancel','bevel'].includes(a)||s.shortcutOnly))guide.dataset.mouseGesture='focus';
  }
  function practiceComplete(){inputDemo.stop();finished=true;guide=null;api.complete();}
  function navigate(kind,dx,dy=0){if(paused||dialog||popup||operator||extrusionUndo)return;live.navigate(kind,dx,dy);}
  async function scrollHeader(delta){navIndex=Math.min(16,Math.max(0,navIndex+delta));if(await show(boundedFrame('header-narrow',navIndex))&&navIndex>=8)practiceComplete();}
  on(stage,'keydown',e=>{
-  inputDemo.stop();if(paused||finished)return;lastInput=performance.now();const a=step.simulation.action,k=e.key.toLowerCase();coach.pressed(k==='shift'?'Shift':(e.ctrlKey?'Ctrl+':e.shiftKey?'Shift+':'')+(e.key.length===1?e.key.toUpperCase():e.key));
+  inputDemo.stop();if(paused||!step||removeComparison)return;
+  if(numpadViews[e.code]&&e.target.tagName!=='INPUT'&&live.snapTo(numpadViews[e.code][Number(e.ctrlKey)])){e.preventDefault();return;}
+  if(finished)return;lastInput=performance.now();const a=step.simulation.action,k=e.key.toLowerCase();coach.pressed(k==='shift'?'Shift':(e.ctrlKey?'Ctrl+':e.shiftKey?'Shift+':'')+(e.key.length===1?e.key.toUpperCase():e.key));
   if(extrusionUndo){e.preventDefault();if(k==='z'&&e.ctrlKey){extrusionUndo=false;if(a==='extrude-cancel')finish();else cancel();}else api.feedback('Press Ctrl+Z to undo the extrusion geometry before trying again.');return;}
   if(k==='escape'){e.preventDefault();cancel();return;}if(e.target.tagName==='INPUT')return;
   if(operator){if(k==='shift')return;e.preventDefault();if(k==='enter'||k===' '){confirmOperation();return;}const next=modalKey(operator,k==='backspace'?'Backspace':k);if(next){operator=next;updateOperation();}else demonstrate('Use numbers, X/Y/Z, or Backspace. Enter confirms; Escape cancels.');return;}
@@ -230,7 +244,6 @@ export async function createBlenderSimulator({container,lesson,api}) {
   else if(k==='n'&&a==='sidebar'){e.preventDefault();if(step.simulation.menuOnly)help('Use View → Sidebar for this step. You will practice N in the next step.');else finish();}
   else if(k==='s'&&e.ctrlKey&&e.shiftKey&&a==='save'){e.preventDefault();fileDialog();}
   else if(k==='a'&&e.ctrlKey&&a==='apply-scale'){e.preventDefault();if(step.simulation.menuOnly)help('Use Object → Apply → Scale for this step. You will practice Ctrl+A next.');else{shortcutInvoked=true;openMenu('VIEW3D_MT_object_apply',pointer[0],pointer[1]);}}
-  else if(e.code==='Numpad7'&&a==='top'){e.preventDefault();finish();}
   else if(k==='f2'&&a==='rename'){e.preventDefault();rename();}
   else if(k==='a'&&!e.ctrlKey&&!e.shiftKey&&a==='setup-delete'){e.preventDefault();allDefaultsSelected=true;show('setup-all');api.feedback('Cube, Camera, and Light are selected. Press Delete to remove all three.');}
   else if(k==='delete'&&a==='setup-delete'){e.preventDefault();if(allDefaultsSelected)finish();else help('Press A first to select the cube, camera, and light together.');}
@@ -243,7 +256,7 @@ export async function createBlenderSimulator({container,lesson,api}) {
   else if((a==='move'&&k==='g')||(a==='rotate'&&k==='r')||(a==='scale'&&k==='s')||(a==='inset'&&k==='i')||(['extrude','extrude-cancel'].includes(a)&&k==='e')||(a==='bevel'&&k==='b'&&e.ctrlKey)){e.preventDefault();beginOperation(a==='extrude-cancel'?'extrude':a);}
  });
  const point=e=>{const b=stage.getBoundingClientRect();return [(e.clientX-b.left)/scale,(e.clientY-b.top)/scale];};
- on(stage,'pointerdown',e=>{inputDemo.stop();lastInput=performance.now();pointer=point(e);if(paused||dialog||e.target===live.topButton)return;if(operator&&e.button===2){e.preventDefault();cancel();return;}const nav=e.target.closest('[data-navigation]');if((e.button!==1&&!nav)||popup||operator||extrusionUndo)return;const [x,y]=pointer,a=step.simulation.action;
+ on(stage,'pointerdown',e=>{inputDemo.stop();lastInput=performance.now();pointer=point(e);if(paused||dialog||e.target.closest('[data-axis-view]'))return;if(operator&&e.button===2){e.preventDefault();cancel();return;}const nav=e.target.closest('[data-navigation]');if((e.button!==1&&!nav)||popup||operator||extrusionUndo)return;const [x,y]=pointer,a=step.simulation.action;
   if(nav||(a==='header-scroll'&&!finished&&y>=39&&y<=77)||live.isViewport(x,y)){e.preventDefault();live.beginNavigation();const action=nav?.dataset.navigation||(a==='header-scroll'&&y<=77?'header-scroll':e.shiftKey?'pan':'orbit');drag={x:e.clientX,y:e.clientY,button:e.button,travel:0,action,zoom:action==='zoom'?live.beginZoom(y):null};stage.setPointerCapture(e.pointerId);stage.focus({preventScroll:true});}});
  on(stage,'pointermove',e=>{const next=point(e);if(operator&&!paused&&!operator.raw){live.transformPointer(operator,pointer,next,e.shiftKey);updateOperation();}pointer=next;if(!drag)return;lastInput=performance.now();const dx=(e.clientX-drag.x)/scale,dy=(e.clientY-drag.y)/scale;drag.travel+=Math.hypot(dx,dy);if(drag.action==='header-scroll'){if(Math.abs(dx)>12){drag.x=e.clientX;scrollHeader(dx<0?1:-1);}}else{drag.x=e.clientX;drag.y=e.clientY;if(drag.zoom)live.dragZoom(drag.zoom,next[1]);else navigate(drag.action,dx,dy);}});
  on(stage,'pointerup',()=>{suppressClick=drag?.button===0&&drag.travel>3;setTimeout(()=>{suppressClick=false;},100);drag=null;live.endNavigation();});on(stage,'pointercancel',()=>{drag=null;live.endNavigation();});
@@ -251,9 +264,9 @@ export async function createBlenderSimulator({container,lesson,api}) {
  on(stage,'click',e=>{if(suppressClick){suppressClick=false;e.preventDefault();e.stopImmediatePropagation();}},{capture:true});
  on(stage,'contextmenu',e=>{e.preventDefault();if(operator)cancel();});on(stage,'click',e=>{if(e.target===stage||e.target===frame||e.target===live.canvas){if(popup)cancel();else if(operator&&!paused)confirmOperation();else if(!paused&&!finished)unavailable();}});
  return {
-  async setStep(s,c){allDefaultsSelected=false;walkthrough=false;stage.dataset.demonstrating='false';walkVersion++;const taskBox=document.querySelector('.task-box');if(taskBox)taskBox.hidden=false;step=s;guide=null;spots.replaceChildren();coach.setStep(s);lastInput=performance.now();visualResult=null;shortcutInvoked=false;vertexSelection=null;pair=statePair(lesson.id.replace(/-qa$/,''),s.id);finished=c.isCompleted();paused=false;drag=null;extrusionUndo=false;travel=0;zoomDirections=new Set();navIndex=0;clear();stage.dataset.operator='';$('.follow-copy').textContent=s.follow||lesson.follow;if(!await show(pair[finished?1:0],{resetCamera:true}))return;buildControls();api.guideChanged();if(s.simulation.demonstrateSidebar&&!finished)sidebarWalkthrough();preload(pair[1]);const action=s.simulation.action;if(action==='header-scroll')for(let i=0;i<=16;i++)preload(boundedFrame('header-narrow',i));const kind=action==='extrude-cancel'?'extrude':action;for(const name of Object.keys(manifest.states))if(name.startsWith(kind+'-modal-'))preload(name);},
-  refreshState(){},setPaused(v){paused=v;if(v)inputDemo.stop();},setGuidance(){},getGuide(){return guide?{target:guide,parent:host,scale:1}:null;},getRegion(){return host;},
+  async setStep(s,c){removeComparison?.();removeComparison=null;allDefaultsSelected=false;walkthrough=false;stage.dataset.demonstrating='false';walkVersion++;const taskBox=document.querySelector('.task-box');if(taskBox)taskBox.hidden=false;step=s;guide=null;spots.replaceChildren();coach.setStep(s);lastInput=performance.now();visualResult=null;shortcutInvoked=false;vertexSelection=null;pair=statePair(lesson.id.replace(/-qa$/,''),s.id);finished=c.isCompleted();paused=false;drag=null;extrusionUndo=false;travel=0;zoomDirections=new Set();navIndex=0;clear();stage.dataset.operator='';$('.follow-copy').textContent=s.follow||lesson.follow;if(!await show(pair[finished?1:0],{resetCamera:true}))return;buildControls();api.guideChanged();if(s.simulation.demonstrateSidebar&&!finished)sidebarWalkthrough();preload(pair[1]);const action=s.simulation.action;if(action==='header-scroll')for(let i=0;i<=16;i++)preload(boundedFrame('header-narrow',i));const kind=action==='extrude-cancel'?'extrude':action;for(const name of Object.keys(manifest.states))if(name.startsWith(kind+'-modal-'))preload(name);},
+  refreshState(){},setPaused(v){paused=v;if(v)inputDemo.stop();},setGuidance(){},getGuide(){return guide&&!guide.hidden?{target:guide,parent:host,scale:1,highlight:live.selectionHighlight(guide)}:null;},getRegion(){return host;},
   perform(action){if(paused||finished)return;if(action==='delete'&&step.simulation.action==='delete')finish();},
-  reset(){cancel();},dispose(){walkVersion++;walkthrough=false;const taskBox=document.querySelector('.task-box');if(taskBox)taskBox.hidden=false;clearInterval(idleTimer);inputDemo.dispose();coach.dispose();abort.abort();observer.disconnect();live.dispose();document.body.classList.remove('blender-course','native-expanded');container.replaceChildren();}
+  reset(){if(!removeComparison)cancel();},dispose(){removeComparison?.();walkVersion++;walkthrough=false;const taskBox=document.querySelector('.task-box');if(taskBox)taskBox.hidden=false;clearInterval(idleTimer);inputDemo.dispose();coach.dispose();abort.abort();observer.disconnect();live.dispose();document.body.classList.remove('blender-course','native-expanded');container.replaceChildren();}
  };
 }

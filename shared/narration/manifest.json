@@ -1355,23 +1355,11 @@
       "duration": 8.16,
       "generationId": "hxisBjTixPrj1vKaQws9"
     },
-    "8b2cf481aa9ca36d4801": {
-      "text": "Length controls how distances are displayed. Set it to Millimeters so dimensions and viewport clipping distances use the same unit as the tray project.",
-      "file": "8b2cf481aa9ca36d4801.mp3",
-      "duration": 9.36,
-      "generationId": "M7WrZ5voziwbvPddmiUN"
-    },
     "84b74caac68c51b2cd9e": {
       "text": "Open Length and choose Millimeters.",
       "file": "84b74caac68c51b2cd9e.mp3",
       "duration": 2.56,
       "generationId": "Npc7Az6fT7zghDQzGPnt"
-    },
-    "2fa7450b67024f59a602": {
-      "text": "Distances are displayed in millimeters. This does not resize the mesh.",
-      "file": "2fa7450b67024f59a602.mp3",
-      "duration": 4.72,
-      "generationId": "TKp5ItbH3eC2xYZIWOBE"
     },
     "64b1b35265202ea93bff": {
       "text": "Viewport settings are separate from scene settings. Open the Sidebar inside the three D Viewport. You can use the View menu or the N shortcut learned in Meet Blender.",
@@ -1409,41 +1397,17 @@
       "duration": 8.32,
       "generationId": "IHjeSAPqjWLyrY8g6SJd"
     },
-    "4e6203d9793c4e7d59d7": {
-      "text": "Clip Start hides surfaces closer to the viewpoint than this distance. If a close-up seems sliced open, reduce this value. Use 0.1 millimeters for this course, and reduce it further only when the detail needs it.",
-      "file": "4e6203d9793c4e7d59d7.mp3",
-      "duration": 14.08,
-      "generationId": "zdW5Fd33UHrjsxSQFNDN"
-    },
     "39715ea36d36b9dcd75f": {
       "text": "Double-click Clip Start, enter 0 . 1, then press Enter.",
       "file": "39715ea36d36b9dcd75f.mp3",
       "duration": 5.04,
       "generationId": "r6lcnNhMzxsWEqetfkjM"
     },
-    "cf3de79227a152a80d5e": {
-      "text": "The near clipping distance is 0.1 millimeters. This is a viewport setting; a render camera has separate clipping controls.",
-      "file": "cf3de79227a152a80d5e.mp3",
-      "duration": 8.48,
-      "generationId": "DX8Ank2njKEu1Y5Q49A9"
-    },
-    "f818d573f185aa8ff136": {
-      "text": "End hides surfaces beyond the far clipping distance. Use 10000 millimeters, or 10 meters, for this course workspace. Avoid making the range unnecessarily enormous: an extreme range can reduce depth precision.",
-      "file": "f818d573f185aa8ff136.mp3",
-      "duration": 14.96,
-      "generationId": "QrMUnSKPCeUSMe73ChZz"
-    },
     "6b61031f9f1adc98a205": {
       "text": "Double-click End, enter 1 0 0 0 0, then press Enter.",
       "file": "6b61031f9f1adc98a205.mp3",
       "duration": 5.76,
       "generationId": "iyqvtKqfF3jkjTABR2MS"
-    },
-    "afec4cc34685d44f17ea": {
-      "text": "The viewport range is now 0.1 to 10000 millimeters. These settings affect this three D Viewport, not every editor in every Blender file.",
-      "file": "afec4cc34685d44f17ea.mp3",
-      "duration": 10.08,
-      "generationId": "1klykhQKVvOUUfCdAQtd"
     },
     "4341ca7748250f3ab7ad": {
       "text": "The default scene contains a cube, camera, and light. Remove all three before saving your startup file so each new project begins with an empty workspace and your preferred settings. With your pointer over the three D Viewport, A selects all objects and Delete removes them.",
@@ -1474,12 +1438,6 @@
       "file": "693d5f5b0792a5de78da.mp3",
       "duration": 4.32,
       "generationId": "AxOEDFK6giCkEcUdabvG"
-    },
-    "a7186bd71638bafb2865": {
-      "text": "Blender asks before replacing the startup file. Saving a startup file is different from saving a named project with Save As.",
-      "file": "a7186bd71638bafb2865.mp3",
-      "duration": 8.08,
-      "generationId": "FUMItvw4ZOsNHQ1JeKQm"
     },
     "449effebf52b6531684b": {
       "text": "Save a startup file with your preferred settings. Blender will use this scene and these settings when it starts.",
@@ -1529,18 +1487,6 @@
       "duration": 2,
       "generationId": "lzyQ1bD8gEvl94MkvgZk"
     },
-    "9d549e927016c1f71bab": {
-      "text": "The orange outline identifies the active object.",
-      "file": "9d549e927016c1f71bab.mp3",
-      "duration": 3.28,
-      "generationId": "Tjv3ZizvJL9zVVPNkodg"
-    },
-    "5898acbd1bfbc97eab1c": {
-      "text": "G starts Move. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube.",
-      "file": "5898acbd1bfbc97eab1c.mp3",
-      "duration": 19.84,
-      "generationId": "pwmbyL3QvGvbSHS5MTta"
-    },
     "b4fc2e8c8417468223d5": {
       "text": "Press G, move the pointer, then hold Shift and move again. Left-click or press Enter to confirm.",
       "file": "b4fc2e8c8417468223d5.mp3",
@@ -1553,35 +1499,17 @@
       "duration": 7.2,
       "generationId": "okHrUSa973QunCie5nmf"
     },
-    "afe6e18308f2f55f6583": {
-      "text": "R starts Rotate. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube.",
-      "file": "afe6e18308f2f55f6583.mp3",
-      "duration": 19.84,
-      "generationId": "BRqq3GfxvRjpRR9MdirV"
-    },
     "56b8dd11b8b244ee4334": {
       "text": "Press R, move the pointer, then hold Shift and move again. Left-click or press Enter to confirm.",
       "file": "56b8dd11b8b244ee4334.mp3",
       "duration": 7.28,
       "generationId": "EY5scZt3hctkltRgaeX2"
     },
-    "3cbaefb443085135cf4a": {
-      "text": "S starts Scale. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube.",
-      "file": "3cbaefb443085135cf4a.mp3",
-      "duration": 19.92,
-      "generationId": "16ozTt8r7l8dqAqh2MbF"
-    },
     "e5e86c8c6f25b07df017": {
       "text": "Press S, move the pointer, then hold Shift and move again. Left-click or press Enter to confirm.",
       "file": "e5e86c8c6f25b07df017.mp3",
       "duration": 7.36,
       "generationId": "PtsgBHtDrrnTlk37tH15"
-    },
-    "38d80259dc413c16e10d": {
-      "text": "G starts Blender’s Move operation. X constrains it to the X axis. Numeric entry sets the distance, and Enter confirms. Escape or right-click cancels the operation. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm.",
-      "file": "38d80259dc413c16e10d.mp3",
-      "duration": 21.12,
-      "generationId": "dDfUidulKtugEQbz0tO1"
     },
     "67080adbc8332275a55a": {
       "text": "Click the viewport. Press G , then X , then 1 , then Enter. Watch the preview before Enter.",
@@ -1703,53 +1631,11 @@
       "duration": 4.88,
       "generationId": "73yBu9UQMmglUO8rdsJj"
     },
-    "dcd83540f9310fa60963": {
-      "text": "Changing dimensions in Object Mode changes scale. Apply Scale preserves the visible size while making the scale values 1. This gives dimension-sensitive mesh tools a consistent starting point.",
-      "file": "dcd83540f9310fa60963.mp3",
-      "duration": 12.64,
-      "generationId": "wemZKy3mV0Supp9JsOVO"
-    },
-    "a26117c689b8f98b0b37": {
-      "text": "Choose Object , then Apply , then Scale. Use the menu here; you will practice Control+A next.",
-      "file": "a26117c689b8f98b0b37.mp3",
-      "generationId": "k5arGmpn0UWQtMdo7g9Z",
-      "duration": 8.08
-    },
-    "105bc36b8705024a5c1d": {
-      "text": "The blank keeps its dimensions. Scale is now 1 on every axis.",
-      "file": "105bc36b8705024a5c1d.mp3",
-      "duration": 5.2,
-      "generationId": "LGnGRFE33mn15YdXzEcD"
-    },
     "870ebc07b255d7b6dc2c": {
       "text": "What should Apply Scale preserve?",
       "file": "870ebc07b255d7b6dc2c.mp3",
       "duration": 2.24,
       "generationId": "JuoreBiWExTnMTuGYwof"
-    },
-    "182e6fd872f001698b0e": {
-      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Changing dimensions in Object Mode changes scale. Apply Scale preserves the visible size while making the scale values 1. This gives dimension-sensitive mesh tools a consistent starting point.",
-      "file": "182e6fd872f001698b0e.mp3",
-      "duration": 17.52,
-      "generationId": "9MFmqtNjEy2GO9ccdGQO"
-    },
-    "604f565009b514708aa6": {
-      "text": "Focus the viewport and press Control + A and choose Scale.",
-      "file": "604f565009b514708aa6.mp3",
-      "duration": 4.64,
-      "generationId": "QVEgn7l4b1lINQjUOZjo"
-    },
-    "f6f89d0d001dbe431624": {
-      "text": "The cube origin is at its center. With an 18 mm height, the center must be at Z = 9 mm for the bottom to sit at Z = 0.",
-      "file": "f6f89d0d001dbe431624.mp3",
-      "duration": 10.56,
-      "generationId": "6QewG4uOICQ6lioH9hCx"
-    },
-    "995874af97bedebf0240": {
-      "text": "Double-click Location Z to 9 mm, then press Enter.",
-      "file": "995874af97bedebf0240.mp3",
-      "duration": 4.4,
-      "generationId": "XY0fQwGR9kqL4Pd9y7nF"
     },
     "151ee16e78c661286cb8": {
       "text": "The bottom is now at zero. The next checkpoint preserves the blank as actual Blender geometry.",
@@ -1769,41 +1655,17 @@
       "duration": 9.2,
       "generationId": "YLAfujcbSs930WE5eoUe"
     },
-    "5581f419dd8406974932": {
-      "text": "Object Mode transforms the whole object. Edit Mode changes its vertices, edges, and faces. The Layout workspace can contain either mode.",
-      "file": "5581f419dd8406974932.mp3",
-      "duration": 9.68,
-      "generationId": "jbd3FQiysXqIXrtE8DAc"
-    },
     "494ca66e7cfc95790969": {
       "text": "Open the mode selector and choose Edit Mode. Use the menu here; you will practice Tab next.",
       "file": "494ca66e7cfc95790969.mp3",
       "generationId": "9NfqpIy5tJ1pJyXP5oIA",
       "duration": 7.2
     },
-    "294e298a1bec70dea8aa": {
-      "text": "You are now working on the mesh inside the object.",
-      "file": "294e298a1bec70dea8aa.mp3",
-      "duration": 3.12,
-      "generationId": "ULOuCob7Vla6OxkKQNbs"
-    },
     "6d5f60bd2c6847512da1": {
       "text": "Is Edit Mode a separate workspace?",
       "file": "6d5f60bd2c6847512da1.mp3",
       "duration": 2.48,
       "generationId": "aBDbPhlSOYbsjQ5gUnUR"
-    },
-    "5884986218a3272baaec": {
-      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Object Mode transforms the whole object. Edit Mode changes its vertices, edges, and faces. The Layout workspace can contain either mode.",
-      "file": "5884986218a3272baaec.mp3",
-      "duration": 14.16,
-      "generationId": "bjb89t3r2hbhLhVjJfBd"
-    },
-    "66b04d07bcc2eff377c1": {
-      "text": "Focus the viewport and press Tab, then finish the same action.",
-      "file": "66b04d07bcc2eff377c1.mp3",
-      "duration": 4.32,
-      "generationId": "7ulAmHTN6HMml3J321mg"
     },
     "2cba6100ab4292836839": {
       "text": "Vertex Select is already active: the first of the three selection icons in the header is highlighted. This mode lets you select the mesh’s corner points. A plain click selects one vertex; Shift-click adds another or removes it from the selection.",
@@ -1883,47 +1745,17 @@
       "duration": 15.44,
       "generationId": "4K9LtDHO0I9XWz0dAV6k"
     },
-    "224baaa92c72d5eadb38": {
-      "text": "Click the viewport. Press I , then 3 , then Enter. Watch the preview before Enter.",
-      "file": "224baaa92c72d5eadb38.mp3",
-      "duration": 7.04,
-      "generationId": "FZpvtOSk0rB21h47N1sT"
-    },
     "2e4af3c17ec7578190a7": {
       "text": "The inner face measures 94 by 64 mm. The surrounding rim is 3 mm wide.",
       "file": "2e4af3c17ec7578190a7.mp3",
       "duration": 7.04,
       "generationId": "Blkybvq0y5i85Nf1pnun"
     },
-    "66a3714184a5ec64b4a5": {
-      "text": "Extrusion creates geometry and then moves it. Escape cancels the movement, leaving the new geometry at zero distance. Control+Z removes that extrusion. This is different from simply cancelling Move or Rotate.",
-      "file": "66a3714184a5ec64b4a5.mp3",
-      "duration": 14.96,
-      "generationId": "Ms5hdMESvZ2Hmf4Zx1uD"
-    },
-    "4442b5ee901e636d417b": {
-      "text": "Click the viewport. Press E, then Escape, then Control+Z.",
-      "file": "4442b5ee901e636d417b.mp3",
-      "duration": 5.12,
-      "generationId": "umeDylSp33XT91eNnFrr"
-    },
     "83ba08778264beaa5baf": {
       "text": "The extrusion geometry was undone. You are back at the inset checkpoint, ready to make the cavity.",
       "file": "83ba08778264beaa5baf.mp3",
       "duration": 6.24,
       "generationId": "TkDAr8uK70mBKXZg4Mrr"
-    },
-    "0977132d51885a6ed1bc": {
-      "text": "Extrude the selected inner face downward by 15 mm. Starting from a height of 18 mm leaves a 3 mm floor. Enter a negative value to move down Z. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm.",
-      "file": "0977132d51885a6ed1bc.mp3",
-      "duration": 20.8,
-      "generationId": "ksYSIB3wgbxbXdbVBxEs"
-    },
-    "af6fd8942bd76943fd23": {
-      "text": "Click the viewport. Press E , then - , then 1 , then 5 , then Enter. Watch the preview before Enter.",
-      "file": "af6fd8942bd76943fd23.mp3",
-      "duration": 9.04,
-      "generationId": "AaBMzZhJjcikoYmps0zv"
     },
     "b16e584f3958ffe2dad5": {
       "text": "The tray has an open cavity, 3 mm walls, and a 3 mm floor.",
@@ -1973,35 +1805,11 @@
       "generationId": "MymGmU9Tp4x4CUlKzVjc",
       "duration": 22.4
     },
-    "602ce906959a42d50ada": {
-      "text": "Click the viewport. Press Control + B, type 0 . 6, scroll up twice for 3 segments, then Enter.",
-      "file": "602ce906959a42d50ada.mp3",
-      "duration": 8.48,
-      "generationId": "H1ocAQpMAtS8AyYj7NoZ"
-    },
     "ab52539fa4bd1e5f7505": {
       "text": "The outer rim now contains three curved segments across its 0.6 mm bevel. The cavity and floor remain intact. Orbit and zoom to inspect the new geometry in real Blender.",
       "file": "ab52539fa4bd1e5f7505.mp3",
       "generationId": "qWL5jhBwDPT58DDuYfpC",
       "duration": 12.56
-    },
-    "f71693964c8639d0c9e9": {
-      "text": "This inspection checkpoint starts with the finished mesh deselected. Face Orientation reveals reversed faces. Find the option in Viewport Overlays, under Geometry, then inspect all sides in real Blender.",
-      "file": "f71693964c8639d0c9e9.mp3",
-      "duration": 13.76,
-      "generationId": "fO8KPtWScQ0kTKx2L3OD"
-    },
-    "eb0235a57153c7b7501b": {
-      "text": "Open the Viewport Overlays arrow, enable Face Orientation under Geometry, then click the viewport to close the popover.",
-      "file": "eb0235a57153c7b7501b.mp3",
-      "duration": 8.16,
-      "generationId": "dGQYERHhAjOQXT6scNO2"
-    },
-    "cfe643e9c71f9490ef6f": {
-      "text": "Our generated mesh has no boundary or non-manifold edges. That does not replace checking dimensions, thickness, and sliced layers.",
-      "file": "cfe643e9c71f9490ef6f.mp3",
-      "duration": 8.72,
-      "generationId": "FqDA9AgpDfdoBIzAR6mx"
     },
     "b76707d6ff3f4726d5bc": {
       "text": "Return to Object Mode before exporting the selected tray. Keep the editable Blender project as your source.",
@@ -2032,12 +1840,6 @@
       "file": "9116414d90fedf2555ae.mp3",
       "duration": 5.6,
       "generationId": "Y9aj1R2pNQTmFtiTO0fY"
-    },
-    "d0b047b22c191176a48f": {
-      "text": "Our checkpoint stores coordinates in millimeters. Export selected objects with Scale 1 and Scene Unit off. The generated S T L has been reimported and checked at 100 by 70 by 18 mm.",
-      "file": "d0b047b22c191176a48f.mp3",
-      "duration": 14.16,
-      "generationId": "CyUb3xWFTTkBw49aiWwF"
     },
     "86b2a923babaed3a547d": {
       "text": "Choose File , then Export , then S T L (.stl), then Export S T L.",
@@ -2128,6 +1930,216 @@
       "file": "fef66aa751e211ec2bda.mp3",
       "generationId": "QuJChXXXXln1L0fD2AuX",
       "duration": 6.72
+    },
+    "ac64c980fd644d271cac": {
+      "text": "Unit Scale tells Blender what each scene unit represents. At 0.001, the two-unit cube represents 2 millimeters. Length controls how Blender displays that measurement. Saying 2 millimeters or 0.002 meters describes the same cube. Choose Millimeters so dimensions and clipping distances match the tray project.",
+      "file": "ac64c980fd644d271cac.mp3",
+      "duration": 23.76,
+      "generationId": "GZ3bwUPOwFdDvekMafnm"
+    },
+    "9460bdce82a0d43e4354": {
+      "text": "Blender displays the same distance in millimeters. The cube still spans two scene units, and Unit Scale is still 0.001.",
+      "file": "9460bdce82a0d43e4354.mp3",
+      "duration": 9.6,
+      "generationId": "RdGFOuGShWAjtQboggLO"
+    },
+    "baee4797e7acda30c9d3": {
+      "text": "The viewport shows surfaces between Clip Start and Clip End, measured from your viewpoint. A narrow range can hide nearby or distant geometry. An unnecessarily wide range can make it harder for the viewport to tell closely spaced surfaces apart.",
+      "file": "baee4797e7acda30c9d3.mp3",
+      "duration": 15.76,
+      "generationId": "bSxZsy1WpeGCfV9fsMcg"
+    },
+    "16c1509481cbcd4a33ad": {
+      "text": "Compare the low, recommended, and high values for both Clip Start and Clip End. Watch which surfaces the viewport can show.",
+      "file": "16c1509481cbcd4a33ad.mp3",
+      "duration": 8.4,
+      "generationId": "xhK4MqqwySh1FPhxK74u"
+    },
+    "ef9d24d6ab8d3be40ec0": {
+      "text": "For this workspace, Clip Start at 0.1 millimeters lets you get close and Clip End at 10000 millimeters keeps the scene in view. Next, enter those values in the View sidebar.",
+      "file": "ef9d24d6ab8d3be40ec0.mp3",
+      "duration": 12.8,
+      "generationId": "FJkPgUiseIz87yEVvNhj"
+    },
+    "16acf2870203be7acd4f": {
+      "text": "Apply the recommended Clip Start from the comparison. Edit the Clip Start field first and leave End as it is for now.",
+      "file": "16acf2870203be7acd4f.mp3",
+      "duration": 7.44,
+      "generationId": "Zo6oDoHAOmnns6e2AVis"
+    },
+    "e0afe14f383727299969": {
+      "text": "Clip Start is set to 0.1 millimeters. Next, set End to finish the viewport range.",
+      "file": "e0afe14f383727299969.mp3",
+      "duration": 6.8,
+      "generationId": "EBvRr8eJdFSsP6L8DGAJ"
+    },
+    "c6b59de2f395d66bc16d": {
+      "text": "Apply the recommended far limit from the comparison. Enter 10000 millimeters, the same distance as 10 meters, in the End field just below Clip Start.",
+      "file": "c6b59de2f395d66bc16d.mp3",
+      "duration": 10.64,
+      "generationId": "lhZTNFUhVW78l3mZiM3w"
+    },
+    "c9d09976560a8fd33b4a": {
+      "text": "This three D Viewport is set to the recommended range of 0.1 to 10000 millimeters. Other viewports and render cameras have their own settings.",
+      "file": "c9d09976560a8fd33b4a.mp3",
+      "duration": 9.52,
+      "generationId": "P6aqc1n9KtRvIuS8nGnm"
+    },
+    "d9fb12eba8991df4ab50": {
+      "text": "Blender prompts a confirmation before replacing the startup file. Saving a startup file is different from saving a named project with Save As - a startup file sets the default settings for new projects.",
+      "file": "d9fb12eba8991df4ab50.mp3",
+      "duration": 12.8,
+      "generationId": "cUpKmZ0XJnuZqbvPjAAA"
+    },
+    "53b1050a4538e2a17d51": {
+      "text": "The orange outline identifies the active object, the last object you selected. Select the cube so Blender knows which object should receive your edits.",
+      "file": "53b1050a4538e2a17d51.mp3",
+      "duration": 9.68,
+      "generationId": "PPaPN442vUYlsPoo6z8b"
+    },
+    "516b46353bf7cd627a1e": {
+      "text": "G starts the Move command. Move the pointer to judge the result visually. Hold Shift while moving for slow and precise movement, then release Shift to return to normal speed. Left-click or Enter confirms the movement; Escape cancels. This is practice; the next movement exercise starts fresh.",
+      "file": "516b46353bf7cd627a1e.mp3",
+      "duration": 20.48,
+      "generationId": "vmc2kvEPOgf5UpDgNBvZ"
+    },
+    "cc1d3c2fa436e6711a60": {
+      "text": "R starts the Rotate command. Move the pointer to judge the rotation visually. Hold Shift for smaller changes, then release Shift to rotate at normal speed. Left-click or Enter confirms the rotation. Escape cancels. This is practice. The next exercise starts fresh.",
+      "file": "cc1d3c2fa436e6711a60.mp3",
+      "duration": 19.28,
+      "generationId": "mZ9s0BG5LSJYt3rD30R1"
+    },
+    "9b1a4949786f5fd5df2b": {
+      "text": "S starts the Scale command. Move the pointer to judge the size visually. Hold Shift for smaller changes, then release Shift to scale at normal speed. Left-click or Enter confirms the new size. Escape cancels. This is practice. The next exercise starts fresh.",
+      "file": "9b1a4949786f5fd5df2b.mp3",
+      "duration": 18.96,
+      "generationId": "V6u4Kl9Ru76yEZ3IooaX"
+    },
+    "178a57d0968ebcd69358": {
+      "text": "In the last three steps, you moved, rotated, and scaled by eye from the current view. To constrain a transform to one axis, press X, Y, or Z after starting the command. For a precise distance, type a number and check the live preview before pressing Enter. Here, G starts Move and X restricts it to the X axis.",
+      "file": "178a57d0968ebcd69358.mp3",
+      "duration": 23.04,
+      "generationId": "aXpe3TEUCZ7schK6zTrq"
+    },
+    "f28aa29615e35fee153c": {
+      "text": "As we changed the dimensions in the Item sidebar, did you notice how the scale fields also changed? Apply Scale makes the current size part of the mesh and resets each scale field to 1. In Object Mode, Control+A opens the Apply menu, which offers Scale alongside options for applying Location or Rotation.",
+      "file": "f28aa29615e35fee153c.mp3",
+      "duration": 21.04,
+      "generationId": "GrfLrWstZ6jVFS5PEinn"
+    },
+    "cf9e480ee789ae97d2da": {
+      "text": "Choose Object , then Apply , then Scale. You can also press Control + A in the viewport to open the Apply menu, then choose Scale.",
+      "file": "cf9e480ee789ae97d2da.mp3",
+      "duration": 9.92,
+      "generationId": "6kgtk2Ii7wK9HckH2fMt"
+    },
+    "832ab60a57665f1ad93f": {
+      "text": "The blank keeps its dimensions. Scale is now 1 on every axis and the original scale can no longer be recovered by entering 1 in the scale fields in the Item sidebar.",
+      "file": "832ab60a57665f1ad93f.mp3",
+      "duration": 11.28,
+      "generationId": "XTPZtqHCFzHgP9xeV5Of"
+    },
+    "6b4f472f1427a7361886": {
+      "text": "Let's move the tray blank up so it sits on the XY plane. With the bottom at Z = 0, the grid gives us a clear reference for the surface that will sit on the print bed. The blank is 18 mm tall and its origin is at its center, so set the center to Z = 9 mm.",
+      "file": "6b4f472f1427a7361886.mp3",
+      "duration": 18.48,
+      "generationId": "SVqlogFJ0WbiyCqhNPkP"
+    },
+    "9f297aeeabc61984ffb7": {
+      "text": "Double-click Location Z, enter 9 mm, then press Enter.",
+      "file": "9f297aeeabc61984ffb7.mp3",
+      "duration": 4.96,
+      "generationId": "xQPoThlZyHQfxmRvJaAh"
+    },
+    "bcde7c35297580261670": {
+      "text": "Use Object Mode to move, rotate, or scale a whole object. Use Edit Mode to change its shape. In this tutorial, you’ll reshape the solid tray blank into a hollow tray. Both modes are available in the Layout workspace.",
+      "file": "bcde7c35297580261670.mp3",
+      "duration": 15.12,
+      "generationId": "BYdtfpjNqHLnaBtKgNQ7"
+    },
+    "8b64d7ec8e5e8e99702b": {
+      "text": "You are now editing the tray mesh. In Edit Mode, you can move, add, or delete the vertices, edges, and faces that make up its shape.",
+      "file": "8b64d7ec8e5e8e99702b.mp3",
+      "duration": 9.2,
+      "generationId": "97MMnkutPAtY2mhGPYxl"
+    },
+    "adad5abf8c65430f2d45": {
+      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Pressing Tab switches between Object Mode and Edit Mode with a single keystroke.",
+      "file": "adad5abf8c65430f2d45.mp3",
+      "duration": 9.52,
+      "generationId": "juxMZeRC7NaQrgXWpoWq"
+    },
+    "7046b055f2f1bd958001": {
+      "text": "Focus the viewport and press Tab to enter Edit Mode.",
+      "file": "7046b055f2f1bd958001.mp3",
+      "duration": 3.68,
+      "generationId": "z05wl5m0ghVm65NSZMMj"
+    },
+    "ddf3e24664aff55832c6": {
+      "text": "Using Tab is faster than using the mode dropdown.",
+      "file": "ddf3e24664aff55832c6.mp3",
+      "duration": 3.28,
+      "generationId": "Kz5Sp7KkZd8WutbVZcv6"
+    },
+    "0cd4ef3a2a1dfc3b31c0": {
+      "text": "Click the Inset Faces icon in the toolbar, or press I in the viewport. Type 3, watch the preview, then press Enter.",
+      "file": "0cd4ef3a2a1dfc3b31c0.mp3",
+      "duration": 8.88,
+      "generationId": "RKokHpZvlq26IfDrOo0I"
+    },
+    "69aacbdebd36ef6b5478": {
+      "text": "Extrude moves the selected face and builds new faces along its border to keep it connected to the mesh. Moving the inner face up makes a raised shape with new side walls. Try it on this practice copy before you make the tray cavity.",
+      "file": "69aacbdebd36ef6b5478.mp3",
+      "duration": 14.24,
+      "generationId": "H76paL8ZTXjIReAvBq9W"
+    },
+    "024ae71aeee622daf777": {
+      "text": "Click the Extrude Region icon in the toolbar, or press E in the viewport. Type 8, watch the face rise, then press Enter.",
+      "file": "024ae71aeee622daf777.mp3",
+      "duration": 9.12,
+      "generationId": "i29CqMGk4Gw18Bhj14d6"
+    },
+    "c540513e214e19abdaed": {
+      "text": "The inner face moved up 8 mm and new walls connect it to the rim. The next exercise starts at the inset again.",
+      "file": "c540513e214e19abdaed.mp3",
+      "duration": 7.84,
+      "generationId": "FT9xyFzhyJ2aYAqHyRNd"
+    },
+    "90cc24aa670ec9eb9a10": {
+      "text": "Blender creates the new edges and faces as soon as extrusion starts. Escape cancels the movement, so those new parts overlap the original surface and can be hard to see. If you started Extrude by accident, press Control+Z after Escape to undo the creation of that geometry.",
+      "file": "90cc24aa670ec9eb9a10.mp3",
+      "duration": 18.8,
+      "generationId": "PGdKfWDgcrFAbxZD9ebM"
+    },
+    "2dd8d3f2693192c22a12": {
+      "text": "Start Extrude Region from the toolbar or press E in the viewport. Press Escape, then Control + Z to undo the extrusion.",
+      "file": "2dd8d3f2693192c22a12.mp3",
+      "duration": 9.2,
+      "generationId": "9QQXQhIsuXAwrQnyaTLX"
+    },
+    "ead296797d5ce91d80ca": {
+      "text": "Extruding inward creates a recess. Push the selected inner face down inside the blank to hollow out the tray. The inset rim stays at the top, and the new faces form the inside walls. Moving the face down 15 mm in this 18 mm blank leaves a 3 mm floor.",
+      "file": "ead296797d5ce91d80ca.mp3",
+      "duration": 18.96,
+      "generationId": "S1rNVjkUD82L1Ni2oXKV"
+    },
+    "6c8514f568239fd78f15": {
+      "text": "Click the Extrude Region icon or press E in the viewport. Type - 1 5, watch the face move down, then press Enter.",
+      "file": "6c8514f568239fd78f15.mp3",
+      "duration": 9.28,
+      "generationId": "rlfqrkRL0iW6yE2py2FY"
+    },
+    "e8e5d882ac21cf3ca991": {
+      "text": "Click the Bevel icon in the toolbar, or press Control + B in the viewport. Type 0 . 6, scroll up twice for 3 segments, then press Enter.",
+      "file": "e8e5d882ac21cf3ca991.mp3",
+      "duration": 10.72,
+      "generationId": "6QhMIhunDTadPkH18LEh"
+    },
+    "4c9b7d31c38697c70c02": {
+      "text": "Our checkpoint stores coordinates in millimeters. Export selected objects with Scale 1 and Scene Unit off.",
+      "file": "4c9b7d31c38697c70c02.mp3",
+      "duration": 7.2,
+      "generationId": "oAqc1UUMBo3q8bDs3aK6"
     }
   },
   "lessons": {
@@ -3192,16 +3204,16 @@
       },
       "length": {
         "description": {
-          "id": "8b2cf481aa9ca36d4801",
-          "display": "Length controls how distances are displayed. Set it to Millimeters so dimensions and viewport clipping distances use the same unit as the tray project."
+          "id": "ac64c980fd644d271cac",
+          "display": "Unit Scale tells Blender what each scene unit represents. At 0.001, the two-unit cube represents 2 millimeters. Length controls how Blender displays that measurement. Saying 2 millimeters or 0.002 meters describes the same cube. Choose Millimeters so dimensions and clipping distances match the tray project."
         },
         "task": {
           "id": "84b74caac68c51b2cd9e",
           "display": "Open Length and choose Millimeters."
         },
         "summary": {
-          "id": "2fa7450b67024f59a602",
-          "display": "Distances are displayed in millimeters. This does not resize the mesh."
+          "id": "9460bdce82a0d43e4354",
+          "display": "Blender displays the same distance in millimeters. The cube still spans two scene units, and Unit Scale is still 0.001."
         }
       },
       "sidebar": {
@@ -3232,32 +3244,46 @@
           "display": "Clip Start and End define the nearest and farthest surfaces the viewport can display. They do not cut or resize your model."
         }
       },
+      "compare-clipping": {
+        "description": {
+          "id": "baee4797e7acda30c9d3",
+          "display": "The viewport shows surfaces between Clip Start and Clip End, measured from your viewpoint. A narrow range can hide nearby or distant geometry. An unnecessarily wide range can make it harder for the viewport to tell closely spaced surfaces apart."
+        },
+        "task": {
+          "id": "16c1509481cbcd4a33ad",
+          "display": "Compare the low, recommended, and high values for both Clip Start and Clip End. Watch which surfaces the viewport can show."
+        },
+        "summary": {
+          "id": "ef9d24d6ab8d3be40ec0",
+          "display": "For this workspace, Clip Start at 0.1 millimeters lets you get close and Clip End at 10000 millimeters keeps the scene in view. Next, enter those values in the View sidebar."
+        }
+      },
       "clip-start": {
         "description": {
-          "id": "4e6203d9793c4e7d59d7",
-          "display": "Clip Start hides surfaces closer to the viewpoint than this distance. If a close-up seems sliced open, reduce this value. Use 0.1 millimeters for this course, and reduce it further only when the detail needs it."
+          "id": "16acf2870203be7acd4f",
+          "display": "Apply the recommended Clip Start from the comparison. Edit the Clip Start field first and leave End as it is for now."
         },
         "task": {
           "id": "39715ea36d36b9dcd75f",
           "display": "Double-click Clip Start, enter `0` `.` `1`, then press `Enter`."
         },
         "summary": {
-          "id": "cf3de79227a152a80d5e",
-          "display": "The near clipping distance is 0.1 millimeters. This is a viewport setting; a render camera has separate clipping controls."
+          "id": "e0afe14f383727299969",
+          "display": "Clip Start is set to 0.1 millimeters. Next, set End to finish the viewport range."
         }
       },
       "clip-end": {
         "description": {
-          "id": "f818d573f185aa8ff136",
-          "display": "End hides surfaces beyond the far clipping distance. Use 10000 millimeters, or 10 meters, for this course workspace. Avoid making the range unnecessarily enormous: an extreme range can reduce depth precision."
+          "id": "c6b59de2f395d66bc16d",
+          "display": "Apply the recommended far limit from the comparison. Enter 10000 millimeters, the same distance as 10 meters, in the End field just below Clip Start."
         },
         "task": {
           "id": "6b61031f9f1adc98a205",
           "display": "Double-click End, enter `1` `0` `0` `0` `0`, then press `Enter`."
         },
         "summary": {
-          "id": "afec4cc34685d44f17ea",
-          "display": "The viewport range is now 0.1 to 10000 millimeters. These settings affect this 3D Viewport, not every editor in every Blender file."
+          "id": "c9d09976560a8fd33b4a",
+          "display": "This 3D Viewport is set to the recommended range of 0.1 to 10000 millimeters. Other viewports and render cameras have their own settings."
         }
       },
       "clear-scene": {
@@ -3284,8 +3310,8 @@
           "display": "Choose File → Defaults → Save Startup File."
         },
         "summary": {
-          "id": "a7186bd71638bafb2865",
-          "display": "Blender asks before replacing the startup file. Saving a startup file is different from saving a named project with Save As."
+          "id": "d9fb12eba8991df4ab50",
+          "display": "Blender prompts a confirmation before replacing the startup file. Saving a startup file is different from saving a named project with Save As - a startup file sets the default settings for new projects."
         }
       },
       "confirm": {
@@ -3328,14 +3354,14 @@
           "display": "Click the cube in the viewport."
         },
         "summary": {
-          "id": "9d549e927016c1f71bab",
-          "display": "The orange outline identifies the active object."
+          "id": "53b1050a4538e2a17d51",
+          "display": "The orange outline identifies the active object, the last object you selected. Select the cube so Blender knows which object should receive your edits."
         }
       },
       "visual-move": {
         "description": {
-          "id": "5898acbd1bfbc97eab1c",
-          "display": "G starts Move. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube."
+          "id": "516b46353bf7cd627a1e",
+          "display": "G starts the Move command. Move the pointer to judge the result visually. Hold Shift while moving for slow and precise movement, then release Shift to return to normal speed. Left-click or Enter confirms the movement; Escape cancels. This is practice; the next movement exercise starts fresh."
         },
         "task": {
           "id": "b4fc2e8c8417468223d5",
@@ -3348,8 +3374,8 @@
       },
       "visual-rotate": {
         "description": {
-          "id": "afe6e18308f2f55f6583",
-          "display": "R starts Rotate. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube."
+          "id": "cc1d3c2fa436e6711a60",
+          "display": "R starts the Rotate command. Move the pointer to judge the rotation visually. Hold Shift for smaller changes, then release Shift to rotate at normal speed. Left-click or Enter confirms the rotation. Escape cancels. This is practice. The next exercise starts fresh."
         },
         "task": {
           "id": "56b8dd11b8b244ee4334",
@@ -3362,8 +3388,8 @@
       },
       "visual-scale": {
         "description": {
-          "id": "3cbaefb443085135cf4a",
-          "display": "S starts Scale. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube."
+          "id": "9b1a4949786f5fd5df2b",
+          "display": "S starts the Scale command. Move the pointer to judge the size visually. Hold Shift for smaller changes, then release Shift to scale at normal speed. Left-click or Enter confirms the new size. Escape cancels. This is practice. The next exercise starts fresh."
         },
         "task": {
           "id": "e5e86c8c6f25b07df017",
@@ -3376,8 +3402,8 @@
       },
       "move": {
         "description": {
-          "id": "38d80259dc413c16e10d",
-          "display": "G starts Blender’s Move operation. X constrains it to the X axis. Numeric entry sets the distance, and Enter confirms. Escape or right-click cancels the operation. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm."
+          "id": "178a57d0968ebcd69358",
+          "display": "In the last three steps, you moved, rotated, and scaled by eye from the current view. To constrain a transform to one axis, press X, Y, or Z after starting the command. For a precise distance, type a number and check the live preview before pressing Enter. Here, G starts Move and X restricts it to the X axis."
         },
         "task": {
           "id": "67080adbc8332275a55a",
@@ -3474,44 +3500,30 @@
       },
       "apply": {
         "description": {
-          "id": "dcd83540f9310fa60963",
-          "display": "Changing dimensions in Object Mode changes scale. Apply Scale preserves the visible size while making the scale values 1. This gives dimension-sensitive mesh tools a consistent starting point."
+          "id": "f28aa29615e35fee153c",
+          "display": "As we changed the dimensions in the Item sidebar, did you notice how the scale fields also changed? Apply Scale makes the current size part of the mesh and resets each scale field to 1. In Object Mode, Ctrl+A opens the Apply menu, which offers Scale alongside options for applying Location or Rotation."
         },
         "task": {
-          "id": "a26117c689b8f98b0b37",
-          "display": "Choose Object → Apply → Scale. Use the menu here; you will practice Ctrl+A next."
+          "id": "cf9e480ee789ae97d2da",
+          "display": "Choose Object → Apply → Scale. You can also press `Ctrl` + `A` in the viewport to open the Apply menu, then choose Scale."
         },
         "summary": {
-          "id": "105bc36b8705024a5c1d",
-          "display": "The blank keeps its dimensions. Scale is now 1 on every axis."
+          "id": "832ab60a57665f1ad93f",
+          "display": "The blank keeps its dimensions. Scale is now 1 on every axis and the original scale can no longer be recovered by entering 1 in the scale fields in the Item sidebar."
         },
         "quiz": {
           "id": "870ebc07b255d7b6dc2c",
           "display": "What should Apply Scale preserve?"
         }
       },
-      "apply-shortcut": {
-        "description": {
-          "id": "182e6fd872f001698b0e",
-          "display": "The same starting checkpoint is restored so you can practice the keyboard route. Changing dimensions in Object Mode changes scale. Apply Scale preserves the visible size while making the scale values 1. This gives dimension-sensitive mesh tools a consistent starting point."
-        },
-        "task": {
-          "id": "604f565009b514708aa6",
-          "display": "Focus the viewport and press `Ctrl` + `A` and choose Scale."
-        },
-        "summary": {
-          "id": "105bc36b8705024a5c1d",
-          "display": "The blank keeps its dimensions. Scale is now 1 on every axis."
-        }
-      },
       "ground": {
         "description": {
-          "id": "f6f89d0d001dbe431624",
-          "display": "The cube origin is at its center. With an 18 mm height, the center must be at Z = 9 mm for the bottom to sit at Z = 0."
+          "id": "6b4f472f1427a7361886",
+          "display": "Let's move the tray blank up so it sits on the XY plane. With the bottom at Z = 0, the grid gives us a clear reference for the surface that will sit on the print bed. The blank is 18 mm tall and its origin is at its center, so set the center to Z = 9 mm."
         },
         "task": {
-          "id": "995874af97bedebf0240",
-          "display": "Double-click Location Z to 9 mm, then press Enter."
+          "id": "9f297aeeabc61984ffb7",
+          "display": "Double-click Location Z, enter 9 mm, then press Enter."
         },
         "summary": {
           "id": "151ee16e78c661286cb8",
@@ -3550,16 +3562,16 @@
     "blender/edit-mode": {
       "mode": {
         "description": {
-          "id": "5581f419dd8406974932",
-          "display": "Object Mode transforms the whole object. Edit Mode changes its vertices, edges, and faces. The Layout workspace can contain either mode."
+          "id": "bcde7c35297580261670",
+          "display": "Use Object Mode to move, rotate, or scale a whole object. Use Edit Mode to change its shape. In this tutorial, you’ll reshape the solid tray blank into a hollow tray. Both modes are available in the Layout workspace."
         },
         "task": {
           "id": "494ca66e7cfc95790969",
           "display": "Open the mode selector and choose Edit Mode. Use the menu here; you will practice Tab next."
         },
         "summary": {
-          "id": "294e298a1bec70dea8aa",
-          "display": "You are now working on the mesh inside the object."
+          "id": "8b64d7ec8e5e8e99702b",
+          "display": "You are now editing the tray mesh. In Edit Mode, you can move, add, or delete the vertices, edges, and faces that make up its shape."
         },
         "quiz": {
           "id": "6d5f60bd2c6847512da1",
@@ -3568,16 +3580,16 @@
       },
       "mode-shortcut": {
         "description": {
-          "id": "5884986218a3272baaec",
-          "display": "The same starting checkpoint is restored so you can practice the keyboard route. Object Mode transforms the whole object. Edit Mode changes its vertices, edges, and faces. The Layout workspace can contain either mode."
+          "id": "adad5abf8c65430f2d45",
+          "display": "The same starting checkpoint is restored so you can practice the keyboard route. Pressing Tab switches between Object Mode and Edit Mode with a single keystroke."
         },
         "task": {
-          "id": "66b04d07bcc2eff377c1",
-          "display": "Focus the viewport and press `Tab`, then finish the same action."
+          "id": "7046b055f2f1bd958001",
+          "display": "Focus the viewport and press `Tab` to enter Edit Mode."
         },
         "summary": {
-          "id": "294e298a1bec70dea8aa",
-          "display": "You are now working on the mesh inside the object."
+          "id": "ddf3e24664aff55832c6",
+          "display": "Using Tab is faster than using the mode dropdown."
         }
       },
       "vertices": {
@@ -3642,22 +3654,36 @@
           "display": "Inset Faces creates a smaller face surrounded by a rim. The rim becomes our wall footprint. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm."
         },
         "task": {
-          "id": "224baaa92c72d5eadb38",
-          "display": "Click the viewport. Press `I` → `3` → `Enter`. Watch the preview before Enter."
+          "id": "0cd4ef3a2a1dfc3b31c0",
+          "display": "Click the Inset Faces icon in the toolbar, or press `I` in the viewport. Type `3`, watch the preview, then press `Enter`."
         },
         "summary": {
           "id": "2e4af3c17ec7578190a7",
           "display": "The inner face measures 94 × 64 mm. The surrounding rim is 3 mm wide."
         }
       },
-      "cancel-extrude": {
+      "introduce-extrude": {
         "description": {
-          "id": "66a3714184a5ec64b4a5",
-          "display": "Extrusion creates geometry and then moves it. Escape cancels the movement, leaving the new geometry at zero distance. Ctrl+Z removes that extrusion. This is different from simply cancelling Move or Rotate."
+          "id": "69aacbdebd36ef6b5478",
+          "display": "Extrude moves the selected face and builds new faces along its border to keep it connected to the mesh. Moving the inner face up makes a raised shape with new side walls. Try it on this practice copy before you make the tray cavity."
         },
         "task": {
-          "id": "4442b5ee901e636d417b",
-          "display": "Click the viewport. Press E, then Escape, then Ctrl+Z."
+          "id": "024ae71aeee622daf777",
+          "display": "Click the Extrude Region icon in the toolbar, or press `E` in the viewport. Type `8`, watch the face rise, then press `Enter`."
+        },
+        "summary": {
+          "id": "c540513e214e19abdaed",
+          "display": "The inner face moved up 8 mm and new walls connect it to the rim. The next exercise starts at the inset again."
+        }
+      },
+      "cancel-extrude": {
+        "description": {
+          "id": "90cc24aa670ec9eb9a10",
+          "display": "Blender creates the new edges and faces as soon as extrusion starts. Escape cancels the movement, so those new parts overlap the original surface and can be hard to see. If you started Extrude by accident, press Ctrl+Z after Escape to undo the creation of that geometry."
+        },
+        "task": {
+          "id": "2dd8d3f2693192c22a12",
+          "display": "Start Extrude Region from the toolbar or press `E` in the viewport. Press `Escape`, then `Ctrl` + `Z` to undo the extrusion."
         },
         "summary": {
           "id": "83ba08778264beaa5baf",
@@ -3666,12 +3692,12 @@
       },
       "extrude": {
         "description": {
-          "id": "0977132d51885a6ed1bc",
-          "display": "Extrude the selected inner face downward by 15 mm. Starting from a height of 18 mm leaves a 3 mm floor. Enter a negative value to move down Z. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm."
+          "id": "ead296797d5ce91d80ca",
+          "display": "Extruding inward creates a recess. Push the selected inner face down inside the blank to hollow out the tray. The inset rim stays at the top, and the new faces form the inside walls. Moving the face down 15 mm in this 18 mm blank leaves a 3 mm floor."
         },
         "task": {
-          "id": "af6fd8942bd76943fd23",
-          "display": "Click the viewport. Press `E` → `-` → `1` → `5` → `Enter`. Watch the preview before Enter."
+          "id": "6c8514f568239fd78f15",
+          "display": "Click the Extrude Region icon or press `E` in the viewport. Type `-` `1` `5`, watch the face move down, then press `Enter`."
         },
         "summary": {
           "id": "b16e584f3958ffe2dad5",
@@ -3716,26 +3742,12 @@
           "display": "Bevel the four outer rim edges you selected. A 0.6 mm bevel with three segments and Profile 0.5 creates a rounded transition with real geometry. Move the pointer to preview the width, or type a number. Scroll the wheel during the operation to change the number of segments. You can zoom in before starting to inspect the edge shape."
         },
         "task": {
-          "id": "602ce906959a42d50ada",
-          "display": "Click the viewport. Press `Ctrl` + `B`, type `0` `.` `6`, scroll up twice for 3 segments, then `Enter`."
+          "id": "e8e5d882ac21cf3ca991",
+          "display": "Click the Bevel icon in the toolbar, or press `Ctrl` + `B` in the viewport. Type `0` `.` `6`, scroll up twice for 3 segments, then press `Enter`."
         },
         "summary": {
           "id": "ab52539fa4bd1e5f7505",
           "display": "The outer rim now contains three curved segments across its 0.6 mm bevel. The cavity and floor remain intact. Orbit and zoom to inspect the new geometry in real Blender."
-        }
-      },
-      "orientation": {
-        "description": {
-          "id": "f71693964c8639d0c9e9",
-          "display": "This inspection checkpoint starts with the finished mesh deselected. Face Orientation reveals reversed faces. Find the option in Viewport Overlays, under Geometry, then inspect all sides in real Blender."
-        },
-        "task": {
-          "id": "eb0235a57153c7b7501b",
-          "display": "Open the Viewport Overlays arrow, enable Face Orientation under Geometry, then click the viewport to close the popover."
-        },
-        "summary": {
-          "id": "cfe643e9c71f9490ef6f",
-          "display": "Our generated mesh has no boundary or non-manifold edges. That does not replace checking dimensions, thickness, and sliced layers."
         }
       },
       "object": {
@@ -3768,8 +3780,8 @@
       },
       "export": {
         "description": {
-          "id": "d0b047b22c191176a48f",
-          "display": "Our checkpoint stores coordinates in millimeters. Export selected objects with Scale 1 and Scene Unit off. The generated STL has been reimported and checked at 100 × 70 × 18 mm."
+          "id": "4c9b7d31c38697c70c02",
+          "display": "Our checkpoint stores coordinates in millimeters. Export selected objects with Scale 1 and Scene Unit off."
         },
         "task": {
           "id": "86b2a923babaed3a547d",

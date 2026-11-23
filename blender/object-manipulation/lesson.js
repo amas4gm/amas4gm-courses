@@ -14,7 +14,7 @@ export default {
       "title": "Select the mesh",
       "text": "The selected object receives your changes. Click the cube itself, rather than empty space.",
       "task": "Click the cube in the viewport.",
-      "done": "The orange outline identifies the active object.",
+      "done": "The orange outline identifies the active object, the last object you selected. Select the cube so Blender knows which object should receive your edits.",
       "simulation": {
         "action": "select-object",
         "asset": "cube",
@@ -22,13 +22,13 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The orange outline identifies the active object. Save your own real Blender file before experimenting."
+      "follow": "In real Blender, click the object you want to edit and look for its orange outline. Save your file before experimenting."
     },
     {
       "id": "visual-move",
       "title": "Move by eye with precision",
       "chapter": "BLENDER / VISUAL TRANSFORMS",
-      "text": "G starts Move. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube.",
+      "text": "G starts the Move command. Move the pointer to judge the result visually. Hold Shift while moving for slow and precise movement, then release Shift to return to normal speed. Left-click or Enter confirms the movement; Escape cancels. This is practice; the next movement exercise starts fresh.",
       "task": "Press `G`, move the pointer, then hold `Shift` and move again. Left-click or press `Enter` to confirm.",
       "keys": [
         "G",
@@ -48,7 +48,7 @@ export default {
       "id": "visual-rotate",
       "title": "Rotate by eye",
       "chapter": "BLENDER / VISUAL TRANSFORMS",
-      "text": "R starts Rotate. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube.",
+      "text": "R starts the Rotate command. Move the pointer to judge the rotation visually. Hold Shift for smaller changes, then release Shift to rotate at normal speed. Left-click or Enter confirms the rotation. Escape cancels. This is practice. The next exercise starts fresh.",
       "task": "Press `R`, move the pointer, then hold `Shift` and move again. Left-click or press `Enter` to confirm.",
       "keys": [
         "R",
@@ -68,7 +68,7 @@ export default {
       "id": "visual-scale",
       "title": "Scale by eye",
       "chapter": "BLENDER / VISUAL TRANSFORMS",
-      "text": "S starts Scale. Move the pointer to judge the result visually. Hold Shift while moving for one-tenth-speed precision, then release Shift to return to normal speed. Left-click or Enter confirms; Escape cancels. This is a practice copy; the next exercise starts from a fresh cube.",
+      "text": "S starts the Scale command. Move the pointer to judge the size visually. Hold Shift for smaller changes, then release Shift to scale at normal speed. Left-click or Enter confirms the new size. Escape cancels. This is practice. The next exercise starts fresh.",
       "task": "Press `S`, move the pointer, then hold `Shift` and move again. Left-click or press `Enter` to confirm.",
       "keys": [
         "S",
@@ -87,7 +87,7 @@ export default {
     {
       "id": "move",
       "title": "Move along X",
-      "text": "G starts Blender’s Move operation. X constrains it to the X axis. Numeric entry sets the distance, and Enter confirms. Escape or right-click cancels the operation. The mesh previews while you move the pointer and while you type. The numeric entry record near the top of the viewport shows your input before you confirm.",
+      "text": "In the last three steps, you moved, rotated, and scaled by eye from the current view. To constrain a transform to one axis, press X, Y, or Z after starting the command. For a precise distance, type a number and check the live preview before pressing Enter. Here, G starts Move and X restricts it to the X axis.",
       "task": "Click the viewport. Press `G` → `X` → `1` → `Enter`. Watch the preview before Enter.",
       "done": "The object moved 1 mm along X. The view and object dimensions stayed unchanged.",
       "simulation": {
@@ -254,9 +254,9 @@ export default {
     {
       "id": "apply",
       "title": "Apply scale",
-      "text": "Changing dimensions in Object Mode changes scale. Apply Scale preserves the visible size while making the scale values 1. This gives dimension-sensitive mesh tools a consistent starting point.",
-      "task": "Choose Object → Apply → Scale. Use the menu here; you will practice Ctrl+A next.",
-      "done": "The blank keeps its dimensions. Scale is now 1 on every axis.",
+      "text": "As we changed the dimensions in the Item sidebar, did you notice how the scale fields also changed? Apply Scale makes the current size part of the mesh and resets each scale field to 1. In Object Mode, Ctrl+A opens the Apply menu, which offers Scale alongside options for applying Location or Rotation.",
+      "task": "Choose Object → Apply → Scale. You can also press `Ctrl` + `A` in the viewport to open the Apply menu, then choose Scale.",
+      "done": "The blank keeps its dimensions. Scale is now 1 on every axis and the original scale can no longer be recovered by entering 1 in the scale fields in the Item sidebar.",
       "simulation": {
         "action": "apply-scale",
         "asset": "cube",
@@ -268,8 +268,7 @@ export default {
           "sy": 35,
           "sz": 9
         },
-        "target": "object",
-        "menuOnly": true
+        "target": "object"
       },
       "quiz": {
         "prompt": "What should Apply Scale preserve?",
@@ -283,43 +282,17 @@ export default {
       },
       "chapter": "BLENDER / PART 1 · OBJECT MODE",
       "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The blank keeps its dimensions. Scale is now 1 on every axis. Save your own real Blender file before experimenting.",
-      "keys": [],
-      "inputHint": "Open Object, hover over Apply, then click Scale. The next step teaches Ctrl+A."
-    },
-    {
-      "id": "apply-shortcut",
-      "title": "Practice Apply Scale",
-      "text": "The same starting checkpoint is restored so you can practice the keyboard route. Changing dimensions in Object Mode changes scale. Apply Scale preserves the visible size while making the scale values 1. This gives dimension-sensitive mesh tools a consistent starting point.",
-      "task": "Focus the viewport and press `Ctrl` + `A` and choose Scale.",
-      "done": "The blank keeps its dimensions. Scale is now 1 on every axis.",
-      "simulation": {
-        "action": "apply-scale",
-        "asset": "cube",
-        "values": {
-          "dx": 100,
-          "dy": 70,
-          "dz": 18,
-          "sx": 50,
-          "sy": 35,
-          "sz": 9
-        },
-        "target": "object",
-        "shortcutOnly": true
-      },
-      "chapter": "BLENDER / PART 1 · OBJECT MODE",
-      "controlStatus": "Only the current task is enabled · Blender 5.2 reference",
-      "follow": "The blank keeps its dimensions. Scale is now 1 on every axis. Save your own real Blender file before experimenting.",
+      "follow": "In real Blender, check that the blank keeps its dimensions and the Item sidebar shows 1 for each scale field.",
       "keys": [
         "Ctrl+A"
       ],
-      "inputHint": "Use the shortcut on this second pass. The original menu method remains available in the previous step."
+      "inputHint": "Open Object, hover over Apply, then click Scale. Ctrl+A opens the same Apply menu in the viewport."
     },
     {
       "id": "ground",
       "title": "Place the bottom at zero",
-      "text": "The cube origin is at its center. With an 18 mm height, the center must be at Z = 9 mm for the bottom to sit at Z = 0.",
-      "task": "Double-click Location Z to 9 mm, then press Enter.",
+      "text": "Let's move the tray blank up so it sits on the XY plane. With the bottom at Z = 0, the grid gives us a clear reference for the surface that will sit on the print bed. The blank is 18 mm tall and its origin is at its center, so set the center to Z = 9 mm.",
+      "task": "Double-click Location Z, enter 9 mm, then press Enter.",
       "done": "The bottom is now at zero. The next checkpoint preserves the blank as actual Blender geometry.",
       "simulation": {
         "action": "field",
